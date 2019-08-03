@@ -3,7 +3,7 @@
 }
 
 #logo {
-  margin-left: 100%; 
+  margin-left: 100%;
   width: 60px;
   height: 60px;
   padding-top: 25px;
@@ -16,7 +16,6 @@
   display: inline-block;
   margin-left: 3%;
   padding-top: 40px;
-  color: white;
 }
 
 #login {
@@ -25,7 +24,6 @@
   display: inline-block;
   margin-left: 3%;
   padding-top: 40px;
-  color: white;
 }
 
 #menubar {
@@ -58,8 +56,8 @@
 
 #menubar ul li a {
   text-decoration: none; /* 링크 밑줄 없앰 */
-  color: white;
   display: block;
+  color: black;
 }
 
 #menubar ul li a:hover {
@@ -75,102 +73,25 @@
   display: block;
 }
 
-/* body {
-  background: url(background_img_3.jpg) no-repeat center center fixed; /* 배경화면 채우기 (여백 없이) - 고화질 사진 필요함
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
-
 #title {
-  color: white;
-  font-size: 50px;
-  margin-left: 8%;
-  margin-top: 10%;
-}
-
-#subtitle {
   font-family: 'Nanum Gothic', sans-serif;
-  color: white;
-  font-size: 25px;
-  margin-left: 8%;
-  margin-top: 2%;
-}
-
-#title_animation { /* 타이틀 애니메이션 지정 */
-  animation-name: slidein;
-  animation-duration: 3s;
-}
-
-@keyframes slidein { /* slidein 애니메이션 속성 지정 */
-  from {
-    margin-left: 100%;
-    width: 100%;
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
-
-#Notice, #Promotion, #Claims, #Departments{ /* 최근 글 색상 등 공통요소 */
-  color: white;
-  text-decoration: none;
-}
-
-#notice {
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  margin-top: 22%;
-  margin-left: 10%;
-}
-
-#promotion {
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  margin-top: 18%;
-  margin-left: 30%;
-}
-
-#claims {
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  margin-top: 10%;
-  margin-left: 10%;
-  margin-right: 60%;
-}
-
-#departments {
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  margin-left: 52%;
-  margin-top: -100px;
-}
-
-table {
- margin-top: 8%;
- border-collapse: collapse;
- margin-left: auto;
- margin-right: auto;
- width: 90%;
-}
-
-table, td, tr {
-  border: 3px solid white;
-  padding: 10px;
-  text-align: center;
+  margin-left: 13%;
   font-size: 30px;
-  color: white;
+  margin-top: 3%;
 }
 
-#quick_menu {
-  text-decoration: none;
-  color: white;
+#sc_logo {
+  margin-left: 13%;
+  width: 300px;
+  height: 300px;
+  margin-top: 3%;
+  display: inline-block;
+}
+
+p {
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 20px;
+  margin-left: 40%;
+  margin-top: -210px;
+  line-height: 2.0;
 }
