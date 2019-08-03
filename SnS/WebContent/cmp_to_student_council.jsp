@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
@@ -11,16 +11,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="css/PSB.css">
-=======
-    <link rel="stylesheet" href="PSB.css">
->>>>>>> refs/remotes/origin/master
+
+    <link rel="stylesheet" href="css/PSB.css">
+
   </head>
   <body>
     <header>
       <nav id='first_area'>
-        <img src="software_convergence_logo.PNG" id='logo' alt="소융대 로고"> <!-- 소융대 로고 -->
+        <img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"> <!-- 소융대 로고 -->
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li><a href='student_council.html'>학생회</a> <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
@@ -130,7 +130,7 @@
         </tbody>
       </table>
       <hr>
-      <a class= "btn btn-default pull-right" href="Public_Service_Board_Counsil_Write.html">글쓰기</a>
+      <a class= "btn btn-default pull-right" href="cmp_to_student_council_Write.jsp">글쓰기</a>
       <div class="text-center">
         <ul class="pagination">
           <li><a href="#">1</a></li>
