@@ -38,7 +38,7 @@
 
             <li><a href='complaints.html'>민원</a> <!-- 메뉴바 두번째 - 민원 카테고리 -->
               <ul id='submenu'>
-                <li><a href='Public_Service_Board_Counsil_Write.jsp'>학생회 건의사항</a></li>
+                <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.html'>학교 건의사항</a></li>
                 <li><a href='cmp_to_etc.html'>기타 민원</a></li>
                 <li><a href='introduce_cmp.html'>민원창구 소개</a></li>
