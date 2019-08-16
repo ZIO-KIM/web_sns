@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Photo</title>
-    <link rel="stylesheet" href="css/photo.css">
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+    <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/PSB.css">
   </head>
   <body>
-    <header>
+       <header>
       <nav id='first_area'>
         <img src="software_convergence_logo.PNG" id='logo' alt="소융대 로고"> <!-- 소융대 로고 -->
         <div id="menubar">
@@ -66,37 +71,70 @@
         <h1 id='login'><a href="login_page.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
       </nav>
     </header>
-
-    <h1 id='title'>갤러리</h1>
-    <nav id='gallery_all'>
-      <div class="gallery">
-        <a target="_blank" href="imgs/background_img_5.jpeg">
-          <img src="imgs/background_img_5.jpeg" alt="ex1" width="600" height="400">
-        </a>
-        <div class="desc">사진 설명</div>
-      </div>
-
-      <div class="gallery">
-        <a target="_blank" href="background_img_5.jpeg">
-          <img src="imgs/background_img_5.jpeg" alt="ex2" width="600" height="400">
-        </a>
-        <div class="desc">사진 설명</div>
-      </div>
-
-      <div class="gallery">
-        <a target="_blank" href="background_img_5.jpeg">
-          <img src="imgs/background_img_5.jpeg" alt="ex3" width="600" height="400">
-        </a>
-        <div class="desc">사진 설명</div>
-      </div>
-
-      <div class="gallery">
-        <a target="_blank" href="background_img_5.jpeg">
-          <img src="imgs/background_img_5.jpeg" alt="ex4" width="600" height="400">
-        </a>
-        <div class="desc">사진 설명</div>
-      </div>
+    <div id="container">
+    <nav>
+      <nav>
+        <h2>
+          <span></span>
+            취업 & 졸업
+        </h2>
+        <ul class="lnb_deps2">
+             <li>
+               <a href="employ_reviews.jsp" class="jwxe_22350 active">취창업 후기</a>
+             </li>
+             <li>
+               <a href="graduate_interviews.jsp" class="jwxe_22351 ">졸업생 인터뷰</a>
+            </li>
+            <li>
+              <a href="graduate_qnas.jsp" class="jwxe_22351 ">졸업생 QnA</a>
+            </li>
+        </ul>
+      </nav>
     </nav>
-
+    <section class="content">
+      <header>
+        <h1>졸업생 QnA</h1>
+      </header>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2</td>
+            <td>단대 야식행사 기획 누가했나요?</td>
+            <td>송승훈</td>
+            <td>2019.7.30</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>웹소설 왜 이렇게 상금이 작은가요?</td>
+            <td>이승준</td>
+            <td>2019.7.30</td>
+            <td>130</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <a class= "btn btn-default pull-right" href="graduate_qnas_Write.jsp">글쓰기</a>
+      <div class="text-center">
+        <ul class="pagination">
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+        </ul>
+      </div>
+    </section>
+    </div>
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>
