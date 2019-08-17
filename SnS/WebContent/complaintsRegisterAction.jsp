@@ -22,6 +22,7 @@
 	String cmpTitle=null;
 	String cmpContent=null;
 	String cmpDivide=null;
+	String cmpDate=null;
 
 	if(request.getParameter("cmpTitle")!=null){
 		cmpTitle=request.getParameter("cmpTitle");
@@ -31,6 +32,9 @@
 	}
 	if(request.getParameter("cmpDivide")!=null){
 		cmpDivide=request.getParameter("cmpDivide");
+	}
+	if(request.getParameter("cmpDate")!=null){
+		cmpDivide=request.getParameter("cmpDate");
 	}
 	if(cmpTitle==null ||cmpContent==null /* ||cmpDivide==null */ ||cmpTitle.equals("")||cmpContent.equals("")){
 		PrintWriter script =response.getWriter();
@@ -42,7 +46,7 @@
 		return;
 	}
 	ComplaintsDAO complaintsDAO =new ComplaintsDAO();
-	int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,"gildong",cmpContent,cmpDivide,0));
+	int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,"gildong",cmpContent,cmpDivide,cmpDate,0));
 	
 	if(result==-1){
 		PrintWriter script = response.getWriter();
