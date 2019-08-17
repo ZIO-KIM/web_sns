@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page import="complaints.ComplaintsDAO" %>
 <%@ page import="complaints.ComplaintsDTO" %>
 <!DOCTYPE html>
@@ -25,10 +26,18 @@
 		if(session.getAttribute("userID")!=null){
 			userID=(String)session.getAttribute("userID");
 		} */
-		int pageNumber =1;
-		if(request.getParameter("pageNumber")!=null){
-			pageNumber =Integer.parseInt(request.getParameter("pageNumber"));
+		int cmpID=0;
+		if(request.getParameter("cmpID")!=null){
+			cmpID =Integer.parseInt(request.getParameter("cmpID"));
 		}
+		if(cmpID==0){
+			PrintWriter script =response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("location.href='cmp_to_student_council.jsp'");
+			script.println("</script>");
+		}
+		ComplaintsDTO cmp =new ComplaintsDAO().getCmp(cmpID);
 	 %>
   
     <header>
@@ -118,41 +127,37 @@
 			<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
 				<thead>
 					<tr>
-						<th style="background-color:#eeeeee; text-align:center;">번호</th>
-						<th style="background-color:#eeeeee; text-align:center;">제목</th>
-						<th style="background-color:#eeeeee; text-align:center;">작성자</th>
-						<th style="background-color:#eeeeee; text-align:center;">작성일</th>
+						<th colspan="3" style="background-color:#eeeeee; text-align:center;">게시판 글보기</th>
 					</tr>
 				<thead>
 				<tbody>
-					<%
-						ComplaintsDAO cmpDAO = new ComplaintsDAO();
-						ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber);
-						for(int i=0; i<list.size();i++){
-					%>
 					<tr>
-						<td><%=list.get(i).getCmpID() %></td>
-						<td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-						<td><%=list.get(i).getUserID() %></td>
-						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
+						<td style="width:20%;">글 제목</td>
+						<td colspan="2"><%=cmp.getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></td>
 					</tr>
-					<%
-						}
-					%>
+					<tr>
+						<td>작성자</td>
+						<td colspan="2"><%=cmp.getUserID() %></td>
+					</tr>
+					<tr>
+						<td>작성일자</td>
+						<td colspan="2"><%=cmp.getCmpDate().substring(0,11)+cmp.getCmpDate().substring(11,13)+"시"+cmp.getCmpDate().substring(14,16)+"분" %></td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td colspan="2" style="min-height:200px; text-align:left;"><%=cmp.getCmpContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>")%></td>
+					</tr>
 				</tbody>
 			</table>
-			<%
-				if(pageNumber!=1){
+			<a href="cmp_to_student_coucil.jsp" class="btn btn-primary">목록</a>
+			<%-- <%
+				if(userID!=null && userID.equals(bbs.getUserID())){
 			%>
-				<a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
-			<%
-				}if(cmpDAO.nextPage(pageNumber+1)){
-			%>
-				<a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
+				<a href="update.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">수정</a>
+				<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%=bbsID %>" class="btn btn-primary">삭제</a>
 			<%
 				}
-			%>
-			<a href="cmp_to_student_council_Write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			%> --%>		
 		</div>
 	</div>
 

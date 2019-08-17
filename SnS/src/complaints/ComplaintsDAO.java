@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import util.DatabaseUtil;
 
 public class ComplaintsDAO {
@@ -25,7 +24,7 @@ public class ComplaintsDAO {
 		return "";
 	}
 	public int getNext() { 
-		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
+		String SQL = "SELECT cmpID FROM CMP_ST ORDER BY cmpID DESC";
 		try {
 			PreparedStatement pstmt =conn.prepareStatement(SQL);
 			ResultSet rs=pstmt.executeQuery();
@@ -65,7 +64,7 @@ public class ComplaintsDAO {
 	}
 	
 	public ArrayList<ComplaintsDTO> getList(int pageNumber){
-		String SQL ="SELECT * FROM BBS WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		String SQL ="SELECT * FROM CMP_ST WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
 		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
 		try {
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
@@ -101,5 +100,29 @@ public class ComplaintsDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	public ComplaintsDTO getCmp(int cmpID) {
+
+		String SQL = "SELECT * FROM CMP_ST WHERE cmpID = ?";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, cmpID);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				ComplaintsDTO cmp = new ComplaintsDTO();
+				cmp.setCmpID(rs.getInt(1));
+				cmp.setCmpTitle(rs.getString(2));
+				cmp.setUserID(rs.getString(3));
+				cmp.setCmpDate(rs.getString(4));
+				cmp.setCmpContent(rs.getString(5));
+				cmp.setCmpDivide(rs.getString(6));
+				cmp.setLikeCount(rs.getInt(7));
+				return cmp;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
