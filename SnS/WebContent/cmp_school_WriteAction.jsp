@@ -46,12 +46,12 @@
       return;
    }
    ComplaintsDAO complaintsDAO =new ComplaintsDAO();
-   int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,"gildong",cmpContent,cmpDivide,cmpDate,0));
+   int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,"gildong",cmpContent,cmpDivide,cmpDate,0),false);
    
    if(result==-1){
       PrintWriter script = response.getWriter();
       script.println("<script>");
-      script.println("alert('강의 평가 등록 실패했습니다.');");
+      script.println("alert('민원 등록 실패했습니다.');");
       script.println("history.back();");
       script.println("</script>");
       script.close();

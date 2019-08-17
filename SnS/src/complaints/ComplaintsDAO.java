@@ -23,8 +23,11 @@ public class ComplaintsDAO {
 		}
 		return "";
 	}
-	public int getNext() { 
-		String SQL = "SELECT cmpID FROM CMP_ST ORDER BY cmpID DESC";
+	public int getNext(boolean isStudent) {
+		String SQL = "SELECT cmpID FROM CMP_SC ORDER BY cmpID DESC";
+		if(isStudent) {
+			SQL = "SELECT cmpID FROM CMP_ST ORDER BY cmpID DESC";
+		}
 		try {
 			PreparedStatement pstmt =conn.prepareStatement(SQL);
 			ResultSet rs=pstmt.executeQuery();
@@ -39,8 +42,11 @@ public class ComplaintsDAO {
 		return -1; 
 	}
 	
-	public int write(ComplaintsDTO complaintsDTO) {
-		String SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?, 0)";
+	public int write(ComplaintsDTO complaintsDTO, boolean isStudent) {
+		String SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?, 0)";
+		if(isStudent) {
+			SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?, 0)";
+		}
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
@@ -63,12 +69,15 @@ public class ComplaintsDAO {
 		return -1;
 	}
 	
-	public ArrayList<ComplaintsDTO> getList(int pageNumber){
-		String SQL ="SELECT * FROM CMP_ST WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+	public ArrayList<ComplaintsDTO> getList(int pageNumber,boolean isStudent){
+		String SQL ="SELECT * FROM CMP_SC WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		if(isStudent) {
+			SQL ="SELECT * FROM CMP_ST WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		}
 		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
 		try {
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext()-(pageNumber-1)*10);
+			pstmt.setInt(1, getNext(isStudent)-(pageNumber-1)*10);
 			ResultSet rs= pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -86,11 +95,11 @@ public class ComplaintsDAO {
 		}
 		return list;
 	}
-	public boolean nextPage(int pageNumber) {
+	public boolean nextPage(int pageNumber,boolean isStudent) {
 		String SQL ="SELECT * FROM CMP_ST WHERE cmpID < ?"; //AND cmpAvailable = 1 추가   
 		try {
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext()-(pageNumber-1)*10);
+			pstmt.setInt(1, getNext(isStudent)-(pageNumber-1)*10);
 			ResultSet rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -101,10 +110,11 @@ public class ComplaintsDAO {
 		}
 		return false;
 	}
-	public ComplaintsDTO getCmp(int cmpID) {
-
-		String SQL = "SELECT * FROM CMP_ST WHERE cmpID = ?";
-
+	public ComplaintsDTO getCmp(int cmpID,boolean isStudent) {
+		String SQL = "SELECT * FROM CMP_SC WHERE cmpID = ?";
+		if(isStudent) {
+			SQL = "SELECT * FROM CMP_ST WHERE cmpID = ?";
+		}
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, cmpID);
@@ -124,5 +134,50 @@ public class ComplaintsDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public int like(int cmpID, int cmpAgree,boolean isStudent) { 
+		String SQL = "UPDATE CMP_SC SET cmpAgree = cmpAgree + 1 WHERE cmpID = ?";
+		if(isStudent) {
+			SQL = "UPDATE CMP_ST SET cmpAgree = cmpAgree + 1 WHERE cmpID = ?";
+		}
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, cmpID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	public int delete(int cmpID, int cmpAgree,boolean isStudent) { 
+		String SQL = "DELETE FROM CMP_SC WHERE cmpID=?";
+		if(isStudent) {
+			SQL = "DELETE FROM CMP_ST WHERE cmpID=?";
+		}
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, cmpID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	public String getUserID(int cmpID,boolean isStudent) {
+		String SQL="SELECT userID FROM CMP_SC WHERE cmpID=?";
+		if(isStudent) {
+			SQL="SELECT userID FROM CMP_ST WHERE cmpID=?";
+		}
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, cmpID);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null; //데이터베이스 오류
 	}
 }

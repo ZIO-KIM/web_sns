@@ -128,12 +128,12 @@
       <tbody>
          <%
             ComplaintsDAO cmpDAO = new ComplaintsDAO();
-            ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber);
+            ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber,false);
             for(int i=0; i<list.size();i++){
          %>
          <tr>
             <td><%=list.get(i).getCmpID() %></td>
-            <td><a href="cmp_to_school_view.jsp?bbsID=<%=list.get(i).getCmpID()%>"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+            <td><a href="cmp_to_school_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
             <td><%=list.get(i).getUserID() %></td>
             <td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
          </tr>
@@ -158,7 +158,7 @@
       %>
             <a href="cmp_to_school.jsp?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
          <%
-            }if(cmpDAO.nextPage(pageNumber+1)){
+            }if(cmpDAO.nextPage(pageNumber+1,false)){
          %>
             <a href="cmp_to_school.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
          <%

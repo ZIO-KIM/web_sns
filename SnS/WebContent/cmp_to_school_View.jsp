@@ -8,7 +8,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학교 건의사항</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -34,10 +34,10 @@
 			PrintWriter script =response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='cmp_to_student_council.jsp'");
+			script.println("location.href='cmp_to_school.jsp'");
 			script.println("</script>");
 		}
-		ComplaintsDTO cmp =new ComplaintsDAO().getCmp(cmpID,true);
+		ComplaintsDTO cmp =new ComplaintsDAO().getCmp(cmpID,false);
 	 %>
   
     <header>
