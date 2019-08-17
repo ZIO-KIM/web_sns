@@ -3,14 +3,17 @@ package complaints;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import util.DatabaseUtil;
 
 public class ComplaintsDAO {
 
+	Connection conn=DatabaseUtil.getConnection();
+	
 	public String getDate() {
 		String SQL="SELECT NOW()";
 		try {
-			Connection conn=DatabaseUtil.getConnection();
 			PreparedStatement pstmt =conn.prepareStatement(SQL);
 			ResultSet rs=pstmt.executeQuery();
 			if(rs.next()) {
@@ -20,6 +23,21 @@ public class ComplaintsDAO {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	public int getNext() { 
+		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
+		try {
+			PreparedStatement pstmt =conn.prepareStatement(SQL);
+			ResultSet rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; 
 	}
 	
 	public int write(ComplaintsDTO complaintsDTO) {
@@ -44,5 +62,44 @@ public class ComplaintsDAO {
 			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
 		}
 		return -1;
+	}
+	
+	public ArrayList<ComplaintsDTO> getList(int pageNumber){
+		String SQL ="SELECT * FROM BBS WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
+		try {
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext()-(pageNumber-1)*10);
+			ResultSet rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ComplaintsDTO cmpDTO =new ComplaintsDTO();
+				cmpDTO.setCmpID(rs.getInt(1));
+				cmpDTO.setCmpTitle(rs.getString(2));
+				cmpDTO.setCmpContent(rs.getString(3));
+				cmpDTO.setCmpDate(rs.getString(4));
+				cmpDTO.setLikeCount(rs.getInt(5));
+				cmpDTO.setUserID(rs.getString(6));
+				list.add(cmpDTO);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public boolean nextPage(int pageNumber) {
+		String SQL ="SELECT * FROM CMP_ST WHERE cmpID < ?"; //AND cmpAvailable = 1 추가   
+		try {
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext()-(pageNumber-1)*10);
+			ResultSet rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return true;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

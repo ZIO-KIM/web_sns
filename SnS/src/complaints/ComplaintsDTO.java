@@ -6,6 +6,7 @@ public class ComplaintsDTO {
 	String userID;
 	String cmpContent;
 	String cmpDivide;
+	String cmpDate;
 	int likeCount;
 	
 	public int getCmpID() {
@@ -38,6 +39,12 @@ public class ComplaintsDTO {
 	public void setCmpDivide(String cmpDivide) {
 		this.cmpDivide = cmpDivide;
 	}
+	public String getCmpDate() {
+		return cmpDate;
+	}
+	public void setCmpDate(String cmpDate) {
+		this.cmpDate = cmpDate;
+	}
 	public int getLikeCount() {
 		return likeCount;
 	}
@@ -51,12 +58,13 @@ public class ComplaintsDTO {
 	
 	
 	public ComplaintsDTO(int cmpID, String cmpTitle, String userID, String cmpContent, String cmpDivide,
-			int likeCount) {
+			String cmpDate, int likeCount) {
 		this.cmpID = cmpID;
 		this.cmpTitle = cmpTitle;
 		this.userID = userID;
 		this.cmpContent = cmpContent;
 		this.cmpDivide=cmpDivide;
+		this.cmpDate=cmpDate;
 		this.likeCount = likeCount;
 	}
 }
