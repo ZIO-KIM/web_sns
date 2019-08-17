@@ -20,16 +20,16 @@
   </head>
   <body>
   
-	<%
-		/* String userID=null;
-		if(session.getAttribute("userID")!=null){
-			userID=(String)session.getAttribute("userID");
-		} */
-		int pageNumber =1;
-		if(request.getParameter("pageNumber")!=null){
-			pageNumber =Integer.parseInt(request.getParameter("pageNumber"));
-		}
-	 %>
+   <%
+      /* String userID=null;
+      if(session.getAttribute("userID")!=null){
+         userID=(String)session.getAttribute("userID");
+      } */
+      int pageNumber =1;
+      if(request.getParameter("pageNumber")!=null){
+         pageNumber =Integer.parseInt(request.getParameter("pageNumber"));
+      }
+    %>
   
     <header>
       <nav id='first_area'>
@@ -112,51 +112,62 @@
       </nav>
     </nav>
     
+    <section class="content">
+      <header>
+        <h1>학생회 건의사항</h1>
+      </header>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+      <tbody>
+         <%
+            ComplaintsDAO cmpDAO = new ComplaintsDAO();
+            ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber);
+            for(int i=0; i<list.size();i++){
+         %>
+         <tr>
+            <td><%=list.get(i).getCmpID() %></td>
+            <td><a href="cmp_to_student_council_view.jsp?bbsID=<%=list.get(i).getCmpID()%>"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+            <td><%=list.get(i).getUserID() %></td>
+            <td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
+         </tr>
+         <%
+            }
+         %>
+      </tbody>
+      </table>
+      <hr>
+      <a class= "btn btn-default pull-right" href="cmp_to_student_council_Write.jsp">글쓰기</a>
+      <div class="text-center">
+        <ul class="pagination">
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+        </ul>
+      </div>
+      <%
+            if(pageNumber!=1){
+      %>
+            <a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
+         <%
+            }if(cmpDAO.nextPage(pageNumber+1)){
+         %>
+            <a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
+         <%
+            }
+         %>
+    </section>
     
-		<div class="container">
-		<div class="row">
-			<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
-				<thead>
-					<tr>
-						<th style="background-color:#eeeeee; text-align:center;">번호</th>
-						<th style="background-color:#eeeeee; text-align:center;">제목</th>
-						<th style="background-color:#eeeeee; text-align:center;">작성자</th>
-						<th style="background-color:#eeeeee; text-align:center;">작성일</th>
-					</tr>
-				<thead>
-				<tbody>
-					<%
-						ComplaintsDAO cmpDAO = new ComplaintsDAO();
-						ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber);
-						for(int i=0; i<list.size();i++){
-					%>
-					<tr>
-						<td><%=list.get(i).getCmpID() %></td>
-						<td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-						<td><%=list.get(i).getUserID() %></td>
-						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
-			<%
-				if(pageNumber!=1){
-			%>
-				<a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
-			<%
-				}if(cmpDAO.nextPage(pageNumber+1)){
-			%>
-				<a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
-			<%
-				}
-			%>
-			<a href="cmp_to_student_council_Write.jsp" class="btn btn-primary pull-right">글쓰기</a>
-		</div>
-	</div>
-
-	</div>
+   </div>
     <script src="js/bootstrap.js"></script>
   </body>
 </html>
