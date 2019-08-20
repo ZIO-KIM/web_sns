@@ -150,6 +150,8 @@
 				</tbody>
 			</table>
 			<a href="cmp_to_student_coucil.jsp" class="btn btn-primary">목록</a>
+			
+			<a onclick="return confirm('추천하시겠습니까?')" href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmpID %>" class="btn btn-primary pull-right" style="background-color:#c70027;">추천</a>
 			<%-- <%
 				if(userID!=null && userID.equals(bbs.getUserID())){
 			%>

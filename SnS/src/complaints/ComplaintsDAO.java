@@ -86,7 +86,7 @@ public class ComplaintsDAO {
 				cmpDTO.setCmpTitle(rs.getString(2));
 				cmpDTO.setCmpContent(rs.getString(3));
 				cmpDTO.setCmpDate(rs.getString(4));
-				cmpDTO.setLikeCount(rs.getInt(5));
+				cmpDTO.setAgreeCount(rs.getInt(5));
 				cmpDTO.setUserID(rs.getString(6));
 				list.add(cmpDTO);
 			}
@@ -127,7 +127,7 @@ public class ComplaintsDAO {
 				cmp.setCmpDate(rs.getString(4));
 				cmp.setCmpContent(rs.getString(5));
 				cmp.setCmpDivide(rs.getString(6));
-				cmp.setLikeCount(rs.getInt(7));
+				cmp.setAgreeCount(rs.getInt(7));
 				return cmp;
 			}
 		} catch (Exception e) {
@@ -135,10 +135,10 @@ public class ComplaintsDAO {
 		}
 		return null;
 	}
-	public int like(int cmpID, int cmpAgree,boolean isStudent) { 
-		String SQL = "UPDATE CMP_SC SET cmpAgree = cmpAgree + 1 WHERE cmpID = ?";
+	public int agree(int cmpID, boolean isStudent) { 
+		String SQL = "UPDATE CMP_SC SET agreeCount = agreeCount + 1 WHERE cmpID = ?";
 		if(isStudent) {
-			SQL = "UPDATE CMP_ST SET cmpAgree = cmpAgree + 1 WHERE cmpID = ?";
+			SQL = "UPDATE CMP_ST SET agreeCount = agreeCount + 1 WHERE cmpID = ?";
 		}
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -149,7 +149,7 @@ public class ComplaintsDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
-	public int delete(int cmpID, int cmpAgree,boolean isStudent) { 
+	public int delete(int cmpID, boolean isStudent) { 
 		String SQL = "DELETE FROM CMP_SC WHERE cmpID=?";
 		if(isStudent) {
 			SQL = "DELETE FROM CMP_ST WHERE cmpID=?";

@@ -36,7 +36,7 @@
    if(request.getParameter("cmpDate")!=null){
       cmpDivide=request.getParameter("cmpDate");
    }
-   if(cmpTitle==null ||cmpContent==null /* ||cmpDivide==null */ ||cmpTitle.equals("")||cmpContent.equals("")){
+   if(cmpTitle==null ||cmpContent==null ||cmpDivide==null  ||cmpTitle.equals("")||cmpContent.equals("")){
       PrintWriter script =response.getWriter();
       script.println("<script>");
       script.println("alert('입력이 안 된 사항이 있습니다..');");

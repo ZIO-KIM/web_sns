@@ -7,7 +7,7 @@ public class ComplaintsDTO {
 	String cmpContent;
 	String cmpDivide;
 	String cmpDate;
-	int likeCount;
+	int agreeCount;
 	
 	public int getCmpID() {
 		return cmpID;
@@ -45,11 +45,11 @@ public class ComplaintsDTO {
 	public void setCmpDate(String cmpDate) {
 		this.cmpDate = cmpDate;
 	}
-	public int getLikeCount() {
-		return likeCount;
+	public int getAgreeCount() {
+		return agreeCount;
 	}
-	public void setLikeCount(int likeCount) {
-		this.likeCount = likeCount;
+	public void setAgreeCount(int agreeCount) {
+		this.agreeCount = agreeCount;
 	}
 	
 	public ComplaintsDTO() {
@@ -58,13 +58,13 @@ public class ComplaintsDTO {
 	
 	
 	public ComplaintsDTO(int cmpID, String cmpTitle, String userID, String cmpContent, String cmpDivide,
-			String cmpDate, int likeCount) {
+			String cmpDate, int agreeCount) {
 		this.cmpID = cmpID;
 		this.cmpTitle = cmpTitle;
 		this.userID = userID;
 		this.cmpContent = cmpContent;
 		this.cmpDivide=cmpDivide;
 		this.cmpDate=cmpDate;
-		this.likeCount = likeCount;
+		this.agreeCount = agreeCount;
 	}
 }

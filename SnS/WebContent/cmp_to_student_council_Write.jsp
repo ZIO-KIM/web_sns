@@ -102,15 +102,30 @@
         <h1>글쓰기</h1>
       </header>
       <form method="post" action="cmp_to_student_council_WriteAction.jsp">
+      <div class="form-group col-sm-3">
+      	<label>학과</label>
+      	<select name="cmpDivide" class="form-control">
+      		<option value="선택 안함" selected>선택 안함</option>
+      		<option value="컴퓨터공학과">컴퓨터공학과</option>
+      		<option value="정보보호학과" >정보보호학과</option>
+      		<option value="소프트웨어학과">소프트웨어학과</option>
+      		<option value="데이터사이언스학과">데이터사이언스학과</option>
+      		<option value="지능기전공학부">지능기전공학부</option>
+      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
+      		<option value="만화애니메이션전공">만화애니메이션전공</option>
+      	</select>
+      </div>
       <table class="table table-bordered">
         <tbody>
             <tr>
                <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" class="form-control"/></td>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
+            </tr>
+            <tr>
             </tr>
             <tr>
                <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" class="form-control"></textarea></td>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
             </tr>
             <tr>
                <th>첨부파일: </th>
@@ -119,8 +134,6 @@
             <tr>
                <td colspan="2">
                  <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-                 <input type="button" value="reset" class="pull-left"/>
-                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
                </td>
              </tr>
           

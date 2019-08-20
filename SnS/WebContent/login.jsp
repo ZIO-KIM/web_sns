@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="mainpage.css">
-    <link rel="stylesheet" href="login_page.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+    <link rel="stylesheet" href="css/login_page.css">
   </head>
   <body>
   
@@ -86,8 +86,8 @@
             </li>
           </ul>
         </div>
-        <h2 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h2 id='login'> LOGIN</h1> <!-- 로그인 버튼-->
+        <h2 id='language'>한국어 / EN </h2> <!--영어, 한글 버전 바꾸는 버튼-->
+        <h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
       </nav>
     </header>
     <div id="wrap">

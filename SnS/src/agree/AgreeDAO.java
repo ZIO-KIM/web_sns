@@ -8,7 +8,7 @@ import util.DatabaseUtil;
 
 public class AgreeDAO {
 	
-	public int agree(String userID, String cmpID,String userIP) {
+	public int agree(String userID, int cmpID,String userIP) {
 		String SQL="INSERT INTO AGREE VALUES(?,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt =null;
@@ -17,7 +17,7 @@ public class AgreeDAO {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
-			pstmt.setString(2, cmpID);
+			pstmt.setInt(2, cmpID);
 			pstmt.setString(3, userIP);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
