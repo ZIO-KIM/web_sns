@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="user.UserDAO" %>   
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -16,6 +18,13 @@
     <script src="js/mainpage.js"></script>
   </head>
   <body>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  %>  
     <script>
       $.backstretch(["imgs/background_img_3.jpg",
       "imgs/wallpaper-1812167.jpg"],
@@ -76,7 +85,18 @@
           </ul>
         </div> <!-- 메뉴바 -->
         <h2 id='language'>한국어 / EN </h2> <!--영어, 한글 버전 바꾸는 버튼-->
+        
+        <%
+        	if(userID==null){
+        %>
         <h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
+        <%
+        	}else{
+        %>
+      	<h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
+        <%
+        	}
+        %>
       </nav>
     </header>
 

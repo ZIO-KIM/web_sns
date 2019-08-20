@@ -1,20 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+    
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항 :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 로그인</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/PSB.css">
-    <meta name="viewport" content="device-width, initial-scale=1">
+    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="login_page.css">
   </head>
   <body>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  	if(userID==null){
+  		PrintWriter script=response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 해주세요')");
+		script.println("location.href='login.jsp'");
+		script.println("</script>");
+		script.close();
+		return;
+  	}
+  	%>
+  
     <header>
       <nav id='first_area'>
         <img src="software_convergence_logo.PNG" id='logo' alt="소융대 로고"> <!-- 소융대 로고 -->
@@ -68,66 +86,17 @@
             </li>
           </ul>
         </div>
-        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'> LOGIN</h1> <!-- 로그인 버튼-->
+        <h2 id='language'>한국어 / EN </h2> <!--영어, 한글 버전 바꾸는 버튼-->
+        <h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
       </nav>
     </header>
-    <div id="container">
-    <nav>
-      <nav>
-        <h2>
-          <span></span>
-            민원
-        </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href="Public_Service_Board_Counsil.html" class="jwxe_22350 active">학생회 건의사항</a>
-             </li>
-             <li>
-               <a href="Public_Service_Board_School.html" class="jwxe_22351 ">학교 건의사항</a>
-            </li>
-            <li>
-              <a href="Public_Service_Board_Other.html" class="jwxe_22351 ">기타 민원</a>
-            </li>
-            <li>
-              <a href="Public_Service_Board_Intro.html" class="jwxe_22351 ">민원창구 소개</a>
-            </li>
-        </ul>
-      </nav>
-    </nav>
-    
-    
-    <section class="content">
-      <header>
-        <h1>글쓰기</h1>
-      </header>
-      <form method="post" action="cmp_to_student_council_WriteAction.jsp">
-      <table class="table table-bordered">
-        <tbody>
-            <tr>
-               <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" class="form-control"/></td>
-            </tr>
-            <tr>
-               <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" class="form-control"></textarea></td>
-            </tr>
-            <tr>
-               <th>첨부파일: </th>
-               <td><input type="text" placeholder="파일을 선택하세요. " name="cmpFile" class="form-control"/></td>
-            </tr>
-            <tr>
-               <td colspan="2">
-                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-                 <input type="button" value="reset" class="pull-left"/>
-                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
-               </td>
-             </tr>
-          
-        </tbody>
-      </table>
-      </form>
-      </section>
-    <script src="js/bootstrap.js"></script>
+
+	<section class="container mt-3" style="max-width:560px;">
+		<div class="alert alert-warning mt-4" role="alert">
+			이메일 주소 인증을 하셔야 이용 가능합니다. 인증 메일을 받지 못하셨나요?
+		</div>
+		<a href="emailSendAction.jsp" class="btn btn-primary">인증 메일 다시 받기</a>
+	</section>
+
   </body>
 </html>
