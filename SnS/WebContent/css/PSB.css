@@ -16,7 +16,7 @@
   display: inline-block;
   margin-left: 3%;
   padding-top: 40px;
-  color: white;
+  color: black;
 }
 
 #login {
@@ -25,7 +25,7 @@
   display: inline-block;
   margin-left: 3%;
   padding-top: 40px;
-  color: white;
+  color: black;
 }
 
 #menubar {
@@ -58,7 +58,7 @@
 
 #menubar ul li a {
   text-decoration: none; /* 留곹겕 諛묒쨪 �뾾�빊 */
-  color: white;
+  color: black;
   display: block;
 }
 
@@ -76,7 +76,7 @@
 }
 
 body {
-  background: url(../imgs/background_img_3.jpg) no-repeat center center fixed; /* 諛곌꼍�솕硫� 梨꾩슦湲� (�뿬諛� �뾾�씠) - 怨좏솕吏� �궗吏� �븘�슂�븿 */
+  background: white; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -84,7 +84,7 @@ body {
 }
 
 #title {
-  color: white;
+  color: black;
   font-size: 50px;
   margin-left: 8%;
   margin-top: 10%;
@@ -92,7 +92,7 @@ body {
 
 #subtitle {
   font-family: 'Nanum Gothic', sans-serif;
-  color: white;
+  color: black;
   font-size: 25px;
   margin-left: 8%;
   margin-top: 2%;
@@ -117,11 +117,11 @@ body {
 }
 table {
   border-collapse: collapse;
-  color: white;
+  color: black;
 }
 table, th, td {
   border: 1px solid white;
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
@@ -140,7 +140,7 @@ th, td {
 #container nav h2 {
     padding-bottom: 37px;
     font-size: 25px;
-    color:white;
+    color: black; 
     line-height: 130%;
     font-weight: normal;
     word-break: keep-all;
@@ -151,7 +151,7 @@ th, td {
     float:right;
 }
 .content header h1{
-  color:white;
+  color: black;
   padding-bottom: 15px;
 }
 ul, ol {
@@ -163,12 +163,12 @@ ul, ol {
     padding: 15px 3px;
     border-bottom: 1px solid #dadada;
     font-size: 16px;
-    color: white;
+    color: black;
 }
 .lnb_deps2 > li >a{
    text-decoration:none ;
-   color: white;
+   color: black;
 }
 a{
-  color: white
+  color: black; 
 }

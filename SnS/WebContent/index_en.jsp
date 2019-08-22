@@ -18,7 +18,7 @@
   <body>
     <script>
       $.backstretch(["imgs/background_img_3.jpg",
-      "imgs/background_img_6.jpeg"],
+    	  "imgs/wallpaper-1812167.jpg"],
       {duration: 3000, fade: 900});
     </script>
 
@@ -27,50 +27,50 @@
         <img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"> <!-- 소융대 로고 -->
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
-            <li><a href='student_council.html'>Student Council</a> <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
+            <li><a href='student_council.jsp'>Student Council</a> <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
               <ul id='submenu'>
-                <li><a href='student_council_introduce.html'>Introduction of Student Council</a></li>
-                <li><a href='student_council_photo.html'>Photos</a></li>
-                <li><a href='student_council_events.html'>Events</a></li>
-                <li><a href='student_council_public_money.html'>Usage of Public Budget</a></li>
+                <li><a href='student_council_introduce.jsp'>Introduction of Student Council</a></li>
+                <li><a href='student_council_photo.jsp'>Photos</a></li>
+                <li><a href='student_council_events.jsp'>Events</a></li>
+                <li><a href='student_council_public_money.jsp'>Usage of Public Budget</a></li>
               </ul>
             </li>
 
-            <li><a href='complaints.html'>Complaints</a> <!-- 메뉴바 두번째 - 민원 카테고리 -->
+            <li><a href='complaints.jsp'>Complaints</a> <!-- 메뉴바 두번째 - 민원 카테고리 -->
               <ul id='submenu'>
-                <li><a href='cmp_to_student_council.html'>To. Student Council</a></li>
-                <li><a href='cmp_to_school.html'>To. School</a></li>
-                <li><a href='cmp_to_etc.html'>To. etc</a></li>
-                <li><a href='introduce_cmp.html'>Other ways to make Suggestions</a></li>
+                <li><a href='cmp_to_student_council.jsp'>To. Student Council</a></li>
+                <li><a href='cmp_to_school.jsp'>To. School</a></li>
+                <li><a href='cmp_to_etc.jsp'>To. etc</a></li>
+                <li><a href='introduce_cmp.jsp'>Other ways to make Suggestions</a></li>
               </ul>
             </li>
 
-            <li><a href='pre_sju_student.html'>For Pre-Sejong students</a> <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
+            <li><a href='pre_sju_student.jsp'>For Pre-Sejong students</a> <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
               <ul id='submenu'>
-                <li><a href='admission_reviews.html'>Admission Reviews of Elders</a></li>
-                <li><a href='admission_qnas.html'>Admission QnA</a></li>
+                <li><a href='admission_reviews.jsp'>Admission Reviews of Elders</a></li>
+                <li><a href='admission_qnas.jsp'>Admission QnA</a></li>
               </ul>
             </li>
 
-            <li><a href='employ_n_grauation.html'>Employment & Graduation</a> <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+            <li><a href='employ_n_grauation.jsp'>Employment & Graduation</a> <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
-                <li><a href='employ_reviews.html'>Employment Reviews</a><br></li>
-                <li><a href='graduate_interviews.html'>Graduate Interviews</a><br></li>
-                <li><a href='graduate_qnas.html'>Graduate QnA</a><br></li>
+                <li><a href='employ_reviews.jsp'>Employment Reviews</a><br></li>
+                <li><a href='graduate_interviews.jsp'>Graduate Interviews</a><br></li>
+                <li><a href='graduate_qnas.jsp'>Graduate QnA</a><br></li>
               </ul>
             </li>
 
-            <li><a href='contest_promotions.html'>Contest Promotions</a> <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
+            <li><a href='contest_promotions.jsp'>Contest Promotions</a> <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
               <ul id='submenu'>
-                <li><a href='school_contests.html'>School Contests</a><br></li>
-                <li><a href='not_school_contests.html'>Non-school Contests</a><br></li>
+                <li><a href='school_contests.jsp'>School Contests</a><br></li>
+                <li><a href='not_school_contests.jsp'>Non-school Contests</a><br></li>
               </ul>
             </li>
 
-            <li><a href='questions.html'>Questions</a> <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
+            <li><a href='questions.jsp'>Questions</a> <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
               <ul id='submenu'>
-                <li><a href='chatbot.html'>Chatbot</a><br></li>
-                <li><a href='qna.html'>QnA</a><br></li>
+                <li><a href='chatbot.jsp'>Chatbot</a><br></li>
+                <li><a href='qna.jsp'>QnA</a><br></li>
               </ul>
             </li>
           </ul>
