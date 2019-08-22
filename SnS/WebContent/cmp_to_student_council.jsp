@@ -85,7 +85,7 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="login_page.html">LOGIN</a></h1> <!-- 로그인 버튼-->
+        <h1 id='login'><a href="userLogin.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
       </nav>
     </header>
     <div id="container">
