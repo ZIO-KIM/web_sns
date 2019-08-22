@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 취업&졸업 :: 졸업생 QnA :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 기타 민원 :: 글쓰기</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -12,9 +12,10 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
+    <meta name="viewport" content="device-width, initial-scale=1">
   </head>
   <body>
-      <header>
+    <header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
@@ -76,17 +77,20 @@
       <nav>
         <h2>
           <span></span>
-            취업 & 졸업
+            민원
         </h2>
         <ul class="lnb_deps2">
              <li>
-               <a href="employ_reviews.jsp" class="jwxe_22350 active">취창업 후기</a>
+               <a href="cmp_to_student_council.jsp" class="jwxe_22350 active">학생회 건의사항</a>
              </li>
              <li>
-               <a href="graduate_interviews.jsp" class="jwxe_22351 ">졸업생 인터뷰</a>
+               <a href="cmp_to_school.jsp" class="jwxe_22351 ">학교 건의사항</a>
             </li>
             <li>
-              <a href="graduate_qnas.jsp" class="jwxe_22351 ">졸업생 QnA</a>
+              <a href="cmp_to_etc.jsp" class="jwxe_22351 ">기타 민원</a>
+            </li>
+            <li>
+              <a href="introduce_cmp.jsp" class="jwxe_22351 ">민원창구 소개</a>
             </li>
         </ul>
       </nav>
@@ -124,8 +128,8 @@
           </form>
         </tbody>
       </table>
-    </section>
-    </div>
+      </section>
+      </div>
     <script src="js/bootstrap.js"></script>
   </body>
 </html>
