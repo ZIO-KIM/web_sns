@@ -5,10 +5,10 @@
 <%@ page import="java.io.PrintWriter"%>
 <%
    request.setCharacterEncoding("UTF-8");
-   /* String userID = null;
-   if(request.getParameter("userID")!=null){
-      userID=request.getParameter("userID");
-   }
+   String userID = null;
+ 	if(session.getAttribute("userID")!=null){
+ 		userID=(String)session.getAttribute("userID");
+ 	}
    if(userID==null){
       PrintWriter script =response.getWriter();
       script.println("<script>");
@@ -17,7 +17,7 @@
       script.println("</script>");
       script.close();
       return;
-   } */
+   }
    
    String cmpTitle=null;
    String cmpContent=null;
@@ -34,7 +34,7 @@
       cmpDivide=request.getParameter("cmpDivide");
    }
    if(request.getParameter("cmpDate")!=null){
-      cmpDivide=request.getParameter("cmpDate");
+      cmpDate=request.getParameter("cmpDate");
    }
    if(cmpTitle==null ||cmpContent==null ||cmpDivide==null  ||cmpTitle.equals("")||cmpContent.equals("")){
       PrintWriter script =response.getWriter();
@@ -46,7 +46,7 @@
       return;
    }
    ComplaintsDAO complaintsDAO =new ComplaintsDAO();
-   int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,"gildong",cmpContent,cmpDivide,cmpDate,0),true);
+   int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpDate,0),true);
    
    if(result==-1){
       PrintWriter script = response.getWriter();
@@ -59,7 +59,7 @@
    } else{
       PrintWriter script =response.getWriter();
       script.println("<script>");
-      script.println("location.href='index.jsp'");
+      script.println("location.href='cmp_to_student_council.jsp'");
       script.println("</script>");
       script.close();
       return;

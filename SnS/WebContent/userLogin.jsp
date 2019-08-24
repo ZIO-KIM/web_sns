@@ -91,8 +91,7 @@
       </nav>
     </header>
     <div id="wrap">
-    <div id="top">
-
+    
      <div id="log-title">
 
      <p class="title">LOGIN</p>
@@ -104,24 +103,24 @@
      </div>
 
      <div id="login_box">
-    	<form method="post" action="/jsp/login/login_action.jsp" name="loginForm">
+    	<form method="post" action="userLoginAction.jsp" name="loginForm">
     		 <input type="hidden" name="rtUrl" value="uis.sejong.ac.kr/app/sys.Login.servj?strCommand=SSOLOGIN">
     		 <input type="hidden" name="loginUrl" value="uisloginSSL.jsp">
     		<fieldset>
            <p>
            <label for="id">학번/아이디</label>
-    		   <input type="text" id="id" name="id" value="" size="20" tabindex="1" style="ime-mode:disabled">
+    		   <input type="text" id="id" name="userID" size="20" tabindex="1" style="ime-mode:disabled">
     		   </p>
     		   <p>
 
     		   <label for="password">비밀번호</label>
-    		   <input type="password" id="password" name="password" value="" size="20" tabindex="2">
+    		   <input type="password" id="password" name="userPassword" size="20" tabindex="2">
 
     		   </p>
 
     		</fieldset>
 
-    			 <input type="submit" value="로그인" id="logbtn" onclick="return beforeSubmit();" style="cursor:hand">
+    			 <input type="submit" value="로그인" id="logbtn" style="cursor:hand">
 
     	</form>
 
@@ -129,7 +128,7 @@
     <p>
     </p><p class="subtitle1"><b><font color="black">※ 학생은 학번,</font> <font color="red">교수/직원은 포털아이디</font></b>로 로그인이 가능합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
     <p></p>
-
+    </div>
 
   </body>
 </html>

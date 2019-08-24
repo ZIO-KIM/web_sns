@@ -11,7 +11,7 @@
 		userID=request.getParameter("userID");
 	}
 	if(request.getParameter("userPassword")!=null){
-		userID=request.getParameter("userPassword");
+		userPassword=request.getParameter("userPassword");
 	}
 	if(userID==null||userPassword==null){
 		PrintWriter script = response.getWriter();
@@ -28,7 +28,7 @@
 		session.setAttribute("userID",userID);
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("location.href='index.jsp'");
+		script.println("history.go(-2)");
 		script.println("</script>");
 		script.close();
 		return;

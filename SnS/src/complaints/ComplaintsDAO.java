@@ -70,13 +70,18 @@ public class ComplaintsDAO {
 	}
 	
 	public ArrayList<ComplaintsDTO> getList(int pageNumber,boolean isStudent){
-		String SQL ="SELECT * FROM CMP_SC WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
-		if(isStudent) {
-			SQL ="SELECT * FROM CMP_ST WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
-		}
+		String SQL1 ="SELECT * FROM CMP_ST WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		String SQL2 ="SELECT * FROM CMP_SC WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		
 		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
 		try {
-			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			PreparedStatement pstmt;
+			if(isStudent) {
+				pstmt=conn.prepareStatement(SQL1);
+			}
+			else {
+				pstmt=conn.prepareStatement(SQL2);
+			}
 			pstmt.setInt(1, getNext(isStudent)-(pageNumber-1)*10);
 			ResultSet rs= pstmt.executeQuery();
 			
@@ -84,10 +89,12 @@ public class ComplaintsDAO {
 				ComplaintsDTO cmpDTO =new ComplaintsDTO();
 				cmpDTO.setCmpID(rs.getInt(1));
 				cmpDTO.setCmpTitle(rs.getString(2));
-				cmpDTO.setCmpContent(rs.getString(3));
+				cmpDTO.setUserID(rs.getString(3));
 				cmpDTO.setCmpDate(rs.getString(4));
-				cmpDTO.setAgreeCount(rs.getInt(5));
-				cmpDTO.setUserID(rs.getString(6));
+				cmpDTO.setCmpContent(rs.getString(5));
+				cmpDTO.setCmpDivide(rs.getString(6));
+				cmpDTO.setAgreeCount(rs.getInt(7));
+				
 				list.add(cmpDTO);
 			}
 		}catch (Exception e) {

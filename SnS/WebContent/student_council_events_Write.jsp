@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="css/PSB.css">
   </head>
   <body>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  %>  
+  
     <header>
       <nav id='first_area'>
         <img src="software_convergence_logo.PNG" id='logo' alt="소융대 로고"> <!-- 소융대 로고 -->

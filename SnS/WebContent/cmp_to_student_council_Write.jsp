@@ -15,6 +15,14 @@
     <meta name="viewport" content="device-width, initial-scale=1">
   </head>
   <body>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  %>  
+  
     <header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
@@ -69,7 +77,17 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'> LOGIN</h1> <!-- 로그인 버튼-->
+        <%
+        	if(userID==null){
+        %>
+        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#000000">LOGIN</a></h2>
+        <%
+        	}else{
+        %>
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+        <%
+        	}
+        %>
       </nav>
     </header>
     <div id="container">
@@ -103,7 +121,7 @@
       </header>
       <form method="post" action="cmp_to_student_council_WriteAction.jsp">
       <div class="form-group col-sm-3">
-      	<label>학과</label>
+      	<label>학과:</label>
       	<select name="cmpDivide" class="form-control">
       		<option value="선택 안함" selected>선택 안함</option>
       		<option value="컴퓨터공학과">컴퓨터공학과</option>
@@ -120,8 +138,6 @@
             <tr>
                <th>제목: </th>
                <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
-            </tr>
-            <tr>
             </tr>
             <tr>
                <th>내용: </th>
