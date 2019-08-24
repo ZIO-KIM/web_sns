@@ -101,7 +101,7 @@
       </header>
       <table class="table table-bordered">
         <tbody>
-          <form>
+          <form action="Student_council_Photo_WriteAction.jsp" method="post" enctype="multipart/form-data">
             <tr>
                <th>제목: </th>
                <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
@@ -112,17 +112,13 @@
             </tr>
             <tr>
                <th>첨부파일: </th>
-               <td><input type="text" placeholder="파일을 선택하세요. " name="filename" class="form-control"/></td>
-            </tr>
-            <tr>
-               <th>비밀번호: </th>
-               <td><input type="password" placeholder="비밀번호를 입력하세요" class="form-control"/></td>
+               <td><input type="file" name="file" class="form-control"/></td>
             </tr>
             <tr>
                <td colspan="2">
-                 <input type="button" value="등록" onclick="#" class="pull-right"/>
-                 <input type="button" value="reset" class="pull-left"/>
-                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
+               	<input type="submit" class="btn btn-primary pull-right" value="등록">
+                <input type="button" value="reset" class="pull-left"/>
+                <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
                </td>
              </tr>
           </form>
