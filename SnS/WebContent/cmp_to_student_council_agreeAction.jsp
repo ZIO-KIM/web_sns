@@ -35,8 +35,8 @@
 		response.setContentType("text/html; charset=UTF-8");
 		
 		int cmpID=0;
-		if (session.getAttribute("cmpID") != null) { 
-			cmpID = (int) session.getAttribute("cmpID");
+		if (request.getParameter("cmpID") != null) { 
+			cmpID =Integer.parseInt(request.getParameter("cmpID"));
 		}
 		String userID = null;
 		if (session.getAttribute("userID") != null) { 
@@ -46,7 +46,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href = 'login.jsp'");
+			script.println("location.href = 'userLogin.jsp'");
 			script.println("</script>");
 			script.close();
 			return;
@@ -61,7 +61,7 @@
 			if(result==1){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('추천이 완료되었습니다.')");
+				script.println("alert('해당 민원의 동의가 완료되었습니다.')");
 				script.println("history.back()");
 				script.println("</script>");	
 				script.close();
@@ -79,7 +79,7 @@
 		else{
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('이미 추천을 누른 게시글입니다.')");
+			script.println("alert('이미 동의한 게시글입니다.')");
 			script.println("history.back()");
 			script.println("</script>");
 			script.close();

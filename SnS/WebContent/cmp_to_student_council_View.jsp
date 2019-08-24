@@ -16,16 +16,15 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
-    <link rel="stylesheet" href="css/PSB.css">
 
   </head>
   <body>
   
 	<%
-		/* String userID=null;
+		String userID=null;
 		if(session.getAttribute("userID")!=null){
 			userID=(String)session.getAttribute("userID");
-		} */
+		}
 		int cmpID=0;
 		if(request.getParameter("cmpID")!=null){
 			cmpID =Integer.parseInt(request.getParameter("cmpID"));
@@ -58,7 +57,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -112,9 +110,6 @@
                <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
             </li>
             <li>
-              <a href='cmp_to_etc.jsp' class="jwxe_22351 ">기타 민원</a>
-            </li>
-            <li>
               <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
             </li>
         </ul>
@@ -144,22 +139,27 @@
 						<td colspan="2"><%=cmp.getCmpDate().substring(0,11)+cmp.getCmpDate().substring(11,13)+"시"+cmp.getCmpDate().substring(14,16)+"분" %></td>
 					</tr>
 					<tr>
+						<td>동의 수</td>
+						<td colspan="2"><%=cmp.getAgreeCount()%></td>
+					</tr>
+					<tr>
 						<td>내용</td>
 						<td colspan="2" style="min-height:200px; text-align:left;"><%=cmp.getCmpContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>")%></td>
 					</tr>
+					
 				</tbody>
 			</table>
-			<a href="cmp_to_student_coucil.jsp" class="btn btn-primary">목록</a>
+			<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a>
 			
-			<a onclick="return confirm('추천하시겠습니까?')" href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmpID %>" class="btn btn-primary pull-right" style="background-color:#c70027;">추천</a>
-			<%-- <%
-				if(userID!=null && userID.equals(bbs.getUserID())){
+			<a onclick="return confirm('해당 민원에 동의하시겠습니까?')" href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary pull-right" style="background-color:#c70027;">추천</a>
+			<%
+				if(userID!=null && userID.equals(cmp.getUserID())){
 			%>
-				<a href="update.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">수정</a>
-				<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%=bbsID %>" class="btn btn-primary">삭제</a>
+				<a href="cmp_to_student_council_Update.jsp?cmpID=<%=cmp.getCmpID()%>" class="btn btn-primary">수정</a>
+				<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary">삭제</a>
 			<%
 				}
-			%> --%>		
+			%>		
 		</div>
 	</div>
 

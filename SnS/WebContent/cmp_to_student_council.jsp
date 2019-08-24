@@ -7,6 +7,8 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
     <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
@@ -48,7 +50,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -112,9 +113,6 @@
                <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
             </li>
             <li>
-              <a href='cmp_to_etc.jsp' class="jwxe_22351 ">기타 민원</a>
-            </li>
-            <li>
               <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
             </li>
         </ul>
@@ -132,7 +130,7 @@
             <th>제목</th>
             <th>작성자</th>
             <th>날짜</th>
-            <th>조회수</th>
+            <th>동의 수</th>
           </tr>
         </thead>
       <tbody>
@@ -143,9 +141,10 @@
          %>
          <tr>
             <td><%=list.get(i).getCmpID() %></td>
-            <td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+            <td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>" style="text-decoration:none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
             <td><%=list.get(i).getUserID() %></td>
             <td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
+            <td><%=list.get(i).getAgreeCount() %></td>
          </tr>
          <%
             }

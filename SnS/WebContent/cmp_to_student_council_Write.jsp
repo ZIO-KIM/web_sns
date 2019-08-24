@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -21,6 +22,15 @@
   	if(session.getAttribute("userID")!=null){
   		userID=(String)session.getAttribute("userID");
   	}
+  	if(userID==null){
+        PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 해주세요.');");
+        script.println("location.href='userLogin.jsp';");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
   %>  
   
     <header>
@@ -41,7 +51,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -77,17 +86,9 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <%
-        	if(userID==null){
-        %>
-        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#000000">LOGIN</a></h2>
-        <%
-        	}else{
-        %>
+        
       	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
-        <%
-        	}
-        %>
+
       </nav>
     </header>
     <div id="container">
@@ -103,9 +104,6 @@
              </li>
              <li>
                <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
-            </li>
-            <li>
-              <a href='cmp_to_etc.jsp' class="jwxe_22351 ">기타 민원</a>
             </li>
             <li>
               <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
