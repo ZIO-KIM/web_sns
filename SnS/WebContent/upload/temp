@@ -1,0 +1,4 @@
+//업로드 폴더 생성 위한 임시 파일
+//파일 업로드 구현되면 지울 예정
+
+System.out.println("Hello world!");
