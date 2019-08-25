@@ -139,7 +139,7 @@
       <header>
         <h1>글수정</h1>
       </header>
-      <form method="post" action="cmp_to_student_council_UpdateAction.jsp?cmpID=<%cmp.getCmpID();%>">
+      <form method="post" action="cmp_to_student_council_UpdateAction.jsp?cmpID=<%=cmp.getCmpID()%>">
       <div class="form-group col-sm-3">
       	<label>학과:</label>
       	<select name="cmpDivide" class="form-control">
@@ -169,7 +169,7 @@
             </tr>
             <tr>
                <td colspan="2">
-                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+                 <input type="submit" class="btn btn-primary pull-right" value="수정하기">
                </td>
              </tr>
           
