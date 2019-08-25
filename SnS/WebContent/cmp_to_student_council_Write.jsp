@@ -119,7 +119,7 @@
       </header>
       <form method="post" action="cmp_to_student_council_WriteAction.jsp">
       <div class="form-group col-sm-3">
-      	<label>학과:</label>
+      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
       	<select name="cmpDivide" class="form-control">
       		<option value="선택 안함" selected>선택 안함</option>
       		<option value="컴퓨터공학과">컴퓨터공학과</option>

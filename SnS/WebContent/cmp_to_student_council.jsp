@@ -17,7 +17,12 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
-
+	<style type="text/css">
+		a, a:hover{
+			color:#000000;
+			text-decoration:none;
+		}
+	</style>
   </head>
   <body>
   
@@ -131,6 +136,7 @@
             <th>작성자</th>
             <th>날짜</th>
             <th>동의 수</th>
+            <th>조회 수</th>
           </tr>
         </thead>
       <tbody>
@@ -145,6 +151,7 @@
             <td><%=list.get(i).getUserID() %></td>
             <td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
             <td><%=list.get(i).getAgreeCount() %></td>
+            <td>1</td>
          </tr>
          <%
             }
@@ -169,7 +176,7 @@
          <%
             }if(cmpDAO.nextPage(pageNumber+1,true)){
          %>
-            <a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
+            <a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-right">다음</a>
          <%
             }
          %>

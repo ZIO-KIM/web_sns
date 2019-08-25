@@ -117,6 +117,21 @@ public class ComplaintsDAO {
 		}
 		return false;
 	}
+	public boolean targetPage(int pageNumber,boolean isStudent) {
+		String SQL ="SELECT * FROM CMP_ST WHERE cmpID < ?"; //AND cmpAvailable = 1 Ãß°¡   
+		try {
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext(isStudent)-(pageNumber-1)*10);
+			ResultSet rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return true;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public ComplaintsDTO getCmp(int cmpID,boolean isStudent) {
 		String SQL = "SELECT * FROM CMP_SC WHERE cmpID = ?";
 		if(isStudent) {
