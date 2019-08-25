@@ -41,6 +41,24 @@ public class ComplaintsDAO {
 		}
 		return -1; 
 	}
+	public int countCmp(boolean isStudent) {
+		String SQL = "SELECT COUNT(*) FROM CMP_SC";
+		if(isStudent) {
+			SQL = "SELECT COUNT(*) FROM CMP_ST";
+		}
+		try {
+			PreparedStatement pstmt =conn.prepareStatement(SQL);
+			ResultSet rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; 
+	}
+	
 	
 	public int write(ComplaintsDTO complaintsDTO, boolean isStudent) {
 		String SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?, 0)";
