@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/mainpage.css">
+    <link rel="stylesheet" href="css/PSB.css">
     <link rel="stylesheet" href="css/login_page.css">
   </head>
   <body>
@@ -100,7 +100,7 @@
      <!--p><span class="subtitle">세종대학교</span><span style="color:#8c8c8c;  font-family: 'Nanum Gothic', serif; font-size:12px;">&nbsp;| SEJONGUNIVERSITY</span></p-->
 
      <br><br>
-     <p><span class="subtitle">소프트웨어</span><span class="sub-text"> 에 오신것을<br>환영합니다.</span></p>
+     <p><span class="subtitle">소프트웨어융합대학</span><span class="sub-text"> 에 오신것을<br>환영합니다.</span></p>
      </div>
 
      <div id="login_box">
@@ -116,7 +116,6 @@
 
     		   <label for="password">비밀번호</label>
     		   <input type="password" id="password" name="password" value="" size="20" tabindex="2">
-
     		   </p>
 
     		</fieldset>
