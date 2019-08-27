@@ -1,28 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+    
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 민원창구 소개</title>
+    <title>세종대학교 소프트웨어융합대학 :: 로그인</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+    <link rel="stylesheet" href="css/login_page.css">
   </head>
   <body>
-
-	<%
-      String userID=null;
-      if(session.getAttribute("userID")!=null){
-         userID=(String)session.getAttribute("userID");
-      }
-    %>
-
-	<header>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  	if(userID!=null){
+  		PrintWriter script=response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인이 된 상태입니다.')");
+		script.println("location.href='index.jsp'");
+		script.println("</script>");
+		script.close();
+		return;
+  	}
+  	%>
+  
+    <header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
@@ -40,6 +51,7 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
+                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -74,50 +86,49 @@
             </li>
           </ul>
         </div>
-        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <%
-        	if(userID==null){
-        %>
-        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#000000">LOGIN</a></h2>
-        <%
-        	}else{
-        %>
-      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
-        <%
-        	}
-        %>
+        <h2 id='language'>한국어 / EN </h2> <!--영어, 한글 버전 바꾸는 버튼-->
+        <h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
       </nav>
     </header>
-    <div id="container">
-    <nav>
-      <nav>
-        <h2>
-          <span></span>
-            민원
-        </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href="cmp_to_student_council.jsp" class="jwxe_22350 active">학생회 건의사항</a>
-             </li>
-             <li>
-               <a href="cmp_to_school.jsp" class="jwxe_22351 ">학교 건의사항</a>
-            </li>
-            <li>
-              <a href="introduce_cmp.jsp" class="jwxe_22351 ">민원창구 소개</a>
-            </li>
-        </ul>
-      </nav>
-    </nav>
-    <section class="content">
-      <header>
-        <h1>민원창구 소개</h1>
-      </header>
-      <hr>
-      <section>
-        <!--여기다가 게시글 올려주세요 빽형님들-->
-      </section>
-    </section>
+    <div id="wrap">
+    
+     <div id="log-title">
+
+     <p class="title">LOGIN</p>
+
+     <!--p><span class="subtitle">세종대학교</span><span style="color:#8c8c8c;  font-family: 'Nanum Gothic', serif; font-size:12px;">&nbsp;| SEJONGUNIVERSITY</span></p-->
+
+     <br><br>
+     <p><span class="subtitle">소프트웨어</span><span class="sub-text"> 에 오신것을<br>환영합니다.</span></p>
+     </div>
+
+     <div id="login_box">
+    	<form method="post" action="userLoginAction.jsp" name="loginForm">
+    		 <input type="hidden" name="rtUrl" value="uis.sejong.ac.kr/app/sys.Login.servj?strCommand=SSOLOGIN">
+    		 <input type="hidden" name="loginUrl" value="uisloginSSL.jsp">
+    		<fieldset>
+           <p>
+           <label for="id">학번/아이디</label>
+    		   <input type="text" id="id" name="userID" size="20" tabindex="1" style="ime-mode:disabled">
+    		   </p>
+    		   <p>
+
+    		   <label for="password">비밀번호</label>
+    		   <input type="password" id="password" name="userPassword" size="20" tabindex="2">
+
+    		   </p>
+
+    		</fieldset>
+
+    			 <input type="submit" value="로그인" id="logbtn" style="cursor:hand">
+
+    	</form>
+
     </div>
-    <script src="js/bootstrap.js"></script>
+    <p>
+    </p><p class="subtitle1"><b><font color="black">※ 학생은 학번,</font> <font color="red">교수/직원은 포털아이디</font></b>로 로그인이 가능합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p></p>
+    </div>
+
   </body>
 </html>

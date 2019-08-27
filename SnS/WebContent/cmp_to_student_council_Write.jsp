@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -15,6 +16,23 @@
     <meta name="viewport" content="device-width, initial-scale=1">
   </head>
   <body>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  	if(userID==null){
+        PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 해주세요.');");
+        script.println("location.href='userLogin.jsp';");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
+  %>  
+  
     <header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
@@ -33,7 +51,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -69,7 +86,9 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'> LOGIN</h1> <!-- 로그인 버튼-->
+        
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+
       </nav>
     </header>
     <div id="container">
@@ -87,9 +106,6 @@
                <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
             </li>
             <li>
-              <a href='cmp_to_etc.jsp' class="jwxe_22351 ">기타 민원</a>
-            </li>
-            <li>
               <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
             </li>
         </ul>
@@ -103,7 +119,7 @@
       </header>
       <form method="post" action="cmp_to_student_council_WriteAction.jsp">
       <div class="form-group col-sm-3">
-      	<label>학과</label>
+      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
       	<select name="cmpDivide" class="form-control">
       		<option value="선택 안함" selected>선택 안함</option>
       		<option value="컴퓨터공학과">컴퓨터공학과</option>
@@ -120,8 +136,6 @@
             <tr>
                <th>제목: </th>
                <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
-            </tr>
-            <tr>
             </tr>
             <tr>
                <th>내용: </th>

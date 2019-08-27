@@ -41,6 +41,24 @@ public class ComplaintsDAO {
 		}
 		return -1; 
 	}
+	public int countCmp(boolean isStudent) {
+		String SQL = "SELECT COUNT(*) FROM CMP_SC";
+		if(isStudent) {
+			SQL = "SELECT COUNT(*) FROM CMP_ST";
+		}
+		try {
+			PreparedStatement pstmt =conn.prepareStatement(SQL);
+			ResultSet rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; 
+	}
+	
 	
 	public int write(ComplaintsDTO complaintsDTO, boolean isStudent) {
 		String SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?, 0)";
@@ -70,13 +88,18 @@ public class ComplaintsDAO {
 	}
 	
 	public ArrayList<ComplaintsDTO> getList(int pageNumber,boolean isStudent){
-		String SQL ="SELECT * FROM CMP_SC WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
-		if(isStudent) {
-			SQL ="SELECT * FROM CMP_ST WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
-		}
+		String SQL1 ="SELECT * FROM CMP_ST WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		String SQL2 ="SELECT * FROM CMP_SC WHERE cmpID < ? ORDER BY cmpID DESC LIMIT 10";//available 추가해야하는 문장
+		
 		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
 		try {
-			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			PreparedStatement pstmt;
+			if(isStudent) {
+				pstmt=conn.prepareStatement(SQL1);
+			}
+			else {
+				pstmt=conn.prepareStatement(SQL2);
+			}
 			pstmt.setInt(1, getNext(isStudent)-(pageNumber-1)*10);
 			ResultSet rs= pstmt.executeQuery();
 			
@@ -84,10 +107,12 @@ public class ComplaintsDAO {
 				ComplaintsDTO cmpDTO =new ComplaintsDTO();
 				cmpDTO.setCmpID(rs.getInt(1));
 				cmpDTO.setCmpTitle(rs.getString(2));
-				cmpDTO.setCmpContent(rs.getString(3));
+				cmpDTO.setUserID(rs.getString(3));
 				cmpDTO.setCmpDate(rs.getString(4));
-				cmpDTO.setAgreeCount(rs.getInt(5));
-				cmpDTO.setUserID(rs.getString(6));
+				cmpDTO.setCmpContent(rs.getString(5));
+				cmpDTO.setCmpDivide(rs.getString(6));
+				cmpDTO.setAgreeCount(rs.getInt(7));
+				
 				list.add(cmpDTO);
 			}
 		}catch (Exception e) {
@@ -96,6 +121,21 @@ public class ComplaintsDAO {
 		return list;
 	}
 	public boolean nextPage(int pageNumber,boolean isStudent) {
+		String SQL ="SELECT * FROM CMP_ST WHERE cmpID < ?"; //AND cmpAvailable = 1 추가   
+		try {
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext(isStudent)-(pageNumber-1)*10);
+			ResultSet rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return true;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean targetPage(int pageNumber,boolean isStudent) {
 		String SQL ="SELECT * FROM CMP_ST WHERE cmpID < ?"; //AND cmpAvailable = 1 추가   
 		try {
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
@@ -143,6 +183,22 @@ public class ComplaintsDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, cmpID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	public int update(int cmpID, String cmpTitle, String cmpContent,boolean isStudent) {
+		String SQL = "UPDATE CMP_SC SET cmpTitle = ?, cmpContent = ? WHERE cmpID = ?";
+		if(isStudent) {
+			SQL = "UPDATE CMP_ST SET cmpTitle = ?, cmpContent = ? WHERE cmpID = ?";
+		}
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, cmpTitle);
+			pstmt.setString(2, cmpContent);
+			pstmt.setInt(3, cmpID);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -89,11 +89,11 @@
         <%
         	if(userID==null){
         %>
-        <h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
+        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#ffffff">LOGIN</a></h2>
         <%
         	}else{
         %>
-      	<h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#ffffff">LOGOUT</a></h2>
         <%
         	}
         %>
