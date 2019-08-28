@@ -17,6 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
 	<style type="text/css">
 		a, a:hover{
@@ -149,11 +152,18 @@
          %>
          <tr>
             <td><%=list.get(i).getCmpID() %></td>
-            <td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>" style="text-decoration:none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+            <td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>" style="text-decoration:none">
+         <%
+         	for(int j=0;j<list.get(i).getCmpLevel();j++){   
+         %>
+  			<span>>><!-- <i class="fas fa-arrow-right"></i> --></span>          
+         <%
+         	}
+         %><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>   
             <td><%=list.get(i).getUserID() %></td>
             <td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
             <td><%=list.get(i).getAgreeCount() %></td>
-            <td>1</td>
+            <td><%=list.get(i).getCmpHit() %></td>
          </tr>
          <%
             }

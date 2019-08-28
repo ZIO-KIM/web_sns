@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="complaints.ComplaintsDAO" %>
-<%@ page import="complaints.ComplaintsDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항 :: 글쓰기</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -16,28 +13,36 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
-
+    <meta name="viewport" content="device-width, initial-scale=1">
   </head>
   <body>
   
-	<%
-		String userID=null;
-		if(session.getAttribute("userID")!=null){
-			userID=(String)session.getAttribute("userID");
-		}
-		int cmpID=0;
-		if(request.getParameter("cmpID")!=null){
-			cmpID =Integer.parseInt(request.getParameter("cmpID"));
-		}
-		if(cmpID==0){
-			PrintWriter script =response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='cmp_to_student_council.jsp'");
-			script.println("</script>");
-		}
-		ComplaintsDTO cmp =new ComplaintsDAO().getCmp(cmpID,true);
-	 %>
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  	if(userID==null){
+        PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 해주세요.');");
+        script.println("location.href='userLogin.jsp';");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
+  	int cmpID=0;
+	if(request.getParameter("cmpID")!=null){
+		cmpID =Integer.parseInt(request.getParameter("cmpID"));
+	}
+	if(cmpID==0){
+		PrintWriter script =response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 글입니다.')");
+		script.println("location.href='cmp_to_student_council.jsp'");
+		script.println("</script>");
+	}
+  %>  
   
     <header>
       <nav id='first_area'>
@@ -92,17 +97,9 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <%
-        	if(userID==null){
-        %>
-        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#000000">LOGIN</a></h2>
-        <%
-        	}else{
-        %>
+        
       	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
-        <%
-        	}
-        %>
+
       </nav>
     </header>
     <div id="container">
@@ -127,54 +124,42 @@
     </nav>
     
     
-		<div class="container">
-		<div class="row">
-			<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
-				<thead>
-					<tr>
-						<th colspan="3" style="background-color:#eeeeee; text-align:center;">게시판 글보기</th>
-					</tr>
-				<thead>
-				<tbody>
-					<tr>
-						<td style="width:20%;">글 제목</td>
-						<td colspan="2"><%=cmp.getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></td>
-					</tr>
-					<tr>
-						<td>작성자</td>
-						<td colspan="2"><%=cmp.getUserID() %></td>
-					</tr>
-					<tr>
-						<td>작성일자</td>
-						<td colspan="2"><%=cmp.getCmpDate().substring(0,11)+cmp.getCmpDate().substring(11,13)+"시"+cmp.getCmpDate().substring(14,16)+"분" %></td>
-					</tr>
-					<tr>
-						<td>동의 수</td>
-						<td colspan="2"><%=cmp.getAgreeCount()%></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td colspan="2" style="min-height:200px; text-align:left;"><%=cmp.getCmpContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>")%></td>
-					</tr>
-					
-				</tbody>
-			</table>
-			<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a>
-			
-			<a onclick="return confirm('해당 민원에 동의하시겠습니까?')" href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary pull-right" style="background-color:#c70027;">추천</a>
-			<a href="cmp_to_student_council_Reply.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary pull-right">답변</a>
-			<%
-				if(userID!=null && userID.equals(cmp.getUserID())){
-			%>
-				<a href="cmp_to_student_council_Update.jsp?cmpID=<%=cmp.getCmpID()%>" class="btn btn-primary">수정</a>	
-				<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary">삭제</a>
-			<%
-				}
-			%>		
-		</div>
-	</div>
-
-	</div>
+    <section class="content">
+      <header>
+        <h1>답변 작성</h1>
+      </header>
+      <form method="post" action="cmp_to_student_council_ReplyAction.jsp">
+      <table class="table table-bordered">
+        <tbody>
+        	<tr>
+        		<td style="width:110px;"><h5>아이디</h5></td>
+        		<td><h5><%=userID %></h5>
+        		<input type="hidden" name="userID" value="<%=userID%>">
+        		<input type="hidden" name="cmpID" value="<%=cmpID%>">
+        		</td>
+        	</tr>
+            <tr>
+               <th>제목: </th>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
+            </tr>
+            <tr>
+               <th>내용: </th>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
+            </tr>
+            <tr>
+               <th>첨부파일: </th>
+               <td><input type="file" placeholder="파일을 선택하세요. " name="cmpFile" class="form-control"/></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+               </td>
+             </tr>
+          
+        </tbody>
+      </table>
+      </form>
+      </section>
     <script src="js/bootstrap.js"></script>
   </body>
 </html>
