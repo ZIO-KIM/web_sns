@@ -57,7 +57,7 @@
       return;
    }
    ComplaintsDAO complaintsDAO =new ComplaintsDAO();
-   int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpDate,0),true);
+   int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpDate,0,0,0,0,0,0),true);
    
    if(result==-1){
       PrintWriter script = response.getWriter();
