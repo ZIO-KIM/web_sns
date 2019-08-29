@@ -172,3 +172,17 @@ ul, ol {
 a{
   color: black; 
 }
+
+footer {
+	display: inline-block;
+	border: 4px solid #82827f; 
+	width: 100%; 
+	height: 100px; 
+	background-color: #b0afab; 
+	text-align: right; 
+}
+
+#footer_content {
+	padding-top: 30px; 
+	padding-right: 10px; 
+}
