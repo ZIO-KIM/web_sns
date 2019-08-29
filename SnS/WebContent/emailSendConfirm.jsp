@@ -97,6 +97,11 @@
 		</div>
 		<a href="emailSendAction.jsp" class="btn btn-primary">인증 메일 다시 받기</a>
 	</section>
+	
+	<footer>
+   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
+   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
+    </footer>
 
   </body>
 </html>

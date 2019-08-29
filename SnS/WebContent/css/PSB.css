@@ -174,12 +174,15 @@ a{
 }
 
 footer {
-	display: inline-block; 
-	color: black; 
-	font-size: 20px; 
+	display: inline-block;
+	border: 4px solid #82827f; 
+	width: 100%; 
+	height: 100px; 
+	background-color: #b0afab; 
+	text-align: right; 
 }
 
-hr {
-	padding-top: 3%; 
-	color: black; 
+#footer_content {
+	padding-top: 30px; 
+	padding-right: 10px; 
 }
