@@ -132,7 +132,7 @@
       <table class="table table-bordered">
         <tbody>
         	<tr>
-        		<td style="width:110px;"><h5>아이디</h5></td>
+        		<th>아이디: </th>
         		<td><h5><%=userID %></h5>
         		<input type="hidden" name="userID" value="<%=userID%>">
         		<input type="hidden" name="cmpID" value="<%=cmpID%>">

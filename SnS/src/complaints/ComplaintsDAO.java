@@ -61,8 +61,8 @@ public class ComplaintsDAO {
 	
 	
 	public ArrayList<ComplaintsDTO> getList(int pageNumber,boolean isStudent){
-		String SQL1 ="SELECT * FROM CMP_ST WHERE cmpID < ? AND cmpAvailable=1 ORDER BY cmpGroup DESC, cmpSequence ASC LIMIT 10";
-		String SQL2 ="SELECT * FROM CMP_SC WHERE cmpID < ? AND cmpAvailable=1 ORDER BY cmpGroup DESC, cmpSequence ASC LIMIT 10";
+		String SQL1 ="SELECT * FROM CMP_ST WHERE cmpID < ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY cmpGroup DESC, cmpSequence ASC LIMIT 10";
+		String SQL2 ="SELECT * FROM CMP_SC WHERE cmpID < ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY cmpGroup DESC, cmpSequence ASC LIMIT 10";
 		
 		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
 		try {
@@ -74,6 +74,43 @@ public class ComplaintsDAO {
 				pstmt=conn.prepareStatement(SQL2);
 			}
 			pstmt.setInt(1, getNext(isStudent)-(pageNumber-1)*10);
+			ResultSet rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ComplaintsDTO cmpDTO =new ComplaintsDTO();
+				cmpDTO.setCmpID(rs.getInt(1));
+				cmpDTO.setCmpTitle(rs.getString(2));
+				cmpDTO.setUserID(rs.getString(3));
+				cmpDTO.setCmpDate(rs.getString(4));
+				cmpDTO.setCmpContent(rs.getString(5));
+				cmpDTO.setCmpDivide(rs.getString(6));
+				cmpDTO.setAgreeCount(rs.getInt(7));
+				cmpDTO.setCmpHit(rs.getInt(8));
+				cmpDTO.setCmpGroup(rs.getInt(9));
+				cmpDTO.setCmpSequence(rs.getInt(10));
+				cmpDTO.setCmpLevel(rs.getInt(11));
+				cmpDTO.setCmpAvailable(rs.getInt(12));
+				list.add(cmpDTO);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public ArrayList<ComplaintsDTO> getReply(int cmpGroup,boolean isStudent){
+		String SQL1 ="SELECT * FROM CMP_ST WHERE cmpGroup = ? AND cmpLevel != 0 AND cmpAvailable=1 ORDER BY cmpSequence ASC";
+		String SQL2 ="SELECT * FROM CMP_SC WHERE cmpGroup = ? AND cmpLevel != 0 AND cmpAvailable=1 ORDER BY cmpSequence ASC";
+		
+		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
+		try {
+			PreparedStatement pstmt;
+			if(isStudent) {
+				pstmt=conn.prepareStatement(SQL1);
+			}
+			else {
+				pstmt=conn.prepareStatement(SQL2);
+			}
+			pstmt.setInt(1, cmpGroup);
 			ResultSet rs= pstmt.executeQuery();
 			
 			while(rs.next()) {
