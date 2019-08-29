@@ -162,10 +162,11 @@
 			<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a>
 			
 			<a onclick="return confirm('해당 민원에 동의하시겠습니까?')" href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary pull-right" style="background-color:#c70027;">추천</a>
+			<a href="cmp_to_student_council_Reply.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary pull-right">답변</a>
 			<%
 				if(userID!=null && userID.equals(cmp.getUserID())){
 			%>
-				<a href="cmp_to_student_council_Update.jsp?cmpID=<%=cmp.getCmpID()%>" class="btn btn-primary">수정</a>
+				<a href="cmp_to_student_council_Update.jsp?cmpID=<%=cmp.getCmpID()%>" class="btn btn-primary">수정</a>	
 				<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?cmpID=<%=cmp.getCmpID() %>" class="btn btn-primary">삭제</a>
 			<%
 				}

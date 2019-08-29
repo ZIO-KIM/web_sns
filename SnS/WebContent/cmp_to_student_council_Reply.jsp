@@ -1,38 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-    
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 로그인</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항 :: 글쓰기</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
-    <link rel="stylesheet" href="css/login_page.css">
+    <meta name="viewport" content="device-width, initial-scale=1">
   </head>
   <body>
   
   <%
   	String userID =null;
   	if(session.getAttribute("userID")!=null){
-  		
   		userID=(String)session.getAttribute("userID");
   	}
-  	if(userID!=null){
-  		PrintWriter script=response.getWriter();
-		script.println("<script>");
-		script.println("alert('로그인이 된 상태입니다.')");
-		script.println("location.href='index.jsp'");
-		script.println("</script>");
-		script.close();
-		return;
+  	if(userID==null){
+        PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 해주세요.');");
+        script.println("location.href='userLogin.jsp';");
+        script.println("</script>");
+        script.close();
+        return;
   	}
-  	%>
+  	int cmpID=0;
+	if(request.getParameter("cmpID")!=null){
+		cmpID =Integer.parseInt(request.getParameter("cmpID"));
+	}
+	if(cmpID==0){
+		PrintWriter script =response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 글입니다.')");
+		script.println("location.href='cmp_to_student_council.jsp'");
+		script.println("</script>");
+	}
+  %>  
   
     <header>
       <nav id='first_area'>
@@ -52,7 +62,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -87,49 +96,70 @@
             </li>
           </ul>
         </div>
-        <h2 id='language'>한국어 / EN </h2> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h2 id='login'> LOGIN</h2> <!-- 로그인 버튼-->
+        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
+        
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+
       </nav>
     </header>
-    <div id="wrap">
-    <div id="top">
-
-     <div id="log-title">
-
-     <p class="title">LOGIN</p>
-
-     <!--p><span class="subtitle">세종대학교</span><span style="color:#8c8c8c;  font-family: 'Nanum Gothic', serif; font-size:12px;">&nbsp;| SEJONGUNIVERSITY</span></p-->
-
-     <br><br>
-     <p><span class="subtitle">소프트웨어융합대학</span><span class="sub-text"> 에 오신것을<br>환영합니다.</span></p>
-     </div>
-
-     <div id="login_box">
-    	<form method="post" action="/jsp/login/login_action.jsp" name="loginForm">
-    		 <input type="hidden" name="rtUrl" value="uis.sejong.ac.kr/app/sys.Login.servj?strCommand=SSOLOGIN">
-    		 <input type="hidden" name="loginUrl" value="uisloginSSL.jsp">
-    		<fieldset>
-           <p>
-           <label for="id">학번/아이디</label>
-    		   <input type="text" id="id" name="id" value="" size="20" tabindex="1" style="ime-mode:disabled">
-    		   </p>
-    		   <p>
-
-    		   <label for="password">비밀번호</label>
-    		   <input type="password" id="password" name="password" value="" size="20" tabindex="2">
-    		   </p>
-
-    		</fieldset>
-
-    			 <input type="submit" value="로그인" id="logbtn" onclick="return beforeSubmit();" style="cursor:hand">
-
-    	</form>
-
-    </div>
-    <p>
-    </p><p class="subtitle1"><b><font color="black">※ 학생은 학번,</font> <font color="red">교수/직원은 포털아이디</font></b>로 로그인이 가능합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-    <p></p>
-
-
+    <div id="container">
+    <nav>
+      <nav>
+        <h2>
+          <span></span>
+            민원
+        </h2>
+        <ul class="lnb_deps2">
+             <li>
+               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
+             </li>
+             <li>
+               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
+            </li>
+            <li>
+              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
+            </li>
+        </ul>
+      </nav>
+    </nav>
+    
+    
+    <section class="content">
+      <header>
+        <h1>답변 작성</h1>
+      </header>
+      <form method="post" action="cmp_to_student_council_ReplyAction.jsp">
+      <table class="table table-bordered">
+        <tbody>
+        	<tr>
+        		<td style="width:110px;"><h5>아이디</h5></td>
+        		<td><h5><%=userID %></h5>
+        		<input type="hidden" name="userID" value="<%=userID%>">
+        		<input type="hidden" name="cmpID" value="<%=cmpID%>">
+        		</td>
+        	</tr>
+            <tr>
+               <th>제목: </th>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
+            </tr>
+            <tr>
+               <th>내용: </th>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
+            </tr>
+            <tr>
+               <th>첨부파일: </th>
+               <td><input type="file" placeholder="파일을 선택하세요. " name="cmpFile" class="form-control"/></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+               </td>
+             </tr>
+          
+        </tbody>
+      </table>
+      </form>
+      </section>
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>
