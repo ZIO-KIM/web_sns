@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/mainpage.css">
+    <link rel="stylesheet" href="css/PSB.css">
     <link rel="stylesheet" href="css/login_page.css">
   </head>
   <body>

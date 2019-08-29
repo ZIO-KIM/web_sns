@@ -19,10 +19,10 @@
   <body>
   
      <%
-      /* String userID=null;
+      String userID=null;
       if(session.getAttribute("userID")!=null){
          userID=(String)session.getAttribute("userID");
-      } */
+      }
       int pageNumber =1;
       if(request.getParameter("pageNumber")!=null){
          pageNumber =Integer.parseInt(request.getParameter("pageNumber"));
@@ -83,7 +83,19 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="login_page.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
+        
+        <%
+        	if(userID==null){
+        %>
+        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#000000">LOGIN</a></h2>
+        <%
+        	}else{
+        %>
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+        <%
+        	}
+        %>
+        
       </nav>
     </header>
 
