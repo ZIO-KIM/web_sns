@@ -8,6 +8,11 @@ public class ComplaintsDTO {
 	String cmpDivide;
 	String cmpDate;
 	int agreeCount;
+	int cmpHit;
+	int cmpGroup;
+	int cmpSequence;
+	int cmpLevel;
+	int cmpAvailable;
 	
 	public int getCmpID() {
 		return cmpID;
@@ -51,20 +56,54 @@ public class ComplaintsDTO {
 	public void setAgreeCount(int agreeCount) {
 		this.agreeCount = agreeCount;
 	}
-	
-	public ComplaintsDTO() {
-		
+	public int getCmpHit() {
+		return cmpHit;
 	}
-	
-	
-	public ComplaintsDTO(int cmpID, String cmpTitle, String userID, String cmpContent, String cmpDivide,
-			String cmpDate, int agreeCount) {
+	public void setCmpHit(int cmpHit) {
+		this.cmpHit = cmpHit;
+	}
+	public int getCmpGroup() {
+		return cmpGroup;
+	}
+	public void setCmpGroup(int cmpGroup) {
+		this.cmpGroup = cmpGroup;
+	}
+	public int getCmpSequence() {
+		return cmpSequence;
+	}
+	public void setCmpSequence(int cmpSequence) {
+		this.cmpSequence = cmpSequence;
+	}
+	public int getCmpLevel() {
+		return cmpLevel;
+	}
+	public void setCmpLevel(int cmpLevel) {
+		this.cmpLevel = cmpLevel;
+	}
+	public int getCmpAvailable() {
+		return cmpAvailable;
+	}
+	public void setCmpAvailable(int cmpAvailable) {
+		this.cmpAvailable = cmpAvailable;
+	}
+
+	public ComplaintsDTO() {
+
+	}
+	public ComplaintsDTO(int cmpID, String cmpTitle, String userID, String cmpContent, String cmpDivide, String cmpDate,
+			int agreeCount, int cmpHit, int cmpGroup, int cmpSequence, int cmpLevel, int cmpAvailable) {
+		super();
 		this.cmpID = cmpID;
 		this.cmpTitle = cmpTitle;
 		this.userID = userID;
 		this.cmpContent = cmpContent;
-		this.cmpDivide=cmpDivide;
-		this.cmpDate=cmpDate;
+		this.cmpDivide = cmpDivide;
+		this.cmpDate = cmpDate;
 		this.agreeCount = agreeCount;
+		this.cmpHit = cmpHit;
+		this.cmpGroup = cmpGroup;
+		this.cmpSequence = cmpSequence;
+		this.cmpLevel = cmpLevel;
+		this.cmpAvailable = cmpAvailable;
 	}
 }

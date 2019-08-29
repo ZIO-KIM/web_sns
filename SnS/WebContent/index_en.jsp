@@ -4,7 +4,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Sejong Univ.College of Software Convergence</title>
+    <title>Sejong Univ. College of Software Convergence</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">

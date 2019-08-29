@@ -34,7 +34,7 @@
    String cmpContent=null;
    String cmpDivide=null;
    String cmpDate=null;
-
+	
    if(request.getParameter("cmpTitle")!=null){
       cmpTitle=request.getParameter("cmpTitle");
    }
@@ -47,7 +47,7 @@
    if(request.getParameter("cmpDate")!=null){
       cmpDate=request.getParameter("cmpDate");
    }
-   if(cmpTitle==null ||cmpContent==null ||cmpDivide==null  ||cmpTitle.equals("")||cmpContent.equals("")){
+   if(cmpTitle==null ||cmpContent==null||cmpTitle.equals("")||cmpContent.equals("")){
       PrintWriter script =response.getWriter();
       script.println("<script>");
       script.println("alert('입력이 안 된 사항이 있습니다..');");
@@ -56,24 +56,30 @@
       script.close();
       return;
    }
-   ComplaintsDAO complaintsDAO =new ComplaintsDAO();
-   int result=complaintsDAO.write(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpDate,0,0,0,0,0,0),true);
+   int cmpID=0;
+	if(request.getParameter("cmpID")!=null){
+		cmpID =Integer.parseInt(request.getParameter("cmpID"));
+	}
    
+   ComplaintsDAO complaintsDAO =new ComplaintsDAO();
+   ComplaintsDTO parent = complaintsDAO.getCmp(cmpID, true);
+   int result=complaintsDAO.reply(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpDate,0,0,0,0,0,0),parent,true);
+   complaintsDAO.replyUpdate(parent,true);
    if(result==-1){
       PrintWriter script = response.getWriter();
       script.println("<script>");
-      script.println("alert('민원 등록 실패했습니다.');");
+      script.println("alert('답변 등록 실패했습니다.');");
       script.println("history.back();");
       script.println("</script>");
       script.close();
       return;
-   } else{//민원등록 성공 후 이메일 발송 부분
+   } else{//답변등록 성공 후 이메일 발송 부분
 	   String host="http://localhost:8080/SnS/";
 		String from="sjswsns@gmail.com";
 		String to="sseunghun99@naver.com";//민원 담당자 메일주소
-		String subject ="[세종소융]민원이 접수되었습니다."+complaintsDAO.getDate();
-		String content ="제목: "+cmpTitle+"<br>접수날짜: "+complaintsDAO.getDate()+"<br>"+cmpContent+
-		"\n<a href='" + host + "cmp_to_student_council_View.jsp?cmpID="+complaintsDAO.countCmp(true)+
+		String subject ="[세종소융]민원의 답변이 등록되었습니다."+complaintsDAO.getDate();
+		String content ="제목: "+cmpTitle+"<br>답변날짜: "+complaintsDAO.getDate()+"<br>"+cmpContent+
+		"\n<a href='" + host + "cmp_to_student_council_View.jsp?cmpID="+parent.getCmpID()+
 				"'><br>민원 바로가기</a>";
 		
 		Properties p = new Properties();
