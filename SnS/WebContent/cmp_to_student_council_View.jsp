@@ -46,6 +46,7 @@
 			script.println("</script>");
 		}
 		ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID, true);
+		ComplaintsDAO.hit(cmpID, true);
 	%>
 
 	<header>

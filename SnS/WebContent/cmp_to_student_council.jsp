@@ -128,73 +128,100 @@
         </ul>
       </nav>
     </nav>
-    
-    <section class="content">
-      <header>
-        <h1>학생회 건의사항</h1>
-      </header>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>날짜</th>
-            <th>동의 수</th>
-            <th>조회 수</th>
-          </tr>
-        </thead>
-      <tbody>
-         <%
+
+		<section class="content">
+			<header>
+				<h1>학생회 건의사항</h1>
+			</header>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>동의 수</th>
+						<th>조회 수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
             ComplaintsDAO cmpDAO = new ComplaintsDAO();
             ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber,true);
             for(int i=0; i<list.size();i++){
          %>
-         <tr>
-            <td><%=list.get(i).getCmpID() %></td>
-            <td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>" style="text-decoration:none">
-         <%
+					<tr>
+						<td><%=list.get(i).getCmpID() %></td>
+						<td><a
+							href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"
+							style="text-decoration: none"> <%
          	for(int j=0;j<list.get(i).getCmpLevel();j++){   
-         %>
-  			<span>>><!-- <i class="fas fa-arrow-right"></i> --></span>          
-         <%
+         %> <span>>><!-- <i class="fas fa-arrow-right"></i> --></span> <%
          	}
-         %><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>   
-            <td><%=list.get(i).getUserID() %></td>
-            <td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
-            <td><%=list.get(i).getAgreeCount() %></td>
-            <td><%=list.get(i).getCmpHit() %></td>
-         </tr>
-         <%
+         %><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+						<td><%=list.get(i).getUserID() %></td>
+						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
+						<td><%=list.get(i).getAgreeCount() %></td>
+						<td><%=list.get(i).getCmpHit() %></td>
+					</tr>
+					<%
             }
          %>
-      </tbody>
-      </table>
-      <hr>
-      <a class= "btn btn-default pull-right" href="cmp_to_student_council_Write.jsp">글쓰기</a>
-      <div class="text-center">
-        <ul class="pagination">
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-        </ul>
-      </div>
-      <%
-            if(pageNumber!=1){
-      %>
-            <a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
-         <%
-            }if(cmpDAO.nextPage(pageNumber+1,true)){
-         %>
-            <a href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-right">다음</a>
-         <%
-            }
-         %>
-    </section>
-    
-   </div>
+				</tbody>
+			</table>
+			<hr>
+			<a class="btn btn-default pull-right"
+				href="cmp_to_student_council_Write.jsp">글쓰기</a>
+
+			<div class="text-center">
+				<ul class="pagination" style="margin: 0 auto;">
+					<%
+          	int startPage=(pageNumber/10)*10+1;
+          	if(pageNumber%10==0) startPage-=10;
+          	int targetPage =cmpDAO.targetPage(pageNumber,true);
+          	if(startPage!=1){
+          %>
+					<li><a
+						href="cmp_to_student_council.jsp?pageNumber=<%=startPage-1%>"
+						class="btn btn-success">이전</a></li>
+					<%
+          	}else{
+          %>
+					<li><a href="#" class="btn" style="color: gray;">이전</a></li>
+					<%
+          	}for(int i = startPage;i<pageNumber;i++){
+        	%>
+					<li><a href="cmp_to_student_council.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<%      			
+          		}
+          	%>
+					<li><a class="active"
+						href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
+					<%
+				for(int i = pageNumber+1;i<=targetPage+pageNumber;i++){
+					if(i<startPage+10){
+			%>
+					<li><a href="cmp_to_student_council.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<%
+					}
+				}
+				if(targetPage+pageNumber>startPage+9){
+			%>
+					<li><a
+						href="cmp_to_student_council.jsp?pageNumber=<%=startPage+10 %>">다음</a></li>
+					<%
+				}else{
+			%>
+					<li><a href="#" class="btn" style="color: gray;">다음</a></li>
+					<%
+				}
+			%>
+				</ul>
+			</div>
+			<br>
+			<br>
+		</section>
+	</div>
    
    <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
