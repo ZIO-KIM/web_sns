@@ -74,10 +74,7 @@
     <div id="container">
     <nav>
       <nav>
-        <h2>
-          <span></span>
-            예비 소융인
-        </h2>
+        <h2>예비 소융인</h2>
         <ul class="lnb_deps2">
              <li>
                <a href="admission_reviews.jsp" class="jwxe_22350 active">선배들의 입시후기</a>
@@ -88,6 +85,7 @@
         </ul>
       </nav>
     </nav>
+    
     <section class="content">
       <header>
         <h1>글쓰기</h1>
