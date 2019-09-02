@@ -108,6 +108,7 @@
         %>
       </nav>
     </header>
+    
     <div id="container">
     <nav>
       <nav>
@@ -128,6 +129,7 @@
         </ul>
       </nav>
     </nav>
+    </div>
 
 		<section class="content">
 			<header>

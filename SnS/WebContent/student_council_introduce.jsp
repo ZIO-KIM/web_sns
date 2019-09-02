@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 학생회 소개</title>
     <link rel="stylesheet" href="css/introduce.css">
+    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
   </head>
   <body>
@@ -27,7 +29,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -63,9 +64,31 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="login_page.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
+        <h1 id='login'><a href="userLogin.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
       </nav>
     </header>
+    
+    <div id="container">
+    <nav>
+      <nav>
+        <h2>
+          <span></span>
+            민원
+        </h2>
+        <ul class="lnb_deps2">
+             <li>
+               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
+             </li>
+             <li>
+               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
+            </li>
+            <li>
+              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
+            </li>
+        </ul>
+      </nav>
+    </nav>
+    </div>
 
     <h1 id='title'>소프트웨어융합대학 학생회 소개</h1>
 
@@ -82,5 +105,6 @@
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+    
   </body>
 </html>
