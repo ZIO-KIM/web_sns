@@ -34,7 +34,7 @@
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
-            <li><a href='student_council.jsp'>학생회</a> <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
+            <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
               <ul id='submenu'>
                 <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
@@ -43,11 +43,10 @@
               </ul>
             </li>
 
-            <li><a href='complaints.jsp'>민원</a> <!-- 메뉴바 두번째 - 민원 카테고리 -->
+            <li>민원<!-- 메뉴바 두번째 - 민원 카테고리 -->
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>

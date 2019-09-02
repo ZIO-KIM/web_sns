@@ -51,7 +51,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
