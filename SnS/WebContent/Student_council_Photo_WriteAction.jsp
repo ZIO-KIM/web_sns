@@ -16,7 +16,17 @@
 <title>JSP 파일 업로드</title>
 </head>
 <body>
-	<%
+<%
+		String directory="C:/Users/chltp/git/web_sns/SnS/WebContent/upload";
+		int maxSize=1024*1024*100; 
+		String encoding="UTF-8";
+		
+		MultipartRequest multi=new MultipartRequest(request,directory,maxSize,
+				new DefaultFileRenamePolicy());
+		
+		String galTitle=multi.getParameter("galTitle");
+		String galContent=multi.getParameter("galContent");
+		
 		String userID=null;
 		if(session.getAttribute("userID")!=null){
 			userID=(String)session.getAttribute("userID");
@@ -28,58 +38,36 @@
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		}else{
-			String galTitle=null;
-			if(request.getParameter("galTitle")!=null){
-				galTitle=request.getParameter("galTitle");
-			}
-			String galContent=null;
-			if(request.getParameter("galContent")!=null){
-				galContent=request.getParameter("galContent");
-			}
 			if(galTitle==null ||galContent==null ||galTitle.equals("")||galContent.equals("")){
+				PrintWriter script=response.getWriter();
+				script.println("<script>");
+				script.println("alert('입력이 안 된 사항이 있습니다.')");
+				script.println("history.back()");
+				script.println("</script>");
+			}else{
+				GalleryDAO galleryDAO=new GalleryDAO();
+				int result=galleryDAO.write(galTitle,userID,galContent);
+				if(result==-1){
 					PrintWriter script=response.getWriter();
 					script.println("<script>");
-					script.println("alert('입력이 안 된 사항이 있습니다.')");
+					script.println("alert('글쓰기에 실패했습니다.')");
 					script.println("history.back()");
 					script.println("</script>");
+				}else{
+					PrintWriter script=response.getWriter();
+					script.println("<script>");
+					script.println("location.href='student_council_photo.jsp'");
+					script.println("</script>");
 				}
-				else
-				{
-					GalleryDAO galleryDAO=new GalleryDAO();
-					int result=galleryDAO.write(galTitle,"admin",galContent);
-					if(result==-1){
-						PrintWriter script=response.getWriter();
-						script.println("<script>");
-						script.println("alert('글쓰기에 실패했습니다.')");
-						script.println("history.back()");
-						script.println("</script>");
-					}
-					else{
-						PrintWriter script=response.getWriter();
-						script.println("<script>");
-						script.println("location.href='student_council_photo.jsp'");
-						script.println("</script>");
-					}
-				}
+			}
 		}
-	%>
-	<%
-		String directory="C:/Users/chltp/git/web_sns/SnS/WebContent/upload";
-		//application 내장 객체 = 전체 프로젝트에 대한 자원을 관리하는 객체 , 서버의 실제 프로젝트 경로에서 자원을 찾을 때 가장 많이 사용 , upload폴더 안에 파일을 저장하도록 만들어줌 
-		int maxSize=1024*1024*100; 
-		String encoding="UTF-8";
-		
-		MultipartRequest multipartRequest //전달한 파일을 지정한 경로에 설정한 사이즈와 인코딩을 적용하여 실제로 파일 업로드를 수행
-		=new MultipartRequest(request,directory,maxSize,encoding,
-				new DefaultFileRenamePolicy());
-		
-		Enumeration fileNames = multipartRequest.getFileNames();
-		
+		Enumeration fileNames = multi.getFileNames();
+			
 		while(fileNames.hasMoreElements()){
 			String parameter = (String)fileNames.nextElement();
-			String fileName=multipartRequest.getOriginalFileName(parameter);
-			String fileRealName=multipartRequest.getFilesystemName(parameter);
-			
+			String fileName=multi.getOriginalFileName(parameter);
+			String fileRealName=multi.getFilesystemName(parameter);
+				
 			if(fileName==null) continue;
 			//아래 확장자인 파일들만 업로드가 가능하도록 봉쇄
 			if(!fileName.endsWith(".doc")&&!fileName.endsWith(".hwp")&&
@@ -97,6 +85,6 @@
 				script.println("</script>");
 			}
 		}
-	%>
+%>
 </body>
 </html>

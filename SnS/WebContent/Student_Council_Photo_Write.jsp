@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리 :: 글쓰기</title>
@@ -100,7 +100,7 @@
       <header>
         <h1>글쓰기</h1>
       </header>
-       <form action="Student_council_Photo_WriteAction.jsp" method="post" enctype="multipart/form-data">
+      <form action="Student_council_Photo_WriteAction.jsp" method="post" enctype="multipart/form-data">
       <table class="table table-bordered">
         <tbody>
             <tr>
@@ -123,8 +123,8 @@
                </td>
              </tr>
         </tbody>
-        </form>
       </table>
+      </form>
     </section>
     </div>
     

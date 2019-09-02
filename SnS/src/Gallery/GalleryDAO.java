@@ -51,9 +51,10 @@ public class GalleryDAO {
 		return -1; //데이터베이스오류
 	}
 	public int write(String GalTitle, String userID, String GalContent) { 
-		String SQL = "INSERT INTO GALLERY VALUES(NULL, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO GALLERY VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,getNext());
 			pstmt.setString(2, GalTitle);
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
