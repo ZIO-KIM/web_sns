@@ -100,24 +100,7 @@
     </div>
 
     <h1 id='title'>갤러리<br></h1>  
-    <%
-    	String userID=null;
-    	if(session.getAttribute("userID")!=null){
-    		userID=(String)session.getAttribute("userID");
-    	}
-    	int galID=0;
-    	if(request.getParameter("galID")!=null){
-    		galID=Integer.parseInt(request.getParameter("galID"));
-    	}
-    	if(galID==0){
-    		PrintWriter script=response.getWriter();
-    		script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='student_council_photo'");
-			script.println("</script>");
-    	}
-    	Gallery gal=new GalleryDAO().getGal(galID);
-    %>
+    
     <%
 	ArrayList<FileDTO> fileList = new FileDAO().getList();
 

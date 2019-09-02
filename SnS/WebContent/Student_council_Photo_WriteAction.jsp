@@ -17,7 +17,7 @@
 </head>
 <body>
 <%
-		String directory="C:/Users/chltp/git/web_sns/SnS/WebContent/upload";
+		String directory=application.getRealPath("/upload/");
 		int maxSize=1024*1024*100; 
 		String encoding="UTF-8";
 		
