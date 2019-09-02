@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="complaints.ComplaintsDAO" %>
 <%@ page import="complaints.ComplaintsDTO" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -30,19 +31,28 @@
 
   </head>
   <body>
-  
-   <%
-      String userID=null;
-      if(session.getAttribute("userID")!=null){
-         userID=(String)session.getAttribute("userID");
-      }
-      int pageNumber =1;
-      if(request.getParameter("pageNumber")!=null){
-         pageNumber =Integer.parseInt(request.getParameter("pageNumber"));
-      }
-    %>
-  
-    <header>
+
+	<%
+		request.setCharacterEncoding("UTF-8");
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		int pageNumber = 1;
+		if (request.getParameter("pageNumber") != null) {
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		}
+		String searchType="최신순";
+		String search=null;
+		if(request.getParameter("searchType")!=null){
+			searchType=request.getParameter("searchType");
+		}
+		if(request.getParameter("search")!=null){
+			search=request.getParameter("search");
+		}
+	%>
+
+	<header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
@@ -132,6 +142,14 @@
 		<section class="content">
 			<header>
 				<h1>학생회 건의사항</h1>
+				<form method="get" action="cmp_to_student_council.jsp" class="form-inline mt-3">
+					<select name="searchType" class="form-control mx-1 mt-2">
+						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
+						<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
+					</select>
+					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요">
+					<button type="submit" class="btn mx-1 mt-2">검색</button>
+				</form>
 			</header>
 			<table class="table table-hover">
 				<thead>
@@ -147,18 +165,18 @@
 				<tbody>
 					<%
             ComplaintsDAO cmpDAO = new ComplaintsDAO();
-            ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber,true);
+			ArrayList<ComplaintsDTO> list = null;
+			if(search==null){
+				list = cmpDAO.getList(pageNumber,true);	
+			}else{
+				list=cmpDAO.getSearch(searchType,search,pageNumber,true);
+			}
             for(int i=0; i<list.size();i++){
          %>
 					<tr>
 						<td><%=list.get(i).getCmpID() %></td>
-						<td><a
-							href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"
-							style="text-decoration: none"> <%
-         	for(int j=0;j<list.get(i).getCmpLevel();j++){   
-         %> <span>>><!-- <i class="fas fa-arrow-right"></i> --></span> <%
-         	}
-         %><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+						<td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"
+							style="text-decoration: none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
 						<td><%=list.get(i).getUserID() %></td>
 						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
 						<td><%=list.get(i).getAgreeCount() %></td>
@@ -172,7 +190,10 @@
 			<hr>
 			<a class="btn btn-default pull-right"
 				href="cmp_to_student_council_Write.jsp">글쓰기</a>
-
+			<br><br>
+			<%
+				if(search==null){
+			%>
 			<div class="text-center">
 				<ul class="pagination" style="margin: 0 auto;">
 					<%
@@ -214,6 +235,7 @@
 			%>
 					<li><a href="#" class="btn" style="color: gray;">다음</a></li>
 					<%
+				}
 				}
 			%>
 				</ul>
