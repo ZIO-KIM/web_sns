@@ -140,6 +140,7 @@ th, td {
 #container nav {
     float: left;
     width: 200px;
+    margin-left: 2%; 
 }
 
 #container nav h2 {
