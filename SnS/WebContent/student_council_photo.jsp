@@ -1,5 +1,7 @@
 <%@ page import = "file.FileDTO" %>
 <%@ page import = "file.FileDAO" %>
+<%@ page import="Gallery.Gallery"%>
+<%@ page import="Gallery.GalleryDAO"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
