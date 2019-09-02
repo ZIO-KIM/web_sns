@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="complaints.ComplaintsDAO" %>
 <%@ page import="complaints.ComplaintsDTO" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -30,24 +31,33 @@
 
   </head>
   <body>
-  
-   <%
-      String userID=null;
-      if(session.getAttribute("userID")!=null){
-         userID=(String)session.getAttribute("userID");
-      }
-      int pageNumber =1;
-      if(request.getParameter("pageNumber")!=null){
-         pageNumber =Integer.parseInt(request.getParameter("pageNumber"));
-      }
-    %>
-  
-    <header>
+
+	<%
+		request.setCharacterEncoding("UTF-8");
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		int pageNumber = 1;
+		if (request.getParameter("pageNumber") != null) {
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		}
+		String searchType="최신순";
+		String search=null;
+		if(request.getParameter("searchType")!=null){
+			searchType=request.getParameter("searchType");
+		}
+		if(request.getParameter("search")!=null){
+			search=request.getParameter("search");
+		}
+	%>
+
+	<header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
-            <li><a href='student_council.jsp'>학생회</a> <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
+            <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
               <ul id='submenu'>
                 <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
@@ -56,7 +66,7 @@
               </ul>
             </li>
 
-            <li><a href='complaints.jsp'>민원</a> <!-- 메뉴바 두번째 - 민원 카테고리 -->
+            <li>민원 <!-- 메뉴바 두번째 - 민원 카테고리 -->
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
@@ -64,14 +74,14 @@
               </ul>
             </li>
 
-            <li><a href='pre_sju_student.jsp'>예비 소융인</a> <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
+            <li>예비 소융인 <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
               <ul id='submenu'>
                 <li><a href='admission_reviews.jsp'>선배들의 입시 후기</a></li>
                 <li><a href='admission_qnas.jsp'>QnA</a></li>
               </ul>
             </li>
 
-            <li><a href='employ_n_grauation.jsp'>취업 & 졸업</a> <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+            <li>취업&졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
                 <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
                 <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
@@ -79,14 +89,14 @@
               </ul>
             </li>
 
-            <li><a href='contest_promotions.jsp'>홍보</a> <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
+            <li>홍보 <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
               <ul id='submenu'>
                 <li><a href='school_contests.jsp'>교내 공모전</a><br></li>
                 <li><a href='not_school_contests.jsp'>교외 공모전</a><br></li>
               </ul>
             </li>
 
-            <li><a href='questions.jsp'>QnA</a> <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
+            <li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
               <ul id='submenu'>
                 <li><a href='chatbot.jsp'>Chatbot</a><br></li>
                 <li><a href='qna.jsp'>QnA</a><br></li>
@@ -94,6 +104,7 @@
             </li>
           </ul>
         </div>
+        
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
         <%
         	if(userID==null){
@@ -134,6 +145,14 @@
 		<section class="content">
 			<header>
 				<h1>학생회 건의사항</h1>
+				<form method="get" action="cmp_to_student_council.jsp" class="form-inline mt-3">
+					<select name="searchType" class="form-control mx-1 mt-2">
+						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
+						<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
+					</select>
+					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요">
+					<button type="submit" class="btn mx-1 mt-2">검색</button>
+				</form>
 			</header>
 			<table class="table table-hover">
 				<thead>
@@ -149,18 +168,18 @@
 				<tbody>
 					<%
             ComplaintsDAO cmpDAO = new ComplaintsDAO();
-            ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber,true);
+			ArrayList<ComplaintsDTO> list = null;
+			if(search==null){
+				list = cmpDAO.getList(pageNumber,true);	
+			}else{
+				list=cmpDAO.getSearch(searchType,search,pageNumber,true);
+			}
             for(int i=0; i<list.size();i++){
          %>
 					<tr>
 						<td><%=list.get(i).getCmpID() %></td>
-						<td><a
-							href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"
-							style="text-decoration: none"> <%
-         	for(int j=0;j<list.get(i).getCmpLevel();j++){   
-         %> <span>>><!-- <i class="fas fa-arrow-right"></i> --></span> <%
-         	}
-         %><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+						<td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"
+							style="text-decoration: none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
 						<td><%=list.get(i).getUserID() %></td>
 						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
 						<td><%=list.get(i).getAgreeCount() %></td>
@@ -174,7 +193,10 @@
 			<hr>
 			<a class="btn btn-default pull-right"
 				href="cmp_to_student_council_Write.jsp">글쓰기</a>
-
+			<br><br>
+			<%
+				if(search==null){
+			%>
 			<div class="text-center">
 				<ul class="pagination" style="margin: 0 auto;">
 					<%
@@ -216,6 +238,7 @@
 			%>
 					<li><a href="#" class="btn" style="color: gray;">다음</a></li>
 					<%
+				}
 				}
 			%>
 				</ul>

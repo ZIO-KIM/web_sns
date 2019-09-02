@@ -3,8 +3,8 @@
 }
 
 #logo {
-font-family: 'Nanum Gothic', sans-serif;
-margin-left: 100%; 
+  font-family: 'Nanum Gothic', sans-serif;
+  margin-left: 100%; 
   width: 60px;
   height: 60px;
   padding-top: 25px;
@@ -55,6 +55,7 @@ margin-left: 100%;
   text-align: center;
   float: left;
   position: relative; /* �긽�쐞 硫붾돱�쓽 �쐞移섎�� */
+  color: white;
 }
 
 #menubar ul li a {
@@ -160,6 +161,7 @@ table {
  margin-left: auto;
  margin-right: auto;
  width: 90%;
+ margin-bottom: 30px; 
 }
 
 table, td, tr {
