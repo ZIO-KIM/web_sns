@@ -32,7 +32,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.jsp'>기타 민원</a></li>
                 <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -75,10 +74,7 @@
     <div id="container">
     <nav>
       <nav>
-        <h2>
-          <span></span>
-            예비 소융인
-        </h2>
+        <h2>예비 소융인</h2>
         <ul class="lnb_deps2">
              <li>
                <a href="admission_reviews.jsp" class="jwxe_22350 active">선배들의 입시후기</a>
@@ -89,6 +85,7 @@
         </ul>
       </nav>
     </nav>
+    
     <section class="content">
       <header>
         <h1>글쓰기</h1>

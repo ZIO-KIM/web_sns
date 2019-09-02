@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리 :: 글쓰기</title>
@@ -33,7 +34,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.html'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.html'>학교 건의사항</a></li>
-                <li><a href='cmp_to_etc.html'>기타 민원</a></li>
                 <li><a href='introduce_cmp.html'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -69,7 +69,7 @@
           </ul>
         </div>
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="login_page.html">LOGIN</a></h1> <!-- 로그인 버튼-->
+        <h1 id='login'><a href="userLogin.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
       </nav>
     </header>
     <div id="container">
@@ -99,16 +99,16 @@
       <header>
         <h1>글쓰기</h1>
       </header>
+      <form action="Student_council_Photo_WriteAction.jsp" method="post" enctype="multipart/form-data">
       <table class="table table-bordered">
         <tbody>
-          <form action="Student_council_Photo_WriteAction.jsp" method="post" enctype="multipart/form-data">
             <tr>
                <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="galTitle" class="form-control"/></td>
             </tr>
             <tr>
                <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="galContent" class="form-control"></textarea></td>
             </tr>
             <tr>
                <th>첨부파일: </th>
@@ -121,9 +121,9 @@
                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
                </td>
              </tr>
-          </form>
         </tbody>
       </table>
+      </form>
     </section>
     </div>
     
