@@ -1,10 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="file.FileDAO" %>
 <%@ page import="java.io.File" %>
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %> 
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
+<%@ page import="Gallery.GalleryDAO" %>
+<%@ page import="Gallery.Gallery" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +17,54 @@
 </head>
 <body>
 	<%
-		String directory=application.getRealPath("/upload/");
+		String userID=null;
+		if(session.getAttribute("userID")!=null){
+			userID=(String)session.getAttribute("userID");
+		}
+		if(userID==null){
+			PrintWriter script=response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 하세요')");
+			script.println("location.href='login.jsp'");
+			script.println("</script>");
+		}else{
+			String galTitle=null;
+			if(request.getParameter("galTitle")!=null){
+				galTitle=request.getParameter("galTitle");
+			}
+			String galContent=null;
+			if(request.getParameter("galContent")!=null){
+				galContent=request.getParameter("galContent");
+			}
+			if(galTitle==null ||galContent==null ||galTitle.equals("")||galContent.equals("")){
+					PrintWriter script=response.getWriter();
+					script.println("<script>");
+					script.println("alert('입력이 안 된 사항이 있습니다.')");
+					script.println("history.back()");
+					script.println("</script>");
+				}
+				else
+				{
+					GalleryDAO galleryDAO=new GalleryDAO();
+					int result=galleryDAO.write(galTitle,"admin",galContent);
+					if(result==-1){
+						PrintWriter script=response.getWriter();
+						script.println("<script>");
+						script.println("alert('글쓰기에 실패했습니다.')");
+						script.println("history.back()");
+						script.println("</script>");
+					}
+					else{
+						PrintWriter script=response.getWriter();
+						script.println("<script>");
+						script.println("location.href='student_council_photo.jsp'");
+						script.println("</script>");
+					}
+				}
+		}
+	%>
+	<%
+		String directory="C:/Users/chltp/git/web_sns/SnS/WebContent/upload";
 		//application 내장 객체 = 전체 프로젝트에 대한 자원을 관리하는 객체 , 서버의 실제 프로젝트 경로에서 자원을 찾을 때 가장 많이 사용 , upload폴더 안에 파일을 저장하도록 만들어줌 
 		int maxSize=1024*1024*100; 
 		String encoding="UTF-8";
@@ -39,8 +90,11 @@
 				out.write("업로드 할 수 없는 확장자입니다.");
 			}else{
 				new FileDAO().upload(fileName,fileRealName); //upload수행
-				out.write("파일명:"+fileName+"<br>");
-				out.write("실제 파일명:"+fileRealName+"<br>");		
+				PrintWriter script=response.getWriter();
+				script.println("<script>");
+				script.println("alert('게시글이 등록되었습니다.')");
+				script.println("location.href='student_council_photo.jsp'");
+				script.println("</script>");
 			}
 		}
 	%>
