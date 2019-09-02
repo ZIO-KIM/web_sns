@@ -73,17 +73,20 @@
       <nav>
         <h2>
           <span></span>
-            민원
+            학생회
         </h2>
         <ul class="lnb_deps2">
              <li>
-               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
+               <a href='student_council_introduce.jsp' class="jwxe_22350 active">학생회 소개</a>
              </li>
              <li>
-               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
+               <a href='student_council_photo.jsp' class="jwxe_22351 ">갤러리</a>
             </li>
             <li>
-              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
+              <a href='student_council_events.jsp' class="jwxe_22351 ">행사</a>
+            </li>
+            <li>
+              <a href='student_council_public_money.jsp' class="jwxe_22351 ">학생회비 내역</a>
             </li>
         </ul>
       </nav>

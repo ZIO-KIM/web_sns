@@ -40,7 +40,6 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>To. Student Council</a></li>
                 <li><a href='cmp_to_school.jsp'>To. School</a></li>
-                <li><a href='cmp_to_etc.jsp'>To. etc</a></li>
                 <li><a href='introduce_cmp.jsp'>Other ways to make Suggestions</a></li>
               </ul>
             </li>
