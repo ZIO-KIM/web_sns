@@ -37,7 +37,7 @@ public class GalleryDAO {
 		return ""; //데이터베이스 오류
 	}
 	public int getNext() { 
-		String SQL = "SELECT GalID FROM Council ORDER BY GalID DESC";
+		String SQL = "SELECT GalID FROM GALLERY ORDER BY GalID DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
@@ -68,7 +68,7 @@ public class GalleryDAO {
 	}
 	
 	public ArrayList<Gallery> getList(int pageNumber){ 
-		String SQL = "SELECT * FROM Council WHERE GalID < ? AND GalAvailable = 1 ORDER BY GalID DESC LIMIT 10";
+		String SQL = "SELECT * FROM GALLERY WHERE GalID < ? AND GalAvailable = 1 ORDER BY GalID DESC LIMIT 10";
 		ArrayList<Gallery> list = new ArrayList<Gallery>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -91,7 +91,7 @@ public class GalleryDAO {
 	}
 	//10단위로 끊기는 경우에 다음페이지를 보이지 않게 하기 위함
 	public boolean nextPage (int pageNumber) {
-		String SQL = "SELECT * FROM Council WHERE GalID < ? AND GalAvailable = 1 ORDER BY GalID DESC LIMIT 10";
+		String SQL = "SELECT * FROM GALLERY WHERE GalID < ? AND GalAvailable = 1 ORDER BY GalID DESC LIMIT 10";
 		ArrayList<Gallery> list = new ArrayList<Gallery>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -106,7 +106,7 @@ public class GalleryDAO {
 		return false; 		
 	}
 	public Gallery getGal(int GalID) {
-		String SQL = "SELECT * FROM Council WHERE GalID = ?";
+		String SQL = "SELECT * FROM GALLERY WHERE GalID = ?";
 		ArrayList<Gallery> list = new ArrayList<Gallery>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -128,7 +128,7 @@ public class GalleryDAO {
 		return null; 
 	}
 	public int update(int GalID,String GalTitle,String GalContent) {
-		String SQL = "UPDATE Council SET GalTitle=?,GalContent=?WHERE GalID=?";
+		String SQL = "UPDATE GALLERY SET GalTitle=?,GalContent=?WHERE GalID=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, GalTitle);
@@ -141,7 +141,7 @@ public class GalleryDAO {
 		return -1; //데이터베이스오류
 	}
 	public int delete(int GalID) {
-		String SQL = "UPDATE Council SET GalAvailable=0 WHERE GalID=?";
+		String SQL = "UPDATE GALLERY SET GalAvailable=0 WHERE GalID=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1,GalID);

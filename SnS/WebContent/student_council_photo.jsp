@@ -98,7 +98,7 @@
     </nav>
     </div>
 
-    <h1 id='title'>갤러리</h1>  
+    <h1 id='title'>갤러리<br></h1>  
     <%
 	ArrayList<FileDTO> fileList = new FileDAO().getList();
 
