@@ -132,7 +132,7 @@
       <table class="table table-bordered">
         <tbody>
         	<tr>
-        		<td style="width:110px;"><h5>아이디</h5></td>
+        		<th>아이디: </th>
         		<td><h5><%=userID %></h5>
         		<input type="hidden" name="userID" value="<%=userID%>">
         		<input type="hidden" name="cmpID" value="<%=cmpID%>">
@@ -160,6 +160,11 @@
       </table>
       </form>
       </section>
+      
+      <footer>
+   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
+   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
+    </footer>
     <script src="js/bootstrap.js"></script>
   </body>
 </html>
