@@ -35,7 +35,7 @@ public class UserDAO {
 	}
 	
 	public int join(UserDTO user) {
-		String SQL = "INSERT INTO USER VALUES(?,?,?,?,false)";
+		String SQL = "INSERT INTO USER VALUES(?,?,?,?,?,false,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -44,8 +44,11 @@ public class UserDAO {
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setString(1,user.getUserID());
 			pstmt.setString(2,user.getUserPassword());
-			pstmt.setString(3,user.getUserEmail());
-			pstmt.setString(4,user.getUserEmailHash());
+			pstmt.setString(3,user.getUserName());
+			pstmt.setString(4,user.getUserEmail());
+			pstmt.setString(5,user.getUserEmailHash());
+			pstmt.setString(6,user.getFindPwQuestion());
+			pstmt.setString(7,user.getFindPwAnswer());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -103,15 +106,15 @@ public class UserDAO {
 		return null;
 	}
 	
-	public boolean setUserEmailChecked(String userID) {
-		String SQL = "UPDATE USER SET userEmailChecked = true WHERE userID=?";
+	public boolean setUserEmailChecked(String code) {
+		String SQL = "UPDATE USER SET userEmailChecked = true WHERE userEmailHash=?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setString(1,userID);
+			pstmt.setString(1,code);
 			pstmt.executeUpdate();
 			return true;
 		}catch(Exception e) {

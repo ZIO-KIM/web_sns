@@ -20,6 +20,9 @@
   	}
 	String userPassword=null;
 	String userEmail=null;
+	String userName=null;
+	String findPwQuestion=null;
+	String findPwAnswer=null;
 	if(request.getParameter("userID")!=null){
 		userID=request.getParameter("userID");
 	}
@@ -28,6 +31,15 @@
 	}
 	if(request.getParameter("userEmail")!=null){
 		userEmail=request.getParameter("userEmail");
+	}
+	if(request.getParameter("userName")!=null){
+		userName=request.getParameter("userName");
+	}
+	if(request.getParameter("findPwQuestion")!=null){
+		findPwQuestion=request.getParameter("findPwQuestion");
+	}
+	if(request.getParameter("findPwAnswer")!=null){
+		findPwAnswer=request.getParameter("findPwAnswer");
 	}
 	if(userID==null||userPassword==null||userEmail==null){
 		PrintWriter script = response.getWriter();
@@ -39,7 +51,7 @@
 		return;
 	}
 	UserDAO userDAO = new UserDAO();
-	int result=userDAO.join(new UserDTO(userID, userPassword,userEmail,SHA256.getSHA256(userEmail),false));
+	int result=userDAO.join(new UserDTO(userID, userPassword,userName,userEmail,SHA256.getSHA256(userEmail),false,findPwQuestion,findPwAnswer));
 	if(result ==-1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");

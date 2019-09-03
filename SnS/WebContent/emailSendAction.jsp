@@ -42,7 +42,7 @@
 	String to=userDAO.getUserEmail(userID);
 	String subject ="SnS 인증 메일입니다.";
 	String content ="다음 링크에 접속하여 이메일 인증을 진행하세요."+
-	"<a href='" + host + "emailCheckAction.jsp?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>";
+	"<a href='" + host + "emailCheckAction.jsp?code=" + SHA256.getSHA256(to) + "'>이메일 인증하기</a>";
 	
 	Properties p = new Properties();
 	p.put("mail.smtp.user",from);
@@ -88,7 +88,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="css/PSB.css">
     <link rel="stylesheet" href="login_page.css">
   </head>
   <body>

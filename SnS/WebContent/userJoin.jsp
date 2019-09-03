@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Pragma" content="no-cache">
-<title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+<title>세종대학교 소프트웨어융합대학 :: 회원가입</title>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap"
 	rel="stylesheet">
 <link
@@ -26,11 +26,10 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/PSB.css">
 <link rel="stylesheet" href="css/joinpage.css">
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<%
@@ -109,77 +108,82 @@
 			<h1 id='language'>한국어 / EN</h1>
 			<!--영어, 한글 버전 바꾸는 버튼-->
 			<%
-        	if(userID==null){
-        %>
+				if (userID == null) {
+			%>
 			<h2 id='login'>
 				<a href="userLogin.jsp"
 					style="text-decoration: none; color: #000000">LOGIN</a>
 			</h2>
 			<%
-        	}
-        %>
+				}
+			%>
 		</nav>
 	</header>
 
 	<div class="container">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
-			<div class="jumbotron" style="padding-top: 20px;">
-				<form method="post" action="joinAction.jsp" onsubmit="return confirmPw()">
-					<h3 id="join">SIGN UP</h3>
-					<label for="id" class="control-label">
-						<em style="color:red">*</em> 아이디 (닉네임으로 사용)
-					</label>
-					<div class="form-group">
-						<input type="text" class="form-control"
-							name="userID" maxlength="20" required>
-					</div>
-					<label for="password" class="control-label">
-						<em style="color:red">*</em> 비밀번호
-					</label>
-					<div class="form-group">
-						<input type="password" class="form-control" id="pw" placeholder="비밀번호"
-							name="userPassword" maxlength="20" required>
-					</div>
-					<label for="passwordConfirm" class="control-label">
-						<em style="color:red">*</em> 비밀번호확인
-					</label>
-					<div class="form-group">
-						<input type="password" class="form-control" id="pwconfirm" placeholder="비밀번호확인"
-							name="userPasswordConfirm" maxlength="20">
-					</div>
-					<label for="name" class="control-label">
-						<em style="color:red">*</em> 이름
-					</label>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="이름" 
-							name="userName" maxlength="20">
-					</div>
-					<label for="email" class="control-label">
-						<em style="color:red">*</em> 학교이메일 (인증을 위해 필요)
-					</label>
-					<div class="form-group">
-						<input type="email" class="form-control" placeholder="학교이메일"
-							name="userEmail" maxlength="50">
-					</div>
-					<label for="user_id" class="control-label">
-						<em style="color:red">*</em> 성별
-					</label>
-					<div class="form-group" style="text-align: center;">
-						<div class="btn-group" data-toggle="buttons">
-							<label id="btn_gen_m" class="btn btn-primary active"> <input
-								type="radio" name="userGender" autocomplete="off" value="남자"
-								checked>남자
-							</label> <label id="btn_gen_w" class="btn btn-primary"> <input
-								type="radio" name="userGender" autocomplete="off" value="여자">여자								
+		<div class="jumbotron" style="padding-top: 20px;">
+			<div class="cen">
+				<h3 id="join">SIGN UP</h3>
+
+				<form method="post" action="userRegisterAction.jsp"
+					onsubmit="return confirmPw()" class="form-horizontal">
+					
+					<div class="form-group row">
+						<label for="id" class="col-sm-2 col-form-label"> <em
+							style="color: red">*</em> 아이디 (닉네임)
+						</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="userID"
+								maxlength="20" required>
 						</div>
 					</div>
-					<div class="control-group">
-						<label for="find_account_question" class="control-label"><em
-							style="color: red">*</em> 비밀번호 찾기 질문/답변</label>
-						<div class="controls">
-							<select name="find_account_question" id="find_account_question"
-								style="display: block; margin: 0 0 8px 0"><option
+					
+					<div class="form-group row">
+						<label for="password" class="col-sm-2 col-form-label"> <em
+							style="color: red">*</em> 비밀번호
+						</label>
+						<div class="col-sm-3">
+							<input type="password" class="form-control" name="userPassword"
+								maxlength="20" required>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="passwordCk" class="col-sm-2 col-form-label"> <em
+							style="color: red">*</em> 비밀번호확인
+						</label>
+						<div class="col-sm-3">
+							<input type="password" class="form-control" name="userPasswordCk"
+								maxlength="20" required>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="name" class="col-sm-2 col-form-label"> <em
+							style="color: red">*</em> 이름
+						</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="userName"
+								maxlength="20" required>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="email" class="col-sm-2 col-form-label"> <em
+							style="color: red">*</em> 학교이메일<br>(재학생인증)
+						</label>
+						<div class="col-sm-3">
+							<input type="email" class="form-control" name="userEmail"
+								maxlength="50" required>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="findPwQuestion" class="col-sm-2 col-form-label"><em
+							style="color: red">*</em> 비밀번호 찾기<br>질문/답변 </label>
+						<div class="controls col-sm-3">
+							<select name="findPwQuestion" class="form-control"
+								id="findPwQuestion" style="display: block; margin: 0 0 8px 0"><option
 									value="1">다른 이메일 주소는?</option>
 								<option value="2">나의 보물 1호는?</option>
 								<option value="3">나의 출신 초등학교는?</option>
@@ -189,19 +193,16 @@
 								<option value="7">아버지 성함은?</option>
 								<option value="8">가장 좋아하는 색깔은?</option>
 								<option value="9">가장 좋아하는 음식은?</option></select><input type="text"
-								name="find_account_answer" id="find_account_answer"
-								title="비밀번호 찾기 답변" value="">
+								name="findPwAnswer" id="findPwAnswer" class="form-control"
+								title="비밀번호 찾기 답변" value="" maxlength="50">
 						</div>
 					</div>
-					
-					
-					<input id="btn_log" type="submit"
-						class="btn btn-primary form-control" value="SIGN UP">
+					<div class="controls col-sm-3">
+						<input id="btn_log" type="submit"
+							class="btn btn-primary form-control" value="SIGN UP">
+					</div>
 				</form>
-				<br>
-				<p id="namemark">
-					<img src="imgs/sjnamemark.png" alt="namemark">
-				</p>
+
 			</div>
 		</div>
 	</div>
