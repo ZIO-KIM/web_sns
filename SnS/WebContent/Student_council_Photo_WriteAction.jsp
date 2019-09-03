@@ -17,7 +17,7 @@
 </head>
 <body>
 <%
-		String directory="C:/Users/chltp/git/web_sns/SnS/WebContent/upload";
+		String directory=application.getRealPath("/upload/");
 		int maxSize=1024*1024*100; 
 		String encoding="UTF-8";
 		
@@ -47,18 +47,20 @@
 			}else{
 				GalleryDAO galleryDAO=new GalleryDAO();
 				int result=galleryDAO.write(galTitle,userID,galContent);
-				if(result==-1){
+				if(result==1){
+					PrintWriter script=response.getWriter();
+					script.println("<script>");
+					script.println("alert('글이 작성되었습니다.')");
+					script.println("location.href='student_council_photo.jsp'");
+					script.println("</script>"); 
+					
+				}else{
 					PrintWriter script=response.getWriter();
 					script.println("<script>");
 					script.println("alert('글쓰기에 실패했습니다.')");
 					script.println("history.back()");
 					script.println("</script>");
-				}else{
-					PrintWriter script=response.getWriter();
-					script.println("<script>");
-					script.println("location.href='student_council_photo.jsp'");
-					script.println("</script>");
-				}
+				} 
 			}
 		}
 		Enumeration fileNames = multi.getFileNames();
@@ -77,12 +79,21 @@
 				file.delete(); //올바른 확장자가 아니라면 해당 파일 삭제 (multipartrequest를 통해 업로드가 되기 떄문에 업로드 후 삭제방식)
 				out.write("업로드 할 수 없는 확장자입니다.");
 			}else{
-				new FileDAO().upload(fileName,fileRealName); //upload수행
-				PrintWriter script=response.getWriter();
-				script.println("<script>");
-				script.println("alert('게시글이 등록되었습니다.')");
-				script.println("location.href='student_council_photo.jsp'");
-				script.println("</script>");
+				int result = new FileDAO().upload(fileName,fileRealName); //upload수행
+				if(result==1){
+					PrintWriter script=response.getWriter();
+					script.println("<script>");
+					script.println("alert('게시글이 등록되었습니다.')");
+					script.println("location.href='student_council_photo.jsp'");
+					script.println("</script>");
+				}else{
+					PrintWriter script=response.getWriter();
+					script.println("<script>");
+					script.println("alert('게시글 등록에 실패하였습니다.')");
+					script.println("location.href='student_council_photo.jsp'");
+					script.println("</script>");
+				}
+				
 			}
 		}
 %>
