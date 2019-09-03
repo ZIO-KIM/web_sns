@@ -58,7 +58,7 @@
               </ul>
             </li>
 
-            <li>취업&졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
                 <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
                 <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>

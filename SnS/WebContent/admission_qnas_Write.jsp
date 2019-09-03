@@ -5,6 +5,7 @@
   <head>
     <meta charset="utf-8">
     <title>세종대학교 소프트웨어융합대학 :: 예비 소융인 :: QnA :: 글쓰기</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -43,7 +44,7 @@
               </ul>
             </li>
 
-            <li>취업&졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
                 <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
                 <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
