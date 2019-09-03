@@ -1,0 +1,24 @@
+#join{
+  font-weight: bold;
+  font-size: 50px;
+  color:#c70027;
+}
+
+.jumbotron{
+  background-color: white;
+
+}
+
+#btn_log{
+  background-color:#c70027;
+}
+
+#namemark{
+  text-align: center;
+}
+#btn_gen_m{
+  background-color:#c70027;
+}
+#btn_gen_w{
+  background-color:#ef574f;
+}
