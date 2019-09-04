@@ -130,11 +130,11 @@
 					
 					<div class="form-group row">
 						<label for="id" class="col-sm-2 col-form-label"> <em
-							style="color: red">*</em> 아이디 (닉네임)
+							style="color: red">*</em> 아이디
 						</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="userID"
-								maxlength="20" required>
+								maxlength="20" placeholder="닉네임으로 사용" required>
 						</div>
 					</div>
 					
@@ -144,7 +144,7 @@
 						</label>
 						<div class="col-sm-3">
 							<input type="password" class="form-control" name="userPassword"
-								maxlength="20" required>
+								maxlength="20" pattern="[A-Za-z0-9]{8,}" placeholder="영문+숫자 8글자 이상" required>
 						</div>
 					</div>
 					
@@ -154,7 +154,7 @@
 						</label>
 						<div class="col-sm-3">
 							<input type="password" class="form-control" name="userPasswordCk"
-								maxlength="20" required>
+								maxlength="20" placeholder="비밀번호 확인" required>
 						</div>
 					</div>
 					
@@ -164,7 +164,7 @@
 						</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="userName"
-								maxlength="20" required>
+								maxlength="20" placeholder="실명" required>
 						</div>
 					</div>
 					
@@ -174,7 +174,7 @@
 						</label>
 						<div class="col-sm-3">
 							<input type="email" class="form-control" name="userEmail"
-								maxlength="50" required>
+								maxlength="50" placeholder="@sju.ac.kr" required>
 						</div>
 					</div>
 
@@ -184,15 +184,15 @@
 						<div class="controls col-sm-3">
 							<select name="findPwQuestion" class="form-control"
 								id="findPwQuestion" style="display: block; margin: 0 0 8px 0"><option
-									value="1">다른 이메일 주소는?</option>
-								<option value="2">나의 보물 1호는?</option>
-								<option value="3">나의 출신 초등학교는?</option>
-								<option value="4">나의 출신 고향은?</option>
-								<option value="5">나의 이상형은?</option>
-								<option value="6">어머니 성함은?</option>
-								<option value="7">아버지 성함은?</option>
-								<option value="8">가장 좋아하는 색깔은?</option>
-								<option value="9">가장 좋아하는 음식은?</option></select><input type="text"
+									value="다른 이메일 주소는?">다른 이메일 주소는?</option>
+								<option value="나의 보물 1호는?">나의 보물 1호는?</option>
+								<option value="나의 출신 초등학교는?">나의 출신 초등학교는?</option>
+								<option value="나의 출신 고향은?">나의 출신 고향은?</option>
+								<option value="나의 이상형은?">나의 이상형은?</option>
+								<option value="어머니 성함은?">어머니 성함은?</option>
+								<option value="아버지 성함은?">아버지 성함은?</option>
+								<option value="가장 좋아하는 색깔은?">가장 좋아하는 색깔은?</option>
+								<option value="가장 좋아하는 음식은?">가장 좋아하는 음식은?</option></select><input type="text"
 								name="findPwAnswer" id="findPwAnswer" class="form-control"
 								title="비밀번호 찾기 답변" value="" maxlength="50">
 						</div>

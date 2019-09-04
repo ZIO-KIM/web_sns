@@ -40,6 +40,7 @@
 	String host="http://localhost:8080/SnS/";
 	String from="sjswsns@gmail.com";
 	String to=userDAO.getUserEmail(userID);
+	to=to.split("@")[0]+"@sju.ac.kr";
 	String subject ="SnS 인증 메일입니다.";
 	String content ="다음 링크에 접속하여 이메일 인증을 진행하세요."+
 	"<a href='" + host + "emailCheckAction.jsp?code=" + SHA256.getSHA256(to) + "'>이메일 인증하기</a>";
@@ -90,6 +91,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/PSB.css">
     <link rel="stylesheet" href="login_page.css">
+    <link rel="stylesheet" href="bootstrap.css">
   </head>
   <body>
     <header>
