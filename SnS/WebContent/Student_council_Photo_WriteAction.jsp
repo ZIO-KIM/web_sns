@@ -35,7 +35,7 @@
 			PrintWriter script=response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 하세요')");
-			script.println("location.href='login.jsp'");
+			script.println("location.href='userLogin.jsp'");
 			script.println("</script>");
 		}else{
 			if(galTitle==null ||galContent==null ||galTitle.equals("")||galContent.equals("")){
@@ -50,7 +50,7 @@
 				if(result==1){
 					PrintWriter script=response.getWriter();
 					script.println("<script>");
-					script.println("alert('글이 작성되었습니다.')");
+					script.println("alert('글이 등록되었습니다.')");
 					script.println("location.href='student_council_photo.jsp'");
 					script.println("</script>"); 
 					
