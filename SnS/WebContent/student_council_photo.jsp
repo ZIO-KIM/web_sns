@@ -101,16 +101,17 @@
     </div>
 
     <h1 id='title'>갤러리<br></h1>  
-    
     <%
-	ArrayList<FileDTO> fileList = new FileDAO().getList();
+	    ArrayList<FileDTO> fileList = new FileDAO().getList();
+	
+		for(FileDTO file : fileList){
+			out.write("<a href=\""+request.getContextPath() + "/downloadAction?file="+
+				java.net.URLEncoder.encode(file.getFileRealName(),"UTF-8")+"\">"+
+					file.getFileName()+"</a><br>"); 
+		}
+		
+    %>
 
-	for(FileDTO file : fileList){
-		out.write("<a href=\""+request.getContextPath() + "/downloadAction?file="+
-			java.net.URLEncoder.encode(file.getFileRealName(),"UTF-8")+"\">"+
-				file.getFileName()+"</a><br>"); 
-	}
-	%>
     <nav id='gallery_all'>
       <div class="gallery">
         <a target="_blank" href="imgs/background_img_5.jpeg">

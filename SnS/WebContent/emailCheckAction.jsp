@@ -9,22 +9,9 @@
 		code=request.getParameter("code");
 	}
 	UserDAO userDAO = new UserDAO();
-	String userID =null;
-	if(request.getParameter("userID")!=null){
-		userID=request.getParameter("userID");
-	}
-	if(userID==null){
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
-		script.println("location.href='login.jsp'");
-		script.println("</script>");
-		script.close();
-		return;
-	}
-	String userEmail=userDAO.getUserEmail(userID);
-	boolean isRight = (new SHA256().getSHA256(userEmail).equals(code))? true:false;
-	if(isRight){
+	
+	boolean result=userDAO.setUserEmailChecked(code);
+	if(result){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('인증에 성공했습니다.')");

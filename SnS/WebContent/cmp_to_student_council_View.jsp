@@ -23,11 +23,23 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <link rel="stylesheet" href="css/PSB.css">
 
 </head>
 <body>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#reportbtn").click(function() {
+				$("#reportModal").modal();
+			});
+		});
+	</script>
 
 	<%
 		String userID = null;
@@ -140,6 +152,7 @@
 				</ul>
 			</nav>
 		</nav>
+		
 	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -168,6 +181,8 @@
 			</div>
 		</div>
 	</div>
+
+	
 
 		<div class="container">
 			<div class="row">
@@ -211,15 +226,13 @@
 
 					</tbody>
 				</table>
-				<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a>
-
-				<a onclick="return confirm('해당 민원에 동의하시겠습니까?')"
+				<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a> <a onclick="return confirm('해당 민원에 동의하시겠습니까?')"
 					href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmp.getCmpID()%>"
 					class="btn btn-primary pull-right"
-					style="background-color: #c70027;">추천</a> <a
+					style="background-color: #c70027;">추천 </a> <a
 					href="cmp_to_student_council_Reply.jsp?cmpID=<%=cmp.getCmpID()%>"
-					class="btn btn-primary pull-right">답변</a>
-					<a class="btn btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
+					class="btn btn-primary pull-right">답변 </a>
+					<a class="btn btn-info btn-danger mx-1 mt-2" id="reportbtn">신고</a>
 				<%
 					if (userID != null && userID.equals(cmp.getUserID())) {
 				%>
@@ -295,12 +308,12 @@
 		</div>
 
 	</div>
-	<script src="js/bootstrap.js"></script>
+	
 </body>
 	<footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
-    <script src="js/bootstrap.js"></script>
+    
   </body>
 </html>

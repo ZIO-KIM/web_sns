@@ -118,7 +118,7 @@
 }
 
 #Notice, #Promotion, #Claims, #Departments{ /* 理쒓렐 湲� �깋�긽 �벑 怨듯넻�슂�냼 */
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
@@ -126,33 +126,57 @@
   display: inline-block;
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 20px;
-  margin-top: 22%;
-  margin-left: 10%;
+  border: solid 2px black; 
+  background-color: white; 
+  width: 500px; 
+  height: 200px; 
+  text-align: center;
+  padding-top: 2%; 
+   
+  margin-left: 6%;
+  margin-top: 30%; 
+  margin-bottom: -100px; 
 }
 
 #promotion {
   display: inline-block;
   font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  margin-top: 18%;
-  margin-left: 30%;
+  font-size: 20px; 
+  border: solid 2px black; 
+  background-color: white; 
+  width: 500px; 
+  height: 200px; 
+  text-align: center; 
+  padding-top: 2%; 
+  
+  margin-top: -100px; 
 }
 
 #claims {
   display: inline-block;
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 20px;
-  margin-top: 10%;
-  margin-left: 10%;
-  margin-right: 60%;
+  border: solid 2px black; 
+  background-color: white; 
+  width: 500px; 
+  height: 200px; 
+  text-align: center; 
+  padding-top: 2%; 
+  
+  margin-left: 6%; 
+  margin-top: 30%; 
 }
 
 #departments {
   display: inline-block;
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 20px;
-  margin-left: 52%;
-  margin-top: -100px;
+  border: solid 2px black; 
+  background-color: white; 
+  width: 500px; 
+  height: 200px; 
+  text-align: center; 
+  padding-top: 2%; 
 }
 
 table {
@@ -192,4 +216,10 @@ footer {
 #footer_content {
 	padding-top: 30px; 
 	padding-right: 10px; 
+}
+
+#hr1 {
+	width: 82%; 
+	border: double 4px white; 
+	margin-top: 6%; 
 }

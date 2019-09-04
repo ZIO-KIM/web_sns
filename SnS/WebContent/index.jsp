@@ -105,27 +105,9 @@
       <h3 id='subtitle'>소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
 
-    <!-- <table id='recent_upload'> 최근 글 띄워주는 테이블
-      <tr>
-        <td><a href='#'><span>공지사항</a></span></td>
-        <td><a href='#'><span>홍보 게시판</a></span></td>
-      </tr>
-      <tr>
-        <td><a href='#'><span>공지사항 최근 글</a></span></td>
-        <td><a href='#'><span>홍보 게시판 최근 글</a></span></td>
-      </tr>
-      <tr>
-        <td><a href='#'><span>민원 게시판</a></span></td>
-        <td><a href='#'><span>과별 게시판</a></span></td>
-      </tr>
-      <tr>
-        <td><span><a href='#'>민원 게시판 최근 글</a></span></td>
-        <td><span><a href='#'>과별 게시판 최근 글</a></span></td>
-      </tr>
-    </table> -->
-
     <div id="notice">
       <h2><a href='#' id='Notice'>공지사항</a></h2>
+      <br/> 
       <a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
     </div>
 
