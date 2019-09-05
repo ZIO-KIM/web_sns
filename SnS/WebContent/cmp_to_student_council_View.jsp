@@ -113,9 +113,7 @@
 				if (userID == null) {
 			%>
 			<h2 id='login'>
-				<a href="userLogin.jsp"
-					style="text-decoration: none; color: #000000">LOGIN</a>
-					<a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#modal-login">로그인</a>
+				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #000000">LOGIN</a>
 			</h2>
 			<%
 				} else {
