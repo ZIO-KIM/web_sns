@@ -12,8 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/mainpage.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/Backstretch.js" type="text/javascript"></script>
     <script src="js/mainpage.js"></script>
   </head>
@@ -31,9 +34,9 @@
       {duration: 3000, fade: 900});
     </script>
 
-   	 <header>
+    <header>
       <nav id='first_area'>
-        <a href= 'index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a>
+        <a href= 'index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
          <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
@@ -84,12 +87,16 @@
           </ul>
         </div>
         
-        <h2 id='language'>한국어 / EN </h2> <!--영어, 한글 버전 바꾸는 버튼-->
+        <h2 id='language'>
+       		<a href="index_en.jsp" style="text-decoration:none; color:#ffffff">한국어/EN</a>
+ 		</h2>
         
         <%
         	if(userID==null){
         %>
-        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#ffffff">LOGIN</a></h2>
+        <h2 id='login'>
+				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #ffffff">LOGIN</a>
+			</h2>
         <%
         	}else{
         %>
@@ -98,15 +105,87 @@
         	}
         %>
       </nav>
-    </header> 
- 
+    </header>
+
+	<div id="modal-login" class="modal fade">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title">로그인</h4>
+					</div>
+					<script>
+						$(document).ready(function(){
+							$('btnLogin').click(function(){
+								var action = $('#frmLogin').attr("action");
+								var form_data={
+										user_id:$('#userID').val(),
+										user_pw:$('#userPassword').val()
+								};
+								$.ajax({
+									type:"POST",
+									url:action,
+									data:form_data,
+									success:function(response){
+										if(response.trim()=="success"){
+										sessionStorage.setItem("user_id",form_data.user_id);
+										$('#msg').html("<p style='color:green;font-weight:bold'>로그인 성공!</p>");
+									}else{
+										$('#msg').html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");
+									}
+								},
+								error:function(){
+									$('#msg'),html("<h2>Error</h2>");
+								}
+								});
+							});
+						});
+					</script>
+					<div class="modal-body">
+						<form action="userLoginAction.jsp" id="frmLogin" method="post">
+							<div class="form-group">
+								<input type="text" name="userID" id="uid" value=""
+									placeholder="아이디" class="form-control" required="">
+							</div>
+							<div class="form-group">
+								<input type="password" name="userPassword" id="upw" value=""
+									placeholder="비밀번호" class="form-control" required="">
+							</div>
+							<div class="checkbox">
+								<label for="keep_signed"
+									onclick="jQuery('#modal-login input[name=\'keep_signed\']').click();"><input
+									type="checkbox" name="keep_signed" value="Y"
+									onclick="if(this.checked) return confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.');">
+									로그인 유지</label>
+							</div>
+							<button type="submit" id="btnLogin" class="btn btn-block">
+								<i class="fa fa-sign-in" aria-hidden="true"></i> 로그인
+							</button>
+							<br>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="btn-group btn-group-justified">
+							<a
+								href="userJoin.jsp"
+								class="btn btn-default btn-sm"><i class="fa fa-user-plus"
+								aria-hidden="true"></i> 회원가입</a> <a
+								href="findAccount.jsp"
+								class="btn btn-default btn-sm"><i
+								class="fa fa-question-circle" aria-hidden="true"></i> ID/PW 찾기</a>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
     <nav id='title_animation'>
       <h1 id='title'>College of<br>Software & Convergence Technology</h1>
       <h3 id='subtitle'>소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
-	
-	<section id='board'>
-	
+
     <div id="notice">
       <h2><a href='#' id='Notice'>공지사항</a></h2>
       <br/> 
@@ -136,10 +215,8 @@
       <a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
       <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
     </div>
-    
-    </section>
 
-	<table>
+    <table>
       <tr>
         <td>Quick Menu</td>
         <td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>
