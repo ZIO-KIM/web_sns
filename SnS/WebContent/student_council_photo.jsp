@@ -2,6 +2,8 @@
 <%@ page import = "file.FileDAO" %>
 <%@ page import="Gallery.Gallery"%>
 <%@ page import="Gallery.GalleryDAO"%>
+<%@ page import="user.UserDAO"%>
+<%@ page import="user.UserDTO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -99,19 +101,7 @@
       </nav>
     </nav>
     </div>
-
     <h1 id='title'>갤러리<br></h1>  
-    <%
-	    ArrayList<FileDTO> fileList = new FileDAO().getList();
-	
-		for(FileDTO file : fileList){
-			out.write("<a href=\""+request.getContextPath() + "/downloadAction?file="+
-				java.net.URLEncoder.encode(file.getFileRealName(),"UTF-8")+"\">"+
-					file.getFileName()+"</a><br>"); 
-		}
-		
-    %>
-
     <nav id='gallery_all'>
       <div class="gallery">
         <a target="_blank" href="imgs/background_img_5.jpeg">
