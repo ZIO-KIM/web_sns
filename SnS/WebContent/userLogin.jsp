@@ -74,7 +74,7 @@
 						</ul>
 					</li>
 
-					<li>취업&졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+					<li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
 						<ul id='submenu'>
 							<li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
 							<li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
@@ -115,7 +115,7 @@
 			<br>
 			<br>
 			<p>
-				<span class="subtitle">소프트웨어</span><span class="sub-text"> 에
+				<span class="subtitle">소프트웨어융합대학</span><span class="sub-text"> 에
 					오신것을<br>환영합니다.
 				</span>
 			</p>
