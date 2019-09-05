@@ -40,23 +40,12 @@
 		if (session.getAttribute("userID") != null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('이미 로그인이 되어있습니다.')");
+			script.println("alert('로그아웃을 해주세요.')");
 			script.println("location.href='index.jsp'");
 			script.println("</script>");
 			script.close();
 		}
 	%>
-	<script type="text/javascript">
-		function confirmPw() {
-			var pw = document.getElementById("pw").value;
-			var pwconfirm = document.getElementById("pwconfirm").value;
-
-			if (pw != pwck) {
-				alert('비밀번호가 틀렸습니다. 다시 입력해 주세요');
-				return false;
-			}
-		}
-	</script>
 
 	<header>
 		<nav id='first_area'>
@@ -125,66 +114,28 @@
 	<div class="container">
 		<div class="jumbotron" style="padding-top: 20px;">
 			<div class="cen">
-				<h3 id="join">SIGN UP</h3>
-
-				<form method="post" action="userRegisterAction.jsp"
-					onsubmit="return confirmPw()" class="form-horizontal">
-
-					<div class="form-group row">
-						<label for="id" class="col-sm-2 col-form-label"> <em
-							style="color: red">*</em> 아이디
-						</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="userID"
-								maxlength="20" placeholder="닉네임으로 사용" required>
-						</div>
+				<h3 style="font-weight: bold;color:#c70027;">아이디/비밀번호 찾기</h3>
+				<form method="post" action="findAccountAction.jsp">
+					<label for="email"> <em style="color: red">*</em> 이메일 주소로 아이디
+						찾기
+					</label>
+					<div class="form-group col" style="width: 270px;">
+						<input type="email" class="form-control" name="userEmail"
+							maxlength="20" placeholder="이메일 주소" required> 
+						<input id="btn_log" type="submit"
+							class="btn btn-primary form-control" value="아이디 찾기">
 					</div>
-
-					<div class="form-group row">
-						<label for="password" class="col-sm-2 col-form-label"> <em
-							style="color: red">*</em> 비밀번호
-						</label>
-						<div class="col-sm-3">
-							<input type="password" class="form-control" name="userPassword"
-								maxlength="20" pattern="[A-Za-z0-9]{8,}"
-								placeholder="영문+숫자 8글자 이상" required>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="passwordCk" class="col-sm-2 col-form-label"> <em
-							style="color: red">*</em> 비밀번호확인
-						</label>
-						<div class="col-sm-3">
-							<input type="password" class="form-control" name="userPasswordCk"
-								maxlength="20" placeholder="비밀번호 확인" required>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="name" class="col-sm-2 col-form-label"> <em
-							style="color: red">*</em> 이름
-						</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="userName"
-								maxlength="20" placeholder="실명" required>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="email" class="col-sm-2 col-form-label"> <em
-							style="color: red">*</em> 학교이메일<br>(재학생인증)
-						</label>
-						<div class="col-sm-3">
+				</form>
+				<hr>
+				<form method="post" action="findPasswordAction.jsp">
+					<label for="id"> <em style="color: red">*</em> 질문/답변으로 비밀번호 찾기
+						찾기
+					</label>
+					<div class="form-group col" style="width: 270px;">
+						<input type="text" class="form-control" name="userID"
+							maxlength="20" placeholder="아이디" required> 
 							<input type="email" class="form-control" name="userEmail"
-								maxlength="50" placeholder="@sju.ac.kr" required>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="findPwQuestion" class="col-sm-2 col-form-label"><em
-							style="color: red">*</em> 비밀번호 찾기<br>질문/답변 </label>
-						<div class="controls col-sm-3">
+							maxlength="20" placeholder="이메일 주소" required> 
 							<select name="findPwQuestion" class="form-control"
 								id="findPwQuestion" style="display: block; margin: 0 0 8px 0"><option
 									value="다른 이메일 주소는?">다른 이메일 주소는?</option>
@@ -197,20 +148,14 @@
 								<option value="가장 좋아하는 색깔은?">가장 좋아하는 색깔은?</option>
 								<option value="가장 좋아하는 음식은?">가장 좋아하는 음식은?</option></select><input
 								type="text" name="findPwAnswer" id="findPwAnswer"
-								class="form-control" title="비밀번호 찾기 답변" value="" maxlength="50">
-						</div>
-					</div>
-					<div class="controls col-sm-3">
+								class="form-control" title="비밀번호 찾기 답변" placeholder="답변" maxlength="50">
+						
 						<input id="btn_log" type="submit"
-							class="btn btn-primary form-control" value="SIGN UP">
+							class="btn btn-primary form-control" value="임시 비밀번호 발급">
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</div>
-
-
-
 </body>
 </html>

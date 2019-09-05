@@ -28,8 +28,8 @@
 		session.setAttribute("userID",userID);
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("history.go(-2)");
-		script.println("location.reload()");
+		script.println("history.go(-1)");
+		script.println("location.reload(false)");
 		script.println("</script>");
 		script.close();
 		return;

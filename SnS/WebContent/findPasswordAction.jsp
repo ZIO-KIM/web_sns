@@ -14,36 +14,65 @@
 <%
 	UserDAO userDAO =new UserDAO();
 	String userID =null;
-	if(session.getAttribute("userID")!=null){
-		userID=(String) session.getAttribute("userID");
+	if(request.getParameter("userID")!=null){
+		userID=request.getParameter("userID");
 	}
 	if(userID==null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
-		script.println("location.href='login.jsp';");
+		script.println("alert('아이디을 입력해주세요.')");
+		script.println("location.href='findAccount.jsp';");
 		script.println("</script>");
 		script.close();
 		return;
 	}
-	boolean emailChecked =userDAO.getUserEmailChecked(userID);
-	if(emailChecked==true){
+	String userEmail =null;
+	if(request.getParameter("userEmail")!=null){
+		userEmail=request.getParameter("userEmail");
+	}
+	if(userEmail==null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('이미 인증된 회원입니다.')");
-		script.println("location.href='index.jsp'");
+		script.println("alert('이메일을 입력해주세요.')");
+		script.println("location.href='findAccount.jsp';");
 		script.println("</script>");
 		script.close();
 		return;
 	}
-	
+	String findPwQuestion =null;
+	if(request.getParameter("findPwQuestion")!=null){
+		findPwQuestion=request.getParameter("findPwQuestion");
+	}
+	if(findPwQuestion==null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('질문을 선택해주세요.')");
+		script.println("location.href='findAccount.jsp';");
+		script.println("</script>");
+		script.close();
+		return;
+	}
+	String findPwAnswer =null;
+	if(request.getParameter("findPwAnswer")!=null){
+		findPwAnswer=request.getParameter("findPwAnswer");
+	}
+	if(findPwAnswer==null || findPwAnswer.equals("")){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('답변을 입력해주세요.')");
+		script.println("location.href='findAccount.jsp';");
+		script.println("</script>");
+		script.close();
+		return;
+	}
 	String host="http://localhost:8080/SnS/";
 	String from="sjswsns@gmail.com";
-	String to=userDAO.getUserEmail(userID);
-	to=to.split("@")[0]+"@sju.ac.kr";
-	String subject ="SnS 인증 메일입니다.";
-	String content ="다음 링크에 접속하여 이메일 인증을 진행하세요."+
-	"<a href='" + host + "emailCheckAction.jsp?code=" + SHA256.getSHA256(to) + "'>이메일 인증하기</a>";
+	String to=userEmail.split("@")[0]+"@sju.ac.kr";
+	String temporary=userDAO.getRamdomPassword(6);
+	String subject ="[세종소융]임시비밀번호 발급";
+	String content ="[세종소융]임시비밀번호 발급<br><br>"+temporary;
+	
+	userDAO.setUserPassword(temporary, userID);
 	
 	Properties p = new Properties();
 	p.put("mail.smtp.user",from);
@@ -83,7 +112,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 로그인</title>
+    <title>세종대학교 소프트웨어융합대학 :: 비밀번호찾기</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -123,7 +152,7 @@
               </ul>
             </li>
 
-            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+            <li>취업&졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
                 <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
                 <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
@@ -154,7 +183,7 @@
 	
 	<section class="container mt-3" style="max-width:560px;">
 		<div class="alert alert-success mt-4" role="alert">
-			이메일 주소 인증 메일이 전송되었습니다. 회원가입시 인증했던 이메일을 확인해주세요.
+			임시비밀번호가 메일로 전송되었습니다. 회원가입시 인증했던 이메일을 확인해주세요.
 		</div>
 	</section>
 	

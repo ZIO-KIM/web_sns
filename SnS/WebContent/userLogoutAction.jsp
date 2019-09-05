@@ -3,5 +3,6 @@
 	session.invalidate();
 %>
 <script>
-	location.href='index.jsp';
+	history.back();
+	loaction.reload(true);
 </script>

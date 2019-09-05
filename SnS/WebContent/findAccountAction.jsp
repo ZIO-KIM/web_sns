@@ -15,23 +15,23 @@
 	UserDAO userDAO =new UserDAO();
 	String userID =null;
 	if(session.getAttribute("userID")!=null){
-		userID=(String) session.getAttribute("userID");
-	}
-	if(userID==null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
-		script.println("location.href='login.jsp';");
+		script.println("alert('로그인이 되어있습니다.')");
+		script.println("location.href='index.jsp';");
 		script.println("</script>");
 		script.close();
 		return;
 	}
-	boolean emailChecked =userDAO.getUserEmailChecked(userID);
-	if(emailChecked==true){
+	String userEmail =null;
+	if(request.getParameter("userEmail")!=null){
+		userEmail=request.getParameter("userEmail");
+	}
+	if(userEmail==null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('이미 인증된 회원입니다.')");
-		script.println("location.href='index.jsp'");
+		script.println("alert('이메일을 입력해주세요.')");
+		script.println("location.href='findAccount.jsp';");
 		script.println("</script>");
 		script.close();
 		return;
@@ -39,11 +39,10 @@
 	
 	String host="http://localhost:8080/SnS/";
 	String from="sjswsns@gmail.com";
-	String to=userDAO.getUserEmail(userID);
-	to=to.split("@")[0]+"@sju.ac.kr";
-	String subject ="SnS 인증 메일입니다.";
-	String content ="다음 링크에 접속하여 이메일 인증을 진행하세요."+
-	"<a href='" + host + "emailCheckAction.jsp?code=" + SHA256.getSHA256(to) + "'>이메일 인증하기</a>";
+	String findID=userDAO.getUserID(userEmail);
+	String to=userEmail.split("@")[0]+"@sju.ac.kr";
+	String subject ="[세종소융]아이디 찾기";
+	String content ="[세종소융]아이디 찾기<br><br>"+userDAO.getUserEmail(userID);
 	
 	Properties p = new Properties();
 	p.put("mail.smtp.user",from);
@@ -123,7 +122,7 @@
               </ul>
             </li>
 
-            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+            <li>취업&졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
                 <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
                 <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
@@ -154,7 +153,7 @@
 	
 	<section class="container mt-3" style="max-width:560px;">
 		<div class="alert alert-success mt-4" role="alert">
-			이메일 주소 인증 메일이 전송되었습니다. 회원가입시 인증했던 이메일을 확인해주세요.
+			회원님의 아이디가 메일로 전송되었습니다. 회원가입시 인증했던 이메일을 확인해주세요.
 		</div>
 	</section>
 	

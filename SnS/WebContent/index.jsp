@@ -60,7 +60,7 @@
               </ul>
             </li>
 
-            <li>취업&졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
+            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
                 <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
                 <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
@@ -105,58 +105,43 @@
       <h3 id='subtitle'>소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
 
-    <!-- <table id='recent_upload'> 최근 글 띄워주는 테이블
-      <tr>
-        <td><a href='#'><span>공지사항</a></span></td>
-        <td><a href='#'><span>홍보 게시판</a></span></td>
-      </tr>
-      <tr>
-        <td><a href='#'><span>공지사항 최근 글</a></span></td>
-        <td><a href='#'><span>홍보 게시판 최근 글</a></span></td>
-      </tr>
-      <tr>
-        <td><a href='#'><span>민원 게시판</a></span></td>
-        <td><a href='#'><span>과별 게시판</a></span></td>
-      </tr>
-      <tr>
-        <td><span><a href='#'>민원 게시판 최근 글</a></span></td>
-        <td><span><a href='#'>과별 게시판 최근 글</a></span></td>
-      </tr>
-    </table> -->
-
     <div id="notice">
       <h2><a href='#' id='Notice'>공지사항</a></h2>
+      <br/> 
       <a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
     </div>
 
     <div id="promotion">
       <h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
+      <br/>
       <a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
     </div>
 
     <div id="claims">
       <h2><a href='#' id='Claims'>민원 게시판</a></h2>
+      <br/>
       <a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
     </div>
 
     <div id="departments">
-      <h2><a href='#' id='Departments'>과별 게시판</a></h2>
-      <a href='#' id='Departments'>컴퓨터공학과</a>
-      <a href='#' id='Departments'>소프트웨어학과</a>
-      <a href='#' id='Departments'>데이터사이언스학과</a><br>
-      <a href='#' id='Departments'>정보보호학과</a>
-      <a href='#' id='Departments'>지능기전공학부</a>
-      <a href='#' id='Departments'>만화애니메이션텍</a>
-      <a href='#' id='Departments'>디자인이노베이션</a>
+      <h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
+      <br/>
+      <a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
+      <a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
+      <a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
+      <a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
+      <a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
+      <a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
+      <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
     </div>
 
     <table>
       <tr>
         <td>Quick Menu</td>
-        <td><a href='#' id='quick_menu'>세종대학교</a></td>
-        <td><a href='#' id='quick_menu'>세종대학교<br>총학생회</a></td>
-        <td><a href='#' id='quick_menu'>세종소융<br>페이스북</a></td>
-        <td><a href='#' id='quick_menu'>세종대학교<br>총학생회 페이스북</a></td>
+        <td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>
+        <td><a href='http://www.sejongstudent.com/xe/' id='quick_menu'>세종대학교<br>총학생회</a></td>
+        <td><a href='https://ko-kr.facebook.com/sejong1sc/' id='quick_menu'>세종소융<br>페이스북</a></td>
+        <td><a href='https://www.facebook.com/sejongstudent/' id='quick_menu'>세종대학교<br>총학생회 페이스북</a></td>
       </tr>
     </table>
     
