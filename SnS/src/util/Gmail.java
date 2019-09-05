@@ -9,4 +9,5 @@ public class Gmail extends Authenticator{
 	protected PasswordAuthentication getPasswordAuthentication() {
 		return new PasswordAuthentication("sjswsns@gmail.com","data18@sns");
 	} 
+
 }
