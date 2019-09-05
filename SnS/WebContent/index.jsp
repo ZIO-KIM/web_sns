@@ -31,9 +31,9 @@
       {duration: 3000, fade: 900});
     </script>
 
-    <header>
+   	 <header>
       <nav id='first_area'>
-        <a href= 'index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <a href= 'index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a>
          <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
@@ -98,13 +98,15 @@
         	}
         %>
       </nav>
-    </header>
-
+    </header> 
+ 
     <nav id='title_animation'>
       <h1 id='title'>College of<br>Software & Convergence Technology</h1>
       <h3 id='subtitle'>소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
-
+	
+	<section id='board'>
+	
     <div id="notice">
       <h2><a href='#' id='Notice'>공지사항</a></h2>
       <br/> 
@@ -134,8 +136,10 @@
       <a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
       <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
     </div>
+    
+    </section>
 
-    <table>
+	<table>
       <tr>
         <td>Quick Menu</td>
         <td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>

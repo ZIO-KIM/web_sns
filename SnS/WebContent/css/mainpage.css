@@ -130,12 +130,8 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center;
-  padding-top: 2%; 
-   
-  margin-left: 10%;
-  margin-top: 30%; 
-  margin-bottom: -100px; 
+ 
+
 }
 
 #promotion {
@@ -146,10 +142,9 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center; 
-  padding-top: 2%; 
+ 
   
-  margin-top: -1000px; 
+
 }
 
 #claims {
@@ -160,11 +155,8 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center; 
-  padding-top: 2%; 
   
-  margin-left: 10%; 
-  margin-bottom: -100px; 
+  
 }
 
 #departments {
@@ -175,8 +167,7 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center; 
-  padding-top: 2%; 
+ 
 }
 
 table {
@@ -222,4 +213,8 @@ footer {
 	width: 82%; 
 	border: double 4px white; 
 	margin-top: 6%; 
+}
+
+#board {
+	text-align: center; 
 }
