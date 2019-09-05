@@ -2,6 +2,8 @@
 <%@ page import = "file.FileDAO" %>
 <%@ page import="Gallery.Gallery"%>
 <%@ page import="Gallery.GalleryDAO"%>
+<%@ page import="user.UserDAO"%>
+<%@ page import="user.UserDTO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
