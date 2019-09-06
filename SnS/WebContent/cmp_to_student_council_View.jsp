@@ -4,6 +4,7 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="complaints.ComplaintsDAO"%>
 <%@ page import="complaints.ComplaintsDTO"%>
+<%@ page import="user.UserDAO"%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
@@ -51,6 +52,7 @@
 		}
 		ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID, true);
 		ComplaintsDAO.hit(cmpID, true);
+		String fromProfile = new UserDAO().getProfile(userID);
 	%>
 
 	<header>
@@ -271,6 +273,10 @@
 						<tr>
 							<td>작성자</td>
 							<td colspan="2"><%=cmp.getUserID()%></td>
+						</tr>
+						<tr>
+							<td>작성자 이미지</td>
+							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;" src="<%=fromProfile%>"></td>
 						</tr>
 						<tr>
 							<td>작성일자</td>
