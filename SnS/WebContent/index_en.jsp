@@ -43,6 +43,7 @@
                 <li><a href='student_council_photo.jsp'>Photos</a></li>
                 <li><a href='student_council_events.jsp'>Events</a></li>
                 <li><a href='student_council_public_money.jsp'>Usage of Public Budget</a></li>
+                <li><a href='departments.jsp'>Departments</a></li>
               </ul>
             </li>
 

@@ -45,6 +45,7 @@
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
                 <li><a href='student_council_events.jsp'>행사</a></li>
                 <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+                <li><a href='departments.jsp'>과별 게시판</a></li>
               </ul>
             </li>
 
@@ -105,7 +106,8 @@
         	}
         %>
       </nav>
-    </header>
+      
+      </header>
 
 	<div id="modal-login" class="modal fade">
 			<div class="modal-dialog modal-sm">
@@ -182,7 +184,7 @@
 		</div>
 
     <nav id='title_animation'>
-      <h1 id='title'>College of<br>Software & Convergence Technology</h1>
+      <h1 id='title'>College of<br>Software &amp; Convergence Technology</h1>
       <h3 id='subtitle'>소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
 

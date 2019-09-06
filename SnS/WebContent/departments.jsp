@@ -32,6 +32,7 @@
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
                 <li><a href='student_council_events.jsp'>행사</a></li>
                 <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+                <li><a href='departments.jsp'>과별 게시판</a></li>
               </ul>
             </li>
 
@@ -126,7 +127,7 @@
     </div>
     
     <div id='cartoon_animation'><!--만화애니메이션학과 게시판-->
-    	<h2><a href='cartoon_animation.jsp' id='ca_content'>만화애니메이션학과</a></h2>
+    	<h2><a href='cartoon_animation.jsp' id='ca_content'>만화애니메이션텍학과</a></h2>
     	<a href='cartoon_animation.jsp'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
     </div>
     
