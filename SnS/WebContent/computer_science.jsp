@@ -97,7 +97,7 @@
       <nav>
         <h2>
           <span></span>
-            컴퓨터공학과
+           
         </h2>
         <ul class="lnb_deps2">
              <li>

@@ -197,12 +197,11 @@ table, td, tr {
 footer {
 	display: inline-block;
 	border: 4px solid #dbdad9; 
-	width: 100%; 
+	width: full; 
 	height: 100px; 
 	background-color: #e8e7e6; 
-	text-align: right; 
+	text-align: center; 
 	left: 0px; 
-	bottom: -100px; 
 }
 
 #footer_content {
