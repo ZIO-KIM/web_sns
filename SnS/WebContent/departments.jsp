@@ -1,22 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 홍보 :: 교외 공모전 :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 과별 게시판</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" href="css/departments.css">
   </head>
   <body>
-    <header>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  %>  
+       <header>
       <nav id='first_area'>
-        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a>
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
@@ -69,66 +76,66 @@
         </div>
         
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="login_page.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
+        
+        <%
+        	if(userID==null){
+        %>
+        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#000000">LOGIN</a></h2>
+        <%
+        	}else{
+        %>
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+        <%
+        	}
+        %>
+        
       </nav>
     </header>
-    <div id="container">
-    <nav>
-      <nav>
-        <h2>
-          <span></span>
-            홍보
-        </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href="school_contests.jsp" class="jwxe_22350 active">교내 공모전</a>
-             </li>
-             <li>
-               <a href="not_school_contests.jsp" class="jwxe_22351 ">교외 공모전</a>
-            </li>
-        </ul>
-      </nav>
-    </nav>
-    <section class="content">
-      <header>
-        <h1>글쓰기</h1>
-      </header>
-      <table class="table table-bordered">
-        <tbody>
-          <form>
-            <tr>
-               <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
-            </tr>
-            <tr>
-               <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
-            </tr>
-            <tr>
-               <th>첨부파일: </th>
-               <td><input type="text" placeholder="파일을 선택하세요. " name="filename" class="form-control"/></td>
-            </tr>
-            <tr>
-               <th>비밀번호: </th>
-               <td><input type="password" placeholder="비밀번호를 입력하세요" class="form-control"/></td>
-            </tr>
-            <tr>
-               <td colspan="2">
-                 <input type="button" value="등록" onclick="#" class="pull-right"/>
-                 <input type="button" value="reset" class="pull-left"/>
-                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
-               </td>
-             </tr>
-          </form>
-        </tbody>
-      </table>
-    </section>
+    
+    <h2 id='departments_board'>과별 게시판</h2>
+    
+    <div id='computer_science'><!--컴퓨터공학과 게시판-->
+    	<h2><a href='computer_science.jsp' id='cs_content'>컴퓨터공학과</a></h2>
+    	<a href='computer_science.jsp'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
+    </div>
+    
+    <div id='information_security'><!--정보보호학과 게시판-->
+    	<h2><a href='information_security.jsp' id='is_content'>정보보호학과</a></h2>
+    	<a href='information_security.jsp'><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
+    </div>
+    <br/>
+    
+    <div id='software'><!--소프트웨어학과 게시판-->
+    	<h2><a href='software.jsp' id='soft_content'>소프트웨어학과</a></h2>
+    	<a href='software.jsp'><img src='imgs/software_logo.jpg' id='soft_logo'></a>
+    </div>
+    
+    <div id='data_science'><!--데이터사이언스학과 게시판-->
+    	<h2><a href='data_science.jsp'  id='ds_content'>데이터사이언스학과</a></h2>
+    	<a href='data_science.jsp'><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
+    </div>
+    
+    <div id='intelligent_mechanics_engineering'><!--지능기전공학부 게시판-->
+    	<h2><a href='intelligent_mechanics_engineering.jsp'  id='ime_content'>지능기전공학부</a></h2>
+    	<a href='intelligent_mechanics_engineering.jsp'><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
+    </div>
+    <br/>
+    
+    <div id='design_innovation'><!--디자인이노베이션학과 게시판-->
+    	<h2><a href='design_innovation.jsp' id='di_content'>디자인이노베이션학과</a></h2>
+    	<a href='design_innovation.jsp'><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
+    </div>
+    
+    <div id='cartoon_animation'><!--만화애니메이션학과 게시판-->
+    	<h2><a href='cartoon_animation.jsp' id='ca_content'>만화애니메이션텍학과</a></h2>
+    	<a href='cartoon_animation.jsp'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
     </div>
     
     <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+    
     <script src="js/bootstrap.js"></script>
   </body>
 </html>

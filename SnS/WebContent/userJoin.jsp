@@ -72,6 +72,7 @@
 							<li><a href='student_council_photo.jsp'>갤러리</a></li>
 							<li><a href='student_council_events.jsp'>행사</a></li>
 							<li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+							<li><a href='departments.jsp'>과별 게시판</a></li>
 						</ul></li>
 
 					<li><a href='complaints.jsp'>민원</a> <!-- 메뉴바 두번째 - 민원 카테고리 -->

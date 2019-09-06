@@ -3,12 +3,11 @@
 }
 
 #logo {
-  font-family: 'Nanum Gothic', sans-serif;
   margin-left: 100%; 
   width: 60px;
   height: 60px;
-  padding-top: 25px;
   display: inline-block;
+  margin-top: 25px; 
 }
 
 #language {
@@ -16,8 +15,8 @@
   font-size: 20px;
   display: inline-block;
   margin-left: 3%;
-  padding-top: 40px;
-  color: white;
+  margin-top: 45px; 
+  color: black;
 }
 
 #login {
@@ -25,8 +24,9 @@
   font-size: 20px;
   display: inline-block;
   margin-left: 3%;
-  padding-top: 40px;
-  color: white;
+  margin-top: 45px; 
+  color: black;
+  text-decoration: none;
 }
 
 #menubar {
@@ -36,6 +36,7 @@
   margin-left: 5%;
   padding-top: 35px;
 }
+
 
 * { /* 紐⑤뱺 �깭洹몄쓽 留덉쭊怨� �뙣�뵫媛믪쓣 珥덇린�솕 */
   margin: 0px;
@@ -130,12 +131,8 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center;
-  padding-top: 2%; 
-   
-  margin-left: 10%;
-  margin-top: 30%; 
-  margin-bottom: -100px; 
+ 
+
 }
 
 #promotion {
@@ -146,10 +143,9 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center; 
-  padding-top: 2%; 
+ 
   
-  margin-top: -1000px; 
+
 }
 
 #claims {
@@ -160,11 +156,8 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center; 
-  padding-top: 2%; 
   
-  margin-left: 10%; 
-  margin-bottom: -100px; 
+  
 }
 
 #departments {
@@ -175,8 +168,7 @@
   background-color: white; 
   width: 500px; 
   height: 250px; 
-  text-align: center; 
-  padding-top: 2%; 
+ 
 }
 
 table {
@@ -222,4 +214,8 @@ footer {
 	width: 82%; 
 	border: double 4px white; 
 	margin-top: 6%; 
+}
+
+#board {
+	text-align: center; 
 }
