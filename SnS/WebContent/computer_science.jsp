@@ -4,7 +4,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 예비 소융인 :: 선배들의 입시 후기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 과별 게시판 :: 컴퓨터공학과</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -32,6 +32,7 @@
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
                 <li><a href='student_council_events.jsp'>행사</a></li>
                 <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+                <li><a href='departments.jsp'>과별 게시판</a></li>
               </ul>
             </li>
 
@@ -96,62 +97,31 @@
       <nav>
         <h2>
           <span></span>
-            예비 소융인
+           
         </h2>
         <ul class="lnb_deps2">
              <li>
-               <a href="admission_reviews.jsp" class="jwxe_22350 active">선배들의 입시후기</a>
+               <a href="computer_science_introduce.jsp" class="jwxe_22350 active">학과 소개</a>
              </li>
              <li>
-               <a href="admission_qnas.jsp" class="jwxe_22351 ">QnA</a>
+               <a href="computer_science_student_council.jsp" class="jwxe_22351 ">학생회 소개</a>
+            </li>
+            <li>
+               <a href="computer_science_promotion.jsp" class="jwxe_22351 ">홍보</a>
+            </li>
+            <li>
+               <a href="computer_science_public_money.jsp" class="jwxe_22351 ">학생회비 내역</a>
             </li>
         </ul>
       </nav>
     </nav>
+    
     <section class="content">
       <header>
-        <h1>선배들의 입시후기</h1>
+        <h1>컴퓨터공학과</h1>
       </header>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>날짜</th>
-            <th>조회수</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2</td>
-            <td>단대 야식행사 기획 누가했나요?</td>
-            <td>송승훈</td>
-            <td>2019.7.30</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>웹소설 왜 이렇게 상금이 작은가요?</td>
-            <td>이승준</td>
-            <td>2019.7.30</td>
-            <td>130</td>
-          </tr>
-        </tbody>
-      </table>
-      <hr>
-      <a class= "btn btn-default pull-right" href="admission_reviews_Write.jsp"">글쓰기</a>
-      <div class="text-center">
-        <ul class="pagination">
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-        </ul>
-      </div>
+     
     </section>
-    </div>
     
     <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>

@@ -32,6 +32,7 @@
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
                 <li><a href='student_council_events.jsp'>행사</a></li>
                 <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+                <li><a href='departments.jsp'>과별 게시판</a></li>
               </ul>
             </li>
 
@@ -93,42 +94,44 @@
     
     <h2 id='departments_board'>과별 게시판</h2>
     
-    <div id='computer_science'><!--컴퓨터공학과 게시판-->
-    	<h2><a href='computer_science.jsp' id='cs_content'>컴퓨터공학과</a></h2>
-    	<a href='computer_science.jsp'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
-    </div>
+    <section id='departments_area'>
+    	 <div id='computer_science'><!--컴퓨터공학과 게시판-->
+    		<h2><a href='computer_science.jsp' id='cs_content'>컴퓨터공학과</a></h2>
+    		<a href='computer_science.jsp'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
+    	</div>
     
-    <div id='information_security'><!--정보보호학과 게시판-->
-    	<h2><a href='information_security.jsp' id='is_content'>정보보호학과</a></h2>
-    	<a href='information_security.jsp'><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
-    </div>
-    <br/>
+    	<div id='information_security'><!--정보보호학과 게시판-->
+    		<h2><a href='information_security.jsp' id='is_content'>정보보호학과</a></h2>
+    		<a href='information_security.jsp'><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
+    	</div>
+    	<br/>
     
-    <div id='software'><!--소프트웨어학과 게시판-->
-    	<h2><a href='software.jsp' id='soft_content'>소프트웨어학과</a></h2>
-    	<a href='software.jsp'><img src='imgs/software_logo.jpg' id='soft_logo'></a>
-    </div>
+    	<div id='software'><!--소프트웨어학과 게시판-->
+    		<h2><a href='software.jsp' id='soft_content'>소프트웨어학과</a></h2>
+    		<a href='software.jsp'><img src='imgs/software_logo.jpg' id='soft_logo'></a>
+    	</div>
     
-    <div id='data_science'><!--데이터사이언스학과 게시판-->
-    	<h2><a href='data_science.jsp'  id='ds_content'>데이터사이언스학과</a></h2>
-    	<a href='data_science.jsp'><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
-    </div>
+    	<div id='data_science'><!--데이터사이언스학과 게시판-->
+    		<h2><a href='data_science.jsp'  id='ds_content'>데이터사이언스학과</a></h2>
+    		<a href='data_science.jsp'><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
+    	</div>
     
-    <div id='intelligent_mechanics_engineering'><!--지능기전공학부 게시판-->
-    	<h2><a href='intelligent_mechanics_engineering.jsp'  id='ime_content'>지능기전공학부</a></h2>
-    	<a href='intelligent_mechanics_engineering.jsp'><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
-    </div>
-    <br/>
+    	<div id='intelligent_mechanics_engineering'><!--지능기전공학부 게시판-->
+    		<h2><a href='intelligent_mechanics_engineering.jsp'  id='ime_content'>지능기전공학부</a></h2>
+    		<a href='intelligent_mechanics_engineering.jsp'><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
+    	</div>
+    	<br/>
     
-    <div id='design_innovation'><!--디자인이노베이션학과 게시판-->
-    	<h2><a href='design_innovation.jsp' id='di_content'>디자인이노베이션학과</a></h2>
-    	<a href='design_innovation.jsp'><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
-    </div>
+   		<div id='design_innovation'><!--디자인이노베이션학과 게시판-->
+    		<h2><a href='design_innovation.jsp' id='di_content'>디자인이노베이션학과</a></h2>
+    		<a href='design_innovation.jsp'><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
+    	</div>
     
-    <div id='cartoon_animation'><!--만화애니메이션학과 게시판-->
-    	<h2><a href='cartoon_animation.jsp' id='ca_content'>만화애니메이션학과</a></h2>
-    	<a href='cartoon_animation.jsp'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
-    </div>
+    	<div id='cartoon_animation'><!--만화애니메이션학과 게시판-->
+    		<h2><a href='cartoon_animation.jsp' id='ca_content'>만화애니메이션텍학과</a></h2>
+    		<a href='cartoon_animation.jsp'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
+    	</div>
+    </section>
     
     <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
