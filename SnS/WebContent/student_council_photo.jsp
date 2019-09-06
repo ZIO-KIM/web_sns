@@ -6,6 +6,9 @@
 <%@ page import="user.UserDTO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %> 
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,9 +29,26 @@
   
   <%
   	String userID =null;
+ 	
   	if(session.getAttribute("userID")!=null){
   		userID=(String)session.getAttribute("userID");
   	}
+  	String directory=application.getRealPath("/upload/");
+	int maxSize=1024*1024*100; 
+	String encoding="UTF-8";
+
+  	int GalID=0;
+	if(request.getParameter("GalID")!=null){
+		GalID=Integer.parseInt(request.getParameter("GalID"));
+	}
+	if(GalID==0){
+		PrintWriter script=response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 글입니다.')");
+		script.println("location.href='student_council_photo.jsp'");
+		script.println("</script>");
+	}
+	Gallery gal= new GalleryDAO().getGal(GalID);
   %>
   
     <header>
@@ -103,7 +123,32 @@
 			%>
       </nav>
     </header>
-    
+    <div class="container">
+		<div class="row">
+			<table class="table table-striped" style="text-align:center;border:1px solid #dddddd">
+				<thead>
+					<tr>
+						<th colspan="3" style="background-color:#eeeeee; text-align:center;">게시판 글 보기</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					 	<td style="width:20%">글 제목</td>
+					 	<td colspan="2"><%= gal.getGalTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+					</tr>
+					<tr>
+					 	<td>작성일자</td>
+					 	<td colspan="2"><%=gal.getGalDate().substring(0, 11) + gal.getGalDate().substring(11, 13) + "시"+gal.getGalDate().substring(14, 16) + "분" %></td>
+					</tr>
+					<tr>
+					 	<td>내용</td>
+					 	<td colspan="2" style="min-height:200px; text-align:left;"><%= gal.getGalContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="studen_council_photo.jsp" class="btn btn-primary">목록</a>
+		</div>	
+	</div>
     <div id="container">
     <nav>
       <nav>
