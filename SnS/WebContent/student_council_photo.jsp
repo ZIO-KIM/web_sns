@@ -1,7 +1,7 @@
 <%@ page import = "file.FileDTO" %>
 <%@ page import = "file.FileDAO" %>
-<%@ page import="Gallery.Gallery"%>
-<%@ page import="Gallery.GalleryDAO"%>
+<%@ page import="gallery.GalleryDTO"%>
+<%@ page import="gallery.GalleryDAO"%>
 <%@ page import="user.UserDAO"%>
 <%@ page import="user.UserDTO"%>
 <%@ page import="java.io.PrintWriter"%>

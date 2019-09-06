@@ -8,8 +8,6 @@ import util.DatabaseUtil;
 
 public class ComplaintsDAO {
 
-	
-	
 	public String getDate() {
 		String SQL="SELECT NOW()";
 		Connection conn=null;

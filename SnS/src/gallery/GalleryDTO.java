@@ -1,12 +1,14 @@
-package Gallery;
+package gallery;
 
-public class Gallery {
+public class GalleryDTO {
 
 	private int GalID;
 	private String GalTitle;
 	private String userID;
 	private String GalDate;
 	private String GalContent;
+	private String GalFile;
+	private int GalHit;
 	private int GalAvailable;
 	
 	public int getGalID() {
@@ -39,6 +41,18 @@ public class Gallery {
 	public void setGalContent(String galContent) {
 		GalContent = galContent;
 	}
+	public String getGalFile() {
+		return GalFile;
+	}
+	public void setGalFile(String galFile) {
+		GalFile = galFile;
+	}
+	public int getGalHit() {
+		return GalHit;
+	}
+	public void setGalHit(int galHit) {
+		GalHit = galHit;
+	}
 	public int getGalAvailable() {
 		return GalAvailable;
 	}
@@ -46,17 +60,23 @@ public class Gallery {
 		GalAvailable = galAvailable;
 	}
 	
-	public Gallery() {
+	public GalleryDTO() {
 		
 	}
-	
-	public Gallery(int galID, String galTitle, String userID, String galDate, String galContent, int galAvailable) {
+	public GalleryDTO(int galID, String galTitle, String userID, String galDate, String galContent, String galFile,
+			int galHit, int galAvailable) {
+		super();
 		GalID = galID;
 		GalTitle = galTitle;
 		this.userID = userID;
 		GalDate = galDate;
 		GalContent = galContent;
+		GalFile = galFile;
+		GalHit = galHit;
 		GalAvailable = galAvailable;
 	}
 	
 }
+
+
+

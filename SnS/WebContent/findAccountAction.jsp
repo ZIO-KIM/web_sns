@@ -42,7 +42,7 @@
 	String findID=userDAO.getUserID(userEmail);
 	String to=userEmail.split("@")[0]+"@sju.ac.kr";
 	String subject ="[세종소융]아이디 찾기";
-	String content ="[세종소융]아이디 찾기<br><br>"+userDAO.getUserEmail(userID);
+	String content ="[세종소융]아이디 찾기<br><br>"+userDAO.getUserID(userEmail);
 	
 	Properties p = new Properties();
 	p.put("mail.smtp.user",from);

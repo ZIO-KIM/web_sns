@@ -152,7 +152,7 @@
         <tbody>
         	<th>사용자 아이디 </th>
                <td colspan="2">
-					<input type="text" name="userID" value="글랜"> 
+					<input type="text" name="userID" value=<%=userID%>> 
                </td>
             <tr>
                <th>사진 업로드 </th>
