@@ -13,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-
-@WebServlet("/UserProfileServlet")
 public class GalleryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,16 +31,25 @@ public class GalleryServlet extends HttpServlet {
 			response.sendRedirect("student_council_photo_Write.jsp");
 			return;
 		}
-		String galID = multi.getParameter("galID");
+		String userID = multi.getParameter("userID");
 		HttpSession session = request.getSession();
-		if(!userID.equals((String) session.getAttribute("userID"))){
+		String galID = multi.getParameter("galID");
+
+		String galTitle = multi.getParameter("galTitle");
+		String galContent = multi.getParameter("galContent");
+		
+		if(galTitle==null || galContent==null||galTitle.equals("")||galContent.equals("")) {
 			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "접근할 수 없습니다.");
-			response.sendRedirect("index.jsp");
+			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
+			response.sendRedirect("student_council_photo_Write.jsp");
 			return;
 		}
-		String fileName="";
+		String galFile="";
+		String galRealFile="";
 		File file = multi.getFile("galFile");
+		GalleryDAO galleryDAO = new GalleryDAO();
+		
+		
 		if(file !=null) {
 			String ext = file.getName().substring(file.getName().lastIndexOf(".")+1);
 			if(ext.equals("jpg") ||ext.equals("png") ||ext.equals("gif")) {
@@ -51,7 +58,10 @@ public class GalleryServlet extends HttpServlet {
 				if(prevFile.exists()) {
 					prevFile.delete();
 				}
-				fileName = file.getName();
+				galFile = multi.getOriginalFileName("galFile");
+				galRealFile = file.getName();
+				
+				galleryDAO.write(userID,galTitle, galContent,galFile,galRealFile);
 			}else {
 				if(file.exists()) {
 					file.delete();
@@ -61,11 +71,17 @@ public class GalleryServlet extends HttpServlet {
 				response.sendRedirect("student_council_photo_Write.jsp");
 				return;
 			}
+		}else {
+			session.setAttribute("messageType", "오류 메시지");
+			session.setAttribute("messageContent", "사진을 첨부해주세요.");
+			response.sendRedirect("student_council_photo_Write.jsp");
+			return;
 		}
-		new GalleryDAO().profile(galID, fileName);
+		
+		new GalleryDAO().findFile(galID, galFile);
 		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "성공적으로 프로필 사진을 변경하였습니다.");
-		response.sendRedirect("student_council_photo.jsp");
+		session.setAttribute("messageContent", "갤러리에 사진을 업로드하였습니다.");
+		response.sendRedirect("index.jsp");
 		return;
 	}
 	

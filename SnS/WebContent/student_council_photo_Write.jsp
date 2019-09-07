@@ -20,39 +20,59 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
 	rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/PSB.css">
 <link rel="stylesheet" href="css/photo.css">
 
 <style type="text/css">
-    	.btn-file{
-    		position:relative;
-    		overflow:hidden;
-    	}
-    	.btn-file input[type=file]{
-    		position:absolute;
-    		top: 0;
-    		right:0;
-    		min-width:100%;
-    		min-height:100%;
-    		font-size:100px;
-    		text-align:right;
-    		filter:alpha(opacity=0);
-    		opacity:0;
-    		outline:none;
-    		background:white;
-    		cursor:inherit;
-    		display:block;
-    	}
-    	.file{
-    		visibility:hidden;
-    		position:absolute;
-    	}
-    </style>
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+
+.file {
+	visibility: hidden;
+	position: absolute;
+}
+</style>
 
 </head>
 <body>
+
+	<%
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		if (userID == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 해주세요.')");
+			script.println("location.href='userLogin.jsp'");
+			script.println("</script>");
+			script.close();
+		}
+	%>
+
 	<header>
 		<nav id='first_area'>
 			<a href='index.jsp'><img src="imgs/software_convergence_logo.PNG"
@@ -125,13 +145,13 @@
 					<span></span> 갤러리
 				</h2>
 				<ul class="lnb_deps2">
-					<li><a href="student_council_introduce.html"
+					<li><a href="student_council_introduce.jsp"
 						class="jwxe_22350 active">학생회 소개</a></li>
-					<li><a href="student_council_photo.html" class="jwxe_22351 ">갤러리</a>
+					<li><a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a>
 					</li>
-					<li><a href="student_council_events.html" class="jwxe_22351 ">행사</a>
+					<li><a href="student_council_events.jsp" class="jwxe_22351 ">행사</a>
 					</li>
-					<li><a href="student_council_public_money.html"
+					<li><a href="student_council_public_money.jsp"
 						class="jwxe_22351 ">학생회비 내역</a></li>
 				</ul>
 			</nav>
@@ -145,29 +165,34 @@
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
+							<th>사용자 아이디</th>
+							<td colspan="2"><input type="text" name="userID"
+								value=<%=userID%>></td>
+						</tr>
+						<tr>
 							<th>제목:</th>
 							<td><input type="text" placeholder="제목을 입력하세요. "
-								name="galTitle" class="form-control" /></td>
+								name="galTitle" maxlength="50" class="form-control" /></td>
 						</tr>
 						<tr>
 							<th>내용:</th>
 							<td><textarea cols="10" placeholder="내용을 입력하세요. "
-									name="galContent" class="form-control"></textarea></td>
+									maxlength="2048" name="galContent" class="form-control"></textarea></td>
 						</tr>
 						<tr>
-						<th>사진 업로드</th>
-						<td colspan="2"><input type="file" name="galFile"
-							class="file">
-							<div class="input-group col-xs-12">
-								<span class="input-group-addon"><i class="fa fa-image"></i></span>
-								<input type="text" class="form-control input-lg" disabled
-									placeholder="이미지를 업로드 하세요."> <span
-									class="input-group-btn">
-									<button class="browse btn btn-primary input-lg" type="button">
-										<i class="fa fa-search"></i>파일 찾기
-									</button>
-								</span>
-							</div></td>
+							<th>사진 업로드</th>
+							<td colspan="2"><input type="file" name="galFile"
+								class="file">
+								<div class="input-group col-xs-12">
+									<span class="input-group-addon"><i class="fa fa-image"></i></span>
+									<input type="text" class="form-control input-lg" disabled
+										placeholder="이미지를 업로드 하세요."> <span
+										class="input-group-btn">
+										<button class="browse btn btn-primary input-lg" type="button">
+											<i class="fa fa-search"></i>파일 찾기
+										</button>
+									</span>
+								</div></td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="submit"
@@ -187,6 +212,22 @@
 			&copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.
 		</p>
 	</footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(document).on('click', '.browse', function() {
+			var file = $(this).parent().parent().parent().find('.file');
+			file.trigger('click');
+		});
+		$(document).on(
+				'change',
+				'.file',
+				function() {
+					$(this).parent().find('.form-control').val(
+							$(this).val().replace(/C:\\fakepath\\/i, ''));
+				});
+	</script>
+
 </body>
 </html>

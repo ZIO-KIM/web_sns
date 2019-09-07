@@ -55,19 +55,20 @@ public class GalleryDAO {
 		return -1; 
 	}
 	
-	public int write(String GalTitle, String userID, String GalContent) { 
-		String SQL = "INSERT INTO GALLERY VALUES(?, ?, ?, ?, ?, ?)";
+	public int write(String userID, String galTitle, String galContent,String galFile, String galRealFile) { 
+		String SQL = "INSERT INTO GALLERY VALUES(?, ?, ?, ?, ?,?,?, 0,1)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1,getNext());
-			pstmt.setString(2, GalTitle);
+			pstmt.setString(2, galTitle);
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
-			pstmt.setString(5, GalContent);
-			pstmt.setInt(6,1);
+			pstmt.setString(5, galContent);
+			pstmt.setString(6, galFile);
+			pstmt.setString(7, galRealFile);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,7 +119,7 @@ public class GalleryDAO {
 	}
 	
 	public ArrayList<GalleryDTO> getList(int pageNumber){ 
-		String SQL = "SELECT * FROM GALLERY WHERE GalID < ? AND GalAvailable = 1 ORDER BY GalID DESC LIMIT 10";
+		String SQL = "SELECT * FROM GALLERY WHERE galID < ? AND galAvailable = 1 ORDER BY galID DESC LIMIT 10";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;	
@@ -126,7 +127,6 @@ public class GalleryDAO {
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
-			rs=pstmt.executeQuery();
 			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -137,8 +137,9 @@ public class GalleryDAO {
 				gal.setGalDate(rs.getString(4));
 				gal.setGalContent(rs.getString(5));
 				gal.setGalFile(rs.getString(6));
-				gal.setGalHit(rs.getInt(7));
-				gal.setGalAvailable(rs.getInt(8));
+				gal.setGalRealFile(rs.getString(7));
+				gal.setGalHit(rs.getInt(8));
+				gal.setGalAvailable(rs.getInt(9));
 				list.add(gal);
 			}
 		} catch (Exception e) {
