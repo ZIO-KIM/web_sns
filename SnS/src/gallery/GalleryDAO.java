@@ -119,7 +119,7 @@ public class GalleryDAO {
 	}
 	
 	public ArrayList<GalleryDTO> getList(int pageNumber){ 
-		String SQL = "SELECT * FROM GALLERY WHERE galID < ? AND galAvailable = 1 ORDER BY galID DESC LIMIT 10";
+		String SQL = "SELECT * FROM GALLERY WHERE galID < ? AND galAvailable = 1 ORDER BY galID DESC LIMIT 5";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;	
@@ -127,7 +127,7 @@ public class GalleryDAO {
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 5);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				GalleryDTO gal = new GalleryDTO();

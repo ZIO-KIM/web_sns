@@ -40,12 +40,7 @@ a, a:hover {
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
-		}
-		int pageNumber = 1;
-		if (request.getParameter("pageNumber") != null) {
-			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-		}
-		
+		}		
 	%>
 
 	<header>
@@ -236,11 +231,16 @@ a, a:hover {
 	
 	<div class="container">
 		<div class="row">
+		
+			<%
+				GalleryDAO galDAO=new GalleryDAO();
+				for(int pageNumber=1;pageNumber<3;pageNumber++){
+					
+			%>
 			<table class="table"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tbody>
-					<%
-						GalleryDAO galDAO=new GalleryDAO();;
+					<%						
 						ArrayList<GalleryDTO> list = galDAO.getList(pageNumber);
 						String galFile = null;
 					%>
@@ -249,8 +249,8 @@ a, a:hover {
 						for (int i = 0; i < list.size(); i++) {
 							galFile = "http://localhost:8080/SnS/upload/" + list.get(i).getGalRealFile();
 						%>
-						<td colspan="2"><img class="media-object"
-							style="width: 20%;" src="<%=galFile%>"></td>
+						<td>
+							<img style="width: 200px;" class="media-object" src="<%=galFile%>"></td>
 						<%
 							}
 						%>
@@ -274,7 +274,9 @@ a, a:hover {
 					
 				</tbody>
 			</table>
-
+			<%
+				}
+			%>
 
 		</div>
 	</div>
