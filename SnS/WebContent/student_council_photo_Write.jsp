@@ -207,7 +207,7 @@
 	</div>
 
 	<footer>
-		<p id='footer_content'>
+		<p id='footer_content' style="position:absolute;bottom:0;width:100%;height:70px;">
 			010-0000-0000 | sejongsc3@gmail.com | �븰�깮�쉶愿� 409�샇 <br> COPYRIGHT
 			&copy 2019 �꽭醫낅��븰援� �냼�봽�듃�썾�뼱�쑖�빀���븰 �뜲�떒�븳 �궗�엺�뱾 All rights reserved.
 		</p>

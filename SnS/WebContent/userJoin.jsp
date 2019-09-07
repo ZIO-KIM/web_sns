@@ -32,6 +32,35 @@
 <link rel="stylesheet" href="css/joinpage.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script type="text/javascript">
+	function registerCheckFunction(){
+		var userID = $('#userID').val();
+		$.ajax({
+			type:'POST',
+			url:'./UserRegisterCheckServlet',
+			data :{userID:userID},
+			success:function(result){
+				if(result== 1){
+					$('#checkMessage').html('사용할 수 있는 아이디입니다.');
+					$('#checkType').attr('class','modal-content panel-success');
+				}else{
+					$('#checkMessage').html('사용할 수 없는 아이디입니다.');
+					$('#checkType').attr('class','modal-content panel-warning');
+				}
+				$('#checkModal').modal("show");
+			}
+		});
+	}
+	function passwordCheckFunction() {
+		var userPW1 = $("#userPW1").val();
+		var userPW2 = $("#userPW2").val();
+		if (userPW1 != userPW2) {
+			$('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
+		}else{
+			$('#passwordCheckMessage').html('');
+		}
+	}
+</script>
 </head>
 <body>
 	<%
@@ -46,17 +75,6 @@
 			script.close();
 		}
 	%>
-	<script type="text/javascript">
-		function confirmPw() {
-			var pw = document.getElementById("pw").value;
-			var pwconfirm = document.getElementById("pwconfirm").value;
-
-			if (pw != pwck) {
-				alert('비밀번호가 틀렸습니다. 다시 입력해 주세요');
-				return false;
-			}
-		}
-	</script>
 
 	<header>
 		<nav id='first_area'>
@@ -202,8 +220,9 @@
 							style="color: red">*</em> 아이디
 						</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="userID"
+							<input type="text" class="form-control" name="userID" id="userID"
 								maxlength="20" placeholder="닉네임으로 사용" required>
+								<button class="btn btn-primary" onclick="registerCheckFunction();" type="button">중복체크</button>
 						</div>
 					</div>
 
@@ -212,8 +231,8 @@
 							style="color: red">*</em> 비밀번호
 						</label>
 						<div class="col-sm-3">
-							<input type="password" class="form-control" name="userPassword"
-								maxlength="20" pattern="[A-Za-z0-9]{8,}"
+							<input onkeyup="passwordCheckFunction();" type="password" class="form-control" name="userPassword"
+								maxlength="20" pattern="[A-Za-z0-9]{8,}" id="userPW1"
 								placeholder="영문+숫자 8글자 이상" required>
 						</div>
 					</div>
@@ -223,8 +242,8 @@
 							style="color: red">*</em> 비밀번호확인
 						</label>
 						<div class="col-sm-3">
-							<input type="password" class="form-control" name="userPasswordCk"
-								maxlength="20" placeholder="비밀번호 확인" required>
+							<input onkeyup="passwordCheckFunction();" type="password" class="form-control" name="userPasswordCk"
+								id="userPW2" maxlength="20" placeholder="비밀번호 확인" required>
 						</div>
 					</div>
 
@@ -267,6 +286,9 @@
 								class="form-control" title="비밀번호 찾기 답변" value="" maxlength="50">
 						</div>
 					</div>
+					
+					<h5 style="color:red;" id="passwordCheckMessage"></h5>
+					
 					<div class="controls col-sm-3">
 						<input id="btn_log" type="submit"
 							class="btn btn-primary form-control" value="SIGN UP">
@@ -276,8 +298,70 @@
 			</div>
 		</div>
 	</div>
-
-
-
+	
+	<%
+		String messageContent = null;
+		if(session.getAttribute("messageContent")!=null){
+			messageContent=(String)session.getAttribute("messageContent");
+		}
+		String messageType = null;
+		if(session.getAttribute("messageType")!=null){
+			messageType=(String)session.getAttribute("messageType");
+		}
+		if(messageContent != null){
+	%>
+		<div id="messageModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div class="modal-content" <%if(messageType.equals("오류 메시지")) out.println("panel-warning");else out.println("panel-success"); %>>
+						<div class="modal-header panel-heading">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">
+								<%=messageType %>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<%=messageContent %>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$('messageModal').modal("show");
+		</script>
+	<%
+		session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
+		}
+	%>
+	<div id="checkModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div id="checkType" class="modal-content panel-info">
+						<div class="modal-header panel-heading">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">
+								확인 메시지
+							</h4>
+						</div>
+						<div id="checkMessage" class="modal-body">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
