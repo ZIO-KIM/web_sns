@@ -118,6 +118,26 @@ public class GalleryDAO {
 		return -1; //데이터베이스 오류
 	}
 	
+	public static int hit(int galID) {
+		String SQL ="UPDATE GALLERY SET galHit = galHit + 1 WHERE galID=?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1,galID);
+			return pstmt.executeUpdate();
+			}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return -1;
+	}
+	
 	public ArrayList<GalleryDTO> getList(int pageNumber){ 
 		String SQL = "SELECT * FROM GALLERY WHERE galID < ? AND galAvailable = 1 ORDER BY galID DESC LIMIT 5";
 		Connection conn=null;
@@ -216,8 +236,9 @@ public class GalleryDAO {
 				gal.setGalDate(rs.getString(4));
 				gal.setGalContent(rs.getString(5));
 				gal.setGalFile(rs.getString(6));
-				gal.setGalHit(rs.getInt(7));
-				gal.setGalAvailable(rs.getInt(8));
+				gal.setGalRealFile(rs.getString(7));
+				gal.setGalHit(rs.getInt(8));
+				gal.setGalAvailable(rs.getInt(9));
 				return gal;
 			}
 		} catch (Exception e) {
