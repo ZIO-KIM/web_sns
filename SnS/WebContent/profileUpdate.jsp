@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.io.PrintWriter"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="complaints.ComplaintsDAO" %>
+<%@ page import="complaints.ComplaintsDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리 :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 마이 페이지 :: 프로필 수정</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -13,9 +15,51 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
-    <link rel="stylesheet" href="css/photo.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="viewport" content="device-width, initial-scale=1">
+    <style type="text/css">
+    	.btn-file{
+    		position:relative;
+    		overflow:hidden;
+    	}
+    	.btn-file input[type=file]{
+    		position:absolute;
+    		top: 0;
+    		right:0;
+    		min-width:100%;
+    		min-height:100%;
+    		font-size:100px;
+    		text-align:right;
+    		filter:alpha(opacity=0);
+    		opacity:0;
+    		outline:none;
+    		background:white;
+    		cursor:inherit;
+    		display:block;
+    	}
+    	.file{
+    		visibility:hidden;
+    		position:absolute;
+    	}
+    </style>
   </head>
   <body>
+  
+  <%
+		String userID=null;
+		if(session.getAttribute("userID")!=null){
+			userID=(String)session.getAttribute("userID");
+		}
+		if(userID==null){
+			PrintWriter script =response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 해주세요.')");
+			script.println("location.href='userLogin.jsp'");
+			script.println("</script>"); 
+			script.close();
+		}
+	 %>
+  
     <header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
@@ -71,7 +115,9 @@
         </div>
         
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="userLogin.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
+        
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+
       </nav>
     </header>
     <div id="container">
@@ -79,60 +125,79 @@
       <nav>
         <h2>
           <span></span>
-            갤러리
+            민원
         </h2>
         <ul class="lnb_deps2">
              <li>
-               <a href="student_council_introduce.html" class="jwxe_22350 active">학생회 소개</a>
+               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
              </li>
              <li>
-               <a href="student_council_photo.html" class="jwxe_22351 ">갤러리</a>
+               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
             </li>
             <li>
-              <a href="student_council_events.html" class="jwxe_22351 ">행사</a>
-           </li>
-           <li>
-             <a href="student_council_public_money.html" class="jwxe_22351 ">학생회비 내역</a>
-          </li>
+              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
+            </li>
         </ul>
       </nav>
     </nav>
+    
+    
     <section class="content">
       <header>
-        <h1>글쓰기</h1>
+        <h1>프로필 수정</h1>
       </header>
-      <form action="Student_council_Photo_WriteAction.jsp" method="post" enctype="multipart/form-data">
+      <form method="post" action="./userProfile" enctype="multipart/form-data">
+      
       <table class="table table-bordered">
         <tbody>
-            <tr>
-               <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="galTitle" class="form-control"/></td>
+        	<tr>
+        		<th>사용자 아이디 </th>
+               	<td colspan="2">
+					<input type="text" name="userID" value=<%=userID%>> 
+               </td>
             </tr>
             <tr>
-               <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="galContent" class="form-control"></textarea></td>
-            </tr>
-            <tr>
-               <th>첨부파일: </th>
-               <td><input type="file" name="file" class="form-control"/></td>
+               <th>사진 업로드 </th>
+               <td colspan="2">
+               		<input type="file" name="userProfile" class="file">
+               		<div class="input-group col-xs-12">
+               			<span class="input-group-addon"><i class="fa fa-image"></i></span>
+               			<input type="text" class="form-control input-lg" disabled placeholder="이미지를 업로드 하세요.">
+               			<span class="input-group-btn">
+               				<button class="browse btn btn-primary input-lg" type="button"><i class="fa fa-search"></i>파일 찾기</button>
+               			</span>
+               		</div>
+					
+               </td>
             </tr>
             <tr>
                <td colspan="2">
-               	<input type="submit" class="btn btn-primary pull-right" value="등록">
-                <input type="button" value="reset" class="pull-left"/>
-                <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
+                 <input type="submit" class="btn btn-primary pull-right" value="수정하기">
                </td>
              </tr>
+          
         </tbody>
       </table>
       </form>
-    </section>
-    </div>
-    
-    <footer>
+      </section>
+      
+      <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+    	$(document).on('click','.browse',function(){
+    		var file = $(this).parent().parent().parent().find('.file');
+    		file.trigger('click');
+    	});
+    	$(document).on('change','.file',function(){
+    		$(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i,''));
+    	});
+    </script>
   </body>
 </html>

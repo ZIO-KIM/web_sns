@@ -51,7 +51,7 @@
 		return;
 	}
 	UserDAO userDAO = new UserDAO();
-	int result=userDAO.join(new UserDTO(userID, userPassword,userName,userEmail,SHA256.getSHA256(userEmail),false,findPwQuestion,findPwAnswer));
+	int result=userDAO.join(new UserDTO(userID, userPassword,userName,userEmail,SHA256.getSHA256(userEmail),false,"",findPwQuestion,findPwAnswer));
 	if(result ==-1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
