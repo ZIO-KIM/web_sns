@@ -129,10 +129,12 @@
   font-size: 20px;
   border: solid 2px black; 
   width: 500px; 
-  height: 250px; 
+  height: 280px; 
   
   margin-top: 30%; 
-  margin-left: 8%; 
+  margin-left: 7%; 
+  
+  text-align: center; 
   
   
 }
@@ -143,30 +145,38 @@
   font-size: 20px; 
   border: solid 2px black; 
   width: 500px; 
-  height: 250px; 
+  height: 280px; 
+  
+  text-align: center; 
+  
+  margin-left: 2%; 
 
 }
 
-#claims {
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  border: solid 2px black; 
-  width: 500px; 
-  height: 250px; 
-  
-  margin-left: 8%; 
+#claim {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 20px;
+	border: solid 2px black; 
+	width: 500px; 
+	height: 280px; 
+	
+	margin-left: 7%; 
+	margin-top: 3%; 
+	
+	text-align: center; 
 }
 
 #departments {
-  display: inline-block;
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 20px;
   border: solid 2px black; 
   width: 500px; 
-  height: 250px; 
+  height: 280px; 
   
+  text-align: center; 
   
+  margin-left: 50%; 
+  margin-top: -280px; 
  
 }
 
