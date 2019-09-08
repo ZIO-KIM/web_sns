@@ -29,8 +29,8 @@
   	}
   %>  
     <script>
-      $.backstretch(["imgs/KakaoTalk_20190906_154845107.jpg",
-      "imgs/wallpaper-1812167.jpg"],
+      $.backstretch(["imgs/keyboard_1.jpg",
+      "imgs/computer_3.jpg"],
       {duration: 3000, fade: 900});
     </script>
 
