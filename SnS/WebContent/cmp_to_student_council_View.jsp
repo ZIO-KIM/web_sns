@@ -296,6 +296,12 @@
 							<td colspan="2" style="height: 300px; text-align: left;"><%=cmp.getCmpContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
 					.replaceAll("\n", "<br>")%></td>
 						</tr>
+						<tr>
+							<td style="line-height: 300px;">첨부파일</td>
+							<td colspan="2" style="height: 300px; text-align: left;">
+								<h5><a href="cmp_st_Download.jsp?cmpID=<%=cmp.getCmpID() %>"><%=cmp.getCmpFile() %></a></h5>
+							</td>
+						</tr>
 
 					</tbody>
 				</table>

@@ -86,6 +86,57 @@ public class ComplaintsDAO {
 		return -1; 
 	}
 	
+	public String getFile(int cmpID) {//파일을 불러오는 함수
+		String SQL = "SELECT cmpFile FROM cmp_st WHERE cmpID=?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1,cmpID);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("cmpFile").equals("")) {
+					return "";
+				}
+				return rs.getString("cmpFile");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null)conn.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		return "";
+	}
+	
+	public String getRealFile(int cmpID) {//파일을 불러오는 함수
+		String SQL = "SELECT cmpRealFile FROM cmp_st WHERE cmpID=?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1,cmpID);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("cmpRealFile").equals("")) {
+					return "";
+				}
+				return rs.getString("cmpRealFile");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null)conn.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		return "";
+	}
 	
 	public ArrayList<ComplaintsDTO> getList(int pageNumber,boolean isStudent){
 		String SQL="";
@@ -113,12 +164,14 @@ public class ComplaintsDAO {
 				cmpDTO.setCmpDate(rs.getString(4));
 				cmpDTO.setCmpContent(rs.getString(5));
 				cmpDTO.setCmpDivide(rs.getString(6));
-				cmpDTO.setAgreeCount(rs.getInt(7));
-				cmpDTO.setCmpHit(rs.getInt(8));
-				cmpDTO.setCmpGroup(rs.getInt(9));
-				cmpDTO.setCmpSequence(rs.getInt(10));
-				cmpDTO.setCmpLevel(rs.getInt(11));
-				cmpDTO.setCmpAvailable(rs.getInt(12));
+				cmpDTO.setCmpFile(rs.getString(7));
+				cmpDTO.setCmpRealFile(rs.getString(8));
+				cmpDTO.setAgreeCount(rs.getInt(9));
+				cmpDTO.setCmpHit(rs.getInt(10));
+				cmpDTO.setCmpGroup(rs.getInt(11));
+				cmpDTO.setCmpSequence(rs.getInt(12));
+				cmpDTO.setCmpLevel(rs.getInt(13));
+				cmpDTO.setCmpAvailable(rs.getInt(14));
 				list.add(cmpDTO);
 			}
 		}catch (Exception e) {
@@ -168,12 +221,14 @@ public class ComplaintsDAO {
 				cmpDTO.setCmpDate(rs.getString(4));
 				cmpDTO.setCmpContent(rs.getString(5));
 				cmpDTO.setCmpDivide(rs.getString(6));
-				cmpDTO.setAgreeCount(rs.getInt(7));
-				cmpDTO.setCmpHit(rs.getInt(8));
-				cmpDTO.setCmpGroup(rs.getInt(9));
-				cmpDTO.setCmpSequence(rs.getInt(10));
-				cmpDTO.setCmpLevel(rs.getInt(11));
-				cmpDTO.setCmpAvailable(rs.getInt(12));
+				cmpDTO.setCmpFile(rs.getString(7));
+				cmpDTO.setCmpRealFile(rs.getString(8));
+				cmpDTO.setAgreeCount(rs.getInt(9));
+				cmpDTO.setCmpHit(rs.getInt(10));
+				cmpDTO.setCmpGroup(rs.getInt(11));
+				cmpDTO.setCmpSequence(rs.getInt(12));
+				cmpDTO.setCmpLevel(rs.getInt(13));
+				cmpDTO.setCmpAvailable(rs.getInt(14));
 				searchList.add(cmpDTO);
 			}
 		} catch(Exception e) {
@@ -213,12 +268,14 @@ public class ComplaintsDAO {
 				cmpDTO.setCmpDate(rs.getString(4));
 				cmpDTO.setCmpContent(rs.getString(5));
 				cmpDTO.setCmpDivide(rs.getString(6));
-				cmpDTO.setAgreeCount(rs.getInt(7));
-				cmpDTO.setCmpHit(rs.getInt(8));
-				cmpDTO.setCmpGroup(rs.getInt(9));
-				cmpDTO.setCmpSequence(rs.getInt(10));
-				cmpDTO.setCmpLevel(rs.getInt(11));
-				cmpDTO.setCmpAvailable(rs.getInt(12));
+				cmpDTO.setCmpFile(rs.getString(7));
+				cmpDTO.setCmpRealFile(rs.getString(8));
+				cmpDTO.setAgreeCount(rs.getInt(9));
+				cmpDTO.setCmpHit(rs.getInt(10));
+				cmpDTO.setCmpGroup(rs.getInt(11));
+				cmpDTO.setCmpSequence(rs.getInt(12));
+				cmpDTO.setCmpLevel(rs.getInt(13));
+				cmpDTO.setCmpAvailable(rs.getInt(14));
 				list.add(cmpDTO);
 			}
 		}catch (Exception e) {
@@ -310,12 +367,14 @@ public class ComplaintsDAO {
 				cmp.setCmpDate(rs.getString(4));
 				cmp.setCmpContent(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
 				cmp.setCmpDivide(rs.getString(6));
-				cmp.setAgreeCount(rs.getInt(7));
-				cmp.setCmpHit(rs.getInt(8));
-				cmp.setCmpGroup(rs.getInt(9));
-				cmp.setCmpSequence(rs.getInt(10));
-				cmp.setCmpLevel(rs.getInt(11));
-				cmp.setCmpAvailable(rs.getInt(12));
+				cmp.setCmpFile(rs.getString(7));
+				cmp.setCmpRealFile(rs.getString(8));
+				cmp.setAgreeCount(rs.getInt(9));
+				cmp.setCmpHit(rs.getInt(10));
+				cmp.setCmpGroup(rs.getInt(11));
+				cmp.setCmpSequence(rs.getInt(12));
+				cmp.setCmpLevel(rs.getInt(13));
+				cmp.setCmpAvailable(rs.getInt(14));
 				return cmp;
 			}
 		} catch (Exception e) {
@@ -384,10 +443,10 @@ public class ComplaintsDAO {
 		ResultSet rs= null;
 		try {
 			if(isStudent) {
-				SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?, 0,0,IFNULL((SELECT MAX(cmpGroup)+1 FROM CMP_ST a),0),0,0,1)";
+				SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?,?,?, 0,0,IFNULL((SELECT MAX(cmpGroup)+1 FROM CMP_ST a),0),0,0,1)";
 			}
 			else {
-				SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?, 0,0,IFNULL((SELECT MAX(cmpGroup)+1 FROM CMP_SC a),0),0,0,1)";
+				SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?,?,? 0,0,IFNULL((SELECT MAX(cmpGroup)+1 FROM CMP_SC a),0),0,0,1)";
 			}
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
@@ -396,6 +455,8 @@ public class ComplaintsDAO {
 			pstmt.setString(3,getDate());
 			pstmt.setString(4,complaintsDTO.getCmpContent());
 			pstmt.setString(5,complaintsDTO.getCmpDivide());
+			pstmt.setString(6,complaintsDTO.getCmpFile());
+			pstmt.setString(7,complaintsDTO.getCmpRealFile());
 			return pstmt.executeUpdate();
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -465,10 +526,10 @@ public class ComplaintsDAO {
 		ResultSet rs= null;
 		try {
 			if(isStudent) {
-				SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?, 0,0,?,?,?,1)";
+				SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?,NULL,NULL, 0,0,?,?,?,1)";
 			}
 			else {
-				SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?, 0,0,?,?,?,1)";
+				SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?,NULL,NULL, 0,0,?,?,?,1)";
 			}
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);

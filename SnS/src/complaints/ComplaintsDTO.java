@@ -6,6 +6,8 @@ public class ComplaintsDTO {
 	String userID;
 	String cmpContent;
 	String cmpDivide;
+	String cmpFile;
+	String cmpRealFile;
 	String cmpDate;
 	int agreeCount;
 	int cmpHit;
@@ -43,6 +45,18 @@ public class ComplaintsDTO {
 	}
 	public void setCmpDivide(String cmpDivide) {
 		this.cmpDivide = cmpDivide;
+	}
+	public String getCmpFile() {
+		return cmpFile;
+	}
+	public void setCmpFile(String cmpFile) {
+		this.cmpFile = cmpFile;
+	}
+	public String getCmpRealFile() {
+		return cmpRealFile;
+	}
+	public void setCmpRealFile(String cmpRealFile) {
+		this.cmpRealFile = cmpRealFile;
 	}
 	public String getCmpDate() {
 		return cmpDate;
@@ -90,14 +104,17 @@ public class ComplaintsDTO {
 	public ComplaintsDTO() {
 
 	}
-	public ComplaintsDTO(int cmpID, String cmpTitle, String userID, String cmpContent, String cmpDivide, String cmpDate,
-			int agreeCount, int cmpHit, int cmpGroup, int cmpSequence, int cmpLevel, int cmpAvailable) {
+	public ComplaintsDTO(int cmpID, String cmpTitle, String userID, String cmpContent, String cmpDivide, String cmpFile,
+			String cmpRealFile, String cmpDate, int agreeCount, int cmpHit, int cmpGroup, int cmpSequence, int cmpLevel,
+			int cmpAvailable) {
 		super();
 		this.cmpID = cmpID;
 		this.cmpTitle = cmpTitle;
 		this.userID = userID;
 		this.cmpContent = cmpContent;
 		this.cmpDivide = cmpDivide;
+		this.cmpFile = cmpFile;
+		this.cmpRealFile = cmpRealFile;
 		this.cmpDate = cmpDate;
 		this.agreeCount = agreeCount;
 		this.cmpHit = cmpHit;
@@ -106,4 +123,5 @@ public class ComplaintsDTO {
 		this.cmpLevel = cmpLevel;
 		this.cmpAvailable = cmpAvailable;
 	}
+	
 }

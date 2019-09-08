@@ -28,4 +28,12 @@
 		<servlet-name>GalleryServlet</servlet-name>
 		<url-pattern>/gallery</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ComplaintsServlet</servlet-name>
+		<servlet-class>complaints.ComplaintsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ComplaintsServlet</servlet-name>
+		<url-pattern>/complaints</url-pattern>
+	</servlet-mapping>
 </web-app>

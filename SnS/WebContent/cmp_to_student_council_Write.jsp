@@ -15,6 +15,33 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
+   	<style type="text/css">
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+
+.file {
+	visibility: hidden;
+	position: absolute;
+}
+</style>
     <meta name="viewport" content="device-width, initial-scale=1">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -124,7 +151,7 @@
       <header>
         <h1>글쓰기</h1>
       </header>
-      <form method="post" action="cmp_to_student_council_WriteAction.jsp">
+      <form method="post" action="./complaints" enctype="multipart/form-data">
       <div class="form-group col-sm-3">
       	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
       	<select name="cmpDivide" class="form-control">
@@ -140,6 +167,11 @@
       </div>
       <table class="table table-bordered">
         <tbody>
+        	<tr>
+				<th>작성자 ID</th>
+				<td colspan="2"><input type="text" name="userID"
+						value=<%=userID%>></td>
+			</tr>
             <tr>
                <th>제목: </th>
                <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
@@ -149,9 +181,19 @@
                <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
             </tr>
             <tr>
-               <th>첨부파일: </th>
-               <td><input type="file" placeholder="파일을 선택하세요. " name="cmpFile" class="form-control"/></td>
-            </tr>
+				<th>첨부파일: </th>
+				<td colspan="2"><input type="file" name="cmpFile" class="file">
+					<div class="input-group col-xs-12">
+						<span class="input-group-addon"><i class="fa fa-image"></i></span>
+						<input type="text" class="form-control input-lg" disabled placeholder="파일을 업로드하세요.">
+						<span class="input-group-btn">
+							<button class="browse btn btn-primary input-lg" type="button">
+								<i class="fa fa-search"></i>파일찾기
+							</button>
+						</span>
+					</div>
+				</td>
+			</tr>
             <tr>
                <td colspan="2">
                  <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
@@ -168,6 +210,20 @@
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+    
+    <script type="text/javascript">
+		$(document).on('click', '.browse', function() {
+			var file = $(this).parent().parent().parent().find('.file');
+			file.trigger('click');
+		});
+		$(document).on(
+				'change',
+				'.file',
+				function() {
+					$(this).parent().find('.form-control').val(
+							$(this).val().replace(/C:\\fakepath\\/i, ''));
+				});
+	</script>
     
   </body>
 </html>
