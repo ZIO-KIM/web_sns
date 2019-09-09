@@ -77,7 +77,6 @@
 }
 
 body {
-  background: white; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -85,7 +84,7 @@ body {
 }
 
 #title {
-  color: black;
+  color: black; 
   font-size: 50px;
   margin-left: 8%;
   margin-top: 10%;
@@ -97,37 +96,6 @@ body {
   font-size: 25px;
   margin-left: 8%;
   margin-top: 2%;
-}
-
-#title_animation { /* 占쏙옙占쎌뵠占쏙옙 占쎈막占쎈빍筌롫뗄�뵠占쎈�� 筌욑옙占쎌젟 */
-  animation-name: slidein;
-  animation-duration: 3s;
-
-}
-
-@keyframes slidein { /* slidein 占쎈막占쎈빍筌롫뗄�뵠占쎈�� 占쎈꺗占쎄쉐 筌욑옙占쎌젟 */
-  from {
-    margin-left: 100%;
-    width: 100%;
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
-table {
-  border-collapse: collapse;
-  color: black;
-}
-table, th, td {
-  border: 1px solid white;
-  color: black;
-  text-decoration: none;
-}
-
-th, td {
-  padding: 15px;
 }
 
 #container {
@@ -151,16 +119,6 @@ th, td {
     font-weight: normal;
     word-break: keep-all;
     background: url(../imgs/bg_lnb_top.png) no-repeat bottom;
-}
-
-.content {
-    width: 75%;
-    float:right;
-}
-
-.content header h1{
-  color: black;
-  padding-bottom: 15px;
 }
 
 ul, ol {
@@ -211,7 +169,7 @@ footer {
 	font-weight: bold; 
 	
 	margin-left: 12%; 
-	margin-top: 3%; 
+	margin-top: 10%; 
 	
 }
 
