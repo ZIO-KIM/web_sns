@@ -29,9 +29,15 @@
   	}
   %>  
     <script>
-      $.backstretch(["imgs/keyboard_1.jpg",
-      "imgs/computer_3.jpg"],
-      {duration: 3000, fade: 900});
+      $.backstretch(["imgs/drop_1.jpg","imgs/drop_2.jpg","imgs/drop_3.jpg","imgs/drop_4.jpg","imgs/drop_5.jpg",
+    	  "imgs/drop_6.jpg","imgs/drop_7.jpg","imgs/water_color_6.jpg"],
+    	  {duration: 20, fade: 900});
+      $(window).on("backstretch.before", function (e, instance, index) {
+    	  // If we wanted to stop the slideshow after it reached the end
+    	  if (index === instance.images.length - 1) {
+    	    instance.pause();
+    	  };
+    	});
     </script>
 
     <header>
@@ -89,19 +95,19 @@
         </div>
         
         <h2 id='language'>
-       		<a href="index_en.jsp" style="text-decoration:none; color:#ffffff">한국어/EN</a>
+       		<a href='index.jsp' style="text-decoration:none; color:black">한국어</a> / <a href="index_en.jsp" style="text-decoration:none; color:black">EN</a>
  		</h2>
         
         <%
         	if(userID==null){
         %>
         <h2 id='login'>
-				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #ffffff">LOGIN</a>
+				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: black">LOGIN</a>
 			</h2>
         <%
         	}else{
         %>
-      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#ffffff">LOGOUT</a></h2>
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:black">LOGOUT</a></h2>
         <%
         	}
         %>
