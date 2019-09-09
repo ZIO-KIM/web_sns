@@ -29,8 +29,8 @@
   	}
   %>  
     <script>
-      $.backstretch(["imgs/KakaoTalk_20190906_154845107.jpg",
-      "imgs/wallpaper-1812167.jpg"],
+      $.backstretch(["imgs/keyboard_1.jpg",
+      "imgs/computer_3.jpg"],
       {duration: 3000, fade: 900});
     </script>
 
@@ -199,8 +199,8 @@
       <br/>
       <a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
     </div>
-
-    <div id="claims">
+    
+    <div id="claim">
       <h2><a href='#' id='Claims'>민원 게시판</a></h2>
       <br/>
       <a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
@@ -208,7 +208,6 @@
 
     <div id="departments">
       <h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
-      <br/>
       <a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
       <a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
       <a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
