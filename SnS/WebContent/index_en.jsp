@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/mainpage.css">
+    <link rel="stylesheet" href="css/mainpage_eng_ver.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -30,7 +30,7 @@
   %>  
     <script>
       $.backstretch(["imgs/drop_1.jpg","imgs/drop_2.jpg","imgs/drop_3.jpg","imgs/drop_4.jpg","imgs/drop_5.jpg",
-    	  "imgs/drop_6.jpg","imgs/drop_7.jpg","imgs/water_color_6.jpg"],
+    	  "imgs/drop_6.jpg","imgs/drop_7.jpg","imgs/drop_7.jpg"],
     	  {duration: 20, fade: 900});
       $(window).on("backstretch.before", function (e, instance, index) {
     	  // If we wanted to stop the slideshow after it reached the end
@@ -47,46 +47,46 @@
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>Student Council <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
               <ul id='submenu'>
-                <li><a href='student_council_introduce.jsp'>Introduce</a></li>
-                <li><a href='student_council_photo.jsp'>Gallery</a></li>
-                <li><a href='student_council_events.jsp'>Events</a></li>
-                <li><a href='student_council_public_money.jsp'>Public Money</a></li>
-                <li><a href='departments.jsp'>Departments</a></li>
+                <li><a href='student_council_introduce_en.jsp'>Introduce</a></li>
+                <li><a href='student_council_photo_en.jsp'>Gallery</a></li>
+                <li><a href='student_council_events_en.jsp'>Events</a></li>
+                <li><a href='student_council_public_money_en.jsp'>Public Money</a></li>
+                <li><a href='departments_en.jsp'>Departments</a></li>
               </ul>
             </li>
 
             <li>Claims <!-- 메뉴바 두번째 - 민원 카테고리 -->
               <ul id='submenu'>
-                <li><a href='cmp_to_student_council.jsp'>To Student Council</a></li>
+                <li><a href='cmp_to_student_council_en.jsp'>To Student Council</a></li>
               </ul>
             </li>
 
             <li>Pre-students<!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
               <ul id='submenu'>
-                <li><a href='admission_reviews.jsp'>Reviews</a></li>
-                <li><a href='admission_qnas.jsp'>QnA</a></li>
+                <li><a href='admission_reviews_en.jsp'>Reviews</a></li>
+                <li><a href='admission_qnas_en.jsp'>QnA</a></li>
               </ul>
             </li>
 
             <li>Employments <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
-                <li><a href='employ_reviews.jsp'>Reviews</a><br></li>
-                <li><a href='graduate_interviews.jsp'>Interviews</a><br></li>
-                <li><a href='graduate_qnas.jsp'>Graduation QnAs</a><br></li>
+                <li><a href='employ_reviews_en.jsp'>Reviews</a><br></li>
+                <li><a href='graduate_interviews_en.jsp'>Interviews</a><br></li>
+                <li><a href='graduate_qnas_en.jsp'>Graduation QnAs</a><br></li>
               </ul>
             </li>
 
             <li>Promotions <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
               <ul id='submenu'>
-                <li><a href='school_contests.jsp'>School</a><br></li>
-                <li><a href='not_school_contests.jsp'>Not School</a><br></li>
+                <li><a href='school_contests_en.jsp'>School</a><br></li>
+                <li><a href='not_school_contests_en.jsp'>Not School</a><br></li>
               </ul>
             </li>
 
             <li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
               <ul id='submenu'>
-                <li><a href='chatbot.jsp'>Chatbot</a><br></li>
-                <li><a href='qna.jsp'>QnA</a><br></li>
+                <li><a href='chatbot_en.jsp'>Chatbot</a><br></li>
+                <li><a href='qna_en.jsp'>QnA</a><br></li>
               </ul>
             </li>
           </ul>
@@ -211,14 +211,14 @@
     </div>
 
     <div id="departments">
-      <h2><a href='departments.jsp' id='Departments'>Departments</a></h2>
-      <a href='computer_science.jsp' id='Departments'>Computer Engineering</a><br/>
-      <a href='software.jsp' id='Departments'>Software</a><br/>
-      <a href='data_science.jsp' id='Departments'>Data Science</a><br/>
-      <a href='information_security.jsp' id='Departments'>Information Security</a><br/>
-      <a href='intelligent_mechanics_engineering.jsp' id='Departments'>Intelligent Mechanics Engineering</a><br/>
-      <a href='cartoon_animation.jsp' id='Departments'>Cartoon &amp; Animation</a><br/>
-      <a href='design_innovation.jsp' id='Departments'>Design Innovation</a><br/>
+      <h2><a href='departments_en.jsp' id='Departments'>Departments</a></h2>
+      <a href='computer_science_en.jsp' id='Departments'>Computer Engineering</a><br/>
+      <a href='software_en.jsp' id='Departments'>Software</a><br/>
+      <a href='data_science_en.jsp' id='Departments'>Data Science</a><br/>
+      <a href='information_security_en.jsp' id='Departments'>Information Security</a><br/>
+      <a href='intelligent_mechanics_engineering_en.jsp' id='Departments'>Intelligent Mechanics Engineering</a><br/>
+      <a href='cartoon_animation_en.jsp' id='Departments'>Cartoon &amp; Animation</a><br/>
+      <a href='design_innovation_en.jsp' id='Departments'>Design Innovation</a><br/>
     </div>
 
     <table>
