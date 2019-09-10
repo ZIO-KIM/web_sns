@@ -63,7 +63,7 @@
    
    ComplaintsDAO complaintsDAO =new ComplaintsDAO();
    ComplaintsDTO parent = complaintsDAO.getCmp(cmpID, true);
-   int result=complaintsDAO.reply(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpDate,0,0,0,0,0,0),parent,true);
+   int result=complaintsDAO.reply(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,"","",cmpDate,0,0,0,0,0,0),parent,true);
    complaintsDAO.replyUpdate(parent,true);
    if(result==-1){
       PrintWriter script = response.getWriter();
