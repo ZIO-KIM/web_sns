@@ -231,3 +231,9 @@ footer {
 #board {
 	text-align: center; 
 }
+#start_button{
+	margin:auto;
+	padding-top:30px;
+	padding-left:40px;
+}
+
