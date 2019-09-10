@@ -29,9 +29,15 @@
   	}
   %>  
     <script>
-      $.backstretch(["imgs/KakaoTalk_20190906_154845107.jpg",
-      "imgs/wallpaper-1812167.jpg"],
-      {duration: 3000, fade: 900});
+      $.backstretch(["imgs/drop_1.jpg","imgs/drop_2.jpg","imgs/drop_3.jpg","imgs/drop_4.jpg","imgs/drop_5.jpg",
+    	  "imgs/drop_6.jpg","imgs/drop_7.jpg","imgs/drop_7.jpg"],
+    	  {duration: 20, fade: 900});
+      $(window).on("backstretch.before", function (e, instance, index) {
+    	  // If we wanted to stop the slideshow after it reached the end
+    	  if (index === instance.images.length - 1) {
+    	    instance.pause();
+    	  };
+    	});
     </script>
 
     <header>
@@ -89,19 +95,19 @@
         </div>
         
         <h2 id='language'>
-       		<a href="index_en.jsp" style="text-decoration:none; color:#ffffff">한국어/EN</a>
+       		<a href='index.jsp' style="text-decoration:none; color:black">한국어</a> / <a href="index_en.jsp" style="text-decoration:none; color:black">EN</a>
  		</h2>
         
         <%
         	if(userID==null){
         %>
         <h2 id='login'>
-				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #ffffff">LOGIN</a>
+				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: black">LOGIN</a>
 			</h2>
         <%
         	}else{
         %>
-      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#ffffff">LOGOUT</a></h2>
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:black">LOGOUT</a></h2>
         <%
         	}
         %>
@@ -199,8 +205,8 @@
       <br/>
       <a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
     </div>
-
-    <div id="claims">
+    
+    <div id="claim">
       <h2><a href='#' id='Claims'>민원 게시판</a></h2>
       <br/>
       <a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
@@ -208,7 +214,6 @@
 
     <div id="departments">
       <h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
-      <br/>
       <a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
       <a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
       <a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>

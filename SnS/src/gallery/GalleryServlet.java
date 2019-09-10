@@ -31,10 +31,8 @@ public class GalleryServlet extends HttpServlet {
 			response.sendRedirect("student_council_photo_Write.jsp");
 			return;
 		}
-		String userID = multi.getParameter("userID");
 		HttpSession session = request.getSession();
-		String galID = multi.getParameter("galID");
-
+		String userID = multi.getParameter("userID");
 		String galTitle = multi.getParameter("galTitle");
 		String galContent = multi.getParameter("galContent");
 		
@@ -44,8 +42,6 @@ public class GalleryServlet extends HttpServlet {
 			response.sendRedirect("student_council_photo_Write.jsp");
 			return;
 		}
-		String galFile="";
-		String galRealFile="";
 		File file = multi.getFile("galFile");
 		GalleryDAO galleryDAO = new GalleryDAO();
 		
@@ -53,15 +49,13 @@ public class GalleryServlet extends HttpServlet {
 		if(file !=null) {
 			String ext = file.getName().substring(file.getName().lastIndexOf(".")+1);
 			if(ext.equals("jpg") ||ext.equals("png") ||ext.equals("gif")) {
-				String prev = new GalleryDAO().searchFileByID(galID);
-				File prevFile = new File(savePath + "/" + prev);
-				if(prevFile.exists()) {
-					prevFile.delete();
-				}
-				galFile = multi.getOriginalFileName("galFile");
-				galRealFile = file.getName();
-				
+				String galFile = multi.getOriginalFileName("galFile");
+				String galRealFile = file.getName();
 				galleryDAO.write(userID,galTitle, galContent,galFile,galRealFile);
+				session.setAttribute("messageType", "성공 메시지");
+				session.setAttribute("messageContent", "갤러리에 사진을 업로드하였습니다.");
+				response.sendRedirect("index.jsp");
+				return;
 			}else {
 				if(file.exists()) {
 					file.delete();
@@ -76,13 +70,6 @@ public class GalleryServlet extends HttpServlet {
 			session.setAttribute("messageContent", "사진을 첨부해주세요.");
 			response.sendRedirect("student_council_photo_Write.jsp");
 			return;
-		}
-		
-		new GalleryDAO().findFile(galID, galFile);
-		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "갤러리에 사진을 업로드하였습니다.");
-		response.sendRedirect("index.jsp");
-		return;
+		}		
 	}
-	
 }

@@ -75,8 +75,8 @@
 
             <li>민원 <!-- 메뉴바 두번째 - 민원 카테고리 -->
               <ul id='submenu'>
-                <li><a href='gal_to_student_council.jsp'>학생회 건의사항</a></li>
-                <li><a href='gal_to_school.jsp'>학교 건의사항</a></li>
+                <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
+                <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
                 <li><a href='introduce_gal.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
@@ -131,6 +131,50 @@
 			%>
 		</nav>
 	</header>
+	
+	<%
+		String messageContent = null;
+		if(session.getAttribute("messageContent")!=null){
+			messageContent=(String)session.getAttribute("messageContent");
+		}
+		String messageType = null;
+		if(session.getAttribute("messageType")!=null){
+			messageType=(String)session.getAttribute("messageType");
+		}
+		if(messageContent != null){
+	%>
+		<div id="messageModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div class="modal-content" <%if(messageType.equals("오류 메시지")) out.println("panel-warning");else out.println("panel-success"); %>>
+						<div class="modal-header panel-heading">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">
+								<%=messageType %>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<%=messageContent %>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$('messageModal').modal("show");
+		</script>
+	<%
+		session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
+		}
+	%>
+	
 	<div id="container">
 		<nav>
 			<nav>

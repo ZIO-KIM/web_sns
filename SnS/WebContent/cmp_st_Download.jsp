@@ -1,84 +1,117 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.io.PrintWriter"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="complaints.ComplaintsDAO" %>
+<%@ page import="java.io.*" %>
+<%@ page import="java.text.*" %>
+<%@ page import="java.lang.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.net.*" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
-<head>
-<meta charset="utf-8">
-<title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리</title>
-<link href="https://fonts.googleapis.com/css?family=Jua&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
-	rel="stylesheet">
-<link
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/PSB.css">
-<link rel="stylesheet" href="css/photo.css">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+    <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style type="text/css">
-.btn-file {
-	position: relative;
-	overflow: hidden;
-}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
-.btn-file input[type=file] {
-	position: absolute;
-	top: 0;
-	right: 0;
-	min-width: 100%;
-	min-height: 100%;
-	font-size: 100px;
-	text-align: right;
-	filter: alpha(opacity = 0);
-	opacity: 0;
-	outline: none;
-	background: white;
-	cursor: inherit;
-	display: block;
-}
+	<style type="text/css">
+		a, a:hover{
+			color:#000000;
+			text-decoration:none;
+		}
+	</style>
 
-.file {
-	visibility: hidden;
-	position: absolute;
-}
-</style>
-
-</head>
-<body>
+  </head>
+  <body>
 
 	<%
+		request.setCharacterEncoding("UTF-8");
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		if (userID == null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href='userLogin.jsp'");
-			script.println("</script>");
-			script.close();
+		int cmpID = 0;
+		if(request.getParameter("cmpID")!=null){
+			cmpID=Integer.parseInt(request.getParameter("cmpID"));
 		}
+		if(cmpID == 0){
+			session.setAttribute("messageType","오류 메시지");
+			session.setAttribute("messageContent","접근할 수 없습니다.");
+			response.sendRedirect("cmp_to_student_council.jsp");
+		}
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String savePath = root + "upload";
+		String fileName="";
+		String realFile="";
+		ComplaintsDAO cmpDAO = new ComplaintsDAO();
+		fileName = cmpDAO.getFile(cmpID);
+		realFile = cmpDAO.getRealFile(cmpID);
+		if(fileName.equals("") || realFile.equals("")){
+			session.setAttribute("messageType","오류 메시지");
+			session.setAttribute("messageContent","접근할 수 없습니다.");
+			response.sendRedirect("cmp_to_student_council.jsp");
+			return;
+		}
+		InputStream in = null;
+		OutputStream os = null;
+		File file =null;
+		boolean skip = false;
+		String client = "";
+		try{
+			try{
+				file = new File(savePath, realFile); 
+				in = new FileInputStream(file);
+			}catch (FileNotFoundException e){
+				skip=true;
+			}
+			client = request.getHeader("User-Agent");
+			response.reset();
+			response.setContentType("application/octet-stream");
+			response.setHeader("Content-Description","JSP Generated Data");
+			if(!skip){
+				if(client.indexOf("MSIE")!=-1){
+					response.setHeader("Content-Disposition","attachment; filename="+new String(fileName.getBytes("KSC5601"),"IOS8859_1")); 
+				}else{
+					fileName = new String(fileName.getBytes("UTF-8"),"iso-8859-1");
+					response.setHeader("Content-Disposition","attachment; filename=\""+fileName + "\"");
+					response.setHeader("Content-Type","application/octet-stream; charset=UTF-8");
+				}
+				response.setHeader("Content-Length",""+ file.length());
+				os=response.getOutputStream();
+				byte b[] = new byte[(int)file.length()];
+				int leng=0;
+				while((leng = in.read(b))>0){
+					os.write(b,0,leng);
+				}
+			}else{
+				response.setContentType("text/html; charset=UTF-8");
+				out.println("<script>alert('파일을 찾을 수 없습니다.');history.back();</script>");
+			}
+			in.close();
+			os.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	%>
 
 	<header>
-		<nav id='first_area'>
-			<a href='index.jsp'><img src="imgs/software_convergence_logo.PNG"
-				id='logo' alt="소융대 로고"></a>
-			<!-- 소융대 로고 -->
-			<div id="menubar">
+      <nav id='first_area'>
+        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
               <ul id='submenu'>
@@ -94,7 +127,7 @@
               <ul id='submenu'>
                 <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
                 <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='introduce_gal.jsp'>민원창구 소개</a></li>
+                <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
 
@@ -128,9 +161,9 @@
             </li>
           </ul>
         </div>
-			<h1 id='language'>한국어 / EN</h1>
-			<!--영어, 한글 버전 바꾸는 버튼-->
-			<%
+        
+        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
+        <%
 				if (userID == null) {
 			%>
 			<h2 id='login'>
@@ -146,10 +179,10 @@
 			<%
 				}
 			%>
-		</nav>
-	</header>
-	
-	<%
+      </nav>
+    </header>
+    
+    <%
 		String messageContent = null;
 		if(session.getAttribute("messageContent")!=null){
 			messageContent=(String)session.getAttribute("messageContent");
@@ -191,25 +224,8 @@
 		session.removeAttribute("messageType");
 		}
 	%>
-	
-	<div id="container">
-		<nav>
-			<nav>
-				<h2>
-					<span></span> 민원
-				</h2>
-				<ul class="lnb_deps2">
-					<li><a href='gal_to_student_council.jsp'
-						class="jwxe_22350 active">학생회 건의사항</a></li>
-					<li><a href='gal_to_school.jsp' class="jwxe_22351 ">학교
-							건의사항</a></li>
-					<li><a href='introduce_gal.jsp' class="jwxe_22351 ">민원창구
-							소개</a></li>
-				</ul>
-			</nav>
-		</nav>
-		
-		<div id="modal-login" class="modal fade">
+
+	<div id="modal-login" class="modal fade">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -281,78 +297,38 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 		
-		<section class="content">
-			<header>
-				<h1>사진 업로드</h1>
-			</header>
-			<form method="post" action="./gallery" enctype="multipart/form-data">
-
-				<table class="table table-bordered">
-					<tbody>
-						<tr>
-							<th>사용자 아이디:</th>
-							<td colspan="2"><input type="text" name="userID"
-								value=<%=userID%>></td>
-						</tr>
-						<tr>
-							<th>사진 제목:</th>
-							<td><input type="text" placeholder="사진 제목"
-								name="galTitle" maxlength="50" class="form-control" /></td>
-						</tr>
-						<tr>
-							<th>사진 설명:</th>
-							<td><textarea cols="10" placeholder="사진 설명"
-									maxlength="2048" name="galContent" class="form-control"></textarea></td>
-						</tr>
-						<tr>
-							<th>사진 파일</th>
-							<td colspan="2"><input type="file" name="galFile"
-								class="file">
-								<div class="input-group col-xs-12">
-									<span class="input-group-addon"><i class="fa fa-image"></i></span>
-									<input type="text" class="form-control input-lg" disabled
-										placeholder="파일을 업로드해주세요."> <span
-										class="input-group-btn">
-										<button class="browse btn btn-primary input-lg" type="button">
-											<i class="fa fa-search"></i>파일 찾기
-										</button>
-									</span>
-								</div></td>
-						</tr>
-						<tr>
-							<td colspan="2"><input type="submit"
-								class="btn btn-primary pull-right" value="등록하기"></td>
-						</tr>
-
-					</tbody>
-				</table>
-			</form>
-
-		</section>
+	<div id="container">
+    <nav>
+      <nav>
+        <h2>
+          <span></span>
+            민원
+        </h2>
+        <ul class="lnb_deps2">
+             <li>
+               	<a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
+             </li>
+             <li>
+               	<a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
+            </li>
+            <li>
+              	<a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
+            </li>
+        </ul>
+      </nav>
+    </nav>
+    
+    
+    <div>
+    			
 	</div>
-
-<footer style="position:absolute; bottom:0px;">
+   
+   <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script type="text/javascript">
-		$(document).on('click', '.browse', function() {
-			var file = $(this).parent().parent().parent().find('.file');
-			file.trigger('click');
-		});
-		$(document).on(
-				'change',
-				'.file',
-				function() {
-					$(this).parent().find('.form-control').val(
-							$(this).val().replace(/C:\\fakepath\\/i, ''));
-				});
-	</script>
-
-</body>
+    
+  </body>
 </html>

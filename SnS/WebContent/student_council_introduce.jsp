@@ -6,7 +6,6 @@
   <head>
     <meta charset="utf-8">
     <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 학생회 소개</title>
-    <link rel="stylesheet" href="css/introduce.css">
     <link rel="stylesheet" href="css/PSB.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -195,19 +194,17 @@
         </ul>
       </nav>
     </nav>
-    </div>
-
-    <h1 id='title'>소프트웨어융합대학 학생회 소개</h1>
-
-    <img src="imgs/burnyoung_logo.png" id='sc_logo' alt="학생회 로고">
-
-    <p>
-      소프트웨어융합대학 제 3대 학생회 번영<br/>
-      학생회장 OOO 010-1234-5678 | sc_president@sejong.ac.kr<br/>
-      부학생회장 OOO 010-1234-5678 | sc_vice_president@sejong.ac.kr<br/>
-      학생회관 409호 | sejongsc3@gmail.com
-    </p>
     
+    <section class="content">
+      <header>
+        <h1>소프트웨어융합대학 학생회 소개</h1>
+      </header>
+      
+    </section>
+    
+    </div>
+    
+   
     <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
