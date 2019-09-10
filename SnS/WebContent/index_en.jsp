@@ -42,7 +42,7 @@
 
     <header>
       <nav id='first_area'>
-        <a href= 'index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <a href= 'index_en.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
          <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>Student Council <!-- 메뉴바 첫번째 - 학생회 카테고리 -->

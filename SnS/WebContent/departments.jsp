@@ -92,7 +92,13 @@
       </nav>
     </header>
     
-    <h2 id='departments_board'>과별 게시판</h2>
+    <section id='departments_board'>
+      <header>
+        <h2>과별 게시판</h2>
+      </header>
+    </section>
+    
+    </div>
     
     <section id='departments_area'>
     	 <div id='computer_science'><!--컴퓨터공학과 게시판-->
