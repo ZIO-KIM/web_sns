@@ -29,7 +29,7 @@
   	}
   %>  
     <script>
-      $.backstretch(["imgs/background_img_3.jpg",
+      $.backstretch(["imgs/KakaoTalk_20190906_154845107.jpg",
       "imgs/wallpaper-1812167.jpg"],
       {duration: 3000, fade: 900});
     </script>

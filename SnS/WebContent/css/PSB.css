@@ -156,6 +156,7 @@ th, td {
 .content {
     width: 75%;
     float:right;
+    margin-top: -200px; 
 }
 
 .content header h1{

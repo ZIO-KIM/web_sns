@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="complaints.ComplaintsDAO"%>
-<%@ page import="complaints.ComplaintsDTO"%>
+<%@ page import="gallery.GalleryDTO"%>
+<%@ page import="gallery.GalleryDAO"%>
 <%@ page import="user.UserDAO"%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
 <meta charset="utf-8">
-<title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+<title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리</title>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap"
 	rel="stylesheet">
 <link
@@ -39,20 +39,21 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		int cmpID = 0;
-		if (request.getParameter("cmpID") != null) {
-			cmpID = Integer.parseInt(request.getParameter("cmpID"));
+		int galID = 0;
+		if (request.getParameter("galID") != null) {
+			galID = Integer.parseInt(request.getParameter("galID"));
 		}
-		if (cmpID == 0) {
+		if (galID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='cmp_to_student_council.jsp'");
+			script.println("location.href='student_council_photo.jsp'");
 			script.println("</script>");
 		}
-		ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID, true);
-		ComplaintsDAO.hit(cmpID, true);
+		GalleryDTO gal = new GalleryDAO().getGal(galID);
+		GalleryDAO.hit(galID);
 		String fromProfile = new UserDAO().getProfile(userID);
+		String galFile = "http://localhost:8080/SnS/upload/" + gal.getGalRealFile();
 	%>
 
 	<header>
@@ -74,9 +75,9 @@
 
             <li>민원 <!-- 메뉴바 두번째 - 민원 카테고리 -->
               <ul id='submenu'>
-                <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
-                <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
+                <li><a href='gal_to_student_council.jsp'>학생회 건의사항</a></li>
+                <li><a href='gal_to_school.jsp'>학교 건의사항</a></li>
+                <li><a href='introduce_gal.jsp'>민원창구 소개</a></li>
               </ul>
             </li>
 
@@ -137,11 +138,11 @@
 					<span></span> 민원
 				</h2>
 				<ul class="lnb_deps2">
-					<li><a href='cmp_to_student_council.jsp'
+					<li><a href='gal_to_student_council.jsp'
 						class="jwxe_22350 active">학생회 건의사항</a></li>
-					<li><a href='cmp_to_school.jsp' class="jwxe_22351 ">학교
+					<li><a href='gal_to_school.jsp' class="jwxe_22351 ">학교
 							건의사항</a></li>
-					<li><a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구
+					<li><a href='introduce_gal.jsp' class="jwxe_22351 ">민원창구
 							소개</a></li>
 				</ul>
 			</nav>
@@ -220,38 +221,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id ="modal">신고 하기</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-				<form action="reportAction.jsp" method="post">
-					<div class="form-group">
-						<label>신고제목</label>
-						<input type="text" name="reportTitle" class="form-control" maxlength="50">
-					</div>
-					<div class="form-group">
-						<label>신고 내용</label>
-						<textarea name="reportContent" class="form-control" maxlength="2048"></textarea>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button type="submit" class="btn btn-danger">신고하기</button>
-					</div>
-				</form>
-			</div>
-			</div>
-		</div>
-	</div>
-
-	
+		</div>	
 
 		<div class="container">
 			<div class="row">
@@ -260,19 +230,19 @@
 					<thead>
 						<tr>
 							<th colspan="3"
-								style="background-color: #eeeeee; text-align: center;">게시판
-								글보기</th>
+								style="background-color: #eeeeee; text-align: center;">갤러리
+							</th>
 						</tr>
 					<thead>
 					<tbody>
 						<tr>
-							<td style="width: 20%;">학생회 민원</td>
-							<td colspan="2"><%=cmp.getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+							<td style="width: 20%;">제목:</td>
+							<td colspan="2"><%=gal.getGalTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
 					.replaceAll("\n", "<br>")%></td>
 						</tr>
 						<tr>
 							<td>작성자</td>
-							<td colspan="2"><%=cmp.getUserID()%></td>
+							<td colspan="2"><%=gal.getUserID()%></td>
 						</tr>
 						<tr>
 							<td>작성자 이미지</td>
@@ -280,110 +250,43 @@
 						</tr>
 						<tr>
 							<td>작성일자</td>
-							<td colspan="2"><%=cmp.getCmpDate().substring(0, 11) + cmp.getCmpDate().substring(11, 13) + "시"
-					+ cmp.getCmpDate().substring(14, 16) + "분"%></td>
-						</tr>
-						<tr>
-							<td>동의 수</td>
-							<td colspan="2"><%=cmp.getAgreeCount()%></td>
+							<td colspan="2"><%=gal.getGalDate().substring(0, 11) + gal.getGalDate().substring(11, 13) + "시"
+					+ gal.getGalDate().substring(14, 16) + "분"%></td>
 						</tr>
 						<tr>
 							<td>조회 수</td>
-							<td colspan="2"><%=cmp.getCmpHit()%></td>
+							<td colspan="2"><%=gal.getGalHit()%></td>
+						</tr>
+						<tr>
+							<td><img style="width: 200px;" class="media-object" src="<%=galFile%>"></td>
 						</tr>
 						<tr>
 							<td style="line-height: 300px;">내용</td>
-							<td colspan="2" style="height: 300px; text-align: left;"><%=cmp.getCmpContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+							<td colspan="2" style="height: 300px; text-align: left;"><%=gal.getGalContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
 					.replaceAll("\n", "<br>")%></td>
 						</tr>
 
 					</tbody>
 				</table>
-				<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a> <a onclick="return confirm('해당 민원에 동의하시겠습니까?')"
-					href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmp.getCmpID()%>"
-					class="btn btn-primary pull-right"
-					style="background-color: #c70027;">추천 </a> <a
-					href="cmp_to_student_council_Reply.jsp?cmpID=<%=cmp.getCmpID()%>"
-					class="btn btn-primary pull-right">답변 </a>
-					<a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
 				<%
-					if (userID != null && userID.equals(cmp.getUserID())) {
+					if (userID != null && userID.equals(gal.getUserID())) {
 				%>
 				<a
-					href="cmp_to_student_council_Update.jsp?cmpID=<%=cmp.getCmpID()%>"
+					href="gal_to_student_council_Update.jsp?galID=<%=gal.getGalID()%>"
 					class="btn btn-primary">수정</a> <a
 					onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="deleteAction.jsp?cmpID=<%=cmp.getCmpID()%>"
+					href="deleteAction.jsp?galID=<%=gal.getGalID()%>"
 					class="btn btn-primary">삭제</a>
 				<%
 					}
 				%>
-				<br> <br>
-				<%
-					ComplaintsDAO cmpDAO = new ComplaintsDAO();
-					ArrayList<ComplaintsDTO> list = cmpDAO.getReply(cmp.getCmpGroup(), true);
-					for (int i = 0; i < list.size(); i++) {
-				%>
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<th colspan="3"
-								style="background-color: #eeeeee; text-align: center;">민원
-								답변</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td style="width: 20%;">답변 제목</td>
-							<td colspan="2">
-								<%
-									for (int j = 0; j < list.get(i).getCmpLevel(); j++) {
-								%> <span>Re: </span> <%
- 	}
- %><%=cmp.getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
-						.replaceAll("\n", "<br>")%> &nbsp;/&nbsp;<%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt").replaceAll("\n", "<br>")%></td>
-						</tr>
-						<tr>
-							<td>답변자</td>
-							<td colspan="2"><%=list.get(i).getUserID()%></td>
-						</tr>
-						<tr>
-							<td>답변일자</td>
-							<td colspan="2"><%=list.get(i).getCmpDate().substring(0, 11) + list.get(i).getCmpDate().substring(11, 13) + "시"
-						+ list.get(i).getCmpDate().substring(14, 16) + "분"%></td>
-						</tr>
-						<tr>
-							<td style="line-height: 300px;">내용</td>
-							<td colspan="2" style="height: 300px; text-align: left;"><%=list.get(i).getCmpContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt").replaceAll("\n", "<br>")%></td>
-						</tr>
-						</tbody>
-				</table>
-						<%
-							if (userID != null && userID.equals(list.get(i).getUserID())) {
-						%>
-						<a
-							href="cmp_to_student_council_Update.jsp?cmpID=<%=list.get(i).getCmpID()%>"
-							class="btn btn-primary">수정</a>
-						<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-							href="deleteAction.jsp?cmpID=<%=list.get(i).getCmpID()%>"
-							class="btn btn-primary">삭제</a><a
-					href="cmp_to_student_council_Reply.jsp?cmpID=<%=list.get(i).getCmpID()%>"
-					class="btn btn-primary pull-right">답변</a><br><br>							
-						<%
-							}
-							}
-						%>
 					
 			</div>
 		</div>
 
 	</div>
 	
-</body>
-	<footer style="position:fixed; bottom:0px;">
+	<footer style="position:absolute; bottom:0px;">
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>

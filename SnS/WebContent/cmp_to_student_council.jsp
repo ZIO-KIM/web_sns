@@ -128,28 +128,6 @@
 			%>
       </nav>
     </header>
-    
-    <div id="container">
-    <nav>
-      <nav>
-        <h2>
-          <span></span>
-            민원
-        </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
-             </li>
-             <li>
-               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
-            </li>
-            <li>
-              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
-            </li>
-        </ul>
-      </nav>
-    </nav>
-    </div>
 
 	<div id="modal-login" class="modal fade">
 			<div class="modal-dialog modal-sm">
@@ -224,6 +202,28 @@
 				</div>
 			</div>
 		</div>
+		
+	<div id="container">
+    <nav>
+      <nav>
+        <h2>
+          <span></span>
+            민원
+        </h2>
+        <ul class="lnb_deps2">
+             <li>
+               	<a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
+             </li>
+             <li>
+               	<a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
+            </li>
+            <li>
+              	<a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
+            </li>
+        </ul>
+      </nav>
+    </nav>
+    </div>
 
 		<section class="content">
 			<header>
@@ -335,5 +335,6 @@
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+    
   </body>
 </html>
