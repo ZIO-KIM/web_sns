@@ -1,20 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 홍보 :: 교내 공모전 :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항 :: 글쓰기</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/PSB.css">
+   	<style type="text/css">
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+
+.file {
+	visibility: hidden;
+	position: absolute;
+}
+</style>
+    <meta name="viewport" content="device-width, initial-scale=1">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </head>
   <body>
-       <header>
+  
+  <%
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  	if(userID==null){
+        PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 해주세요.');");
+        script.println("location.href='userLogin.jsp';");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
+  %>  
+    <header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
@@ -69,67 +119,111 @@
         </div>
         
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="login_page.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
+        
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+
       </nav>
     </header>
-
     <div id="container">
     <nav>
       <nav>
         <h2>
           <span></span>
-            홍보
+            민원
         </h2>
         <ul class="lnb_deps2">
              <li>
-               <a href="school_contests.jsp" class="jwxe_22350 active">교내 공모전</a>
+               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
              </li>
              <li>
-               <a href="not_school_contests.jsp" class="jwxe_22351 ">교외 공모전</a>
+               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
+            </li>
+            <li>
+              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
             </li>
         </ul>
       </nav>
     </nav>
+    
+    
+    
     <section class="content">
       <header>
         <h1>글쓰기</h1>
       </header>
+      <form method="post" action="./complaints" enctype="multipart/form-data">
+      <div class="form-group col-sm-3">
+      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
+      	<select name="cmpDivide" class="form-control">
+      		<option value="선택 안함" selected>선택 안함</option>
+      		<option value="컴퓨터공학과">컴퓨터공학과</option>
+      		<option value="정보보호학과" >정보보호학과</option>
+      		<option value="소프트웨어학과">소프트웨어학과</option>
+      		<option value="데이터사이언스학과">데이터사이언스학과</option>
+      		<option value="지능기전공학부">지능기전공학부</option>
+      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
+      		<option value="만화애니메이션전공">만화애니메이션전공</option>
+      	</select>
+      </div>
       <table class="table table-bordered">
         <tbody>
-          <form>
+        	<tr>
+				<th>작성자 ID</th>
+				<td colspan="2"><input type="text" name="userID"
+						value=<%=userID%>></td>
+			</tr>
             <tr>
                <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
             </tr>
             <tr>
                <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
             </tr>
             <tr>
-               <th>첨부파일: </th>
-               <td><input type="text" placeholder="파일을 선택하세요. " name="filename" class="form-control"/></td>
-            </tr>
-            <tr>
-               <th>비밀번호: </th>
-               <td><input type="password" placeholder="비밀번호를 입력하세요" class="form-control"/></td>
-            </tr>
+				<th>첨부파일: </th>
+				<td colspan="2"><input type="file" name="cmpFile" class="file">
+					<div class="input-group col-xs-12">
+						<span class="input-group-addon"><i class="fa fa-image"></i></span>
+						<input type="text" class="form-control input-lg" disabled placeholder="파일을 업로드하세요.">
+						<span class="input-group-btn">
+							<button class="browse btn btn-primary input-lg" type="button">
+								<i class="fa fa-search"></i>파일찾기
+							</button>
+						</span>
+					</div>
+				</td>
+			</tr>
             <tr>
                <td colspan="2">
-                 <input type="button" value="등록" onclick="#" class="pull-right"/>
-                 <input type="button" value="reset" class="pull-left"/>
-                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
+                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
                </td>
              </tr>
-          </form>
+          
         </tbody>
       </table>
-    </section>
-    </div>
-    
-    <footer>
+      </form>
+      </section>
+      </div>
+      
+      <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
-    <script src="js/bootstrap.js"></script>
+    
+    <script type="text/javascript">
+		$(document).on('click', '.browse', function() {
+			var file = $(this).parent().parent().parent().find('.file');
+			file.trigger('click');
+		});
+		$(document).on(
+				'change',
+				'.file',
+				function() {
+					$(this).parent().find('.form-control').val(
+							$(this).val().replace(/C:\\fakepath\\/i, ''));
+				});
+	</script>
+    
   </body>
 </html>
