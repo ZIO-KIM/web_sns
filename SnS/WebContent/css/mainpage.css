@@ -106,7 +106,6 @@
 #title_animation { /* ���씠�� �븷�땲硫붿씠�뀡 吏��젙 */
   animation-name: slidein;
   animation-duration: 3s;
-  animation-delay:10s;
 }
 
 @keyframes slidein { /* slidein �븷�땲硫붿씠�뀡 �냽�꽦 吏��젙 */
@@ -231,9 +230,3 @@ footer {
 #board {
 	text-align: center; 
 }
-#start_button{
-	margin:auto;
-	padding-top:30px;
-	padding-left:40px;
-}
-
