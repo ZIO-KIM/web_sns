@@ -3,6 +3,7 @@ package user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import complaints.ComplaintsDTO;
 import util.DatabaseUtil;
@@ -51,6 +52,26 @@ public class UserDAO {
 			pstmt.setString(6,user.getUserProfile());
 			pstmt.setString(7,user.getFindPwQuestion());
 			pstmt.setString(8,user.getFindPwAnswer());
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null)conn.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		return -1;
+	}
+	
+	public int kick(String userID) {
+		String SQL = "DELETE FROM USER WHERE userID=?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1,userID);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -275,5 +296,33 @@ public class UserDAO {
 			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
 		}
 		return -1;
+	}
+	
+	public ArrayList<UserDTO> getList(){
+		String SQL ="SELECT * FROM user ORDER BY userID DESC";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		ArrayList<UserDTO> list =new ArrayList<UserDTO>();
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			rs= pstmt.executeQuery();
+			while(rs.next()) {
+				UserDTO userDTO =new UserDTO();
+				userDTO.setUserID(rs.getString(1));
+				userDTO.setUserName(rs.getString(3));
+				userDTO.setUserEmail(rs.getString(4));
+				userDTO.setUserProfile(rs.getString(7));
+				list.add(userDTO);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return list;
 	}
 }

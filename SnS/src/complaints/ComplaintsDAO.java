@@ -183,6 +183,7 @@ public class ComplaintsDAO {
 		}
 		return list;
 	}
+	
 	public ArrayList<ComplaintsDTO> getSearch(String searchType, String search, int pageNumber,boolean isStudent){
 		String SQL="";
 		ArrayList<ComplaintsDTO> searchList=null;
