@@ -276,7 +276,7 @@
 						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
 						<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
 					</select>
-					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요">
+					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
 					<button type="submit" class="btn mx-1 mt-2">검색</button>
 				</form>
 			</header>
