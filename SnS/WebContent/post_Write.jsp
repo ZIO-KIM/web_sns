@@ -5,7 +5,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항 :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 글쓰기 </title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -58,11 +58,15 @@
         PrintWriter script =response.getWriter();
         script.println("<script>");
         script.println("alert('로그인을 해주세요.');");
-        script.println("location.href='userLogin.jsp';");
+        script.println("history.back()");
         script.println("</script>");
         script.close();
         return;
   	}
+  	int boardID=0;
+  	if(request.getParameter("boardID")!=null){ 
+		  boardID=Integer.parseInt(request.getParameter("boardID"));
+	}
   %>  
     <header>
       <nav id='first_area'>
@@ -124,47 +128,14 @@
 
       </nav>
     </header>
+    
     <div id="container">
-    <nav>
-      <nav>
-        <h2>
-          <span></span>
-            민원
-        </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
-             </li>
-             <li>
-               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
-            </li>
-            <li>
-              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
-            </li>
-        </ul>
-      </nav>
-    </nav>
-    
-    
-    
+        
     <section class="content">
       <header>
         <h1>글쓰기</h1>
       </header>
-      <form method="post" action="./complaints" enctype="multipart/form-data">
-      <div class="form-group col-sm-3">
-      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
-      	<select name="cmpDivide" class="form-control">
-      		<option value="선택 안함" selected>선택 안함</option>
-      		<option value="컴퓨터공학과">컴퓨터공학과</option>
-      		<option value="정보보호학과" >정보보호학과</option>
-      		<option value="소프트웨어학과">소프트웨어학과</option>
-      		<option value="데이터사이언스학과">데이터사이언스학과</option>
-      		<option value="지능기전공학부">지능기전공학부</option>
-      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
-      		<option value="만화애니메이션전공">만화애니메이션전공</option>
-      	</select>
-      </div>
+      <form method="post" action="./post" enctype="multipart/form-data">
       <table class="table table-bordered">
         <tbody>
         	<tr>
@@ -172,17 +143,22 @@
 				<td colspan="2"><input type="text" name="userID"
 						value=<%=userID%>></td>
 			</tr>
+			<tr>
+				<th>작성자 ID</th>
+				<td colspan="2"><input type="text" name="boardID"
+						value=<%=boardID%>></td>
+			</tr>
             <tr>
                <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="postTitle" maxlength="50" class="form-control"/></td>
             </tr>
             <tr>
                <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="postContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
             </tr>
             <tr>
 				<th>첨부파일: </th>
-				<td colspan="2"><input type="file" name="cmpFile" class="file">
+				<td colspan="2"><input type="file" name="postFile" class="file">
 					<div class="input-group col-xs-12">
 						<span class="input-group-addon"><i class="fa fa-image"></i></span>
 						<input type="text" class="form-control input-lg" disabled placeholder="파일을 업로드하세요.">

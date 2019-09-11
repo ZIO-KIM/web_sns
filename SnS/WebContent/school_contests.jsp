@@ -156,7 +156,7 @@
 			</div>
 		</div>
 		<script>
-			$('messageModal').modal("show");
+			$('#messageModal').modal("show");
 		</script>
 	<%
 		session.removeAttribute("messageContent");
@@ -293,7 +293,7 @@
          %>
 					<tr>
 						<td><%=list.get(i).getPostID() %></td>
-						<td><a href="school_contets_View.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
+						<td><a href="post_View.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
 							style="text-decoration: none"><%=list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
 						<td><%=list.get(i).getUserID() %></td>
 						<td><%=list.get(i).getPostDate().substring(0,11)+list.get(i).getPostDate().substring(11,13)+"시"+list.get(i).getPostDate().substring(14,16)+"분" %></td>
@@ -307,7 +307,7 @@
 			</table>
 			<hr>
 			<a class="btn btn-default pull-right"
-				href="school_contest_Write.jsp">글쓰기</a>
+				href="post_Write.jsp?boardID=<%=boardID%>">글쓰기</a>
 			<br><br>
 			<%
 				if(search==null){
@@ -321,7 +321,7 @@
           	if(startPage!=1){
           %>
 					<li><a
-						href="cmp_to_student_council.jsp?pageNumber=<%=startPage-1%>"
+						href="school_contets.jsp?pageNumber=<%=startPage-1%>"
 						class="btn btn-success">이전</a></li>
 					<%
           	}else{
@@ -330,24 +330,24 @@
 					<%
           	}for(int i = startPage;i<pageNumber;i++){
         	%>
-					<li><a href="cmp_to_student_council.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<li><a href="school_contets.jsp?pageNumber=<%=i %>"><%=i %></a></li>
 					<%      			
           		}
           	%>
 					<li><a class="active"
-						href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
+						href="school_contets.jsp?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
 					<%
 				for(int i = pageNumber+1;i<=targetPage+pageNumber;i++){
 					if(i<startPage+10){
 			%>
-					<li><a href="cmp_to_student_council.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<li><a href="school_contets.jsp?pageNumber=<%=i %>"><%=i %></a></li>
 					<%
 					}
 				}
 				if(targetPage+pageNumber>startPage+9){
 			%>
 					<li><a
-						href="cmp_to_student_council.jsp?pageNumber=<%=startPage+10 %>">다음</a></li>
+						href="school_contets.jsp?pageNumber=<%=startPage+10 %>">다음</a></li>
 					<%
 				}else{
 			%>
