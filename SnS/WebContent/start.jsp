@@ -25,7 +25,7 @@
       $.backstretch(["imgs/drop_1.jpg","imgs/drop_2.jpg","imgs/drop_3.jpg","imgs/drop_4.jpg","imgs/drop_5.jpg",
          "imgs/drop_6.jpg","imgs/drop_7.jpg","imgs/drop_7.jpg","imgs/start_button.jpg"],
          {duration:-10, fade: 900});
-   
+  
       $(window).on("backstretch.before", function (e, instance, index) {
          // If we wanted to stop the slideshow after it reached the end
          if (index === instance.images.length - 1) {

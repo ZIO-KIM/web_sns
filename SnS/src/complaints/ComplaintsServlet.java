@@ -54,7 +54,7 @@ public class ComplaintsServlet extends HttpServlet {
 		if(cmpTitle==null || cmpContent==null||cmpTitle.equals("")||cmpContent.equals("")) {
 			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
-			response.sendRedirect("student_council_photo_Write.jsp");
+			response.sendRedirect("cmp_to_student_council_Write.jsp");
 			return;
 		}
 		File file = multi.getFile("cmpFile");

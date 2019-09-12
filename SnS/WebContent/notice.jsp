@@ -1,42 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="complaints.ComplaintsDAO" %>
-<%@ page import="complaints.ComplaintsDTO" %>
+<%@ page import="post.PostDAO" %>
+<%@ page import="post.PostDTO" %>
 <%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <meta http-equiv="Pragma" content="no-cache">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+    <title>세종대학교 소프트웨어융합대학 :: 공지사항</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/PSB.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-
-	<style type="text/css">
-		a, a:hover{
-			color:#000000;
-			text-decoration:none;
-		}
-	</style>
-
   </head>
   <body>
 
 	<%
-		request.setCharacterEncoding("UTF-8");
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
@@ -52,6 +40,10 @@
 		}
 		if(request.getParameter("search")!=null){
 			search=request.getParameter("search");
+		}
+		int boardID =1;
+		if (request.getParameter("boardID") != null) {
+			boardID = Integer.parseInt(request.getParameter("boardID"));
 		}
 	%>
 
@@ -171,8 +163,8 @@
 		session.removeAttribute("messageType");
 		}
 	%>
-
-	<div id="modal-login" class="modal fade">
+    
+    <div id="modal-login" class="modal fade">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -245,33 +237,30 @@
 				</div>
 			</div>
 		</div>
-		
-	<div id="container">
+
+    <div id="container">
     <nav>
       <nav>
         <h2>
           <span></span>
-            민원
+            홍보
         </h2>
         <ul class="lnb_deps2">
              <li>
-               	<a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
+               <a href="school_contests.jsp" class="jwxe_22350 active">교내 공모전</a>
              </li>
              <li>
-               	<a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
-            </li>
-            <li>
-              	<a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
+               <a href="not_school_contests.jsp" class="jwxe_22351 ">교외 공모전</a>
             </li>
         </ul>
       </nav>
     </nav>
-    </div>
-
-		<section class="content">
+    
+    
+    <section class="content">
 			<header>
-				<h1>학생회 건의사항</h1>
-				<form method="get" action="cmp_to_student_council.jsp" class="form-inline mt-3">
+				<h1>공지사항</h1>
+				<form method="get" action="school_contests.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
 						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
 						<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
@@ -293,23 +282,23 @@
 				</thead>
 				<tbody>
 					<%
-            ComplaintsDAO cmpDAO = new ComplaintsDAO();
-			ArrayList<ComplaintsDTO> list = null;
+            PostDAO postDAO = new PostDAO();
+			ArrayList<PostDTO> list = null;
 			if(search==null){
-				list = cmpDAO.getList(pageNumber,true);	
+				list = postDAO.getList(pageNumber,boardID);	
 			}else{
-				list=cmpDAO.getSearch(searchType,search,pageNumber,true);
+				list=postDAO.getSearch(searchType,search,pageNumber,boardID);
 			}
             for(int i=0; i<list.size();i++){
          %>
 					<tr>
-						<td><%=list.get(i).getCmpID() %></td>
-						<td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"
-							style="text-decoration: none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+						<td><%=list.get(i).getPostID() %></td>
+						<td><a href="post_View.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
+							style="text-decoration: none"><%=list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
 						<td><%=list.get(i).getUserID() %></td>
-						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
+						<td><%=list.get(i).getPostDate().substring(0,11)+list.get(i).getPostDate().substring(11,13)+"시"+list.get(i).getPostDate().substring(14,16)+"분" %></td>
 						<td><%=list.get(i).getAgreeCount() %></td>
-						<td><%=list.get(i).getCmpHit() %></td>
+						<td><%=list.get(i).getPostHit() %></td>
 					</tr>
 					<%
             }
@@ -318,7 +307,7 @@
 			</table>
 			<hr>
 			<a class="btn btn-default pull-right"
-				href="cmp_to_student_council_Write.jsp">글쓰기</a>
+				href="post_Write.jsp?boardID=<%=boardID%>">글쓰기</a>
 			<br><br>
 			<%
 				if(search==null){
@@ -328,11 +317,11 @@
 					<%
           	int startPage=(pageNumber/10)*10+1;
           	if(pageNumber%10==0) startPage-=10;
-          	int targetPage =cmpDAO.targetPage(pageNumber,true);
+          	int targetPage =postDAO.targetPage(pageNumber,boardID);
           	if(startPage!=1){
           %>
 					<li><a
-						href="cmp_to_student_council.jsp?pageNumber=<%=startPage-1%>"
+						href="school_contets.jsp?pageNumber=<%=startPage-1%>"
 						class="btn btn-success">이전</a></li>
 					<%
           	}else{
@@ -341,24 +330,24 @@
 					<%
           	}for(int i = startPage;i<pageNumber;i++){
         	%>
-					<li><a href="cmp_to_student_council.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<li><a href="school_contets.jsp?pageNumber=<%=i %>"><%=i %></a></li>
 					<%      			
           		}
           	%>
 					<li><a class="active"
-						href="cmp_to_student_council.jsp?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
+						href="school_contets.jsp?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
 					<%
 				for(int i = pageNumber+1;i<=targetPage+pageNumber;i++){
 					if(i<startPage+10){
 			%>
-					<li><a href="cmp_to_student_council.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<li><a href="school_contets.jsp?pageNumber=<%=i %>"><%=i %></a></li>
 					<%
 					}
 				}
 				if(targetPage+pageNumber>startPage+9){
 			%>
 					<li><a
-						href="cmp_to_student_council.jsp?pageNumber=<%=startPage+10 %>">다음</a></li>
+						href="school_contets.jsp?pageNumber=<%=startPage+10 %>">다음</a></li>
 					<%
 				}else{
 			%>
@@ -372,11 +361,12 @@
 			<br>
 			<br>
 		</section>
-   
-   <footer>
+		
+		
+	</div>
+    <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
-    
   </body>
 </html>
