@@ -4,9 +4,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import post.PostDTO;
 import util.DatabaseUtil;
 
 public class PageDAO {
+	public PageDTO getPage() {
+		String SQL="";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		try {
+			SQL = "SELECT * FROM page";
+			conn=DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				PageDTO pageDTO = new PageDTO();
+				pageDTO.setPageLogo(rs.getString(1));
+				pageDTO.setPageImage(rs.getString(2));
+				return pageDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return null;
+	}
+	
 	public String searchPageLogo() {//파일의 이름 불러오는 함수
 		String SQL = "SELECT pageLogo FROM page";
 		Connection conn=null;
@@ -103,9 +130,9 @@ public class PageDAO {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("pageImage").equals("")) {
-					return "http://localhost:8080/SnS/imgs/favicon.ico";
+					return "imgs/favicon.ico";
 				}
-				return "http://localhost:8080/SnS/upload/"+rs.getString("pageImage");
+				return "upload/"+rs.getString("pageImage");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -114,7 +141,7 @@ public class PageDAO {
 			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
 			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
 		}
-		return "http://localhost:8080/SnS/imgs/favicon.ico";
+		return "imgs/favicon.ico";
 	}
 	public int ImageUpdate(String pageImage) {
 		String SQL = "UPDATE page SET pageImage = ?";

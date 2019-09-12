@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="user.UserDAO" %>   
+<%@ page import="user.UserDAO" %>
+<%@ page import="page.PageDAO" %>
+<%@ page import="page.PageDTO" %>
+<%
+	PageDAO pageDAO= new PageDAO();
+%>   
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>세종대학교 소프트웨어융합대학</title>
+    <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -42,7 +48,7 @@
 
     <header>
       <nav id='first_area'>
-        <a href= 'index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
          <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
