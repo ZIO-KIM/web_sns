@@ -47,7 +47,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='cmp_to_student_council.jsp'");
+			script.println("history.back()");
 			script.println("</script>");
 			script.close();
 		}
@@ -351,10 +351,10 @@
 					if (userID != null && userID.equals(post.getUserID())) {
 				%>
 				<a
-					href="post_Update.jsp?cmpID=<%=post.getPostID()%>"
+					href="post_Update.jsp?postID=<%=post.getPostID()%>"
 					class="btn btn-primary">수정</a> <a
 					onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="deleteAction.jsp?cmpID=<%=post.getPostID()%>"
+					href="deleteAction.jsp?postID=<%=post.getPostID()%>"
 					class="btn btn-primary">삭제</a>
 				<%
 					}

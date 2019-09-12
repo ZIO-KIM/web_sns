@@ -2,6 +2,7 @@ package post;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +45,11 @@ public class PostServlet extends HttpServlet {
 		if(postTitle==null || postContent==null||postTitle.equals("")||postContent.equals("")) {
 			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
-			response.sendRedirect("student_council_photo_Write.jsp");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("history.back();");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		File file = multi.getFile("postFile");
@@ -60,7 +65,11 @@ public class PostServlet extends HttpServlet {
 
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent", "게시글 작성이 완료되었습니다.");
-		response.sendRedirect("school_contests.jsp");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("history.go(-2);");
+		script.println("</script>");
+		script.close();
 		return;
 	}
 }
