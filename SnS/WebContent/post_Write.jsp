@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="board.BoardDTO" %>
+<%@ page import="board.BoardDAO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -67,6 +69,18 @@
   	if(request.getParameter("boardID")!=null){ 
 		  boardID=Integer.parseInt(request.getParameter("boardID"));
 	}
+  	BoardDAO boardDAO = new BoardDAO();
+  	int boardAvailable = boardDAO.getBoard(boardID).getBoardAvailable();
+  	if(boardAvailable == 0){
+  		PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('비활성화된 게시판입니다.');");
+        script.println("history.back()");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
+  	
   %>  
     <header>
       <nav id='first_area'>

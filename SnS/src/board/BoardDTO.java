@@ -4,6 +4,7 @@ public class BoardDTO {
 	int boardID;
 	String boardName;
 	String boardURL;
+	int boardAvailable;
 	
 	public int getBoardID() {
 		return boardID;
@@ -23,14 +24,20 @@ public class BoardDTO {
 	public void setBoardURL(String boardURL) {
 		this.boardURL = boardURL;
 	}
-	
+	public int getBoardAvailable() {
+		return boardAvailable;
+	}
+	public void setBoardAvailable(int boardAvailable) {
+		this.boardAvailable = boardAvailable;
+	}
 	public BoardDTO() {
 
 	}
 	
-	public BoardDTO(int boardID, String boardName, String boardURL) {
+	public BoardDTO(int boardID, String boardName, String boardURL, int boardAvailable) {
 		this.boardID = boardID;
 		this.boardName = boardName;
 		this.boardURL = boardURL;
+		this.boardAvailable = boardAvailable;
 	}
 }

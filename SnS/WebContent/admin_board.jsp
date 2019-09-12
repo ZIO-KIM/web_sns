@@ -92,6 +92,9 @@
       			<li class="nav-item">
        	 		<a class="nav-link" href="admin_board.jsp">Board</a>
      	 		</li>
+     	 		<li class="nav-item">
+       	 		<a class="nav-link" href="admin_customizing.jsp">Customizing</a>
+     	 		</li>
       			<li class="nav-item dropdown" style="float:right !important;">
         			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          	 		SJSW Link
@@ -172,9 +175,9 @@
     	<div class="card card-plain table-plain-bg">
 			<div class="card-header ">
 				<h4 class="card-title">게시판 관리</h4>
-				<p style="display:inline-block;"class="card-category">게시판을 개설하거나 삭제할 수 있습니다.</p>
-				<button type="button" style="display:inline-block; float:right;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createModal">게시판 개설</button>
-
+				<p style="display:inline-block;"class="card-category">게시판을 개설하거나 수정, 삭제할 수 있습니다.</p>
+				<button type="button" style="display:inline-block;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">게시판 수정하기</button>
+				<button type="button" style="display:inline-block; margin-right:1%;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createModal">게시판 개설하기</button>				
 
 				<div class="modal fade" id="createModal" tabindex="-1"
 					role="dialog" aria-labelledby="createModal"
@@ -213,6 +216,43 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal fade" id="updateModal" tabindex="-1"
+					role="dialog" aria-labelledby="updateModal"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="updateModalLabel">게시판 업데이트</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form action="./boardUpdate" method="post">
+							<div class="modal-body">
+									<div class="form-group">
+										<label for="board-id" class="col-form-label">변경할 게시판의 ID:</label>
+										<input type="text" class="form-control" name="boardID">
+									</div>
+									<div class="form-group">
+										<label for="board-title" class="col-form-label">변경할 게시판의 제목:</label>
+										<input type="text" class="form-control" name="boardTitle">
+									</div>
+									<div class="form-group">
+										<label for="board-title" class="col-form-label">변경할 게시판의 URL:</label>
+										<input type="text" class="form-control" name="boardURL">
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Update Board
+								</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="card-body table-full-width table-responsive">
 				<table class="table table-hover">
@@ -221,7 +261,8 @@
 						<th>ID</th>
 						<th>Name</th>
 						<th>Link</th>
-						<th>Delete</th>
+						<th>Deactivate</th>
+						<th>Activate</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -232,8 +273,9 @@
 						<tr>
 							<td><%=list.get(i).getBoardID()%></td>
 							<td><%=list.get(i).getBoardName()%></td>
-							<td><%=list.get(i).getBoardURL()%></td>
-							<td><a onclick="return confirm('정말로 삭제하시겠습니까?')" href="#>" class="btn btn-danger">삭제</a></td>
+							<td><a href="<%=list.get(i).getBoardURL()%>"><%=list.get(i).getBoardURL()%></a></td>
+							<td><a onclick="return confirm('정말로 게시판을 비활성화시키겠습니까?')" href="admin_board_Ban.jsp?boardID=<%=list.get(i).getBoardID() %>" class="btn btn-danger">비활성화</a></td>
+							<td><a onclick="return confirm('정말로 게시판을 활성화시키겠습니까?')" href="admin_board_unBan.jsp?boardID=<%=list.get(i).getBoardID() %>" class="btn btn-success">활성화</a></td>
 						</tr>
 						<%
 							}

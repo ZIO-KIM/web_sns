@@ -167,7 +167,6 @@
                				<button class="browse btn btn-primary input-lg" type="button"><i class="fa fa-search"></i>파일 찾기</button>
                			</span>
                		</div>
-					
                </td>
             </tr>
             <tr>

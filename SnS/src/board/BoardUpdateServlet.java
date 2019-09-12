@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import board.BoardDAO;
 import board.BoardDTO;
 
-public class BoardCreateServlet extends HttpServlet {
+public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
@@ -48,10 +48,10 @@ public class BoardCreateServlet extends HttpServlet {
 			return;
 		}
 		BoardDAO boardDAO = new BoardDAO();
-		boardDAO.create(new BoardDTO(boardID,boardTitle,boardURL,1));
+		boardDAO.update(new BoardDTO(boardID,boardTitle,boardURL,1));
 
 		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "게시판 개설이 완료되었습니다.");
+		session.setAttribute("messageContent", "게시판 수정이 완료되었습니다.");
 		response.sendRedirect("admin_board.jsp");
 		return;
 	}

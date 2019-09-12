@@ -4,6 +4,8 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
+<%@ page import="board.BoardDTO" %>
+<%@ page import="board.BoardDAO" %>
 <%@ page import="user.UserDAO"%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -60,6 +62,17 @@
 		PostDTO post = postDAO.getPost(postID, boardID);
 		postDAO.hit(postID, boardID);
 		String fromProfile = new UserDAO().getProfile(userID);
+		BoardDAO boardDAO = new BoardDAO();
+	  	int boardAvailable = boardDAO.getBoard(boardID).getBoardAvailable();
+	  	if(boardAvailable == 0){
+	  		PrintWriter script =response.getWriter();
+	        script.println("<script>");
+	        script.println("alert('비활성화된 게시판입니다.');");
+	        script.println("history.back()");
+	        script.println("</script>");
+	        script.close();
+	        return;
+	  	}
 	%>
 
 	<header>
@@ -173,7 +186,7 @@
 			</div>
 		</div>
 		<script>
-			$('messageModal').modal("show");
+			$('#messageModal').modal("show");
 		</script>
 	<%
 		session.removeAttribute("messageContent");
