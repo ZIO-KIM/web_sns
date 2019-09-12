@@ -32,7 +32,7 @@ public class PostServlet extends HttpServlet {
 		}catch(Exception e) {
 			request.getSession().setAttribute("messageType","오류 메시지");
 			request.getSession().setAttribute("mewssageContent", "파일 크기는 10MB를 넘을 수 없습니다.");
-			response.sendRedirect("post_to_student_council_Write.jsp");
+			/* response.sendRedirect("post_to_student_council_Write.jsp"); */
 			return;
 		}
 		HttpSession session = request.getSession();
