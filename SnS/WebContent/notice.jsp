@@ -4,6 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
+<%@ page import="board.BoardDAO" %>
+<%@ page import="board.BoardDTO" %>
 <%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -45,6 +47,8 @@
 		if (request.getParameter("boardID") != null) {
 			boardID = Integer.parseInt(request.getParameter("boardID"));
 		}
+		BoardDAO boardDAO = new BoardDAO();
+		BoardDTO board = boardDAO.getBoard(boardID);
 	%>
 
 	<header>
@@ -259,7 +263,7 @@
     
     <section class="content">
 			<header>
-				<h1>공지사항</h1>
+				<h1><%=boardDAO.getBoard(boardID).getBoardName() %></h1>
 				<form method="get" action="school_contests.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
 						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
@@ -321,7 +325,7 @@
           	if(startPage!=1){
           %>
 					<li><a
-						href="school_contets.jsp?pageNumber=<%=startPage-1%>"
+						href="<%=board.getBoardURL()%>?pageNumber=<%=startPage-1%>"
 						class="btn btn-success">이전</a></li>
 					<%
           	}else{
@@ -330,24 +334,24 @@
 					<%
           	}for(int i = startPage;i<pageNumber;i++){
         	%>
-					<li><a href="school_contets.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<li><a href="<%=board.getBoardURL()%>?pageNumber=<%=i %>"><%=i %></a></li>
 					<%      			
           		}
           	%>
 					<li><a class="active"
-						href="school_contets.jsp?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
+						href="<%=board.getBoardURL()%>?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
 					<%
 				for(int i = pageNumber+1;i<=targetPage+pageNumber;i++){
 					if(i<startPage+10){
 			%>
-					<li><a href="school_contets.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<li><a href="<%=board.getBoardURL()%>?pageNumber=<%=i %>"><%=i %></a></li>
 					<%
 					}
 				}
 				if(targetPage+pageNumber>startPage+9){
 			%>
 					<li><a
-						href="school_contets.jsp?pageNumber=<%=startPage+10 %>">다음</a></li>
+						href="<%=board.getBoardURL()%>?pageNumber=<%=startPage+10 %>">다음</a></li>
 					<%
 				}else{
 			%>

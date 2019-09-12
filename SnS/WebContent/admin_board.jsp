@@ -172,8 +172,8 @@
     	<div class="card card-plain table-plain-bg">
 			<div class="card-header ">
 				<h4 class="card-title">게시판 관리</h4>
-				<p class="card-category">게시판을 개설하거나 삭제할 수 있습니다.</p>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">게시판 개설</button>
+				<p style="display:inline-block;"class="card-category">게시판을 개설하거나 삭제할 수 있습니다.</p>
+				<button type="button" style="display:inline-block; float:right;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createModal">게시판 개설</button>
 
 
 				<div class="modal fade" id="createModal" tabindex="-1"
