@@ -15,26 +15,26 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/mainpage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Backstretch.js" type="text/javascript"></script>
     <script src="js/mainpage.js"></script>
   </head>
   <body>
-  	<script>
+     <script>
       $.backstretch(["imgs/drop_1.jpg","imgs/drop_2.jpg","imgs/drop_3.jpg","imgs/drop_4.jpg","imgs/drop_5.jpg",
-    	  "imgs/drop_6.jpg","imgs/drop_7.jpg","imgs/drop_7.jpg"],
-    	  {duration: 20, fade: 900});
+         "imgs/drop_6.jpg","imgs/drop_7.jpg","imgs/drop_7.jpg","imgs/start_button.jpg"],
+         {duration:-10, fade: 900});
+   
       $(window).on("backstretch.before", function (e, instance, index) {
-    	  // If we wanted to stop the slideshow after it reached the end
-    	  if (index === instance.images.length - 1) {
-    	    instance.pause();
-    	  };
-    	});
+         // If we wanted to stop the slideshow after it reached the end
+         if (index === instance.images.length - 1) {
+           instance.pause();
+         };
+       });
+      $(".backstretch").on("click", function () {
+         document.location.href = "index.jsp";
+       });
+
     </script>
-    <div id="start_button">
-    	<nav id="start_animation">
-    		<img id="start_button" src='imgs/button.png' onclick="location.href='index.jsp'">
-    	</nav>
-    </div>
   </body>

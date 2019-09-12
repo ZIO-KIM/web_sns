@@ -106,7 +106,7 @@
 #title_animation { /* ���씠�� �븷�땲硫붿씠�뀡 吏��젙 */
   animation-name: slidein;
   animation-duration: 3s;
-  animation-delay:10s;
+  animation-delay:3s;
 }
 
 @keyframes slidein { /* slidein �븷�땲硫붿씠�뀡 �냽�꽦 吏��젙 */
@@ -158,16 +158,16 @@
 }
 
 #claim {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 20px;
-	border: solid 2px black; 
-	width: 500px; 
-	height: 280px; 
-	
-	margin-left: 7%; 
-	margin-top: 3%; 
-	
-	text-align: center; 
+   font-family: 'Nanum Gothic', sans-serif;
+   font-size: 20px;
+   border: solid 2px black; 
+   width: 500px; 
+   height: 280px; 
+   
+   margin-left: 7%; 
+   margin-top: 3%; 
+   
+   text-align: center; 
 }
 
 #departments {
@@ -179,7 +179,7 @@
   
   text-align: center; 
   
-  margin-left: 50%; 
+  margin-left: 42%; 
   margin-top: -280px; 
  
 }
@@ -208,32 +208,26 @@ table, td, tr {
 }
 
 footer {
-	display: inline-block;
-	border: 4px solid #dbdad9; 
-	width: full; 
-	height: 100px; 
-	background-color: #e8e7e6; 
-	text-align: center; 
-	left: 0px; 
+   display: inline-block;
+   border: 4px solid #dbdad9; 
+   width: full; 
+   height: 100px; 
+   background-color: #e8e7e6; 
+   text-align: center; 
+   left: 0px; 
 }
 
 #footer_content {
-	padding-top: 30px; 
-	padding-right: 10px; 
+   padding-top: 30px; 
+   padding-right: 10px; 
 }
 
 #hr1 {
-	width: 82%; 
-	border: double 4px white; 
-	margin-top: 6%; 
+   width: 82%; 
+   border: double 4px white; 
+   margin-top: 6%; 
 }
 
 #board {
-	text-align: center; 
+   text-align: center; 
 }
-#start_button{
-	margin:auto;
-	padding-top:30px;
-	padding-left:40px;
-}
-
