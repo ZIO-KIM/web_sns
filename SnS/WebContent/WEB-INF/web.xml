@@ -44,4 +44,12 @@
 		<servlet-name>PostServlet</servlet-name>
 		<url-pattern>/post</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>BoardCreateServlet</servlet-name>
+		<servlet-class>board.BoardCreateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardCreateServlet</servlet-name>
+		<url-pattern>/boardCreate</url-pattern>
+	</servlet-mapping>
 </web-app>

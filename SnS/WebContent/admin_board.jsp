@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="user.UserDAO" %>
-<%@ page import="user.UserDTO" %>
+<%@ page import="board.BoardDAO" %>
+<%@ page import="board.BoardDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
@@ -13,6 +13,9 @@
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="css/bootstrap1.css">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -25,11 +28,12 @@
 			PrintWriter script =response.getWriter();
 	        script.println("<script>");
 	        script.println("alert('관리자로 로그인해주세요.');");
-	        script.println("location.href='admin_user.jsp';");
+	        script.println("location.href='admin.jsp';");
 	        script.println("</script>");
 	        script.close();
 	        return;
 		}
+		BoardDAO boardDAO = new BoardDAO();
 	%>
 	
 	<%
@@ -48,13 +52,13 @@
 				<div class="modal-dialog vertical-align-center">
 					<div class="modal-content" <%if(messageType.equals("오류 메시지")) out.println("panel-warning");else out.println("panel-success"); %>>
 						<div class="modal-header panel-heading">
+							<h4 class="modal-title">
+								<%=messageType %>
+							</h4>
 							<button type="button" class="close" data-dismiss="modal">
 								<span aria-hidden="true">&times;</span>
 								<span class="sr-only">Close</span>
 							</button>
-							<h4 class="modal-title">
-								<%=messageType %>
-							</h4>
 						</div>
 						<div class="modal-body">
 							<%=messageContent %>
@@ -67,7 +71,7 @@
 			</div>
 		</div>
 		<script>
-			$('messageModal').modal("show");
+			$('#messageModal').modal("show");
 		</script>
 	<%
 		session.removeAttribute("messageContent");
@@ -167,34 +171,69 @@
  	<div class="col-md-12">
     	<div class="card card-plain table-plain-bg">
 			<div class="card-header ">
-				<h4 class="card-title">회원 관리</h4>
-				<p class="card-category">메세지를 보내거나 게시글을 삭제, 회원을 강퇴시킬 수 있습니다.</p>
+				<h4 class="card-title">게시판 관리</h4>
+				<p class="card-category">게시판을 개설하거나 삭제할 수 있습니다.</p>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">게시판 개설</button>
+
+
+				<div class="modal fade" id="createModal" tabindex="-1"
+					role="dialog" aria-labelledby="createModal"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="createModalLabel">게시판 개설</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form action="./boardCreate" method="post">
+							<div class="modal-body">
+									<div class="form-group">
+										<label for="board-title" class="col-form-label">게시판 제목:</label>
+										<input type="text" class="form-control" name="boardTitle">
+									</div>
+									<div class="form-group">
+										<label for="board-title" class="col-form-label">게시판 ID:</label>
+										<input type="text" class="form-control" name="boardID" value="<%=boardDAO.getNext()%>">
+									</div>
+									<div class="form-group">
+										<label for="board-title" class="col-form-label">게시판 URL:</label>
+										<input type="text" class="form-control" name="boardURL" value="post.jsp?boardID=<%=boardDAO.getNext()%>">
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Create Board
+								</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="card-body table-full-width table-responsive">
 				<table class="table table-hover">
 					<thead>
 						<tr>
-						<th>Profile</th>
 						<th>ID</th>
 						<th>Name</th>
-						<th>Email</th>
-						<th>Message</th>
-						<th>Kick</th>
+						<th>Link</th>
+						<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
-							UserDAO userDAO = new UserDAO();
-							ArrayList<UserDTO> list = userDAO.getList();
+							ArrayList<BoardDTO> list = boardDAO.getList();
 							for (int i = 0; i < list.size(); i++) {
 						%>
 						<tr>
-							<td><img class="media-object img-circle" style="width:30px;height:30px;" src="<%=userDAO.getProfile(list.get(i).getUserID())%>"></td>
-							<td><%=list.get(i).getUserID()%></td>
-							<td><%=list.get(i).getUserName()%></td>
-							<td><%=list.get(i).getUserEmail()%></td>
-							<td><a href="#" class="btn btn-primary">쪽지</a></td>
-							<td><a onclick="return confirm('정말로 강퇴하시겠습니까?')" href="userKick.jsp?kickID=<%=list.get(i).getUserID() %>" class="btn btn-danger">강퇴</a></td>
+							<td><%=list.get(i).getBoardID()%></td>
+							<td><%=list.get(i).getBoardName()%></td>
+							<td><%=list.get(i).getBoardURL()%></td>
+							<td><a onclick="return confirm('정말로 삭제하시겠습니까?')" href="#>" class="btn btn-danger">삭제</a></td>
 						</tr>
 						<%
 							}
@@ -205,8 +244,7 @@
 		</div>
 	</div>
 
- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
 
 </body>
 

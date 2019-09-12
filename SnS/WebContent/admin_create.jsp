@@ -167,19 +167,19 @@
  	<div class="col-md-12">
     	<div class="card card-plain table-plain-bg">
 			<div class="card-header ">
-				<h4 class="card-title">회원 관리</h4>
-				<p class="card-category">메세지를 보내거나 게시글을 삭제, 회원을 강퇴시킬 수 있습니다.</p>
+				<h4 class="card-title">게시판 관리</h4>
+				<p class="card-category">게시판을 개설하거나 삭제할 수 있습니다.</p>
+				<a class="btn btn-default pull-right"
+				href="admin_create.jsp">게시판 개설</a>
 			</div>
 			<div class="card-body table-full-width table-responsive">
 				<table class="table table-hover">
 					<thead>
 						<tr>
-						<th>Profile</th>
 						<th>ID</th>
 						<th>Name</th>
-						<th>Email</th>
-						<th>Message</th>
-						<th>Kick</th>
+						<th>Url</th>
+						<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -192,9 +192,7 @@
 							<td><img class="media-object img-circle" style="width:30px;height:30px;" src="<%=userDAO.getProfile(list.get(i).getUserID())%>"></td>
 							<td><%=list.get(i).getUserID()%></td>
 							<td><%=list.get(i).getUserName()%></td>
-							<td><%=list.get(i).getUserEmail()%></td>
-							<td><a href="#" class="btn btn-primary">쪽지</a></td>
-							<td><a onclick="return confirm('정말로 강퇴하시겠습니까?')" href="userKick.jsp?kickID=<%=list.get(i).getUserID() %>" class="btn btn-danger">강퇴</a></td>
+							<td><a onclick="return confirm('정말로 삭제하시겠습니까?')" href="userKick.jsp?kickID=<%=list.get(i).getUserID() %>" class="btn btn-danger">삭제</a></td>
 						</tr>
 						<%
 							}

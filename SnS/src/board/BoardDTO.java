@@ -1,6 +1,6 @@
 package board;
 
-public class boardDTO {
+public class BoardDTO {
 	int boardID;
 	String boardName;
 	String boardURL;
@@ -24,11 +24,11 @@ public class boardDTO {
 		this.boardURL = boardURL;
 	}
 	
-	public boardDTO() {
+	public BoardDTO() {
 
 	}
 	
-	public boardDTO(int boardID, String boardName, String boardURL) {
+	public BoardDTO(int boardID, String boardName, String boardURL) {
 		this.boardID = boardID;
 		this.boardName = boardName;
 		this.boardURL = boardURL;
