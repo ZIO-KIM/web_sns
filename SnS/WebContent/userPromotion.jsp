@@ -21,15 +21,15 @@
 	}
 	
 	request.setCharacterEncoding("UTF-8");
-	String kickID= null;
-	if (request.getParameter("kickID") != null) {
-		kickID = request.getParameter("kickID");
+	String promotionID= null;
+	if (request.getParameter("promotionID") != null) {
+		promotionID = request.getParameter("promotionID");
 	}
-	int result=new UserDAO().kick(kickID);
+	int result=new UserDAO().promotion(promotionID);
 	if(result==1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('강퇴가 완료되었습니다.')");
+		script.println("alert('승격이 완료되었습니다.')");
 		script.println("location.href='admin_user.jsp'");
 		script.println("</script>");
 		script.close();

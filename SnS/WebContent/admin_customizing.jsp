@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="board.BoardDAO" %>
 <%@ page import="board.BoardDTO" %>
+<%@ page import="user.UserDAO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
@@ -56,14 +57,16 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		if(!userID.equals("admin")){
-			PrintWriter script =response.getWriter();
-	        script.println("<script>");
-	        script.println("alert('관리자로 로그인해주세요.');");
-	        script.println("location.href='admin.jsp';");
-	        script.println("</script>");
-	        script.close();
-	        return;
+		UserDAO userDAO=new UserDAO();
+		int userLevel=userDAO.getUserEmailChecked(userID);
+		if (userLevel<2) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href='admin.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
 		}
 		BoardDAO boardDAO = new BoardDAO();
 	%>

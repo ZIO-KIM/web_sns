@@ -77,6 +77,7 @@ public class BoardDAO {
 				board.setBoardName(rs.getString(2));
 				board.setBoardURL(rs.getString(3));
 				board.setBoardAvailable(rs.getInt(4));
+				board.setBoardLevel(rs.getInt(5));
 				list.add(board);
 			}
 		}catch (Exception e) {
@@ -90,7 +91,7 @@ public class BoardDAO {
 	}
 	
 	public int create(BoardDTO board) {
-		String SQL = "INSERT INTO BOARD VALUES(?, ? ,?,1)";
+		String SQL = "INSERT INTO BOARD VALUES(?, ? ,?,1,?)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -100,6 +101,7 @@ public class BoardDAO {
 			pstmt.setInt(1,board.getBoardID());
 			pstmt.setString(2,board.getBoardName());
 			pstmt.setString(3,board.getBoardURL());
+			pstmt.setInt(4,board.getBoardLevel());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -112,7 +114,7 @@ public class BoardDAO {
 	}
 	
 	public int update(BoardDTO board) {
-		String SQL = "UPDATE board SET boardName =?, boardURL = ?  WHERE boardID= ?";
+		String SQL = "UPDATE board SET boardName =?, boardURL = ?,boardLevel=?  WHERE boardID= ?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -121,7 +123,8 @@ public class BoardDAO {
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setString(1,board.getBoardName());
 			pstmt.setString(2,board.getBoardURL());
-			pstmt.setInt(3,board.getBoardID());
+			pstmt.setInt(3,board.getBoardLevel());
+			pstmt.setInt(4,board.getBoardID());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -155,6 +158,26 @@ public class BoardDAO {
 	
 	public int unBan(int boardID) {
 		String SQL = "UPDATE board SET boardAvailable = 1 WHERE boardID= ?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1,boardID);
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null)conn.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		return -1;
+	}
+	
+	public int delete(int boardID) {
+		String SQL = "DELETE FROM board WHERE boardID=?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;

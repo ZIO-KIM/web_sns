@@ -36,9 +36,13 @@ public class BoardCreateServlet extends HttpServlet {
 		if(request.getParameter("boardID")!=null) {
 			boardID=Integer.parseInt(request.getParameter("boardID"));
 		}
-		if(boardTitle==null ||boardTitle.equals("")||boardURL==null ||boardURL.equals("")||boardID==0) {
+		int boardLevel = -1;
+		if(request.getParameter("boardLevel")!=null) {
+			boardLevel=Integer.parseInt(request.getParameter("boardLevel"));
+		}
+		if(boardTitle==null ||boardTitle.equals("")||boardURL==null ||boardURL.equals("")||boardID==0||boardLevel==-1) {
 			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
+			session.setAttribute("messageContent", "빈칸을 모두 채워주세요.");
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('오류가 발생했습니다.')");
@@ -48,7 +52,7 @@ public class BoardCreateServlet extends HttpServlet {
 			return;
 		}
 		BoardDAO boardDAO = new BoardDAO();
-		boardDAO.create(new BoardDTO(boardID,boardTitle,boardURL,1));
+		boardDAO.create(new BoardDTO(boardID,boardTitle,boardURL,1,boardLevel));
 
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent", "게시판 개설이 완료되었습니다.");

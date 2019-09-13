@@ -84,6 +84,27 @@ public class UserDAO {
 		return -1;
 	}
 	
+	public int promotion(String promotionID) {
+		String SQL = "UPDATE USER SET userEmailChecked = 2 WHERE userID=?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1,promotionID);
+			pstmt.executeUpdate();
+			return 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null)conn.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		return -1;
+	}
+	
 	public int registerCheck(String userID) {
 		String SQL = "SELECT * FROM USER WHERE userID = ?";
 		Connection conn=null;
@@ -109,7 +130,7 @@ public class UserDAO {
 		return -1;
 	}
 	
-	public boolean getUserEmailChecked(String userID) {
+	public int getUserEmailChecked(String userID) {
 		String SQL = "SELECT userEmailChecked FROM USER WHERE userID =?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
@@ -120,7 +141,7 @@ public class UserDAO {
 			pstmt.setString(1,userID);
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
-				return rs.getBoolean(1);
+				return rs.getInt(1);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -129,7 +150,7 @@ public class UserDAO {
 			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
 			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
 		}
-		return false;
+		return -1;
 	}
 	
 	public UserDTO getUser(String userID) {
@@ -148,7 +169,7 @@ public class UserDAO {
 				user.setUserID(rs.getString(1));
 				user.setUserName(rs.getString(3));
 				user.setUserEmail(rs.getString(4));
-				user.setUserEmailChecked(rs.getBoolean(6));
+				user.setUserEmailChecked(rs.getInt(6));
 				user.setUserProfile(rs.getString(7));
 				user.setAboutMe(rs.getString(10));
 				return user;
@@ -290,7 +311,7 @@ public class UserDAO {
 		return false;
 	}
 	public boolean setUserEmailChecked(String code) {
-		String SQL = "UPDATE USER SET userEmailChecked = true WHERE userEmailHash=?";
+		String SQL = "UPDATE USER SET userEmailChecked = 1 WHERE userEmailHash=?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;

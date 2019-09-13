@@ -6,7 +6,7 @@ public class UserDTO {
 	private String userName;
 	private String userEmail;
 	private String userEmailHash;
-	private boolean userEmailChecked;
+	private int userEmailChecked;
 	private String userProfile;
 	private String findPwQuestion;
 	private String findPwAnswer;
@@ -51,12 +51,12 @@ public class UserDTO {
 	public void setUserEmailHash(String userEmailHash) {
 		this.userEmailHash = userEmailHash;
 	}
-	
-	public boolean isUserEmailChecked() {
+
+	public int getUserEmailChecked() {
 		return userEmailChecked;
 	}
 
-	public void setUserEmailChecked(boolean userEmailChecked) {
+	public void setUserEmailChecked(int userEmailChecked) {
 		this.userEmailChecked = userEmailChecked;
 	}
 
@@ -96,7 +96,7 @@ public class UserDTO {
 	}
 
 	public UserDTO(String userID, String userPassword, String userName, String userEmail, String userEmailHash,
-			boolean userEmailChecked, String userProfile, String findPwQuestion, String findPwAnswer, String aboutMe) {
+			int userEmailChecked, String userProfile, String findPwQuestion, String findPwAnswer, String aboutMe) {
 		super();
 		this.userID = userID;
 		this.userPassword = userPassword;
@@ -109,4 +109,6 @@ public class UserDTO {
 		this.findPwAnswer = findPwAnswer;
 		this.aboutMe = aboutMe;
 	}
+
+	
 }
