@@ -1,4 +1,4 @@
-package agree;
+package likey;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -58,7 +58,7 @@
 		ComplaintsDAO cmpDAO = new ComplaintsDAO();
 		AgreeDAO agreeDAO=new AgreeDAO();
 		
-		int result=agreeDAO.agree(userID, cmpID, getClientIP(request));
+		int result=agreeDAO.agree(userID, cmpID, isStudent, getClientIP(request));
 		if(result==1){
 			result=cmpDAO.agree(cmpID,isStudent);
 			if(result==1){

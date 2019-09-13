@@ -58,7 +58,7 @@
         PrintWriter script =response.getWriter();
         script.println("<script>");
         script.println("alert('로그인을 해주세요.')");
-        script.println("location.href='cmp_to_student_council.jsp'");
+        script.println("history.back()");
         script.println("</script>");
         script.close();
         return;
