@@ -46,18 +46,21 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href = 'userLogin.jsp'");
+			script.println("history.back()");
 			script.println("</script>");
 			script.close();
 			return;
 		}
-		
+		int isStudent = -1;
+		if (request.getParameter("isStudent") != null) {
+			isStudent = Integer.parseInt(request.getParameter("isStudent"));
+		}
 		ComplaintsDAO cmpDAO = new ComplaintsDAO();
 		AgreeDAO agreeDAO=new AgreeDAO();
 		
 		int result=agreeDAO.agree(userID, cmpID, getClientIP(request));
 		if(result==1){
-			result=cmpDAO.agree(cmpID,true);
+			result=cmpDAO.agree(cmpID,isStudent);
 			if(result==1){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

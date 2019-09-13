@@ -52,13 +52,17 @@
 			session.setAttribute("messageContent","접근할 수 없습니다.");
 			response.sendRedirect("cmp_to_student_council.jsp");
 		}
+		int isStudent = -1;
+		if (request.getParameter("isStudent") != null) {
+			isStudent = Integer.parseInt(request.getParameter("isStudent"));
+		}
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String savePath = root + "upload";
 		String fileName="";
 		String realFile="";
 		ComplaintsDAO cmpDAO = new ComplaintsDAO();
-		fileName = cmpDAO.getFile(cmpID);
-		realFile = cmpDAO.getRealFile(cmpID);
+		fileName = cmpDAO.getFile(cmpID,isStudent);
+		realFile = cmpDAO.getRealFile(cmpID,isStudent);
 		if(fileName.equals("") || realFile.equals("")){
 			session.setAttribute("messageType","오류 메시지");
 			session.setAttribute("messageContent","접근할 수 없습니다.");
@@ -217,7 +221,7 @@
 			</div>
 		</div>
 		<script>
-			$('messageModal').modal("show");
+			$('#messageModal').modal("show");
 		</script>
 	<%
 		session.removeAttribute("messageContent");

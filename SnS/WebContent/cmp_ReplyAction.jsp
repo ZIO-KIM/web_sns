@@ -15,7 +15,7 @@
 <%@ page import="util.Gmail"%>
 <%@ page import="util.SHA256"%>
 <%
-   request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
    String userID = null;
  	if(session.getAttribute("userID")!=null){
  		userID=(String)session.getAttribute("userID");
@@ -56,56 +56,61 @@
       script.close();
       return;
    }
-   int cmpID=0;
-	if(request.getParameter("cmpID")!=null){
-		cmpID =Integer.parseInt(request.getParameter("cmpID"));
+	int cmpID = 0;
+	if (request.getParameter("cmpID") != null) {
+		cmpID = Integer.parseInt(request.getParameter("cmpID"));
 	}
-   
-   ComplaintsDAO complaintsDAO =new ComplaintsDAO();
-   ComplaintsDTO parent = complaintsDAO.getCmp(cmpID, true);
-   int result=complaintsDAO.reply(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,"","",cmpDate,0,0,0,0,0,0),parent,true);
-   complaintsDAO.replyUpdate(parent,true);
-   if(result==-1){
-      PrintWriter script = response.getWriter();
-      script.println("<script>");
-      script.println("alert('답변 등록 실패했습니다.');");
-      script.println("history.back();");
-      script.println("</script>");
-      script.close();
-      return;
-   } else{//답변등록 성공 후 이메일 발송 부분
-	   String host="http://localhost:8080/SnS/";
-		String from="sjswsns@gmail.com";
-		String to="sseunghun99@naver.com";//민원 담당자 메일주소
-		String subject ="[세종소융]민원의 답변이 등록되었습니다."+complaintsDAO.getDate();
-		String content ="제목: "+cmpTitle+"<br>답변날짜: "+complaintsDAO.getDate()+"<br>"+cmpContent+
-		"\n<a href='" + host + "cmp_to_student_council_View.jsp?cmpID="+parent.getCmpID()+
-				"'><br>민원 바로가기</a>";
-		
+	int isStudent = -1;
+	if (request.getParameter("isStudent") != null) {
+		isStudent = Integer.parseInt(request.getParameter("isStudent"));
+	}
+	ComplaintsDAO complaintsDAO = new ComplaintsDAO();
+	UserDAO userDAO = new UserDAO();
+	ComplaintsDTO parent = complaintsDAO.getCmp(cmpID, isStudent);
+	int result = complaintsDAO.reply(
+			new ComplaintsDTO(0,userID,"",cmpTitle,cmpContent,"","","",0,0,0,0,0,1,1),parent, isStudent);
+	complaintsDAO.replyUpdate(parent, isStudent);
+	if (result == -1) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('답변 등록 실패했습니다.');");
+		script.println("history.back()");
+		script.println("</script>");
+		script.close();
+		return;
+	} else {//답변등록 성공 후 이메일 발송 부분
+		String host = "http://localhost:8080/SnS/";
+		String from = "sjswsns@gmail.com";
+		String to = userDAO.getUserEmail(userID);
+		String subject = "[세종소융]민원의 답변이 등록되었습니다." + complaintsDAO.getDate();
+		String content = "제목: " + cmpTitle + "<br>답변날짜: " + complaintsDAO.getDate() + "<br>" + cmpContent
+				+ "\n<a href='" + host + "cmp_View.jsp?isStudent="+isStudent+"&cmpID=" + parent.getCmpID()
+				+ "'><br>민원 바로가기</a>";
+
 		Properties p = new Properties();
-		p.put("mail.smtp.user",from);
-		p.put("mail.smtp.host","smtp.googlemail.com");
-		p.put("mail.smtp.port","465");
-		p.put("mail.smtp.starttls.enable","true");
-		p.put("mail.smtp.auth","true");
-		p.put("mail.smtp.debug","true");
-		p.put("mail.smtp.socketFactory.port","465");
-		p.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-		p.put("mail.smtp.socketFactory.fallback","false");
-		
-		try{
-			Authenticator auth =new Gmail();
-			Session ses=Session.getInstance(p,auth);
+		p.put("mail.smtp.user", from);
+		p.put("mail.smtp.host", "smtp.googlemail.com");
+		p.put("mail.smtp.port", "465");
+		p.put("mail.smtp.starttls.enable", "true");
+		p.put("mail.smtp.auth", "true");
+		p.put("mail.smtp.debug", "true");
+		p.put("mail.smtp.socketFactory.port", "465");
+		p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		p.put("mail.smtp.socketFactory.fallback", "false");
+
+		try {
+			Authenticator auth = new Gmail();
+			Session ses = Session.getInstance(p, auth);
 			ses.setDebug(true);
-			MimeMessage msg=new MimeMessage(ses);
+			MimeMessage msg = new MimeMessage(ses);
 			msg.setSubject(subject);
-			Address fromAddr=new InternetAddress(from);
+			Address fromAddr = new InternetAddress(from);
 			msg.setFrom(fromAddr);
 			Address toAddr = new InternetAddress(to);
-			msg.addRecipient(Message.RecipientType.TO,toAddr);
-			msg.setContent(content,"text/html;charset=UTF8");
+			msg.addRecipient(Message.RecipientType.TO, toAddr);
+			msg.setContent(content, "text/html;charset=UTF8");
 			Transport.send(msg);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -115,11 +120,11 @@
 			script.close();
 			return;
 		}
-      PrintWriter script =response.getWriter();
-      script.println("<script>");
-      script.println("location.href='cmp_to_student_council.jsp'");
-      script.println("</script>");
-      script.close();
-      return;
-   }
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href='cmp_to_student_council.jsp'");
+		script.println("</script>");
+		script.close();
+		return;
+	}
 %>

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import post.PostDTO;
 import util.DatabaseUtil;
 
 public class PageDAO {

@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="complaints.ComplaintsDAO" %>
+<%@ page import="complaints.ComplaintsDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학교 건의사항 :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 수정</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -15,6 +18,47 @@
     <meta name="viewport" content="device-width, initial-scale=1">
   </head>
   <body>
+  
+  <%
+		String userID=null;
+		if(session.getAttribute("userID")!=null){
+			userID=(String)session.getAttribute("userID");
+		}
+		if(userID==null){
+			PrintWriter script =response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 해주세요.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
+		}
+		int cmpID=0;
+		if(request.getParameter("cmpID")!=null){
+			cmpID=Integer.parseInt(request.getParameter("cmpID"));
+		}
+		if(cmpID==0){
+			PrintWriter script =response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
+		}
+		int isStudent=-1;
+		if(request.getParameter("isStudent")!=null){
+			isStudent=Integer.parseInt(request.getParameter("isStudent"));
+		}
+		ComplaintsDTO cmp=new ComplaintsDAO().getCmp(cmpID,isStudent);
+		if(!userID.equals(cmp.getUserID())){
+			PrintWriter script =response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
+		}
+	 %>
+  
     <header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
@@ -70,7 +114,9 @@
         </div>
         
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        <h1 id='login'><a href="userLogin.jsp">LOGIN</a></h1> <!-- 로그인 버튼-->
+        
+      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+
       </nav>
     </header>
     <div id="container">
@@ -82,35 +128,46 @@
         </h2>
         <ul class="lnb_deps2">
              <li>
-               <a href="cmp_to_student_council.jsp" class="jwxe_22350 active">학생회 건의사항</a>
+               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
              </li>
              <li>
-               <a href="cmp_to_school.jsp" class="jwxe_22351 ">학교 건의사항</a>
+               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
             </li>
             <li>
-              <a href="cmp_to_etc.jsp" class="jwxe_22351 ">기타 민원</a>
-            </li>
-            <li>
-              <a href="introduce_cmp.jsp" class="jwxe_22351 ">민원창구 소개</a>
+              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
             </li>
         </ul>
       </nav>
     </nav>
+    
+    
     <section class="content">
       <header>
-        <h1>글쓰기</h1>
+        <h1>글수정</h1>
       </header>
-      
-      <form method="post" action="cmp_to_school_WriteAction.jsp">
+      <form method="post" action="cmp_UpdateAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>">
+      <div class="form-group col-sm-3">
+      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
+      	<select name="cmpDivide" class="form-control">
+      		<option value="선택 안함" selected>선택 안함</option>
+      		<option value="컴퓨터공학과">컴퓨터공학과</option>
+      		<option value="정보보호학과" >정보보호학과</option>
+      		<option value="소프트웨어학과">소프트웨어학과</option>
+      		<option value="데이터사이언스학과">데이터사이언스학과</option>
+      		<option value="지능기전공학부">지능기전공학부</option>
+      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
+      		<option value="만화애니메이션전공">만화애니메이션전공</option>
+      	</select>
+      </div>
       <table class="table table-bordered">
         <tbody>
             <tr>
                <th>제목: </th>
-               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" class="form-control"/></td>
+               <td><input type="text" name="cmpTitle" maxlength="50" value="<%=cmp.getCmpTitle()%>" class="form-control"/></td>
             </tr>
             <tr>
                <th>내용: </th>
-               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" class="form-control"></textarea></td>
+               <td><textarea cols="10" name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"><%=cmp.getCmpContent()%></textarea></td>
             </tr>
             <tr>
                <th>첨부파일: </th>
@@ -118,16 +175,14 @@
             </tr>
             <tr>
                <td colspan="2">
-                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-                 <input type="button" value="reset" class="pull-left"/>
-                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
+                 <input type="submit" class="btn btn-primary pull-right" value="수정하기">
                </td>
              </tr>
+          
         </tbody>
       </table>
       </form>
       </section>
-      </div>
       
       <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>

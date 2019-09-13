@@ -5,7 +5,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항 :: 글쓰기</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원  :: 글쓰기</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -59,6 +59,19 @@
         script.println("<script>");
         script.println("alert('로그인을 해주세요.')");
         script.println("location.href='cmp_to_student_council.jsp'");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
+  	int isStudent=-1;
+  	if(request.getParameter("isStudent")!=null){
+  		isStudent=Integer.parseInt(request.getParameter("isStudent"));
+  	}
+  	if(isStudent==-1){
+  		PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('잘못된 접근입니다.')");
+        script.println("history.back()");
         script.println("</script>");
         script.close();
         return;
@@ -213,8 +226,10 @@
         <tbody>
         	<tr>
 				<th>작성자 ID</th>
-				<td colspan="2"><input type="text" name="userID"
-						value=<%=userID%>></td>
+				<td colspan="2">
+				<input type="text" name="userID" value=<%=userID%>>
+				<input type="hidden" name="isStudent" value=<%=isStudent%>></td>
+				
 			</tr>
             <tr>
                <th>제목: </th>

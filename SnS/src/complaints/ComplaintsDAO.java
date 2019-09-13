@@ -29,20 +29,16 @@ public class ComplaintsDAO {
 		}
 		return "";
 	}
-	public int getNext(boolean isStudent) {
+	public int getNext(int isStudent) {
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;	
 		try {
-			if(isStudent) {
-				SQL = "SELECT cmpID FROM CMP_ST ORDER BY cmpID DESC";
-			}
-			else {
-				SQL = "SELECT cmpID FROM CMP_SC ORDER BY cmpID DESC";
-			}
+			SQL = "SELECT cmpID FROM CMP WHERE isStudent = ? ORDER BY cmpID DESC";
 			conn=DatabaseUtil.getConnection();
 			pstmt =conn.prepareStatement(SQL);
+			pstmt.setInt(1,isStudent);
 			rs=pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -58,20 +54,16 @@ public class ComplaintsDAO {
 		}
 		return -1; 
 	}
-	public int countCmp(boolean isStudent) {
+	public int countCmp(int isStudent) {
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
-		ResultSet rs= null;		
-		if(isStudent) {
-			SQL = "SELECT COUNT(*) FROM CMP_ST";
-		}
-		else {
-			SQL = "SELECT COUNT(*) FROM CMP_SC";
-		}
+		ResultSet rs= null;	
+		SQL = "SELECT COUNT(*) FROM CMP WHERE isStudent = ?";
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt =conn.prepareStatement(SQL);
+			pstmt.setInt(1,isStudent);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getInt(1);
@@ -86,8 +78,8 @@ public class ComplaintsDAO {
 		return -1; 
 	}
 	
-	public String getFile(int cmpID) {//파일을 불러오는 함수
-		String SQL = "SELECT cmpFile FROM cmp_st WHERE cmpID=?";
+	public String getFile(int cmpID, int isStudent) {//파일을 불러오는 함수
+		String SQL = "SELECT cmpFile FROM CMP WHERE cmpID=? AND isStudent = ?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -95,6 +87,7 @@ public class ComplaintsDAO {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1,cmpID);
+			pstmt.setInt(2,isStudent);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("cmpFile").equals("")) {
@@ -112,8 +105,8 @@ public class ComplaintsDAO {
 		return "";
 	}
 	
-	public String getRealFile(int cmpID) {//파일을 불러오는 함수
-		String SQL = "SELECT cmpRealFile FROM cmp_st WHERE cmpID=?";
+	public String getRealFile(int cmpID,int isStudent) {//파일을 불러오는 함수
+		String SQL = "SELECT cmpRealFile FROM CMP WHERE cmpID=? AND isStudent = ?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -121,6 +114,7 @@ public class ComplaintsDAO {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1,cmpID);
+			pstmt.setInt(2,isStudent);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("cmpRealFile").equals("")) {
@@ -138,23 +132,19 @@ public class ComplaintsDAO {
 		return "";
 	}
 	
-	public ArrayList<ComplaintsDTO> getList(int pageNumber,boolean isStudent){
+	public ArrayList<ComplaintsDTO> getList(int pageNumber,int isStudent){
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		ArrayList<ComplaintsDTO> list =new ArrayList<ComplaintsDTO>();
 		try {
-			if(isStudent) {
-				SQL ="SELECT * FROM CMP_ST WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP_ST) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP_ST) - ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY cmpGroup DESC";
-			}
-			else {
-				SQL ="SELECT * FROM CMP_SC WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP_SC) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP_SC) - ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY cmpGroup DESC";
-			}
+			SQL ="SELECT * FROM CMP WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP) - ?  AND cmpLevel=0 AND cmpAvailable=1 AND isStudent= ? ORDER BY cmpGroup DESC";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1, pageNumber*10);
 			pstmt.setInt(2, (pageNumber-1)*10);
+			pstmt.setInt(3,isStudent);
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
 				ComplaintsDTO cmpDTO =new ComplaintsDTO();
@@ -172,6 +162,7 @@ public class ComplaintsDAO {
 				cmpDTO.setCmpSequence(rs.getInt(12));
 				cmpDTO.setCmpLevel(rs.getInt(13));
 				cmpDTO.setCmpAvailable(rs.getInt(14));
+				cmpDTO.setIsStudent(rs.getInt(15));
 				list.add(cmpDTO);
 			}
 		}catch (Exception e) {
@@ -184,34 +175,25 @@ public class ComplaintsDAO {
 		return list;
 	}
 	
-	public ArrayList<ComplaintsDTO> getSearch(String searchType, String search, int pageNumber,boolean isStudent){
+	public ArrayList<ComplaintsDTO> getSearch(String searchType, String search, int pageNumber,int isStudent){
 		String SQL="";
 		ArrayList<ComplaintsDTO> searchList=null;
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				if(searchType.equals("최신순")) {
-					SQL ="SELECT * FROM CMP_ST WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP_ST) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP_ST) - ?  AND CONCAT(cmpTitle,cmpContent,userID) LIKE ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY cmpGroup DESC";
-				}
-				else {
-					SQL ="SELECT * FROM CMP_ST WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP_ST) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP_ST) - ?  AND CONCAT(cmpTitle,cmpContent,userID) LIKE ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY agreeCount DESC";
-				}
+			if(searchType.equals("최신순")) {
+				SQL ="SELECT * FROM CMP WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP) - ?  AND CONCAT(cmpTitle,cmpContent,userID) LIKE ? AND cmpLevel=0 AND cmpAvailable=1 AND isStudent= ? ORDER BY cmpGroup DESC";
 			}
 			else {
-				if(searchType.equals("최신순")) {
-					SQL ="SELECT * FROM CMP_SC WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP_ST) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP_ST) - ?  AND CONCAT(cmpTitle,cmpContent,userID) LIKE ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY cmpGroup DESC";
-				}
-				else {
-					SQL ="SELECT * FROM CMP_SC WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP_ST) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP_ST) - ?  AND CONCAT(cmpTitle,cmpContent,userID) LIKE ? AND cmpLevel=0 AND cmpAvailable=1 ORDER BY agreeCount DESC";
-				}
+				SQL ="SELECT * FROM CMP WHERE cmpGroup >  (SELECT MAX(cmpGroup) FROM CMP) - ? AND cmpGroup <= (SELECT MAX(cmpGroup) FROM CMP) - ?  AND CONCAT(cmpTitle,cmpContent,userID) LIKE ? AND cmpLevel=0 AND cmpAvailable=1 AND isStudent= ? ORDER BY agreeCount DESC";
 			}
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1, pageNumber*200);
 			pstmt.setInt(2, (pageNumber-1)*200);
 			pstmt.setString(3, "%" + search + "%");
+			pstmt.setInt(4,isStudent);
 			rs=pstmt.executeQuery();
 			searchList= new ArrayList<ComplaintsDTO>();
 			while(rs.next()) {
@@ -230,6 +212,7 @@ public class ComplaintsDAO {
 				cmpDTO.setCmpSequence(rs.getInt(12));
 				cmpDTO.setCmpLevel(rs.getInt(13));
 				cmpDTO.setCmpAvailable(rs.getInt(14));
+				cmpDTO.setIsStudent(rs.getInt(15));
 				searchList.add(cmpDTO);
 			}
 		} catch(Exception e) {
@@ -241,7 +224,7 @@ public class ComplaintsDAO {
 		}
 		return searchList;
 	}
-	public ArrayList<ComplaintsDTO> getReply(int cmpGroup,boolean isStudent){
+	public ArrayList<ComplaintsDTO> getReply(int cmpGroup,int isStudent){
 		String SQL="";
 		ArrayList<ComplaintsDTO> list=null;
 		Connection conn=null;
@@ -250,15 +233,11 @@ public class ComplaintsDAO {
 	
 		list =new ArrayList<ComplaintsDTO>();
 		try {
-			if(isStudent) {
-				SQL ="SELECT * FROM CMP_ST WHERE cmpGroup = ? AND cmpLevel != 0 AND cmpAvailable=1 ORDER BY cmpSequence ASC";
-			}
-			else {
-				SQL ="SELECT * FROM CMP_SC WHERE cmpGroup = ? AND cmpLevel != 0 AND cmpAvailable=1 ORDER BY cmpSequence ASC";
-			}
+			SQL ="SELECT * FROM CMP WHERE cmpGroup = ? AND cmpLevel != 0 AND cmpAvailable=1 AND isStudent= ? ORDER BY cmpSequence ASC";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1, cmpGroup);
+			pstmt.setInt(2,isStudent);
 			rs= pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -277,6 +256,7 @@ public class ComplaintsDAO {
 				cmpDTO.setCmpSequence(rs.getInt(12));
 				cmpDTO.setCmpLevel(rs.getInt(13));
 				cmpDTO.setCmpAvailable(rs.getInt(14));
+				cmpDTO.setIsStudent(rs.getInt(15));
 				list.add(cmpDTO);
 			}
 		}catch (Exception e) {
@@ -288,21 +268,17 @@ public class ComplaintsDAO {
 		}
 		return list;
 	}
-	public boolean nextPage(int pageNumber,boolean isStudent) {
+	public boolean nextPage(int pageNumber,int isStudent) {
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL ="SELECT * FROM CMP_ST WHERE cmpGroup >= ? AND cmpAvailable=1";
-			}
-			else {
-				SQL ="SELECT * FROM CMP_SC WHERE cmpGroup >= ? AND cmpAvailable=1";
-			}
+			SQL ="SELECT * FROM CMP WHERE cmpGroup >= ? AND cmpAvailable=1 AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1, pageNumber*10);
+			pstmt.setInt(2,isStudent);
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
 				return true;
@@ -316,21 +292,17 @@ public class ComplaintsDAO {
 		}
 		return false;
 	}
-	public int targetPage(int pageNumber,boolean isStudent) {
+	public int targetPage(int pageNumber,int isStudent) {
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL ="SELECT COUNT(cmpGroup) FROM CMP_ST WHERE cmpGroup > ?";
-			}
-			else {
-				SQL ="SELECT COUNT(cmpGroup) FROM CMP_SC WHERE cmpGroup > ?";
-			}
+			SQL ="SELECT COUNT(cmpGroup) FROM CMP WHERE cmpGroup > ? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1, (pageNumber-1)*10);
+			pstmt.setInt(2,isStudent);
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getInt(1)/10;
@@ -344,21 +316,17 @@ public class ComplaintsDAO {
 		}
 		return 0;
 	}
-	public ComplaintsDTO getCmp(int cmpID,boolean isStudent) {
+	public ComplaintsDTO getCmp(int cmpID,int isStudent) {
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL = "SELECT * FROM CMP_ST WHERE cmpID = ?";
-			}
-			else {
-				SQL = "SELECT * FROM CMP_SC WHERE cmpID = ?";
-			}
+			SQL = "SELECT * FROM CMP WHERE cmpID = ? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, cmpID);
+			pstmt.setInt(2,isStudent);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				ComplaintsDTO cmp = new ComplaintsDTO();
@@ -376,6 +344,7 @@ public class ComplaintsDAO {
 				cmp.setCmpSequence(rs.getInt(12));
 				cmp.setCmpLevel(rs.getInt(13));
 				cmp.setCmpAvailable(rs.getInt(14));
+				cmp.setIsStudent(rs.getInt(15));
 				return cmp;
 			}
 		} catch (Exception e) {
@@ -387,21 +356,17 @@ public class ComplaintsDAO {
 		}
 		return null;
 	}
-	public int agree(int cmpID, boolean isStudent) { 
+	public int agree(int cmpID, int isStudent) { 
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL = "UPDATE CMP_ST SET agreeCount = agreeCount + 1 WHERE cmpID = ?";
-			}
-			else {
-				SQL = "UPDATE CMP_SC SET agreeCount = agreeCount + 1 WHERE cmpID = ?";
-			}
+			SQL = "UPDATE CMP SET agreeCount = agreeCount + 1 WHERE cmpID = ? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, cmpID);
+			pstmt.setInt(2,isStudent);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -412,21 +377,17 @@ public class ComplaintsDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
-	public static int hit(int cmpID,boolean isStudent) {
+	public static int hit(int cmpID,int isStudent) {
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL ="UPDATE CMP_ST SET cmpHit = cmpHit + 1 WHERE cmpID=?";
-			}
-			else {
-				SQL ="UPDATE CMP_SC SET cmpHit = cmpHit + 1 WHERE cmpID=?";
-			}
+			SQL ="UPDATE CMP SET cmpHit = cmpHit + 1 WHERE cmpID=? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1,cmpID);
+			pstmt.setInt(2,isStudent);
 			return pstmt.executeUpdate();
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -437,27 +398,24 @@ public class ComplaintsDAO {
 		}
 		return -1;
 	}
-	public int write(ComplaintsDTO complaintsDTO, boolean isStudent) {
+	public int write(ComplaintsDTO complaintsDTO, int isStudent) {
 		String SQL="";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?,?,?, 0,0,IFNULL((SELECT MAX(cmpGroup)+1 FROM CMP_ST a),0),0,0,1)";
-			}
-			else {
-				SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?,?,? 0,0,IFNULL((SELECT MAX(cmpGroup)+1 FROM CMP_SC a),0),0,0,1)";
-			}
+			SQL ="INSERT INTO CMP VALUES(?, ?, ?, ?, ?, ?, ?, ?, 0,0,IFNULL((SELECT MAX(cmpGroup)+1 FROM CMP a),0),0,0,1,?)";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setString(1,complaintsDTO.getCmpTitle());
-			pstmt.setString(2,complaintsDTO.getUserID());
-			pstmt.setString(3,getDate());
-			pstmt.setString(4,complaintsDTO.getCmpContent());
-			pstmt.setString(5,complaintsDTO.getCmpDivide());
-			pstmt.setString(6,complaintsDTO.getCmpFile());
-			pstmt.setString(7,complaintsDTO.getCmpRealFile());
+			pstmt.setInt(1,getNext(isStudent));
+			pstmt.setString(2,complaintsDTO.getCmpTitle());
+			pstmt.setString(3,complaintsDTO.getUserID());
+			pstmt.setString(4,getDate());
+			pstmt.setString(5,complaintsDTO.getCmpContent());
+			pstmt.setString(6,complaintsDTO.getCmpDivide());
+			pstmt.setString(7,complaintsDTO.getCmpFile());
+			pstmt.setString(8,complaintsDTO.getCmpRealFile());
+			pstmt.setInt(9,isStudent);
 			return pstmt.executeUpdate();
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -468,23 +426,19 @@ public class ComplaintsDAO {
 		}
 		return -1;
 	}
-	public int update(int cmpID, String cmpTitle, String cmpContent,boolean isStudent) {
+	public int update(int cmpID, String cmpTitle, String cmpContent,int isStudent) {
 		String SQL="";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL = "UPDATE CMP_ST SET cmpTitle = ?, cmpContent = ? WHERE cmpID = ?";
-			}
-			else {
-				SQL = "UPDATE CMP_SC SET cmpTitle = ?, cmpContent = ? WHERE cmpID = ?";
-			}
+			SQL = "UPDATE CMP SET cmpTitle = ?, cmpContent = ? WHERE cmpID = ? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, cmpTitle);
 			pstmt.setString(2, cmpContent);
 			pstmt.setInt(3, cmpID);
+			pstmt.setInt(4,isStudent);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -495,21 +449,17 @@ public class ComplaintsDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
-	public int delete(int cmpID, boolean isStudent) { 
+	public int delete(int cmpID, int isStudent) { 
 		String SQL="";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL = "UPDATE CMP_ST SET cmpAvailable =0 WHERE cmpID=?";
-			}
-			else {
-				SQL = "UPDATE CMP_SC SET cmpAvailable =0 WHERE cmpID=?";
-			}
+			SQL = "UPDATE CMP SET cmpAvailable =0 WHERE cmpID=? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, cmpID);
+			pstmt.setInt(2,isStudent);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -520,28 +470,25 @@ public class ComplaintsDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
-	public int reply(ComplaintsDTO complaintsDTO,ComplaintsDTO parent, boolean isStudent) {
+	public int reply(ComplaintsDTO complaintsDTO,ComplaintsDTO parent, int isStudent) {
 		String SQL="";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL ="INSERT INTO CMP_ST VALUES(NULL, ?, ?, ?, ?, ?,NULL,NULL, 0,0,?,?,?,1)";
-			}
-			else {
-				SQL ="INSERT INTO CMP_SC VALUES(NULL, ?, ?, ?, ?, ?,NULL,NULL, 0,0,?,?,?,1)";
-			}
+			SQL ="INSERT INTO CMP VALUES(?, ?, ?, ?, ?, ?,NULL,NULL, 0,0,?,?,?,1,?)";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setString(1,complaintsDTO.getCmpTitle());
-			pstmt.setString(2,complaintsDTO.getUserID());
-			pstmt.setString(3,getDate());
-			pstmt.setString(4,complaintsDTO.getCmpContent());
-			pstmt.setString(5,complaintsDTO.getCmpDivide());
-			pstmt.setInt(6,parent.getCmpGroup());
-			pstmt.setInt(7,parent.getCmpSequence()+1);
-			pstmt.setInt(8,parent.getCmpLevel()+1);
+			pstmt.setInt(1,getNext(isStudent));
+			pstmt.setString(2,complaintsDTO.getCmpTitle());
+			pstmt.setString(3,complaintsDTO.getUserID());
+			pstmt.setString(4,getDate());
+			pstmt.setString(5,complaintsDTO.getCmpContent());
+			pstmt.setString(6,complaintsDTO.getCmpDivide());
+			pstmt.setInt(7,parent.getCmpGroup());
+			pstmt.setInt(8,parent.getCmpSequence()+1);
+			pstmt.setInt(9,parent.getCmpLevel()+1);
+			pstmt.setInt(10,isStudent);
 			return pstmt.executeUpdate();
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -552,21 +499,17 @@ public class ComplaintsDAO {
 		}
 		return -1;
 	}
-	public int replyUpdate(ComplaintsDTO parent,boolean isStudent) {
+	public int replyUpdate(ComplaintsDTO parent,int isStudent) {
 		String SQL="";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		try {
-			if(isStudent) {
-				SQL = "UPDATE CMP_ST SET cmpSequence = cmpSequence + 1 WHERE cmpGroup = ? AND cmpSequence > ?";
-			}
-			else {
-				SQL = "UPDATE CMP_SC SET cmpSequence = cmpSequence + 1 WHERE cmpGroup = ? AND cmpSequence > ?";
-			}
+			SQL = "UPDATE CMP SET cmpSequence = cmpSequence + 1 WHERE cmpGroup = ? AND cmpSequence > ? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, parent.getCmpGroup());
 			pstmt.setInt(2, parent.getCmpSequence());
+			pstmt.setInt(3,isStudent);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -576,21 +519,17 @@ public class ComplaintsDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
-	public String getUserID(int cmpID,boolean isStudent) {
+	public String getUserID(int cmpID,int isStudent) {
 		String SQL="";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
 		try {
-			if(isStudent) {
-				SQL="SELECT userID FROM CMP_ST WHERE cmpID=?";
-			}
-			else {
-				SQL="SELECT userID FROM CMP_SC WHERE cmpID=?";
-			}
+			SQL="SELECT userID FROM CMP WHERE cmpID=? AND isStudent= ? ";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, cmpID);
+			pstmt.setInt(2,isStudent);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getString(1);

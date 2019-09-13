@@ -41,7 +41,6 @@ public class ComplaintsServlet extends HttpServlet {
 		}catch(Exception e) {
 			request.getSession().setAttribute("messageType","오류 메시지");
 			request.getSession().setAttribute("mewssageContent", "파일 크기는 10MB를 넘을 수 없습니다.");
-			response.sendRedirect("cmp_to_student_council_Write.jsp");
 			return;
 		}
 		HttpSession session = request.getSession();
@@ -50,11 +49,11 @@ public class ComplaintsServlet extends HttpServlet {
 		String cmpContent = multi.getParameter("cmpContent");
 		String cmpDivide = multi.getParameter("cmpDivide");
 		String cmpDate = multi.getParameter("cmpDate");
+		int isStudent= Integer.parseInt(multi.getParameter("isStudent"));
 		
 		if(cmpTitle==null || cmpContent==null||cmpTitle.equals("")||cmpContent.equals("")) {
 			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
-			response.sendRedirect("cmp_to_student_council_Write.jsp");
 			return;
 		}
 		File file = multi.getFile("cmpFile");
@@ -65,16 +64,23 @@ public class ComplaintsServlet extends HttpServlet {
 		if(file !=null) {
 			cmpFile = multi.getOriginalFileName("cmpFile");
 			cmpRealFile = file.getName();
-			cmpDAO.write(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpFile,cmpRealFile,cmpDate,0,0,0,0,0,0),true);
-		}else {
-			cmpDAO.write(new ComplaintsDTO(0, cmpTitle,userID,cmpContent,cmpDivide,cmpFile,cmpRealFile,cmpDate,0,0,0,0,0,0),true);
 		}
-		 String host="http://localhost:8080/SnS/";
+		int result= cmpDAO.write(new ComplaintsDTO(0,userID,"",cmpTitle,cmpContent,cmpDivide,cmpFile,cmpRealFile,0,0,0,0,0,1,isStudent),isStudent);
+		if(result!=1) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('오류가 발생했습니다.')");
+			script.println("history.go(-2);");
+			script.println("</script>");
+			script.close();
+			return;
+		}
+		String host="http://localhost:8080/SnS/";
 			String from="sjswsns@gmail.com";
 			String to="sseunghun99@naver.com";//민원 담당자 메일주소
 			String subject ="[세종소융]민원이 접수되었습니다."+cmpDAO.getDate();
 			String content ="제목: "+cmpTitle+"<br>접수날짜: "+cmpDAO.getDate()+"<br>"+cmpContent+
-			"\n<a href='" + host + "cmp_to_student_council_View.jsp?cmpID="+cmpDAO.countCmp(true)+
+			"\n<a href='" + host + "cmp_to_student_council_View.jsp?cmpID="+cmpDAO.countCmp(isStudent)+
 					"'><br>민원 바로가기</a>";
 			
 			Properties p = new Properties();
@@ -113,7 +119,11 @@ public class ComplaintsServlet extends HttpServlet {
 		
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent", "민원 게시가 완료되었습니다.");
-		response.sendRedirect("cmp_to_student_council.jsp");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("history.go(-2);");
+		script.println("</script>");
+		script.close();
 		return;
 	}
 }

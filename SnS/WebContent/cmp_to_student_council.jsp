@@ -53,6 +53,7 @@
 		if(request.getParameter("search")!=null){
 			search=request.getParameter("search");
 		}
+		int isStudent=1;
 	%>
 
 	<header>
@@ -296,15 +297,15 @@
             ComplaintsDAO cmpDAO = new ComplaintsDAO();
 			ArrayList<ComplaintsDTO> list = null;
 			if(search==null){
-				list = cmpDAO.getList(pageNumber,true);	
+				list = cmpDAO.getList(pageNumber,isStudent);	
 			}else{
-				list=cmpDAO.getSearch(searchType,search,pageNumber,true);
+				list=cmpDAO.getSearch(searchType,search,pageNumber,isStudent);
 			}
             for(int i=0; i<list.size();i++){
          %>
 					<tr>
 						<td><%=list.get(i).getCmpID() %></td>
-						<td><a href="cmp_to_student_council_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"
+						<td><a href="cmp_View.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
 							style="text-decoration: none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
 						<td><%=list.get(i).getUserID() %></td>
 						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
@@ -318,7 +319,7 @@
 			</table>
 			<hr>
 			<a class="btn btn-default pull-right"
-				href="cmp_to_student_council_Write.jsp">글쓰기</a>
+				href="cmp_Write.jsp?isStudent=<%=isStudent%>">글쓰기</a>
 			<br><br>
 			<%
 				if(search==null){
@@ -328,7 +329,7 @@
 					<%
           	int startPage=(pageNumber/10)*10+1;
           	if(pageNumber%10==0) startPage-=10;
-          	int targetPage =cmpDAO.targetPage(pageNumber,true);
+          	int targetPage =cmpDAO.targetPage(pageNumber,isStudent);
           	if(startPage!=1){
           %>
 					<li><a

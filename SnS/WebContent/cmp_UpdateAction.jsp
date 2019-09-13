@@ -14,7 +14,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 해주세요.')");
-		script.println("location.href='userLogin.jsp'");
+		script.println("history.back()");
 		script.println("</script>");
 		script.close();
 		return;
@@ -27,17 +27,21 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다.')");
-		script.println("location.href='cmp.jsp'");
+		script.println("history.back()");
 		script.println("</script>");
 		script.close();
 		return;
 	}
-	ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID,true);
+	int isStudent=-1;
+	if(request.getParameter("isStudent")!=null){
+		isStudent=Integer.parseInt(request.getParameter("isStudent"));
+	}
+	ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID,isStudent);
 	if (!userID.equals(cmp.getUserID())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다.')");
-		script.println("location.href='cmp_to_student_council.jsp'");
+		script.println("history.back()");
 		script.println("</script>");
 		script.close();
 		return;		
@@ -55,7 +59,7 @@
 		} else {
 	ComplaintsDAO cmpDAO = new ComplaintsDAO();
 	int result = cmpDAO.update(cmpID, request.getParameter("cmpTitle"),
-			request.getParameter("cmpContent"),true);
+			request.getParameter("cmpContent"),isStudent);
 	if (result == -1) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -66,7 +70,7 @@
 	} else {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("location.href='cmp_to_student_council.jsp'");
+		script.println("history.go(-2)");
 		script.println("</script>");
 		script.close();
 	}

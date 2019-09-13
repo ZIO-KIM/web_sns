@@ -2,19 +2,20 @@ package complaints;
 
 public class ComplaintsDTO {
 	int cmpID;
-	String cmpTitle;
 	String userID;
+	String cmpDate;
+	String cmpTitle;
 	String cmpContent;
 	String cmpDivide;
 	String cmpFile;
 	String cmpRealFile;
-	String cmpDate;
 	int agreeCount;
 	int cmpHit;
 	int cmpGroup;
 	int cmpSequence;
 	int cmpLevel;
 	int cmpAvailable;
+	int isStudent;
 	
 	public int getCmpID() {
 		return cmpID;
@@ -100,28 +101,37 @@ public class ComplaintsDTO {
 	public void setCmpAvailable(int cmpAvailable) {
 		this.cmpAvailable = cmpAvailable;
 	}
-
+	public int getIsStudent() {
+		return isStudent;
+	}
+	public void setIsStudent(int isStudent) {
+		this.isStudent = isStudent;
+	}
+	
 	public ComplaintsDTO() {
 
 	}
-	public ComplaintsDTO(int cmpID, String cmpTitle, String userID, String cmpContent, String cmpDivide, String cmpFile,
-			String cmpRealFile, String cmpDate, int agreeCount, int cmpHit, int cmpGroup, int cmpSequence, int cmpLevel,
-			int cmpAvailable) {
+	public ComplaintsDTO(int cmpID, String userID, String cmpDate, String cmpTitle, String cmpContent, String cmpDivide,
+			String cmpFile, String cmpRealFile, int agreeCount, int cmpHit, int cmpGroup, int cmpSequence, int cmpLevel,
+			int cmpAvailable, int isStudent) {
 		super();
 		this.cmpID = cmpID;
-		this.cmpTitle = cmpTitle;
 		this.userID = userID;
+		this.cmpDate = cmpDate;
+		this.cmpTitle = cmpTitle;
 		this.cmpContent = cmpContent;
 		this.cmpDivide = cmpDivide;
 		this.cmpFile = cmpFile;
 		this.cmpRealFile = cmpRealFile;
-		this.cmpDate = cmpDate;
 		this.agreeCount = agreeCount;
 		this.cmpHit = cmpHit;
 		this.cmpGroup = cmpGroup;
 		this.cmpSequence = cmpSequence;
 		this.cmpLevel = cmpLevel;
 		this.cmpAvailable = cmpAvailable;
+		this.isStudent = isStudent;
 	}
+	
+	
 	
 }

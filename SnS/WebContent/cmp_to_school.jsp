@@ -3,40 +3,66 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="complaints.ComplaintsDAO" %>
 <%@ page import="complaints.ComplaintsDTO" %>
-<%@ page import="java.io.PrintWriter" %>
+<%@ page import="page.PageDAO" %>
+<%@ page import="page.PageDTO" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
     <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학교 건의사항</title>
+    <% PageDAO pageDAO= new PageDAO(); %>
+    <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/PSB.css">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+		a, a:hover{
+			color:#000000;
+			text-decoration:none;
+		}
+	</style>
+
   </head>
   <body>
-  	
-     <%
-      String userID=null;
-      if(session.getAttribute("userID")!=null){
-         userID=(String)session.getAttribute("userID");
-      }
-      int pageNumber =1;
-      if(request.getParameter("pageNumber")!=null){
-         pageNumber =Integer.parseInt(request.getParameter("pageNumber"));
-      }
-    %>
 
-       <header>
+	<%
+		request.setCharacterEncoding("UTF-8");
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		int pageNumber = 1;
+		if (request.getParameter("pageNumber") != null) {
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		}
+		String searchType="최신순";
+		String search=null;
+		if(request.getParameter("searchType")!=null){
+			searchType=request.getParameter("searchType");
+		}
+		if(request.getParameter("search")!=null){
+			search=request.getParameter("search");
+		}
+		int isStudent=0;
+	%>
+
+	<header>
       <nav id='first_area'>
-        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
@@ -89,7 +115,6 @@
         </div>
         
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        
         <%
 				if (userID == null) {
 			%>
@@ -106,10 +131,52 @@
 			<%
 				}
 			%>
-        
       </nav>
     </header>
-	
+    
+    <%
+		String messageContent = null;
+		if(session.getAttribute("messageContent")!=null){
+			messageContent=(String)session.getAttribute("messageContent");
+		}
+		String messageType = null;
+		if(session.getAttribute("messageType")!=null){
+			messageType=(String)session.getAttribute("messageType");
+		}
+		if(messageContent != null){
+	%>
+		<div id="messageModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div class="modal-content" <%if(messageType.equals("오류 메시지")) out.println("panel-warning");else out.println("panel-success"); %>>
+						<div class="modal-header panel-heading">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">
+								<%=messageType %>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<%=messageContent %>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$('#messageModal').modal("show");
+		</script>
+	<%
+		session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
+		}
+	%>
+
 	<div id="modal-login" class="modal fade">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -183,8 +250,8 @@
 				</div>
 			</div>
 		</div>
-	
-    <div id="container">
+		
+	<div id="container">
     <nav>
       <nav>
         <h2>
@@ -193,81 +260,128 @@
         </h2>
         <ul class="lnb_deps2">
              <li>
-               <a href="cmp_to_student_council.jsp" class="jwxe_22350">학생회 건의사항</a>
+               	<a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
              </li>
              <li>
-               <a href="cmp_to_school.jsp" class="jwxe_22351 active">학교 건의사항</a>
+               	<a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
             </li>
             <li>
-              <a href="cmp_to_etc.jsp" class="jwxe_22351 ">기타 민원</a>
-            </li>
-            <li>
-              <a href="introduce_cmp.jsp" class="jwxe_22351 ">민원창구 소개</a>
+              	<a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
             </li>
         </ul>
       </nav>
     </nav>
-    
-    <section class="content">
-      <header>
-        <h1>학교 건의사항</h1>
-      </header>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>날짜</th>
-            <th>조회수</th>
-          </tr>
-        </thead>
-      <tbody>
-         <%
+    </div>
+
+		<section class="content">
+			<header>
+				<h1>학교 건의사항</h1>
+				<form method="get" action="cmp_to_school.jsp" class="form-inline mt-3">
+					<select name="searchType" class="form-control mx-1 mt-2">
+						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
+						<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
+					</select>
+					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
+					<button type="submit" class="btn mx-1 mt-2">검색</button>
+				</form>
+			</header>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>동의 수</th>
+						<th>조회 수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
             ComplaintsDAO cmpDAO = new ComplaintsDAO();
-            ArrayList<ComplaintsDTO> list = cmpDAO.getList(pageNumber,false);
+			ArrayList<ComplaintsDTO> list = null;
+			if(search==null){
+				list = cmpDAO.getList(pageNumber,isStudent);	
+			}else{
+				list=cmpDAO.getSearch(searchType,search,pageNumber,isStudent);
+			}
             for(int i=0; i<list.size();i++){
          %>
-         <tr>
-            <td><%=list.get(i).getCmpID() %></td>
-            <td><a href="cmp_to_school_View.jsp?cmpID=<%=list.get(i).getCmpID()%>"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-            <td><%=list.get(i).getUserID() %></td>
-            <td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
-         </tr>
-         <%
+					<tr>
+						<td><%=list.get(i).getCmpID() %></td>
+						<td><a href="cmp_View.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
+							style="text-decoration: none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+						<td><%=list.get(i).getUserID() %></td>
+						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
+						<td><%=list.get(i).getAgreeCount() %></td>
+						<td><%=list.get(i).getCmpHit() %></td>
+					</tr>
+					<%
             }
          %>
-      </tbody>
-      </table>
-      <hr>
-      <a class= "btn btn-default pull-right" href="cmp_to_school_Write.jsp">글쓰기</a>
-      <div class="text-center">
-        <ul class="pagination">
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-        </ul>
-      </div>
-      <%
-            if(pageNumber!=1){
-      %>
-            <a href="cmp_to_school.jsp?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
-         <%
-            }if(cmpDAO.nextPage(pageNumber+1,false)){
-         %>
-            <a href="cmp_to_school.jsp?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
-         <%
-            }
-         %>
-    </section>
-    
-    </div>
-    
-    <footer>
+				</tbody>
+			</table>
+			<hr>
+			<a class="btn btn-default pull-right"
+				href="cmp_Write.jsp?isStudent=<%=isStudent%>">글쓰기</a>
+			<br><br>
+			<%
+				if(search==null){
+			%>
+			<div class="text-center">
+				<ul class="pagination" style="margin: 0 auto;">
+					<%
+          	int startPage=(pageNumber/10)*10+1;
+          	if(pageNumber%10==0) startPage-=10;
+          	int targetPage =cmpDAO.targetPage(pageNumber,isStudent);
+          	if(startPage!=1){
+          %>
+					<li><a
+						href="cmp_to_school.jsp?pageNumber=<%=startPage-1%>"
+						class="btn btn-success">이전</a></li>
+					<%
+          	}else{
+          %>
+					<li><a href="#" class="btn" style="color: gray;">이전</a></li>
+					<%
+          	}for(int i = startPage;i<pageNumber;i++){
+        	%>
+					<li><a href="cmp_to_school.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<%      			
+          		}
+          	%>
+					<li><a class="active"
+						href="cmp_to_school.jsp?pageNumber=<%=pageNumber %>"><%=pageNumber %></a></li>
+					<%
+				for(int i = pageNumber+1;i<=targetPage+pageNumber;i++){
+					if(i<startPage+10){
+			%>
+					<li><a href="cmp_to_school.jsp?pageNumber=<%=i %>"><%=i %></a></li>
+					<%
+					}
+				}
+				if(targetPage+pageNumber>startPage+9){
+			%>
+					<li><a
+						href="cmp_to_school.jsp?pageNumber=<%=startPage+10 %>">다음</a></li>
+					<%
+				}else{
+			%>
+					<li><a href="#" class="btn" style="color: gray;">다음</a></li>
+					<%
+				}
+				}
+			%>
+				</ul>
+			</div>
+			<br>
+			<br>
+		</section>
+   
+   <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+    
   </body>
 </html>

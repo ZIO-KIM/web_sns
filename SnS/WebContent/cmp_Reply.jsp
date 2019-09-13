@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="complaints.ComplaintsDAO" %>
-<%@ page import="complaints.ComplaintsDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항 :: 수정</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 답변</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -20,40 +18,35 @@
   <body>
   
   <%
-		String userID=null;
-		if(session.getAttribute("userID")!=null){
-			userID=(String)session.getAttribute("userID");
-		}
-		if(userID==null){
-			PrintWriter script =response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href='userLogin.jsp'");
-			script.println("</script>");
-			script.close();
-		}
-		int cmpID=0;
-		if(request.getParameter("cmpID")!=null){
-			cmpID=Integer.parseInt(request.getParameter("cmpID"));
-		}
-		if(cmpID==0){
-			PrintWriter script =response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='cmp_to_student_council.jsp'");
-			script.println("</script>");
-			script.close();
-		}
-		ComplaintsDTO cmp=new ComplaintsDAO().getCmp(cmpID,true);
-		if(!userID.equals(cmp.getUserID())){
-			PrintWriter script =response.getWriter();
-			script.println("<script>");
-			script.println("alert('권한이 없습니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-			script.close();
-		}
-	 %>
+  	String userID =null;
+  	if(session.getAttribute("userID")!=null){
+  		userID=(String)session.getAttribute("userID");
+  	}
+  	if(userID==null){
+        PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 해주세요.');");
+        script.println("history.back()");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
+  	int cmpID=0;
+	if(request.getParameter("cmpID")!=null){
+		cmpID =Integer.parseInt(request.getParameter("cmpID"));
+	}
+	if(cmpID==0){
+		PrintWriter script =response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 글입니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	}
+	int isStudent = -1;
+	if (request.getParameter("isStudent") != null) {
+		isStudent = Integer.parseInt(request.getParameter("isStudent"));
+	}
+  %>  
   
     <header>
       <nav id='first_area'>
@@ -139,39 +132,34 @@
     
     <section class="content">
       <header>
-        <h1>글수정</h1>
+        <h1>답변 작성</h1>
       </header>
-      <form method="post" action="cmp_to_student_council_UpdateAction.jsp?cmpID=<%=cmp.getCmpID()%>">
-      <div class="form-group col-sm-3">
-      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
-      	<select name="cmpDivide" class="form-control">
-      		<option value="선택 안함" selected>선택 안함</option>
-      		<option value="컴퓨터공학과">컴퓨터공학과</option>
-      		<option value="정보보호학과" >정보보호학과</option>
-      		<option value="소프트웨어학과">소프트웨어학과</option>
-      		<option value="데이터사이언스학과">데이터사이언스학과</option>
-      		<option value="지능기전공학부">지능기전공학부</option>
-      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
-      		<option value="만화애니메이션전공">만화애니메이션전공</option>
-      	</select>
-      </div>
+      <form method="post" action="cmp_ReplyAction.jsp">
       <table class="table table-bordered">
         <tbody>
+        	<tr>
+        		<th>아이디: </th>
+        		<td><h5><%=userID %></h5>
+        		<input type="hidden" name="userID" value="<%=userID%>">
+        		<input type="hidden" name="cmpID" value="<%=cmpID%>">
+        		<input type="hidden" name="isStudent" value="<%=isStudent%>">
+        		</td>
+        	</tr>
             <tr>
                <th>제목: </th>
-               <td><input type="text" name="cmpTitle" maxlength="50" value="<%=cmp.getCmpTitle()%>" class="form-control"/></td>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>
             </tr>
             <tr>
                <th>내용: </th>
-               <td><textarea cols="10" name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"><%=cmp.getCmpContent()%></textarea></td>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="cmpContent" maxlength="2048" style="height:350px;" class="form-control"></textarea></td>
             </tr>
             <tr>
                <th>첨부파일: </th>
-               <td><input type="text" placeholder="파일을 선택하세요. " name="cmpFile" class="form-control"/></td>
+               <td><input type="file" placeholder="파일을 선택하세요. " name="cmpFile" class="form-control"/></td>
             </tr>
             <tr>
                <td colspan="2">
-                 <input type="submit" class="btn btn-primary pull-right" value="수정하기">
+                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
                </td>
              </tr>
           

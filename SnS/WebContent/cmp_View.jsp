@@ -47,11 +47,15 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='cmp_to_student_council.jsp'");
+			script.println("history.back()");
 			script.println("</script>");
 		}
-		ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID, true);
-		ComplaintsDAO.hit(cmpID, true);
+		int isStudent=-1;
+		if(request.getParameter("isStudent")!=null){
+			isStudent=Integer.parseInt(request.getParameter("isStudent"));
+		}
+		ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID, isStudent);
+		ComplaintsDAO.hit(cmpID, isStudent);
 		String fromProfile = new UserDAO().getProfile(userID);
 	%>
 
@@ -166,7 +170,7 @@
 			</div>
 		</div>
 		<script>
-			$('messageModal').modal("show");
+			$('#messageModal').modal("show");
 		</script>
 	<%
 		session.removeAttribute("messageContent");
@@ -343,27 +347,27 @@
 						<tr>
 							<td style="line-height: 300px;">첨부파일</td>
 							<td colspan="2" style="height: 300px; text-align: left;">
-								<h5><a href="cmp_st_Download.jsp?cmpID=<%=cmp.getCmpID() %>"><%=cmp.getCmpFile() %></a></h5>
+								<h5><a href="cmp_Download.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID() %>"><%=cmp.getCmpFile() %></a></h5>
 							</td>
 						</tr>
 
 					</tbody>
 				</table>
 				<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a> <a onclick="return confirm('해당 민원에 동의하시겠습니까?')"
-					href="cmp_to_student_council_agreeAction.jsp?cmpID=<%=cmp.getCmpID()%>"
+					href="cmp_agreeAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
 					class="btn btn-primary pull-right"
 					style="background-color: #c70027;">추천 </a> <a
-					href="cmp_to_student_council_Reply.jsp?cmpID=<%=cmp.getCmpID()%>"
+					href="cmp_Reply.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
 					class="btn btn-primary pull-right">답변 </a>
 					<a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
 				<%
 					if (userID != null && userID.equals(cmp.getUserID())) {
 				%>
 				<a
-					href="cmp_to_student_council_Update.jsp?cmpID=<%=cmp.getCmpID()%>"
+					href="cmp_Update.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
 					class="btn btn-primary">수정</a> <a
 					onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="deleteAction.jsp?cmpID=<%=cmp.getCmpID()%>"
+					href="deleteAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
 					class="btn btn-primary">삭제</a>
 				<%
 					}
@@ -371,7 +375,7 @@
 				<br> <br>
 				<%
 					ComplaintsDAO cmpDAO = new ComplaintsDAO();
-					ArrayList<ComplaintsDTO> list = cmpDAO.getReply(cmp.getCmpGroup(), true);
+					ArrayList<ComplaintsDTO> list = cmpDAO.getReply(cmp.getCmpGroup(), isStudent);
 					for (int i = 0; i < list.size(); i++) {
 				%>
 				<table class="table table-striped"
@@ -415,12 +419,12 @@
 							if (userID != null && userID.equals(list.get(i).getUserID())) {
 						%>
 						<a
-							href="cmp_to_student_council_Update.jsp?cmpID=<%=list.get(i).getCmpID()%>"
+							href="cmp_Update.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
 							class="btn btn-primary">수정</a>
 						<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-							href="deleteAction.jsp?cmpID=<%=list.get(i).getCmpID()%>"
+							href="deleteAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
 							class="btn btn-primary">삭제</a><a
-					href="cmp_to_student_council_Reply.jsp?cmpID=<%=list.get(i).getCmpID()%>"
+					href="cmp_Reply.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
 					class="btn btn-primary pull-right">답변</a><br><br>							
 						<%
 							}
