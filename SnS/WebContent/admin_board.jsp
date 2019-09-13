@@ -261,8 +261,7 @@
 						<th>ID</th>
 						<th>Name</th>
 						<th>Link</th>
-						<th>Deactivate</th>
-						<th>Activate</th>
+						<th>Status/Click to Change</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -274,8 +273,17 @@
 							<td><%=list.get(i).getBoardID()%></td>
 							<td><%=list.get(i).getBoardName()%></td>
 							<td><a href="<%=list.get(i).getBoardURL()%>"><%=list.get(i).getBoardURL()%></a></td>
-							<td><a onclick="return confirm('정말로 게시판을 비활성화시키겠습니까?')" href="admin_board_Ban.jsp?boardID=<%=list.get(i).getBoardID() %>" class="btn btn-danger">비활성화</a></td>
-							<td><a onclick="return confirm('정말로 게시판을 활성화시키겠습니까?')" href="admin_board_unBan.jsp?boardID=<%=list.get(i).getBoardID() %>" class="btn btn-success">활성화</a></td>
+							<%
+								if(list.get(i).getBoardAvailable()==1){
+							%>
+							<td><a onclick="return confirm('정말로 게시판을 비활성화시키겠습니까?')" href="admin_board_Ban.jsp?boardID=<%=list.get(i).getBoardID() %>" class="btn btn-success">활성화</a></td>
+							<%
+								}else{
+							%>
+							<td><a onclick="return confirm('정말로 게시판을 활성화시키겠습니까?')" href="admin_board_unBan.jsp?boardID=<%=list.get(i).getBoardID() %>" class="btn btn-danger">비활성화</a></td>
+							<%
+								}
+							%>
 						</tr>
 						<%
 							}

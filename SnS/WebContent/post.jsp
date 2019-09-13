@@ -7,46 +7,53 @@
 <%@ page import="board.BoardDAO" %>
 <%@ page import="board.BoardDTO" %>
 <%@ page import="java.net.URLEncoder" %>
+<%
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		int pageNumber = 1;
+		if (request.getParameter("pageNumber") != null) {
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		}
+		String searchType="최신순";
+		String search=null;
+		if(request.getParameter("searchType")!=null){
+			searchType=request.getParameter("searchType");
+		}
+		if(request.getParameter("search")!=null){
+			search=request.getParameter("search");
+		}
+		int boardID =2;
+		if (request.getParameter("boardID") != null) {
+			boardID = Integer.parseInt(request.getParameter("boardID"));
+		}
+		BoardDAO boardDAO = new BoardDAO();
+		BoardDTO board = boardDAO.getBoard(boardID);
+	%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>세종대학교 소프트웨어융합대학 :: 과별 게시판 :: 컴퓨터공학과 :: 홍보</title>
+    <title>세종대학교 소프트웨어융합대학 :: <%=board.getBoardName() %></title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/PSB.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
   </head>
   <body>
-  
-  <%
-  	String userID =null;
-  	if(session.getAttribute("userID")!=null){
-  		userID=(String)session.getAttribute("userID");
-  	}
-  	int pageNumber = 1;
-	if (request.getParameter("pageNumber") != null) {
-		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-	}
-	String searchType="최신순";
-	String search=null;
-	if(request.getParameter("searchType")!=null){
-		searchType=request.getParameter("searchType");
-	}
-	if(request.getParameter("search")!=null){
-		search=request.getParameter("search");
-	}
-	int boardID =4;
-	if (request.getParameter("boardID") != null) {
-		boardID = Integer.parseInt(request.getParameter("boardID"));
-	}
-	BoardDAO boardDAO = new BoardDAO();
-	BoardDTO board = boardDAO.getBoard(boardID);
-  %>  
-       <header>
+
+
+	
+
+	<header>
       <nav id='first_area'>
         <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
@@ -55,8 +62,8 @@
               <ul id='submenu'>
                 <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
-                <li><a href='student_council_events.jsp'>행사</a></li>
-                <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+                <li><a href='post.jsp?boardID=1'>행사</a></li>
+                <li><a href='post.jsp?boardID=2'>학생회비 내역</a></li>
                 <li><a href='departments.jsp'>과별 게시판</a></li>
               </ul>
             </li>
@@ -71,53 +78,56 @@
 
             <li>예비 소융인 <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
               <ul id='submenu'>
-                <li><a href='admission_reviews.jsp'>선배들의 입시 후기</a></li>
-                <li><a href='admission_qnas.jsp'>QnA</a></li>
+                <li><a href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
+                <li><a href='post.jsp?boardID=19'>QnA</a></li>
               </ul>
             </li>
 
             <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
-                <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
-                <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
-                <li><a href='graduate_qnas.jsp'>졸업생 QnA</a><br></li>
+                <li><a href='post.jsp?boardID=20'>취창업 후기</a><br></li>
+                <li><a href='post.jsp?boardID=21'>졸업생 인터뷰</a><br></li>
+                <li><a href='post.jsp?boardID=22'>졸업생 QnA</a><br></li>
               </ul>
             </li>
 
             <li>홍보 <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
               <ul id='submenu'>
-                <li><a href='school_contests.jsp'>교내 공모전</a><br></li>
-                <li><a href='not_school_contests.jsp'>교외 공모전</a><br></li>
+                <li><a href='post.jsp?boardID=24'>교내 공모전</a><br></li>
+                <li><a href='post.jsp?boardID=25'>교외 공모전</a><br></li>
               </ul>
             </li>
 
             <li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
               <ul id='submenu'>
                 <li><a href='chatbot.jsp'>Chatbot</a><br></li>
-                <li><a href='qna.jsp'>QnA</a><br></li>
+                <li><a href='post.jsp?boardID=27'>열린게시판</a><br></li>
               </ul>
             </li>
           </ul>
         </div>
         
         <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        
         <%
-        	if(userID==null){
-        %>
-        <h2 id='login'><a href="userLogin.jsp" style="text-decoration:none; color:#000000">LOGIN</a></h2>
-        <%
-        	}else{
-        %>
-      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
-        <%
-        	}
-        %>
-        
+				if (userID == null) {
+			%>
+			<h2 id='login'>
+				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #000000">LOGIN</a>
+			</h2>
+			<%
+				} else {
+			%>
+			<h2 id='login'>
+				<a href="userLogoutAction.jsp"
+					style="text-decoration: none; color: #000000">LOGOUT</a>
+			</h2>
+			<%
+				}
+			%>
       </nav>
     </header>
-
-	<%
+    
+    <%
 		String messageContent = null;
 		if(session.getAttribute("messageContent")!=null){
 			messageContent=(String)session.getAttribute("messageContent");
@@ -233,38 +243,165 @@
 				</div>
 			</div>
 		</div>
-
+    
+    
     <div id="container">
     <nav>
       <nav>
         <h2>
           <span></span>
-           컴퓨터공학과
+            <%=board.getBoardName() %>
         </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href="computer_science_introduce.jsp" class="jwxe_22350 active">학과 소개</a>
-             </li>
-             <li>
-               <a href="computer_science_student_council.jsp" class="jwxe_22351 ">학생회 소개</a>
-            </li>
-            <li>
-               <a href="computer_science_promotion.jsp" class="jwxe_22351 ">홍보</a>
-            </li>
-            <li>
-               <a href="computer_science_public_money.jsp" class="jwxe_22351 ">학생회비 내역</a>
-            </li>
-        </ul>
-      </nav>
+				<%
+					if (boardID >= 1 && boardID <= 3) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="student_council_introduce.jsp" class="jwxe_22350 active">학생회 소개</a></li>
+					<li><a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a></li>
+					<li><a href="post.jsp?boardID=2" class="jwxe_22351 ">행사</a></li>
+					<li><a href="post.jsp?boardID=3" class="jwxe_22351 ">학생회비내역</a></li>
+				</ul>
+				<%
+					}else if(boardID<=5){
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="computer_science_introduce.jsp"
+						class="jwxe_22350 active">학과 소개</a></li>
+					<li><a href="computer_science_student_council.jsp"
+						class="jwxe_22351 ">학생회 소개</a></li>
+					<li><a href="post.jsp?boardID=4"
+						class="jwxe_22351 ">홍보</a></li>
+					<li><a href="post.jsp?boardID=5"
+						class="jwxe_22351 ">학생회비 내역</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 7) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="information_security_introduce.jsp"
+						class="jwxe_22350 active">학과 소개</a></li>
+					<li><a href="information_security_student_council.jsp"
+						class="jwxe_22351 ">학생회 소개</a></li>
+					<li><a href="post.jsp?boardID=6"
+						class="jwxe_22351 ">홍보</a></li>
+					<li><a href="post.jsp?boardID=7"
+						class="jwxe_22351 ">학생회비 내역</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 9) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="software_introduce.jsp" class="jwxe_22350 active">학과
+							소개</a></li>
+					<li><a href="software_student_council.jsp" class="jwxe_22351 ">학생회
+							소개</a></li>
+					<li><a href="post.jsp?boardID=8" class="jwxe_22351 ">홍보</a>
+					</li>
+					<li><a href="post.jsp?boardID=9" class="jwxe_22351 ">학생회비
+							내역</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 11) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="data_science_introduce.jsp"
+						class="jwxe_22350 active">학과 소개</a></li>
+					<li><a href="data_science_student_council.jsp"
+						class="jwxe_22351 ">학생회 소개</a></li>
+					<li><a href="post.jsp?boardID=10" class="jwxe_22351 ">홍보</a>
+					</li>
+					<li><a href="post.jsp?boardID=11"
+						class="jwxe_22351 ">학생회비 내역</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 13) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="intelligent_mechanics_engineering_introduce.jsp"
+						class="jwxe_22350 active">학과 소개</a></li>
+					<li><a
+						href="intelligent_mechanics_engineering_student_council.jsp"
+						class="jwxe_22351 ">학생회 소개</a></li>
+					<li><a href="post.jsp?boardID=12"
+						class="jwxe_22351 ">홍보</a></li>
+					<li><a
+						href="post.jsp?boardID=13"
+						class="jwxe_22351 ">학생회비 내역</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 15) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="design_innovation_introduce.jsp"
+						class="jwxe_22350 active">학과 소개</a></li>
+					<li><a href="design_innovation_student_council.jsp"
+						class="jwxe_22351 ">학생회 소개</a></li>
+					<li><a href="post.jsp?boardID=14"
+						class="jwxe_22351 ">홍보</a></li>
+					<li><a href="post.jsp?boardID=15"
+						class="jwxe_22351 ">학생회비 내역</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 17) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="cartoon_animation_introduce.jsp"
+						class="jwxe_22350 active">학과 소개</a></li>
+					<li><a href="cartoon_animation_student_council.jsp"
+						class="jwxe_22351 ">학생회 소개</a></li>
+					<li><a href="post.jsp?boardID=16"
+						class="jwxe_22351 ">홍보</a></li>
+					<li><a href="post.jsp?boardID=17"
+						class="jwxe_22351 ">학생회비 내역</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 19) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="post.jsp?boardID=18" class="jwxe_22350 active">선배들의
+							입시후기</a></li>
+					<li><a href="post.jsp?boardID=19" class="jwxe_22351 ">QnA</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 23) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="post.jsp?boardID=20" class="jwxe_22350 active">취창업
+							후기</a></li>
+					<li><a href="post.jsp?boardID=21" class="jwxe_22351 ">졸업생
+							인터뷰</a></li>
+					<li><a href="post.jsp?boardID=22" class="jwxe_22351 ">졸업생
+							QnA</a></li>
+				</ul>
+				<%
+					} else if (boardID <= 25) {
+				%>
+				<ul class="lnb_deps2">
+					<li><a href="post.jsp?boardID=24" class="jwxe_22350 active">교내
+							공모전</a></li>
+					<li><a href="post.jsp?boardID=25" class="jwxe_22351 ">교외
+							공모전</a></li>
+				</ul>
+				<%
+					} else {
+				%>
+				<!-- 추가로 개설되는 게시판 -->
+				<%
+					}
+				%>
+			</nav>
     </nav>
+    
     
     <section class="content">
 			<header>
-				<h1><%=boardDAO.getBoard(boardID).getBoardName() %></h1>
+				<h1><%=boardDAO.getBoard(boardID).getBoardName()%></h1>
 				<form method="get" action="school_contests.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
-						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
-						<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
+						<option value="최신순" <%if (searchType.equals("최신순"))
+				out.println("selected");%>>최신순</option>
+						<option value="추천순" <%if (searchType.equals("추천순"))
+				out.println("selected");%>>추천순</option>
 					</select>
 					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
 					<button type="submit" class="btn mx-1 mt-2">검색</button>
@@ -283,15 +420,15 @@
 				</thead>
 				<tbody>
 					<%
-            PostDAO postDAO = new PostDAO();
-			ArrayList<PostDTO> list = null;
-			if(search==null){
-				list = postDAO.getList(pageNumber,boardID);	
-			}else{
-				list=postDAO.getSearch(searchType,search,pageNumber,boardID);
-			}
-            for(int i=0; i<list.size();i++){
-         %>
+						PostDAO postDAO = new PostDAO();
+						ArrayList<PostDTO> list = null;
+						if (search == null) {
+							list = postDAO.getList(pageNumber, boardID);
+						} else {
+							list = postDAO.getSearch(searchType, search, pageNumber, boardID);
+						}
+						for (int i = 0; i < list.size(); i++) {
+					%>
 					<tr>
 						<td><%=list.get(i).getPostID() %></td>
 						<td><a href="post_View.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
@@ -362,13 +499,12 @@
 			<br>
 			<br>
 		</section>
-    
+		
+		
     </div>
     <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
-    
-    <script src="js/bootstrap.js"></script>
   </body>
 </html>
