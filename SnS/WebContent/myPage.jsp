@@ -161,15 +161,28 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="file" name="userProfile" class="file">
-               							<div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Profile Image</label>
+                                                    <input type="file" name="userProfile" class="file">
+                                                    <input type="text" style="float:left;" class="form-control input-sm"  disabled placeholder="Image Upload">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <input type="file" name="userProfile" class="file"> -->
+               							<div class="input-group col-xs-12">
                								<label for="profileDisclosure">프로필 공개여부</label>
                								<button type="submit" class="btn btn-info btn-fill pull-right" style="margin-left:2%;">프로필 업데이트</button>
 											<input type="checkbox" checked data-toggle="toggle">
-											<button class="browse btn btn-primary pull-right" type="button"><i class="fa fa-search"></i>프로필 사진 업데이트</button>
+											<div class="col-md-4 pull-right">
+												<!-- <input type="text" style="float:left;" class="form-control input-sm"  disabled placeholder="이미지를 업로드하세요."> -->
+												<!-- <input type="button" style="float:right;" class="browse btn btn-primary pull-right" value="업로드">  -->
+												<span class="input-group-btn"><button class="browse btn btn-primary pull-right"  type="button"><i class="fa fa-search"></i>프로필 사진 업데이트</button></span>
+											</div>
                							</div>
-                                        
-                                        <div class="clearfix"></div>
+
+							<div class="clearfix"></div>
                                     </form>
                                 </div>
                             </div>
@@ -216,7 +229,7 @@
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript">
     	$(document).on('click','.browse',function(){
-    		var file = $(this).parent().parent().parent().find('.file');
+    		var file = $(this).parent().parent().parent().parent().find('.file');
     		file.trigger('click');
     	});
     	$(document).on('change','.file',function(){
