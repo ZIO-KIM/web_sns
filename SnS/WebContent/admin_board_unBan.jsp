@@ -24,7 +24,7 @@
 	}
 	BoardDAO boardDAO = new BoardDAO();
 	boardDAO.ban(boardID);
-	int result=boardDAO.ban(boardID);
+	int result=boardDAO.unBan(boardID);
 	if(result==1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");

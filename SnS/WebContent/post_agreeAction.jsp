@@ -21,8 +21,6 @@
 	return ip;
 }
 %>
-<!-- 한명의 회원정보를 담는 user클래스를 자바 빈즈로 사용 / scope:페이지 현재의 페이지에서만 사용-->
-<%-- <jsp:useBean id="cmp" class="cmp.Cmp" scope="page" /> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +57,7 @@
 		PostDAO postDAO = new PostDAO();
 		AgreeDAO agreeDAO=new AgreeDAO();
 		
-		int result=agreeDAO.agree(userID, postID, getClientIP(request));
+		int result=agreeDAO.agree(userID, postID, boardID, getClientIP(request));
 		if(result==1){
 			result=postDAO.agree(postID,boardID);
 			if(result==1){

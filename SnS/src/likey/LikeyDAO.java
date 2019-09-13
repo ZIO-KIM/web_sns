@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 
 import util.DatabaseUtil;
 
-public class AgreeDAO {
+public class LikeyDAO {
 	
-	public int agree(String userID, int cmpID,int isStudent,String userIP) {
-		String SQL="INSERT INTO AGREE VALUES(?,?,?,?)";
+	public int likey(String userID, int postID,int boardID,String userIP) {
+		String SQL="INSERT INTO likey VALUES(?,?,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs=null;
@@ -17,8 +17,8 @@ public class AgreeDAO {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
-			pstmt.setInt(2, cmpID);
-			pstmt.setInt(3, isStudent);
+			pstmt.setInt(2, postID);
+			pstmt.setInt(3, boardID);
 			pstmt.setString(4, userIP);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
