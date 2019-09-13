@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import complaints.ComplaintsDTO;
+import post.PostDTO;
 import util.DatabaseUtil;
 
 public class UserDAO {
@@ -129,6 +130,37 @@ public class UserDAO {
 			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
 		}
 		return false;
+	}
+	
+	public UserDTO getUser(String userID) {
+		String SQL="";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		try {
+			SQL = "SELECT * FROM user WHERE userID= ?";
+			conn=DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				UserDTO user = new UserDTO();
+				user.setUserID(rs.getString(1));
+				user.setUserName(rs.getString(3));
+				user.setUserEmail(rs.getString(4));
+				user.setUserEmailChecked(rs.getBoolean(6));
+				user.setUserProfile(rs.getString(7));
+				user.setAboutMe(rs.getString(10));
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return null;
 	}
 	
 	public String getUserEmail(String userID) {
@@ -298,6 +330,29 @@ public class UserDAO {
 		return -1;
 	}
 	
+	public int update(String userID,String userName, String userEmail, String aboutMe) {
+		String SQL = "UPDATE USER SET userName = ?,userEmail = ?,aboutMe = ? WHERE userID=?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1,userName);
+			pstmt.setString(2,userEmail);
+			pstmt.setString(3,aboutMe);
+			pstmt.setString(4,userID);
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null)conn.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		return -1;
+	}
+	
 	public ArrayList<UserDTO> getList(){
 		String SQL ="SELECT * FROM user ORDER BY userID DESC";
 		Connection conn=null;
@@ -314,6 +369,7 @@ public class UserDAO {
 				userDTO.setUserName(rs.getString(3));
 				userDTO.setUserEmail(rs.getString(4));
 				userDTO.setUserProfile(rs.getString(7));
+				userDTO.setAboutMe(rs.getString(10));
 				list.add(userDTO);
 			}
 		}catch (Exception e) {

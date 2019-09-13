@@ -10,6 +10,7 @@ public class UserDTO {
 	private String userProfile;
 	private String findPwQuestion;
 	private String findPwAnswer;
+	private String aboutMe;
 	
 	public String getUserID() {
 		return userID;
@@ -83,11 +84,19 @@ public class UserDTO {
 		this.findPwAnswer = findPwAnswer;
 	}
 
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
 	public UserDTO() {
 	}
 
 	public UserDTO(String userID, String userPassword, String userName, String userEmail, String userEmailHash,
-			boolean userEmailChecked, String userProfile, String findPwQuestion, String findPwAnswer) {
+			boolean userEmailChecked, String userProfile, String findPwQuestion, String findPwAnswer, String aboutMe) {
 		super();
 		this.userID = userID;
 		this.userPassword = userPassword;
@@ -98,6 +107,6 @@ public class UserDTO {
 		this.userProfile = userProfile;
 		this.findPwQuestion = findPwQuestion;
 		this.findPwAnswer = findPwAnswer;
+		this.aboutMe = aboutMe;
 	}
-
 }

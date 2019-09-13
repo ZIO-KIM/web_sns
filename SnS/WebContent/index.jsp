@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="user.UserDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="post.PostDAO" %>
+<%@ page import="post.PostDTO" %>
 <%@ page import="page.PageDAO" %>
 <%@ page import="page.PageDTO" %>
+<%@ page import="board.BoardDAO" %>
+<%@ page import="board.BoardDTO" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -47,14 +52,15 @@
     <header>
       <nav id='first_area'>
         <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
-         <div id="menubar">
+        <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
+          	<li><a href='post.jsp?boardID=1'>공지사항</a></li>
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
               <ul id='submenu'>
                 <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
-                <li><a href='student_council_events.jsp'>행사</a></li>
-                <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+                <li><a href='post.jsp?boardID=2'>행사</a></li>
+                <li><a href='post.jsp?boardID=3'>학생회비 내역</a></li>
                 <li><a href='departments.jsp'>과별 게시판</a></li>
               </ul>
             </li>
@@ -69,55 +75,54 @@
 
             <li>예비 소융인 <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
               <ul id='submenu'>
-                <li><a href='admission_reviews.jsp'>선배들의 입시 후기</a></li>
-                <li><a href='admission_qnas.jsp'>QnA</a></li>
+                <li><a href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
+                <li><a href='post.jsp?boardID=19'>QnA</a></li>
               </ul>
             </li>
 
             <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
               <ul id='submenu'>
-                <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
-                <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
-                <li><a href='graduate_qnas.jsp'>졸업생 QnA</a><br></li>
+                <li><a href='post.jsp?boardID=20'>취창업 후기</a><br></li>
+                <li><a href='post.jsp?boardID=21'>졸업생 인터뷰</a><br></li>
+                <li><a href='post.jsp?boardID=22'>졸업생 QnA</a><br></li>
               </ul>
             </li>
 
             <li>홍보 <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
               <ul id='submenu'>
-                <li><a href='school_contests.jsp'>교내 공모전</a><br></li>
-                <li><a href='not_school_contests.jsp'>교외 공모전</a><br></li>
+                <li><a href='post.jsp?boardID=24'>교내 공모전</a><br></li>
+                <li><a href='post.jsp?boardID=25'>교외 공모전</a><br></li>
               </ul>
             </li>
 
             <li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
               <ul id='submenu'>
                 <li><a href='chatbot.jsp'>Chatbot</a><br></li>
-                <li><a href='qna.jsp'>QnA</a><br></li>
+                <li><a href='post.jsp?boardID=27'>열린게시판</a><br></li>
               </ul>
             </li>
-          </ul>
+		</ul>
         </div>
         
-        <h2 id='language'>
-             <a href='index.jsp' style="text-decoration:none; color:black">한국어</a> / <a href="index_en.jsp" style="text-decoration:none; color:black">EN</a>
-       </h2>
-        
+        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
         <%
-           if(userID==null){
-        %>
-        <h2 id='login'>
-            <a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: black">LOGIN</a>
-         </h2>
-        <%
-           }else{
-        %>
-         <h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:black">LOGOUT</a></h2>
-        <%
-           }
-        %>
+				if (userID == null) {
+			%>
+			<h2 id='login'>
+				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #000000">LOGIN</a>
+			</h2>
+			<%
+				} else {
+			%>
+			<h2 id='login'>
+				<a href="userLogoutAction.jsp"
+					style="text-decoration: none; color: #000000">LOGOUT</a>
+			</h2>
+			<%
+				}
+			%>
       </nav>
-      
-      </header>
+    </header>
 
 	<%
 		String messageContent = null;

@@ -4,6 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
+<%@ page import="page.PageDAO" %>
+<%@ page import="page.PageDTO" %>
 <%@ page import="board.BoardDAO" %>
 <%@ page import="board.BoardDTO" %>
 <%@ page import="java.net.URLEncoder" %>
@@ -36,6 +38,8 @@
   <head>
     <meta charset="utf-8">
     <title>세종대학교 소프트웨어융합대학 :: <%=board.getBoardName() %></title>
+    <% PageDAO pageDAO= new PageDAO(); %>
+    <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -55,15 +59,16 @@
 
 	<header>
       <nav id='first_area'>
-        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
+          	<li><a href='post.jsp?boardID=1'>공지사항</a></li>
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
               <ul id='submenu'>
                 <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
                 <li><a href='student_council_photo.jsp'>갤러리</a></li>
-                <li><a href='post.jsp?boardID=1'>행사</a></li>
-                <li><a href='post.jsp?boardID=2'>학생회비 내역</a></li>
+                <li><a href='post.jsp?boardID=2'>행사</a></li>
+                <li><a href='post.jsp?boardID=3'>학생회비 내역</a></li>
                 <li><a href='departments.jsp'>과별 게시판</a></li>
               </ul>
             </li>
@@ -248,12 +253,16 @@
     <div id="container">
     <nav>
       <nav>
+      			<%
+      				if(boardID!=1){
+     			 %>
         <h2>
           <span></span>
             <%=board.getBoardName() %>
         </h2>
-				<%
-					if (boardID >= 1 && boardID <= 3) {
+        		<%
+    			  }if(boardID==1){
+        			}else if ( boardID <= 3) {
 				%>
 				<ul class="lnb_deps2">
 					<li><a href="student_council_introduce.jsp" class="jwxe_22350 active">학생회 소개</a></li>
@@ -396,7 +405,7 @@
     <section class="content">
 			<header>
 				<h1><%=boardDAO.getBoard(boardID).getBoardName()%></h1>
-				<form method="get" action="school_contests.jsp" class="form-inline mt-3">
+				<form method="get" action="post.jsp?boardID=<%=boardID %>" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
 						<option value="최신순" <%if (searchType.equals("최신순"))
 				out.println("selected");%>>최신순</option>
@@ -414,7 +423,7 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>날짜</th>
-						<th>동의 수</th>
+						<th>추천 수</th>
 						<th>조회 수</th>
 					</tr>
 				</thead>
