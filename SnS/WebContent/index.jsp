@@ -105,7 +105,9 @@
 		</ul>
         </div>
         
-        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
+        <h2 id='language'>
+       		<a href='index.jsp' style="text-decoration:none; color:black">KR</a> / <a href="index_en.jsp" style="text-decoration:none; color:black">EN</a>
+ 		</h2> <!--영어, 한글 버전 바꾸는 버튼-->
         <%
 				if (userID == null) {
 			%>
