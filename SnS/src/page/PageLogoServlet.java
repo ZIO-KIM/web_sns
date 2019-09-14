@@ -37,7 +37,7 @@ public class PageLogoServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(file !=null) {
 			String ext = file.getName().substring(file.getName().lastIndexOf(".")+1);
-			if(ext.equals("jpg") ||ext.equals("png") ||ext.equals("gif")) {
+			if(ext.equals("jpg") ||ext.equals("png") ||ext.equals("gif")||ext.equals("JPG") ||ext.equals("PNG") ||ext.equals("GIF")) {
 				String prev = new PageDAO().searchPageLogo();
 				File prevFile = new File(savePath + "/" + prev);
 				if(prevFile.exists()) {

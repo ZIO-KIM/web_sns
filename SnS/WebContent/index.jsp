@@ -34,6 +34,20 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Backstretch.js" type="text/javascript"></script>
     <script src="js/mainpage.js"></script>
+    
+    <style>
+    .logobox{
+		position:relative;
+		top:-30px;
+		left:-30px;
+		!important;
+	}
+	.dropdownLi{
+		font-weight:bold;
+		font-size:20px;
+	}
+    </style>
+    
   </head>
   <body>
   
@@ -56,87 +70,93 @@
 
     <header>
   
-      <nav id='first_area'>
-  
-        <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
-    
-        <div class="menubar">
-          <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
-          	<li><a href='post.jsp?boardID=1'>공지사항</a></li>
-            <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
-                <li><a href='student_council_photo.jsp'>갤러리</a></li>
-                <li><a href='post.jsp?boardID=2'>행사</a></li>
-                <li><a href='post.jsp?boardID=3'>학생회비 내역</a></li>
-                <li><a href='departments.jsp'>과별 게시판</a></li>
-              </ul>
-            </li>
+      <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a  class="navbar-brand logobox" href='index.jsp'>
+      	<img style="width:80px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
+      </a>
+    </div>
 
-            <li>민원 <!-- 메뉴바 두번째 - 민원 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
-                <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
-              </ul>
-            </li>
-
-            <li>예비 소융인 <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
-                <li><a href='post.jsp?boardID=19'>QnA</a></li>
-              </ul>
-            </li>
-
-            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='post.jsp?boardID=20'>취창업 후기</a><br></li>
-                <li><a href='post.jsp?boardID=21'>졸업생 인터뷰</a><br></li>
-                <li><a href='post.jsp?boardID=22'>졸업생 QnA</a><br></li>
-              </ul>
-            </li>
-
-            <li>홍보 <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='post.jsp?boardID=24'>교내 공모전</a><br></li>
-                <li><a href='post.jsp?boardID=25'>교외 공모전</a><br></li>
-              </ul>
-            </li>
-
-            <li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='chatbot.jsp'>Chatbot</a><br></li>
-                <li><a href='post.jsp?boardID=27'>열린게시판</a><br></li>
-              </ul>
-            </li>
-		</ul>
-        </div>
-        
-		<div id='language'>
-        	<h1 id='language_content'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        </div>
-        
-        <div id='login'>
-
-        <%
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="post.jsp?boardID=1">공지사항</a></li>
+        <li><a href="student_council_photo.jsp">갤러리</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">학생회 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='student_council_introduce.jsp'>학생회 소개</a></li>
+            <li><a class="dropdownLi" href='student_council_photo.jsp'>갤러리</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=2'>행사</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=3'>학생회비 내역</a></li>
+            <li><a class="dropdownLi" href='departments.jsp'>과별 게시판</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">민원 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
+			<li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
+			<li><a class="dropdownLi" href='introduce_cmp.jsp'>민원창구 소개</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">예비소융인 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
+			<li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">취업 &amp; 졸업 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=20'>취창업 후기</a></li>
+			<li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
+			<li><a class="dropdownLi" href='post.jsp?boardID=22'>졸업생 QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">홍보 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=24'>교내 공모전</a></li>
+			<li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
+          </ul>
+        </li>
+        <li><a href='post.jsp?boardID=27'>열린 광장</a><br></li>
+        <li><a href='chatbot.jsp'>Chatbot</a><br></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">KR/EN</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속관리 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+			<%
 				if (userID == null) {
 			%>
-			<h2 id='login_content'>
-				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #000000">LOGIN</a>
-			</h2>
+				<li><a class="dropdownLi" data-toggle="modal" href="#modal-login">로그인</a></li>
 			<%
 				} else {
 			%>
-			<h2 id='logout_content'>
-				<a href="userLogoutAction.jsp"
-					style="text-decoration: none; color: #000000">LOGOUT</a>
-			</h2>
+				<li><a class="dropdownLi" href="myPage.jsp">내 프로필</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a class="dropdownLi" href="userLogoutAction.jsp">로그아웃</a></li>
 			<%
 				}
 			%>
-		</div>
-        
-      </nav>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
     </header>
 
 	<%
