@@ -13,14 +13,15 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>세종대학교 소프트웨어융합대학</title>
     <% PageDAO pageDAO= new PageDAO(); %>
     <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&disp
+    lay=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/mainpage.css">
