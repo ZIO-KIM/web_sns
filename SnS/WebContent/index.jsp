@@ -13,17 +13,22 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>세종대학교 소프트웨어융합대학</title>
     <% PageDAO pageDAO= new PageDAO(); %>
     <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&disp
+    lay=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/mainpage.css">
+    
+    <link rel="stylesheet" href="css/mainpage.css" media="screen and (min-width: 700px)">
+    <link rel="stylesheet" href="css/mainpage_smallsize.css" media="screen and (max-width: 700px)">
+    
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -50,9 +55,12 @@
     </script>
 
     <header>
+  
       <nav id='first_area'>
+  
         <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
-        <div id="menubar">
+    
+        <div class="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
           	<li><a href='post.jsp?boardID=1'>공지사항</a></li>
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
@@ -104,23 +112,30 @@
 		</ul>
         </div>
         
-        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
+		<div id='language'>
+        	<h1 id='language_content'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
+        </div>
+        
+        <div id='login'>
+
         <%
 				if (userID == null) {
 			%>
-			<h2 id='login'>
+			<h2 id='login_content'>
 				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #000000">LOGIN</a>
 			</h2>
 			<%
 				} else {
 			%>
-			<h2 id='login'>
+			<h2 id='logout_content'>
 				<a href="userLogoutAction.jsp"
 					style="text-decoration: none; color: #000000">LOGOUT</a>
 			</h2>
 			<%
 				}
 			%>
+		</div>
+        
       </nav>
     </header>
 
@@ -245,34 +260,37 @@
       <h1 id='title'>College of<br>Software &amp; Convergence Technology</h1>
       <h3 id='subtitle'>소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
-
-    <div id="notice">
-      <h2><a href='#' id='Notice'>공지사항</a></h2>
-      <br/> 
-      <a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    </div>
-
-    <div id="promotion">
-      <h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
-      <br/>
-      <a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    </div>
     
-    <div id="claim">
-      <h2><a href='#' id='Claims'>민원 게시판</a></h2>
-      <br/>
-      <a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    </div>
+    
+    <div id='all_boards'>
+    	<div id="notice">
+      		<h2><a href='#' id='Notice'>공지사항</a></h2>
+      		<br/> 
+      		<a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+    	</div>
 
-    <div id="departments">
-      <h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
-      <a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
-      <a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
-      <a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
-      <a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
-      <a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
-      <a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
-      <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
+    	<div id="promotion">
+      		<h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
+      		<br/>
+      		<a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+    	</div>
+    
+    	<div id="claim">
+      		<h2><a href='#' id='Claims'>민원 게시판</a></h2>
+      		<br/>
+      		<a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+    	</div>
+
+    	<div id="departments">
+      		<h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
+      		<a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
+      		<a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
+      		<a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
+      		<a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
+      		<a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
+      		<a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
+      		<a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
+    	</div>
     </div>
 
     <table>
