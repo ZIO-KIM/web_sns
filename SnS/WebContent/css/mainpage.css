@@ -1,11 +1,11 @@
 /* @media (max-width:500px) {
-	ul {
-		display: none; /* 500px 보다 화면 크기 작아지면 상단 메뉴바 없어짐 
-	}
-	
-	h1 {
-		display: none; 
-	}
+   ul {
+      display: none; /* 500px 보다 화면 크기 작아지면 상단 메뉴바 없어짐 
+   }
+   
+   h1 {
+      display: none; 
+   }
 } */
 
 #first_area {
@@ -26,21 +26,21 @@
 }
 
 #language_content {
-	font-family: 'Nanum Gothic', sans-serif;
-  	font-size: 17px;
-  	width: 100px; 
-  	
-  	margin-top: -35px; 
-  	margin-left: 70px; 
-  	 
+   font-family: 'Nanum Gothic', sans-serif;
+     font-size: 17px;
+     width: 100px; 
+     
+     margin-top: -35px; 
+     margin-left: 70px; 
+      
 }
 
 #login_content, #logout_content{
-	font-family: 'Nanum Gothic', sans-serif;
+   font-family: 'Nanum Gothic', sans-serif;
     font-size: 17px; 
     text-decoration: none;
    
-	width: 100px;  
+   width: 100px;  
     height: 10px; 
     
     margin-right: -30px; 
@@ -48,7 +48,7 @@
 }
 
 #login {
-	width: 100px;  
+   width: 100px;  
     height: 50px; 
     
     margin-right: -20px; 
@@ -63,11 +63,10 @@
   
   display: block; 
   
-  width: 1200px;  
-  height: 100px; 
+  width: 1000px;  
+  height: 80px; 
   
   margin-right: -140px; 
-  margin-top: 35px; 
  
 }
 
@@ -86,7 +85,7 @@
 .menubar ul li { /*�긽�쐞 硫붾돱 */
   /*background-color: #a17474;
   border: 1px solid #a17474; */
-	width: 140px; 
+  width: 140px; /* 硫붾돱 諛뺤뒪 媛�濡� 湲몄씠 */
   height: 40px;
   line-height: 40px;
   text-align: center;
@@ -162,11 +161,11 @@
 }
 
 #all_boards {
-	width: 1100px; 
-	height: 600px; 
-	
-	margin-top: 30%; 
-	margin-left: 7%; 
+   width: 1100px; 
+   height: 600px; 
+   
+   margin-top: 30%; 
+   margin-left: 7%; 
 }
 
 
@@ -200,7 +199,7 @@
 }
 
 #claim {
-	display: inline-block;
+   display: inline-block;
    font-family: 'Nanum Gothic', sans-serif;
    font-size: 20px;
    border: solid 2px black; 
@@ -227,20 +226,25 @@
 }
 
 #table_responsive {
-	height: 100px;
-	
-	text-align: center; 
+   width: full; 
+   height: 100px; 
+   background-color: red; 
+   
+   text-align: center; 
 }
 
 table {
-	width: 1200px; 
-	height: 70px; 
- 	margin-top: 8%;
- 	border-collapse: collapse;
- 	margin-left: auto;
- 	margin-right: auto;
+   width: 90%; 
+   height: 50px; 
+ margin-top: 8%;
+ border-collapse: collapse;
+ margin-left: auto;
+ margin-right: auto;
 
- 	padding-top: 5px; 
+ 
+ padding-top: 5px; 
+ 
+ background-color: blue; 
 }
 
 table, td, tr {
@@ -251,7 +255,8 @@ table, td, tr {
   font-size: 15px; 
   
   padding-top: 5px; 
- 
+  
+  background-color: yellow; 
 }
 
 #quick_menu {
@@ -317,6 +322,14 @@ footer {
   color: black;
 }
 
+.menubar {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 17px;
+  display: inline-block;
+  margin-left: 5%;
+  padding-top: 35px;
+}
+
 
 * { /* 紐⑤뱺 �깭洹몄쓽 留덉쭊怨� �뙣�뵫媛믪쓣 珥덇린�솕 */
   margin: 0px;
@@ -330,6 +343,7 @@ footer {
 .menubar ul li { /*�긽�쐞 硫붾돱 */
   /*background-color: #a17474;
   border: 1px solid #a17474; */
+  width: 140px; /* 硫붾돱 諛뺤뒪 媛�濡� 湲몄씠 */
   height: 40px;
   line-height: 40px;
   text-align: center;
@@ -383,7 +397,6 @@ footer {
 #title_animation { /* ���씠�� �븷�땲硫붿씠�뀡 吏��젙 */
   animation-name: slidein;
   animation-duration: 3s;
-  animation-delay:3s;
 }
 
 @keyframes slidein { /* slidein �븷�땲硫붿씠�뀡 �냽�꽦 吏��젙 */
@@ -401,26 +414,28 @@ footer {
 
 
 footer {
-	display: inline-block;
-	border: 4px solid #dbdad9; 
-	width: full; 
-	height: 100px; 
-	background-color: #e8e7e6; 
-	text-align: center; 
-	left: 0px; 
+   display: inline-block;
+   border: 4px solid #dbdad9; 
+   width: full; 
+   height: 100px; 
+   background-color: #e8e7e6; 
+   text-align: center; 
+   left: 0px; 
 }
 
 #footer_content {
-	padding-top: 30px; 
-	padding-right: 10px; 
+   padding-top: 30px; 
+   padding-right: 10px; 
 }
 
 #hr1 {
-	width: 82%; 
-	border: double 4px white; 
-	margin-top: 6%; 
+   width: 82%; 
+   border: double 4px white; 
+   margin-top: 6%; 
 }
 
 #board {
-	text-align: center; 
+   text-align: center; 
 }
+
+
