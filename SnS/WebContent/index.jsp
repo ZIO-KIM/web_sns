@@ -35,15 +35,15 @@
     
     <style>
     .logobox{
-		position:relative;
-		top:-30px;
-		left:-30px;
-		!important;
-	}
-	.dropdownLi{
-		font-weight:bold;
-		font-size:20px;
-	}
+      position:relative;
+      top:-30px;
+      left:-30px;
+      !important;
+   }
+   .dropdownLi{
+      font-weight:bold;
+      font-size:20px;
+   }
     </style>
     
   </head>
@@ -78,7 +78,7 @@
         <span class="icon-bar"></span>
       </button>
       <a  class="navbar-brand logobox" href='index.jsp'>
-      	<img style="width:80px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
+         <img style="width:80px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
       </a>
     </div>
 
@@ -101,30 +101,30 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">민원 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
-			<li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
-			<li><a class="dropdownLi" href='introduce_cmp.jsp'>민원창구 소개</a></li>
+         <li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
+         <li><a class="dropdownLi" href='introduce_cmp.jsp'>민원창구 소개</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">예비소융인 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
-			<li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">취업 &amp; 졸업 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=20'>취창업 후기</a></li>
-			<li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
-			<li><a class="dropdownLi" href='post.jsp?boardID=22'>졸업생 QnA</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=22'>졸업생 QnA</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">홍보 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=24'>교내 공모전</a></li>
-			<li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
           </ul>
         </li>
         <li><a href='post.jsp?boardID=27'>열린 광장</a><br></li>
@@ -135,19 +135,19 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속관리 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-			<%
-				if (userID == null) {
-			%>
-				<li><a class="dropdownLi" data-toggle="modal" href="#modal-login">로그인</a></li>
-			<%
-				} else {
-			%>
-				<li><a class="dropdownLi" href="myPage.jsp">내 프로필</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a class="dropdownLi" href="userLogoutAction.jsp">로그아웃</a></li>
-			<%
-				}
-			%>
+         <%
+            if (userID == null) {
+         %>
+            <li><a class="dropdownLi" data-toggle="modal" href="#modal-login">로그인</a></li>
+         <%
+            } else {
+         %>
+            <li><a class="dropdownLi" href="myPage.jsp">내 프로필</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a class="dropdownLi" href="userLogoutAction.jsp">로그아웃</a></li>
+         <%
+            }
+         %>
           </ul>
         </li>
       </ul>
@@ -156,48 +156,48 @@
 </nav>
     </header>
 
-	<%
-		String messageContent = null;
-		if(session.getAttribute("messageContent")!=null){
-			messageContent=(String)session.getAttribute("messageContent");
-		}
-		String messageType = null;
-		if(session.getAttribute("messageType")!=null){
-			messageType=(String)session.getAttribute("messageType");
-		}
-		if(messageContent != null){
-	%>
-		<div id="messageModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="vertical-alignment-helper">
-				<div class="modal-dialog vertical-align-center">
-					<div class="modal-content" <%if(messageType.equals("오류 메시지")) out.println("panel-warning");else out.println("panel-success"); %>>
-						<div class="modal-header panel-heading">
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">&times;</span>
-								<span class="sr-only">Close</span>
-							</button>
-							<h4 class="modal-title">
-								<%=messageType %>
-							</h4>
-						</div>
-						<div class="modal-body">
-							<%=messageContent %>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script>
-			$('#messageModal').modal("show");
-		</script>
-	<%
-		session.removeAttribute("messageContent");
-		session.removeAttribute("messageType");
-		}
-	%>
+   <%
+      String messageContent = null;
+      if(session.getAttribute("messageContent")!=null){
+         messageContent=(String)session.getAttribute("messageContent");
+      }
+      String messageType = null;
+      if(session.getAttribute("messageType")!=null){
+         messageType=(String)session.getAttribute("messageType");
+      }
+      if(messageContent != null){
+   %>
+      <div id="messageModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+               <div class="modal-content" <%if(messageType.equals("오류 메시지")) out.println("panel-warning");else out.println("panel-success"); %>>
+                  <div class="modal-header panel-heading">
+                     <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                     </button>
+                     <h4 class="modal-title">
+                        <%=messageType %>
+                     </h4>
+                  </div>
+                  <div class="modal-body">
+                     <%=messageContent %>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         $('#messageModal').modal("show");
+      </script>
+   <%
+      session.removeAttribute("messageContent");
+      session.removeAttribute("messageType");
+      }
+   %>
 
    <div id="modal-login" class="modal fade">
          <div class="modal-dialog modal-sm">
@@ -280,46 +280,46 @@
     
     
     <div id='all_boards'>
-    	<div id="notice">
-      		<h2><a href='#' id='Notice'>공지사항</a></h2>
-      		<br/> 
-      		<a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    	</div>
+       <div id="notice">
+            <h2><a href='#' id='Notice'>공지사항</a></h2>
+            <br/> 
+            <a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+       </div>
 
-    	<div id="promotion">
-      		<h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
-      		<br/>
-      		<a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    	</div>
+       <div id="promotion">
+            <h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
+            <br/>
+            <a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+       </div>
     
-    	<div id="claim">
-      		<h2><a href='#' id='Claims'>민원 게시판</a></h2>
-      		<br/>
-      		<a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    	</div>
+       <div id="claim">
+            <h2><a href='#' id='Claims'>민원 게시판</a></h2>
+            <br/>
+            <a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+       </div>
 
-    	<div id="departments">
-      		<h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
-      		<a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
-      		<a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
-      		<a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
-      		<a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
-      		<a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
-      		<a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
-      		<a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
-    	</div>
+       <div id="departments">
+            <h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
+            <a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
+            <a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
+            <a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
+            <a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
+            <a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
+            <a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
+            <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
+       </div>
     </div>
 
-	<div id='table_responsive'>
-    	<table>
-      		<tr>
-        		<td>Quick Menu</td>
-        		<td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>
-        		<td><a href='http://www.sejongstudent.com/xe/' id='quick_menu'>세종대학교<br>총학생회</a></td>
-        		<td><a href='https://ko-kr.facebook.com/sejong1sc/' id='quick_menu'>세종소융<br>페이스북</a></td>
-        		<td><a href='https://www.facebook.com/sejongstudent/' id='quick_menu'>세종대학교<br>총학생회 페이스북</a></td>
-      		</tr>
-    	</table>
+   <div id='table_responsive'>
+       <table>
+            <tr>
+              <td>Quick Menu</td>
+              <td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>
+              <td><a href='http://www.sejongstudent.com/xe/' id='quick_menu'>세종대학교<br>총학생회</a></td>
+              <td><a href='https://ko-kr.facebook.com/sejong1sc/' id='quick_menu'>세종소융<br>페이스북</a></td>
+              <td><a href='https://www.facebook.com/sejongstudent/' id='quick_menu'>세종대학교<br>총학생회 페이스북</a></td>
+            </tr>
+       </table>
     </div>
     
     <footer>
