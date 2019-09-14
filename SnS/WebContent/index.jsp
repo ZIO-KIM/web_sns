@@ -26,6 +26,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="css/mainpage.css" media="screen and (min-width: 700px)">
+    <link rel="stylesheet" href="css/mainpage_smallsize.css" media="screen and (max-width: 700px)">
     
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -59,7 +60,7 @@
   
         <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
     
-        <div id="menubar">
+        <div class="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
           	<li><a href='post.jsp?boardID=1'>공지사항</a></li>
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
