@@ -116,6 +116,7 @@
         </div>
         
         <div id='login'>
+
         <%
 				if (userID == null) {
 			%>

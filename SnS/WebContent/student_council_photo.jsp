@@ -235,7 +235,30 @@ a, a:hover {
 			</div>
 		</div>
 	</div>
-
+	<div id="container">
+    <nav>
+      <nav>
+        <h2>
+          <span></span>
+            학생회
+        </h2>
+        <ul class="lnb_deps2">
+             <li>
+               <a href="student_council_introduce.jsp" class="jwxe_22350 active">학생회 소개</a>
+             </li>
+             <li>
+               <a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a>
+            </li>
+            <li>
+              <a href="student_council_events.jsp" class="jwxe_22351 ">행사</a>
+            </li>
+            <li>
+              <a href="student_council_public_money.jsp" class="jwxe_22351 ">학생회비 내역</a>
+            </li>
+        </ul>
+      </nav>
+    </nav>
+    </div>
 	<%--     <%
 	    ArrayList<FileDTO> fileList = new FileDAO().getList();
 	
