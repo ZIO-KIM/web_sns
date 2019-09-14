@@ -63,10 +63,11 @@
   
   display: block; 
   
-  width: 1000px;  
-  height: 80px; 
+  width: 1200px;  
+  height: 100px; 
   
   margin-right: -140px; 
+  margin-top: 35px; 
  
 }
 
@@ -85,7 +86,7 @@
 .menubar ul li { /*�긽�쐞 硫붾돱 */
   /*background-color: #a17474;
   border: 1px solid #a17474; */
-  width: 140px; /* 硫붾돱 諛뺤뒪 媛�濡� 湲몄씠 */
+	width: 140px; 
   height: 40px;
   line-height: 40px;
   text-align: center;
@@ -227,8 +228,7 @@
 
 #table_responsive {
 	width: full; 
-	height: 100px; 
-	background-color: red; 
+	height: 100px;
 	
 	text-align: center; 
 }
@@ -236,15 +236,12 @@
 table {
 	width: 90%; 
 	height: 50px; 
- margin-top: 8%;
- border-collapse: collapse;
- margin-left: auto;
- margin-right: auto;
+ 	margin-top: 8%;
+ 	border-collapse: collapse;
+ 	margin-left: auto;
+ 	margin-right: auto;
 
- 
- padding-top: 5px; 
- 
- background-color: blue; 
+ 	padding-top: 5px; 
 }
 
 table, td, tr {
@@ -255,8 +252,7 @@ table, td, tr {
   font-size: 15px; 
   
   padding-top: 5px; 
-  
-  background-color: yellow; 
+ 
 }
 
 #quick_menu {
@@ -322,14 +318,6 @@ footer {
   color: black;
 }
 
-.menubar {
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 17px;
-  display: inline-block;
-  margin-left: 5%;
-  padding-top: 35px;
-}
-
 
 * { /* 紐⑤뱺 �깭洹몄쓽 留덉쭊怨� �뙣�뵫媛믪쓣 珥덇린�솕 */
   margin: 0px;
@@ -343,7 +331,6 @@ footer {
 .menubar ul li { /*�긽�쐞 硫붾돱 */
   /*background-color: #a17474;
   border: 1px solid #a17474; */
-  width: 140px; /* 硫붾돱 諛뺤뒪 媛�濡� 湲몄씠 */
   height: 40px;
   line-height: 40px;
   text-align: center;
