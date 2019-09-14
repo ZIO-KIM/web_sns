@@ -160,14 +160,18 @@
   }
 }
 
+#all_boards {
+	width: 1100px; 
+	height: 600px; 
+	
+	margin-top: 30%; 
+	margin-left: 7%; 
+}
+
 
 #Notice, #Promotion, #Claims, #Departments{ /* 理쒓렐 湲� �깋�긽 �벑 怨듯넻�슂�냼 */
   color: black;
   text-decoration: none;
-  
-  width: 500px; 
-  height: 280px; 
-  
 }
 
 #notice {
@@ -178,13 +182,9 @@
   width: 500px; 
   height: 280px; 
   
-  margin-top: 30%; 
-  margin-left: 7%; 
-  
   text-align: center; 
   
 }
-
 #promotion {
   display: inline-block;
   font-family: 'Nanum Gothic', sans-serif;
@@ -193,10 +193,9 @@
   width: 500px; 
   height: 280px; 
   
-  text-align: center; 
-  
   margin-left: 2%; 
-
+  
+  text-align: center; 
 }
 
 #claim {
@@ -206,8 +205,7 @@
    border: solid 2px black; 
    width: 500px; 
    height: 280px; 
-   
-   margin-left: 7%; 
+
    margin-top: 3%; 
    
    text-align: center; 
@@ -222,7 +220,7 @@
   
   text-align: center; 
   
-  margin-left: 42%; 
+  margin-left: 48%; 
   margin-top: -280px; 
  
 }
@@ -397,69 +395,6 @@ footer {
     margin-left: 0%;
     width: 100%;
   }
-}
-
-
-#Notice, #Promotion, #Claims, #Departments{ /* 理쒓렐 湲� �깋�긽 �벑 怨듯넻�슂�냼 */
-  color: black;
-  text-decoration: none;
-}
-
-#notice {
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  border: solid 2px black; 
-  width: 500px; 
-  height: 280px; 
-  
-  margin-top: 30%; 
-  margin-left: 7%; 
-  
-  text-align: center; 
-  
-  
-}
-
-#promotion {
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px; 
-  border: solid 2px black; 
-  width: 500px; 
-  height: 280px; 
-  
-  text-align: center; 
-  
-  margin-left: 2%; 
-
-}
-
-#claim {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 20px;
-	border: solid 2px black; 
-	width: 500px; 
-	height: 280px; 
-	
-	margin-left: 7%; 
-	margin-top: 3%; 
-	
-	text-align: center; 
-}
-
-#departments {
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 20px;
-  border: solid 2px black; 
-  width: 500px; 
-  height: 280px; 
-  
-  text-align: center; 
-  
-  margin-left: 49%; 
-  margin-top: -280px; 
- 
 }
 
 table {

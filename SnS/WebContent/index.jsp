@@ -260,34 +260,37 @@
       <h1 id='title'>College of<br>Software &amp; Convergence Technology</h1>
       <h3 id='subtitle'>소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
-
-    <div id="notice">
-      <h2><a href='#' id='Notice'>공지사항</a></h2>
-      <br/> 
-      <a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    </div>
-
-    <div id="promotion">
-      <h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
-      <br/>
-      <a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    </div>
     
-    <div id="claim">
-      <h2><a href='#' id='Claims'>민원 게시판</a></h2>
-      <br/>
-      <a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
-    </div>
+    
+    <div id='all_boards'>
+    	<div id="notice">
+      		<h2><a href='#' id='Notice'>공지사항</a></h2>
+      		<br/> 
+      		<a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+    	</div>
 
-    <div id="departments">
-      <h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
-      <a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
-      <a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
-      <a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
-      <a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
-      <a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
-      <a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
-      <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
+    	<div id="promotion">
+      		<h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
+      		<br/>
+      		<a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+    	</div>
+    
+    	<div id="claim">
+      		<h2><a href='#' id='Claims'>민원 게시판</a></h2>
+      		<br/>
+      		<a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+    	</div>
+
+    	<div id="departments">
+      		<h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
+      		<a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
+      		<a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
+      		<a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
+      		<a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
+      		<a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
+      		<a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
+      		<a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
+    	</div>
     </div>
 
     <table>
