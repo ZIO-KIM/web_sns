@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="board.BoardDAO" %>
 <%@ page import="board.BoardDTO" %>
+<%@ page import="user.UserDAO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
@@ -24,14 +25,16 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		if(!userID.equals("admin")){
-			PrintWriter script =response.getWriter();
-	        script.println("<script>");
-	        script.println("alert('관리자로 로그인해주세요.');");
-	        script.println("location.href='admin.jsp';");
-	        script.println("</script>");
-	        script.close();
-	        return;
+		UserDAO userDAO=new UserDAO();
+		int userLevel=userDAO.getUserEmailChecked(userID);
+		if (userLevel<2) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href='admin.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
 		}
 		BoardDAO boardDAO = new BoardDAO();
 	%>
@@ -175,7 +178,7 @@
     	<div class="card card-plain table-plain-bg">
 			<div class="card-header ">
 				<h4 class="card-title">게시판 관리</h4>
-				<p style="display:inline-block;"class="card-category">게시판을 개설하거나 수정, 삭제할 수 있습니다.</p>
+				<p style="display:inline-block;"class="card-category">게시판을 개설하거나 설정을 변경, 삭제할 수 있습니다.</p>
 				<button type="button" style="display:inline-block;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">게시판 수정하기</button>
 				<button type="button" style="display:inline-block; margin-right:1%;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createModal">게시판 개설하기</button>				
 
@@ -198,12 +201,16 @@
 										<input type="text" class="form-control" name="boardTitle">
 									</div>
 									<div class="form-group">
-										<label for="board-title" class="col-form-label">게시판 ID:</label>
+										<label for="board-id" class="col-form-label">게시판 ID:</label>
 										<input type="text" class="form-control" name="boardID" value="<%=boardDAO.getNext()%>">
 									</div>
 									<div class="form-group">
-										<label for="board-title" class="col-form-label">게시판 URL:</label>
+										<label for="board-url" class="col-form-label">게시판 URL:</label>
 										<input type="text" class="form-control" name="boardURL" value="post.jsp?boardID=<%=boardDAO.getNext()%>">
+									</div>
+									<div class="form-group">
+										<label for="board-level" class="col-form-label">게시판 등급(비인증:0/인증:1/관리자:2):</label>
+										<input type="text" class="form-control" name="boardLevel" value="1">
 									</div>
 							</div>
 							<div class="modal-footer">
@@ -242,6 +249,10 @@
 										<label for="board-title" class="col-form-label">변경할 게시판의 URL:</label>
 										<input type="text" class="form-control" name="boardURL">
 									</div>
+									<div class="form-group">
+										<label for="board-level" class="col-form-label">게시판 등급(비인증:0/인증:1/관리자:2):</label>
+										<input type="text" class="form-control" name="boardLevel" value="1">
+									</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
@@ -260,19 +271,40 @@
 						<tr>
 						<th>ID</th>
 						<th>Name</th>
+						<th>Level</th>
 						<th>Link</th>
 						<th>Status/Click to Change</th>
+						<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
 							ArrayList<BoardDTO> list = boardDAO.getList();
+							int boardLevel=0;
 							for (int i = 0; i < list.size(); i++) {
+								boardLevel=list.get(i).getBoardLevel();
 						%>
 						<tr>
 							<td><%=list.get(i).getBoardID()%></td>
 							<td><%=list.get(i).getBoardName()%></td>
-							<td><a href="<%=list.get(i).getBoardURL()%>"><%=list.get(i).getBoardURL()%></a></td>
+							<td>
+							<%
+								if(boardLevel==0){
+							%>
+							비인증
+							<%
+								}else if(boardLevel==1){
+							%>
+							인증
+							<%
+								}else if(boardLevel==2){
+							%>
+							관리자
+							<%
+								}
+							%>
+							</td>
+							<td><a href="<%=list.get(i).getBoardURL()%>" class="btn btn-info">링크</a></td>
 							<%
 								if(list.get(i).getBoardAvailable()==1){
 							%>
@@ -284,6 +316,7 @@
 							<%
 								}
 							%>
+							<td><a onclick="return confirm('정말로 게시판을 삭제하시겠습니까?')" href="admin_board_Delete.jsp?boardID=<%=list.get(i).getBoardID() %>" class="btn btn-danger">삭제</a></td>
 						</tr>
 						<%
 							}

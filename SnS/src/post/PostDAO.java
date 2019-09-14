@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import util.DatabaseUtil;
+import page.PageDAO;
 
 public class PostDAO {
 
@@ -200,6 +201,49 @@ public class PostDAO {
 		return list;
 	}
 	
+	public ArrayList<PostDTO> getHotList(int pageNumber){
+		String SQL="";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		ArrayList<PostDTO> list =new ArrayList<PostDTO>();
+		try {
+			SQL ="SELECT * FROM post WHERE postGroup >  (SELECT MAX(postGroup) FROM post) - ? AND postGroup <= (SELECT MAX(postGroup) FROM post) - ? AND agreeCount>= ? AND postLevel=0 AND postAvailable=1 ORDER BY postGroup DESC";
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, pageNumber*50);
+			pstmt.setInt(2, (pageNumber-1)*50);
+			pstmt.setInt(3, 10);
+			rs= pstmt.executeQuery();
+			while(rs.next()) {
+				PostDTO postDTO =new PostDTO();
+				postDTO.setPostID(rs.getInt(1));
+				postDTO.setBoardID(rs.getInt(2));
+				postDTO.setUserID(rs.getString(3));
+				postDTO.setPostDate(rs.getString(4));
+				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostDivide(rs.getString(7));
+				postDTO.setPostFile(rs.getString(8));
+				postDTO.setPostRealFile(rs.getString(9));
+				postDTO.setAgreeCount(rs.getInt(10));
+				postDTO.setPostHit(rs.getInt(11));
+				postDTO.setPostGroup(rs.getInt(12));
+				postDTO.setPostSequence(rs.getInt(13));
+				postDTO.setPostLevel(rs.getInt(14));
+				postDTO.setPostAvailable(rs.getInt(15));
+				list.add(postDTO);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return list;
+	}
+	
 	public ArrayList<PostDTO> getSearch(String searchType, String search, int pageNumber,int boardID){
 		String SQL="";
 		ArrayList<PostDTO> searchList=null;
@@ -249,6 +293,57 @@ public class PostDAO {
 		}
 		return searchList;
 	}
+	
+	public ArrayList<PostDTO> getHotSearch(String searchType, String search, int pageNumber){
+		String SQL="";
+		ArrayList<PostDTO> searchList=null;
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		try {
+			if(searchType.equals("ÃÖ½Å¼ø")) {
+				SQL ="SELECT * FROM post WHERE postGroup >  (SELECT MAX(postGroup) FROM post) - ? AND postGroup <= (SELECT MAX(postGroup) FROM post) - ? AND agreeCount >= ? AND CONCAT(postTitle,postContent,userID) LIKE ? AND postLevel=0 AND postAvailable=1 ORDER BY postGroup DESC";
+			}
+			else {
+				SQL ="SELECT * FROM post WHERE postGroup >  (SELECT MAX(postGroup) FROM post) - ? AND postGroup <= (SELECT MAX(postGroup) FROM post) - ? AND agreeCount >= ? AND CONCAT(postTitle,postContent,userID) LIKE ? AND postLevel=0 AND postAvailable=1 ORDER BY agreeCount DESC";
+			}
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, pageNumber*200);
+			pstmt.setInt(2, (pageNumber-1)*200);
+			pstmt.setInt(3, 10);
+			pstmt.setString(4, "%" + search + "%");
+			rs=pstmt.executeQuery();
+			searchList= new ArrayList<PostDTO>();
+			while(rs.next()) {
+				PostDTO postDTO= new PostDTO();
+				postDTO.setPostID(rs.getInt(1));
+				postDTO.setBoardID(rs.getInt(2));
+				postDTO.setUserID(rs.getString(3));
+				postDTO.setPostDate(rs.getString(4));
+				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostDivide(rs.getString(7));
+				postDTO.setPostFile(rs.getString(8));
+				postDTO.setPostRealFile(rs.getString(9));
+				postDTO.setAgreeCount(rs.getInt(10));
+				postDTO.setPostHit(rs.getInt(11));
+				postDTO.setPostGroup(rs.getInt(12));
+				postDTO.setPostSequence(rs.getInt(13));
+				postDTO.setPostLevel(rs.getInt(14));
+				postDTO.setPostAvailable(rs.getInt(15));
+				searchList.add(postDTO);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return searchList;
+	}
+	
 	public ArrayList<PostDTO> getReply(int postGroup,int boardID){
 		String SQL="";
 		ArrayList<PostDTO> list=null;
@@ -339,6 +434,32 @@ public class PostDAO {
 		}
 		return 0;
 	}
+	
+	public int hotTargetPage(int pageNumber) {
+		String SQL="";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		try {
+			SQL ="SELECT COUNT(postGroup) FROM post WHERE postGroup > ? AND agreeCount >= ?";
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, (pageNumber-1)*10);
+			pstmt.setInt(2, 10);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1)/10;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return 0;
+	}
+	
 	public PostDTO getPost(int postID,int boardID) {
 		String SQL="";
 		Connection conn=null;

@@ -61,11 +61,17 @@ public class UserProfileServlet extends HttpServlet {
 				response.sendRedirect("profileUpdate.jsp");
 				return;
 			}
+			new UserDAO().profile(userID, fileName);
 		}
-		new UserDAO().profile(userID, fileName);
+		String userEmail = multi.getParameter("userEmail");
+		String userName = multi.getParameter("userName");
+		String aboutMe = multi.getParameter("aboutMe");
+		
+		new UserDAO().update(userID, userName, userEmail,aboutMe);
+		
 		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "성공적으로 프로필 사진을 변경하였습니다.");
-		response.sendRedirect("index.jsp");
+		session.setAttribute("messageContent", "성공적으로 프로필을 업데이트 하였습니다.");
+		response.sendRedirect("myPage.jsp");
 		return;
 	}
 

@@ -21,14 +21,16 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		if(!userID.equals("admin")){
-			PrintWriter script =response.getWriter();
-	        script.println("<script>");
-	        script.println("alert('관리자로 로그인해주세요.');");
-	        script.println("location.href='admin_user.jsp';");
-	        script.println("</script>");
-	        script.close();
-	        return;
+		UserDAO userDAO=new UserDAO();
+		int userLevel=userDAO.getUserEmailChecked(userID);
+		if (userLevel<2) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href='admin.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
 		}
 	%>
 	
@@ -182,12 +184,12 @@
 						<th>Name</th>
 						<th>Email</th>
 						<th>Message</th>
+						<th>Authority</th>
 						<th>Kick</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
-							UserDAO userDAO = new UserDAO();
 							ArrayList<UserDTO> list = userDAO.getList();
 							for (int i = 0; i < list.size(); i++) {
 						%>
@@ -197,6 +199,7 @@
 							<td><%=list.get(i).getUserName()%></td>
 							<td><%=list.get(i).getUserEmail()%></td>
 							<td><a href="#" class="btn btn-primary">쪽지</a></td>
+							<td><a onclick="return confirm('관리자로 승격시키겠습니까?')" href="userPromotion.jsp?promotionID=<%=list.get(i).getUserID() %>" class="btn btn-info">승격</a></td>
 							<td><a onclick="return confirm('정말로 강퇴하시겠습니까?')" href="userKick.jsp?kickID=<%=list.get(i).getUserID() %>" class="btn btn-danger">강퇴</a></td>
 						</tr>
 						<%

@@ -3,6 +3,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="board.BoardDTO" %>
 <%@ page import="board.BoardDAO" %>
+<%@ page import="user.UserDAO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -70,6 +71,7 @@
 		  boardID=Integer.parseInt(request.getParameter("boardID"));
 	}
   	BoardDAO boardDAO = new BoardDAO();
+  	UserDAO userDAO = new UserDAO();
   	int boardAvailable = boardDAO.getBoard(boardID).getBoardAvailable();
   	if(boardAvailable == 0){
   		PrintWriter script =response.getWriter();
@@ -80,7 +82,17 @@
         script.close();
         return;
   	}
-  	
+  	int boardLevel=boardDAO.getBoard(boardID).getBoardLevel();
+  	int userLevel=userDAO.getUserEmailChecked(userID);
+  	if(userLevel<boardLevel){
+  		PrintWriter script =response.getWriter();
+        script.println("<script>");
+        script.println("alert('권한이 없습니다.');");
+        script.println("history.back()");
+        script.println("</script>");
+        script.close();
+        return;
+  	}
   %>  
     <header>
       <nav id='first_area'>
