@@ -122,7 +122,7 @@
 		}
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("location.href='cmp_to_student_council.jsp'");
+		script.println("history.go(-2)");
 		script.println("</script>");
 		script.close();
 		return;

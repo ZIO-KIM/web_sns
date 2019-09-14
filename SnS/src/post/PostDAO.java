@@ -357,6 +357,7 @@ public class PostDAO {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1, postGroup);
+			pstmt.setInt(2, boardID);
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
 				PostDTO postDTO =new PostDTO();
@@ -614,7 +615,7 @@ public class PostDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
-	public int reply(PostDTO complaintsDTO,PostDTO parent, int boardID) {
+	public int reply(PostDTO postDTO,PostDTO parent, int boardID) {
 		String SQL="";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
@@ -625,11 +626,11 @@ public class PostDAO {
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1,getNext(boardID));
 			pstmt.setInt(2,boardID);
-			pstmt.setString(3,complaintsDTO.getUserID());
+			pstmt.setString(3,postDTO.getUserID());
 			pstmt.setString(4,getDate());
-			pstmt.setString(5,complaintsDTO.getPostTitle());			
-			pstmt.setString(6,complaintsDTO.getPostContent());
-			pstmt.setString(7,complaintsDTO.getPostDivide());
+			pstmt.setString(5,postDTO.getPostTitle());			
+			pstmt.setString(6,postDTO.getPostContent());
+			pstmt.setString(7,postDTO.getPostDivide());
 			pstmt.setString(8,"");
 			pstmt.setString(9,"");
 			pstmt.setInt(10,parent.getPostGroup());

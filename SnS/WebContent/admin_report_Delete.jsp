@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="board.BoardDAO"%>
-<%@ page import="board.BoardDTO"%>
+<%@ page import="report.ReportDAO"%>
+<%@ page import="report.ReportDTO"%>
 <%@ page import="user.UserDAO" %>
 <%
 	String userID = null;
@@ -21,17 +21,16 @@
 		script.close();
 		return;
 	}
-	int boardID = 0;
-	if (request.getParameter("boardID") != null) {
-		boardID = Integer.parseInt(request.getParameter("boardID"));
+	int reportID = 0;
+	if (request.getParameter("reportID") != null) {
+		reportID = Integer.parseInt(request.getParameter("reportID"));
 	}
-	BoardDAO boardDAO = new BoardDAO();
-	boardDAO.ban(boardID);
-	int result=boardDAO.unBan(boardID);
+	ReportDAO reportDAO = new ReportDAO();
+	int result=reportDAO.delete(reportID);
 	if(result==1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('게시판이 활성화되었습니다.')");
+		script.println("alert('게시판이 삭제되었습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 		script.close();
@@ -39,7 +38,7 @@
 	}else{
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('이미 활성화가 되어있습니다.')");
+		script.println("alert('이미 삭제가 되었습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 		script.close();

@@ -73,6 +73,7 @@
 	        script.close();
 	        return;
 	  	}
+	  	UserDAO userDAO = new UserDAO();
 	%>
 
 	<header>
@@ -280,6 +281,8 @@
 				</div>
 				<div class="modal-body">
 				<form action="reportAction.jsp" method="post">
+					<input type="hidden" name="postID" value="<%=postID%>">
+					<input type="hidden" name="boardID" value="<%=boardID%>">
 					<div class="form-group">
 						<label>신고제목</label>
 						<input type="text" name="reportTitle" class="form-control" maxlength="50">
@@ -352,7 +355,8 @@
 
 					</tbody>
 				</table>
-				<a href="school_contests.jsp" class="btn btn-primary">목록</a> <a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
+				<a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
+				<a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
 					href="post_agreeAction.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
 					class="btn btn-primary pull-right"
 					style="background-color: #c70027;">추천 </a> <a
@@ -362,11 +366,17 @@
 				<%
 					if (userID != null && userID.equals(post.getUserID())) {
 				%>
-				<a
-					href="post_Update.jsp?postID=<%=post.getPostID()%>"
-					class="btn btn-primary">수정</a> <a
-					onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="deleteAction.jsp?postID=<%=post.getPostID()%>"
+					<a href="post_Update.jsp?postID=<%=post.getPostID()%>"
+					class="btn btn-primary">수정</a>
+				<%
+					}
+				%>
+				<%
+					int userLevel=userDAO.getUserEmailChecked(userID);
+					if (userID != null && userID.equals(post.getUserID())||userLevel==2) {
+				%>
+					<a onclick="return confirm('정말로 삭제하시겠습니까?')"
+					href="deleteAction.jsp?postID=<%=post.getPostID()%>&boardID=<%=post.getBoardID() %>"
 					class="btn btn-primary">삭제</a>
 				<%
 					}
@@ -392,8 +402,9 @@
 								<%
 									for (int j = 0; j < list.get(i).getPostLevel(); j++) {
 								%> <span>Re: </span> <%
- 	}
- %><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+ 								}
+ 								%>
+ 						<%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
 						.replaceAll("\n", "<br>")%> &nbsp;/&nbsp;<%=list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt").replaceAll("\n", "<br>")%></td>
 						</tr>
@@ -414,20 +425,28 @@
 						</tbody>
 				</table>
 						<%
-							if (userID != null && userID.equals(list.get(i).getUserID())) {
-						%>
-						<a
-							href="post_Update.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
-							class="btn btn-primary">수정</a>
-						<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-							href="deleteAction.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
-							class="btn btn-primary">삭제</a><a
-					href="post_Reply.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
-					class="btn btn-primary pull-right">답변</a><br><br>							
-						<%
-							}
-							}
-						%>
+					if (userID != null && userID.equals(post.getUserID())) {
+				%>
+					<a href="post_Update.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
+					class="btn btn-primary">수정</a>
+				<%
+					}
+				%>
+				<%
+					if (userID != null && userID.equals(post.getUserID())||userLevel==2) {
+				%>
+					<a onclick="return confirm('정말로 삭제하시겠습니까?')"
+					href="deleteAction.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
+					class="btn btn-primary">삭제</a>
+				<%
+					}
+				%>
+				<a href="post_Reply.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID() %>"
+							class="btn btn-primary pull-right">답변</a>
+				<br><br>
+				<%
+					}
+				%>
 					
 			</div>
 		</div>
