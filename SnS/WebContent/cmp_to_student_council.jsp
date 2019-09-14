@@ -267,60 +267,65 @@
         </ul>
       </nav>
     </nav>
-    </div>
-
-		<section class="content">
-			<header>
-				<h1>학생회 건의사항</h1>
-				<form method="get" action="cmp_to_student_council.jsp" class="form-inline mt-3">
-					<select name="searchType" class="form-control mx-1 mt-2">
-						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
-						<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
-					</select>
-					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
-					<button type="submit" class="btn mx-1 mt-2">검색</button>
-				</form>
-			</header>
+	<section class="content">
+		<header>
+			<h1>학생회 건의사항</h1>
+		</header>
+		<hr>
+		<div class="find_content">
+			<form method="get" action="cmp_to_student_council.jsp" class="form-inline mt-3" id=find_content>
+				<select name="searchType" class="form-control mx-1 mt-2">
+					<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
+					<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
+				</select>
+				<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
+				<button type="submit" class="btn mx-1 mt-2">검색</button>
+			</form>
+		</div>
+		<div class="content_table">
 			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-            ComplaintsDAO cmpDAO = new ComplaintsDAO();
-			ArrayList<ComplaintsDTO> list = null;
-			if(search==null){
-				list = cmpDAO.getList(pageNumber,isStudent);	
-			}else{
-				list=cmpDAO.getSearch(searchType,search,pageNumber,isStudent);
-			}
-            for(int i=0; i<list.size();i++){
-         %>
-					<tr>
-						<td><%=list.get(i).getCmpID() %></td>
-						<td><a href="cmp_View.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
-							style="text-decoration: none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-						<td><%=list.get(i).getUserID() %></td>
-						<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
-						<td><%=list.get(i).getAgreeCount() %></td>
-						<td><%=list.get(i).getCmpHit() %></td>
-					</tr>
-					<%
-            }
-         %>
-				</tbody>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>날짜</th>
+					<th>동의 수</th>
+					<th>조회 수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+	           ComplaintsDAO cmpDAO = new ComplaintsDAO();
+				ArrayList<ComplaintsDTO> list = null;
+				if(search==null){
+					list = cmpDAO.getList(pageNumber,isStudent);	
+				}else{
+					list=cmpDAO.getSearch(searchType,search,pageNumber,isStudent);
+				}
+	            for(int i=0; i<list.size();i++){
+         		%>
+				<tr>
+					<td><%=list.get(i).getCmpID() %></td>
+					<td><a href="cmp_View.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
+						style="text-decoration: none"><%=list.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+					<td><%=list.get(i).getUserID() %></td>
+					<td><%=list.get(i).getCmpDate().substring(0,11)+list.get(i).getCmpDate().substring(11,13)+"시"+list.get(i).getCmpDate().substring(14,16)+"분" %></td>
+					<td><%=list.get(i).getAgreeCount() %></td>
+					<td><%=list.get(i).getCmpHit() %></td>
+				</tr>
+				<%
+          	  }
+         		%>
+			</tbody>
 			</table>
-			<hr>
-			<a class="btn btn-default pull-right"
+		</div>
+		<div class="write_button">
+				<a class="btn btn-default pull-right"
 				href="cmp_Write.jsp?isStudent=<%=isStudent%>">글쓰기</a>
-			<br><br>
+		</div>	
+		<br><br>
+		<div>
 			<%
 				if(search==null){
 			%>
@@ -370,14 +375,14 @@
 			%>
 				</ul>
 			</div>
-			<br>
-			<br>
-		</section>
-   
+		</div>
+		<br>
+		<br>
+	</section>
+</div>
    <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
-    
   </body>
 </html>
