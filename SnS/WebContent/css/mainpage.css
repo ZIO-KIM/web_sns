@@ -227,15 +227,14 @@
 }
 
 #table_responsive {
-	width: full; 
 	height: 100px;
 	
 	text-align: center; 
 }
 
 table {
-	width: 90%; 
-	height: 50px; 
+	width: 1200px; 
+	height: 70px; 
  	margin-top: 8%;
  	border-collapse: collapse;
  	margin-left: auto;

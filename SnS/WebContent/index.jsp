@@ -51,9 +51,8 @@
          };
        });
     </script>
-
-    <header>
   
+ 	<header>
       <nav id='first_area'>
   
         <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
@@ -136,6 +135,9 @@
         
       </nav>
     </header>
+ 
+
+    
 
 	<%
 		String messageContent = null;
