@@ -264,8 +264,7 @@
     </nav>
     <section class="content">
 			<header>
-			<h1>졸업생인터뷰</h1>
-			<!--<h1><%=boardDAO.getBoard(boardID).getBoardName() %></h1> -->
+			<h1><%=boardDAO.getBoard(boardID).getBoardName() %></h1>
 			</header>
 			<hr>
 			<div class="find_content">
