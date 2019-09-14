@@ -293,15 +293,17 @@
     	</div>
     </div>
 
-    <table>
-      <tr>
-        <td>Quick Menu</td>
-        <td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>
-        <td><a href='http://www.sejongstudent.com/xe/' id='quick_menu'>세종대학교<br>총학생회</a></td>
-        <td><a href='https://ko-kr.facebook.com/sejong1sc/' id='quick_menu'>세종소융<br>페이스북</a></td>
-        <td><a href='https://www.facebook.com/sejongstudent/' id='quick_menu'>세종대학교<br>총학생회 페이스북</a></td>
-      </tr>
-    </table>
+	<div id='table_responsive'>
+    	<table>
+      		<tr>
+        		<td>Quick Menu</td>
+        		<td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>
+        		<td><a href='http://www.sejongstudent.com/xe/' id='quick_menu'>세종대학교<br>총학생회</a></td>
+        		<td><a href='https://ko-kr.facebook.com/sejong1sc/' id='quick_menu'>세종소융<br>페이스북</a></td>
+        		<td><a href='https://www.facebook.com/sejongstudent/' id='quick_menu'>세종대학교<br>총학생회 페이스북</a></td>
+      		</tr>
+    	</table>
+    </div>
     
     <footer>
          <p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
