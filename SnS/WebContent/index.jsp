@@ -25,10 +25,8 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/mainpage.css" media="screen and (min-width: 700px)">
-    <link rel="stylesheet" href="css/mainpage_smallsize.css" media="screen and (max-width: 700px)">
-    
-    
+    <link rel="stylesheet" href="css/mainpage.css">
+ 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -69,7 +67,6 @@
     </script>
 
     <header>
-  
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
