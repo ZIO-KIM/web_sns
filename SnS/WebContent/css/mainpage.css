@@ -106,7 +106,7 @@
 #title_animation { /* ���씠�� �븷�땲硫붿씠�뀡 吏��젙 */
   animation-name: slidein;
   animation-duration: 3s;
-  animation-delay:3s;
+  animation-delay:1s;
 }
 
 @keyframes slidein { /* slidein �븷�땲硫붿씠�뀡 �냽�꽦 吏��젙 */
