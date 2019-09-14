@@ -258,8 +258,8 @@ a, a:hover {
         </ul>
       </nav>
     </nav>
-    </div>
-	<%--     <%
+    <section class="content">
+    	<%--     <%
 	    ArrayList<FileDTO> fileList = new FileDAO().getList();
 	
 		for(FileDTO file : fileList){
@@ -269,12 +269,15 @@ a, a:hover {
 		}
 		
     %> --%>
-
-	<h1 id='title'>
-		갤러리<br>
-	</h1>
-	<a class="btn btn-default" href='student_council_photo_Write.jsp'>글쓰기</a>
-	
+    <header>
+    	<h1>갤러리</h1>
+    </header>
+    <hr>
+    <div class="write_button">
+    	<a class="btn btn-default" href='student_council_photo_Write.jsp'>글쓰기</a>
+    </div>
+    <br><br>
+    </section>
 	<div class="container">
 		<div class="row">
 		
@@ -318,7 +321,7 @@ a, a:hover {
 			<%
 				}
 			%>
-
+		</div>
 		</div>
 	</div>
 

@@ -129,7 +129,9 @@ table, th, td {
 th, td {
   padding: 15px;
 }
-
+#content_table{
+	
+}
 #container {
     max-width: 1180px;
     margin: 60px auto 100px;
@@ -155,8 +157,10 @@ th, td {
 
 .content {
     width: 100%;
-    /* float:right;
+    position:absoulte;
     
+    /* float:right;
+
     margin-top: -200px;  */
 }
 
@@ -176,11 +180,20 @@ ul, ol {
     border-bottom: 1px solid #dadada;
     font-size: 16px;
     color: black;
+    display:inline-block;
 }
-
 .lnb_deps2 > li >a{
-   text-decoration:none ;
+   text-decoration:none;
    color: black;
+   display:inline-block;
+}
+.content_table{
+	display:inline;
+	position:absoulte;
+}
+.find_content{
+	float:right;
+	display:inline;
 }
 a{
   color: black; 
