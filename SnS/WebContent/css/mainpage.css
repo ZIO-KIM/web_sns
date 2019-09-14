@@ -1,3 +1,9 @@
+@media screen and (min-width:500px) {
+	#first_area {
+		display: none; 
+	}
+}
+
 #first_area {
   display: flex; /* first area �깭洹� �궡�쓽 �슂�냼�뱾 �넂�씠 �룞�씪�븯寃� 留욎떠以� */
 }
