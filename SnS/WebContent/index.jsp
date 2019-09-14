@@ -13,7 +13,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>세종대학교 소프트웨어융합대학</title>
     <% PageDAO pageDAO= new PageDAO(); %>
     <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
@@ -24,7 +24,10 @@
     lay=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/mainpage.css">
+    
+    <link rel="stylesheet" href="css/mainpage.css" media="screen and (min-width: 700px)">
+    
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -51,8 +54,11 @@
     </script>
 
     <header>
+  
       <nav id='first_area'>
+  
         <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+    
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
           	<li><a href='post.jsp?boardID=1'>공지사항</a></li>
@@ -105,23 +111,29 @@
 		</ul>
         </div>
         
-        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
+		<div id='language'>
+        	<h1 id='language_content'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
+        </div>
+        
+        <div id='login'>
         <%
 				if (userID == null) {
 			%>
-			<h2 id='login'>
+			<h2 id='login_content'>
 				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #000000">LOGIN</a>
 			</h2>
 			<%
 				} else {
 			%>
-			<h2 id='login'>
+			<h2 id='logout_content'>
 				<a href="userLogoutAction.jsp"
 					style="text-decoration: none; color: #000000">LOGOUT</a>
 			</h2>
 			<%
 				}
 			%>
+		</div>
+        
       </nav>
     </header>
 
