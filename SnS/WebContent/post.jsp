@@ -399,9 +399,7 @@
 					}
 				%>
 			</nav>
-    </nav>
-    
-    
+   		</nav>
     <section class="content">
 			<header>
 				<h1><%=boardDAO.getBoard(boardID).getBoardName()%></h1>
