@@ -80,7 +80,7 @@ public class ComplaintsServlet extends HttpServlet {
 			String to="sseunghun99@naver.com";//민원 담당자 메일주소
 			String subject ="[세종소융]민원이 접수되었습니다."+cmpDAO.getDate();
 			String content ="제목: "+cmpTitle+"<br>접수날짜: "+cmpDAO.getDate()+"<br>"+cmpContent+
-			"\n<a href='" + host + "cmp_to_student_council_View.jsp?cmpID="+cmpDAO.countCmp(isStudent)+
+			"\n<a href='" + host + "cmp_View.jsp?isStudent="+isStudent+"&cmpID="+cmpDAO.countCmp(isStudent)+
 					"'><br>민원 바로가기</a>";
 			
 			Properties p = new Properties();

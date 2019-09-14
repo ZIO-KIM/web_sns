@@ -32,7 +32,7 @@
    
    String postTitle=null;
    String postContent=null;
-   String postDivide=null;
+   String postDivide="";
    String postDate=null;
 	
    if(request.getParameter("postTitle")!=null){
@@ -40,9 +40,6 @@
    }
    if(request.getParameter("postContent")!=null){
 	   postContent=request.getParameter("postContent");
-   }
-   if(request.getParameter("postDivide")!=null){
-	   postDivide=request.getParameter("postDivide");
    }
    if(request.getParameter("postDate")!=null){
 	   postDate=request.getParameter("postDate");
@@ -80,7 +77,7 @@
    }
       PrintWriter script =response.getWriter();
       script.println("<script>");
-      script.println("history.back()");
+      script.println("history.go(-2)");
       script.println("</script>");
       script.close();
       return;

@@ -56,7 +56,8 @@
 		}
 		ComplaintsDTO cmp = new ComplaintsDAO().getCmp(cmpID, isStudent);
 		ComplaintsDAO.hit(cmpID, isStudent);
-		String fromProfile = new UserDAO().getProfile(userID);
+		UserDAO userDAO = new UserDAO();
+		String fromProfile = userDAO.getProfile(userID);
 	%>
 
 	<header>
@@ -281,6 +282,8 @@
 				</div>
 				<div class="modal-body">
 				<form action="reportAction.jsp" method="post">
+					<input type="hidden" name="cmpID" value="<%=cmpID%>">
+					<input type="hidden" name="isStudent" value="<%=isStudent%>">
 					<div class="form-group">
 						<label>신고제목</label>
 						<input type="text" name="reportTitle" class="form-control" maxlength="50">
@@ -353,7 +356,15 @@
 
 					</tbody>
 				</table>
-				<a href="cmp_to_student_council.jsp" class="btn btn-primary">목록</a> <a onclick="return confirm('해당 민원에 동의하시겠습니까?')"
+				<%
+					String url=null;
+					if(isStudent==1){
+						url="cmp_to_student_council.jsp";
+					}else{
+						url="cmp_to_school.jsp";
+					}
+				%>
+				<a href=<%=url %> class="btn btn-primary">목록</a> <a onclick="return confirm('해당 민원에 동의하시겠습니까?')"
 					href="cmp_agreeAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
 					class="btn btn-primary pull-right"
 					style="background-color: #c70027;">추천 </a> <a
@@ -361,12 +372,15 @@
 					class="btn btn-primary pull-right">답변 </a>
 					<a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
 				<%
+					int userLevel=userDAO.getUserEmailChecked(userID);
 					if (userID != null && userID.equals(cmp.getUserID())) {
 				%>
-				<a
-					href="cmp_Update.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
-					class="btn btn-primary">수정</a> <a
-					onclick="return confirm('정말로 삭제하시겠습니까?')"
+				<a href="cmp_Update.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
+					class="btn btn-primary">수정</a>
+				<%
+					}if (userID != null && userID.equals(cmp.getUserID())||userLevel==2){
+				%>	
+				<a onclick="return confirm('정말로 삭제하시겠습니까?')"
 					href="deleteAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>"
 					class="btn btn-primary">삭제</a>
 				<%
@@ -418,16 +432,20 @@
 						<%
 							if (userID != null && userID.equals(list.get(i).getUserID())) {
 						%>
-						<a
-							href="cmp_Update.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
+						<a href="cmp_Update.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
 							class="btn btn-primary">수정</a>
-						<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-							href="deleteAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
-							class="btn btn-primary">삭제</a><a
-					href="cmp_Reply.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
-					class="btn btn-primary pull-right">답변</a><br><br>							
+						<%
+							}if (userID != null && userID.equals(list.get(i).getUserID())||userLevel==2) {
+						%>
+						<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
+							class="btn btn-primary">삭제</a>
 						<%
 							}
+						%>
+						<a href="cmp_Reply.jsp?isStudent=<%=isStudent %>&cmpID=<%=list.get(i).getCmpID()%>"
+							class="btn btn-primary pull-right">답변</a>
+						<br><br>	
+						<%
 							}
 						%>
 					
@@ -437,10 +455,10 @@
 	</div>
 	
 </body>
-	<footer>
+	<!-- <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer>
+    </footer> -->
     
   </body>
 </html>

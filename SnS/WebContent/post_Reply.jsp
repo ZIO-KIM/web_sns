@@ -123,6 +123,7 @@
         		<td><h5><%=userID %></h5>
         		<input type="hidden" name="userID" value="<%=userID%>">
         		<input type="hidden" name="postID" value="<%=postID%>">
+        		<input type="hidden" name="boardID" value="<%=boardID%>">
         		</td>
         	</tr>
             <tr>

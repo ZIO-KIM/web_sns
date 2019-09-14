@@ -206,7 +206,7 @@
                                 <br>
                             </div>
                             <%
-                            	if(!user.isUserEmailChecked()){
+                            	if(user.getUserEmailChecked()==0){
                             %>
                             <button type="button" onclick="location.href='emailSendAction.jsp'" class="btn btn-danger btn-fill pull-left">이메일 인증하기</button>
                             <%

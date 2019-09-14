@@ -11,6 +11,10 @@
 <%@ page import="util.SHA256"%>
 <%@ page import="util.Gmail"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="complaints.ComplaintsDAO" %>
+<%@ page import="post.PostDAO" %>
+<%@ page import="report.ReportDAO" %>
+<%@ page import="report.ReportDTO" %>
 <%
 	UserDAO userDAO =new UserDAO();
 	String userID =null;
@@ -26,24 +30,69 @@
 		script.close();
 		return;
 	}
-	int emailChecked =userDAO.getUserEmailChecked(userID);
-	if(emailChecked>0){
+	
+	int boardID =0;
+	if (request.getParameter("boardID") != null) {
+		boardID = Integer.parseInt(request.getParameter("boardID"));
+	}
+	int postID =0;
+	if (request.getParameter("postID") != null) {
+		postID = Integer.parseInt(request.getParameter("postID"));
+	}
+	int cmpID =0;
+	if (request.getParameter("cmpID") != null) {
+		cmpID = Integer.parseInt(request.getParameter("cmpID"));
+	}
+	int isStudent =0;
+	if (request.getParameter("isStudent") != null) {
+		isStudent = Integer.parseInt(request.getParameter("isStudent"));
+	}
+	String reportTitle =null;
+	if (request.getParameter("reportTitle") != null) {
+		reportTitle = new String(request.getParameter("reportTitle").getBytes("ISO-8859-1"), "UTF-8");
+	}
+	String reportContent =null;
+	if (request.getParameter("reportContent") != null) {
+		reportContent = new String(request.getParameter("reportContent").getBytes("ISO-8859-1"), "UTF-8");
+	}
+	
+	String reportURL=null;
+	if(boardID==0){
+		reportURL="cmp_View.jsp?isStudent="+isStudent+"&cmpID="+cmpID;
+	}else{
+		reportURL="post_View.jsp?boardID="+boardID+"&postID="+postID;
+	}
+	
+	ReportDAO reportDAO = new ReportDAO();
+	ComplaintsDAO cmpDAO = new ComplaintsDAO();
+	PostDAO postDAO = new PostDAO();
+	
+	int result= reportDAO.write(new ReportDTO(0,userID,reportTitle,reportContent,"",reportURL,cmpID,postID,isStudent,boardID,0));
+	
+	if(result!=1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('이미 인증된 회원입니다.')");
-		script.println("location.href='index.jsp'");
+		script.println("alert('오류가 발생했습니다.')");
+		script.println("history.back();");
 		script.println("</script>");
 		script.close();
 		return;
 	}
-	
 	String host="http://localhost:8080/SnS/";
 	String from="sjswsns@gmail.com";
-	String to=userDAO.getUserEmail(userID);
+	String to=userDAO.getUserEmail(userID);//민원담당자로 변경
 	to=to.split("@")[0]+"@sju.ac.kr";
-	String subject ="SnS 인증 메일입니다.";
-	String content ="다음 링크에 접속하여 이메일 인증을 진행하세요."+
-	"<a href='" + host + "emailCheckAction.jsp?code=" + SHA256.getSHA256(to) + "'>이메일 인증하기</a>";
+	String subject ="[세종소융]게시글 신고접수";
+	String content =null;
+	if(boardID==0){
+		content ="제목: "+reportTitle+"<br>접수날짜: "+cmpDAO.getDate()+"<br>"+reportContent+
+				"\n<a href='" + host + "cmp_View.jsp?isStudent="+isStudent+"&cmpID="+cmpID+
+						"'><br>민원 바로가기</a>";
+	}else{
+		content ="제목: "+reportTitle+"<br>접수날짜: "+postDAO.getDate()+"<br>"+reportContent+
+				"\n<a href='" + host + "post_View.jsp?isStudent="+isStudent+"&postID="+postID+
+						"'><br>게시글 바로가기</a>";
+	}
 	
 	Properties p = new Properties();
 	p.put("mail.smtp.user",from);
@@ -80,7 +129,7 @@
 	}
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
-	script.println("alert('인증메일이 발송되었습니다.\\r\\n회원가입시 입력했던 메일을 확인해주세요.')");
+	script.println("alert('신고가 접수되었습니다.\\r\\n신고해주셔서 감사합니다.')");
 	script.println("history.back();");
 	script.println("</script>");
 	script.close();
