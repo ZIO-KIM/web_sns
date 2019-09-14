@@ -325,7 +325,7 @@
 				href="cmp_Write.jsp?isStudent=<%=isStudent%>">글쓰기</a>
 		</div>	
 		<br><br>
-		<div>
+		<div class="List_button">
 			<%
 				if(search==null){
 			%>
