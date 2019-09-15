@@ -171,7 +171,7 @@
                                             </div>
                                         </div>
                                         <!-- <input type="file" name="userProfile" class="file"> -->
-               							<div class="input-group col-xs-12">
+               							<div class="col-md-12">
                								<label for="profileDisclosure">프로필 공개여부</label>
                								<button type="submit" class="btn btn-info btn-fill pull-right" style="margin-left:2%;">프로필 업데이트</button>
 											<input type="checkbox" checked data-toggle="toggle">
