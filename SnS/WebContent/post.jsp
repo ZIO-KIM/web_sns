@@ -400,66 +400,68 @@
 				%>
 			</nav>
    		</nav>
+   	   </div>
     <section class="content">
 			<header>
 				<h1><%=boardDAO.getBoard(boardID).getBoardName()%></h1>
-				</header>
-				<div class="find_content">
+			</header>
+			<hr>
+			<div class="find_content">
 					<form method="get" action="post.jsp?boardID=<%=boardID %>" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
-						<option value="최신순" <%if (searchType.equals("최신순"))
-				out.println("selected");%>>최신순</option>
-						<option value="추천순" <%if (searchType.equals("추천순"))
-				out.println("selected");%>>추천순</option>
+						<option value="최신순" <%if (searchType.equals("최신순"))out.println("selected");%>>최신순</option>
+						<option value="추천순" <%if (searchType.equals("추천순"))out.println("selected");%>>추천순</option>
 					</select>
 					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
 					<button type="submit" class="btn mx-1 mt-2">검색</button>
 				</form>
+			</div>
+			<div class="full_table">
+				<div class="content_table">
+					<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>날짜</th>
+							<th>추천 수</th>
+							<th>조회 수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							PostDAO postDAO = new PostDAO();
+							ArrayList<PostDTO> list = null;
+							if (search == null) {
+								list = postDAO.getList(pageNumber, boardID);
+							} else {
+								list = postDAO.getSearch(searchType, search, pageNumber, boardID);
+							}
+							for (int i = 0; i < list.size(); i++) {
+						%>
+						<tr>
+							<td><%=list.get(i).getPostID() %></td>
+							<td><a href="post_View.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
+								style="text-decoration: none"><%=list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+							<td><%=list.get(i).getUserID() %></td>
+							<td><%=list.get(i).getPostDate().substring(0,11)+list.get(i).getPostDate().substring(11,13)+"시"+list.get(i).getPostDate().substring(14,16)+"분" %></td>
+							<td><%=list.get(i).getAgreeCount() %></td>
+							<td><%=list.get(i).getPostHit() %></td>
+						</tr>
+						<%
+	            }
+	         %>
+					</tbody>
+				</table>
+			</div>
+				<div class="write_button">
+				<a class="btn btn-default pull-right"
+					href="post_Write.jsp?boardID=<%=boardID%>">글쓰기</a>	
 				</div>
-			<div class="content_table">
-				<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>추천 수</th>
-						<th>조회 수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						PostDAO postDAO = new PostDAO();
-						ArrayList<PostDTO> list = null;
-						if (search == null) {
-							list = postDAO.getList(pageNumber, boardID);
-						} else {
-							list = postDAO.getSearch(searchType, search, pageNumber, boardID);
-						}
-						for (int i = 0; i < list.size(); i++) {
-					%>
-					<tr>
-						<td><%=list.get(i).getPostID() %></td>
-						<td><a href="post_View.jsp?boardID=<%=boardID %>&postID=<%=list.get(i).getPostID()%>"
-							style="text-decoration: none"><%=list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-						<td><%=list.get(i).getUserID() %></td>
-						<td><%=list.get(i).getPostDate().substring(0,11)+list.get(i).getPostDate().substring(11,13)+"시"+list.get(i).getPostDate().substring(14,16)+"분" %></td>
-						<td><%=list.get(i).getAgreeCount() %></td>
-						<td><%=list.get(i).getPostHit() %></td>
-					</tr>
-					<%
-            }
-         %>
-				</tbody>
-			</table>
-			</div>
-			<div class="write_button">
-			<a class="btn btn-default pull-right"
-				href="post_Write.jsp?boardID=<%=boardID%>">글쓰기</a>	
-			</div>
+				<br><br>
 			<br><br>
-			<div class="List_button">
+			<div class="list_button">
 				<%
 				if(search==null){
 			%>
@@ -509,14 +511,10 @@
 			%>
 				</ul>
 			</div>
-		</div>
+			</div>
+			</div>
 			<br>
 			<br>
 		</section>		
-    </div>
-    <!-- <footer>
-   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
-   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer> -->
   </body>
 </html>
