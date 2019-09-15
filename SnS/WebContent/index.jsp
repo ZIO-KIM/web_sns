@@ -27,9 +27,10 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/mainpage.css">
+
  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mainpage.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Backstretch.js" type="text/javascript"></script>
@@ -47,16 +48,7 @@
      ComplaintsDAO cmpDAO = new ComplaintsDAO();
 	
   %>  
-    <script>
-      $.backstretch(["imgs/drop_7.jpg"],
-         {duration: 20, fade: 900});
-      $(window).on("backstretch.before", function (e, instance, index) {
-         // If we wanted to stop the slideshow after it reached the end
-         if (index === instance.images.length - 1) {
-           instance.pause();
-         };
-       });
-    </script>
+
 
     <header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">

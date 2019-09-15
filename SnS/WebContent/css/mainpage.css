@@ -115,7 +115,6 @@
 .menubar ul li:hover > ul { /* menubar �븞�쓽 紐⑤뱺 ul li�뿉 留덉슦�뒪 而ㅼ꽌 �삱由щ㈃ 洹� �븘�옒 ul 蹂댁씠�룄濡� (�븯�쐞硫붾돱 �뵒�뒪�뵆�젅�씠)*/
   display: block;
 }
-
 /* body {
   background: url(background_img_3.jpg) no-repeat center center fixed; /* 諛곌꼍�솕硫� 梨꾩슦湲� (�뿬諛� �뾾�씠) - 怨좏솕吏� �궗吏� �븘�슂�븿
   -webkit-background-size: cover;
