@@ -433,4 +433,45 @@ footer {
    text-align: center; 
 }
 
+@media (max-width:765px) {
+   .logobox {
+   		display: none; 
+   }
+   
+   .title_mq {
+   	
+   }
+   
+}
+
+.logobox{
+      position:relative;
+      top:-30px;
+      left:-30px;
+      !important;
+}
+
+.dropdownLi{
+      font-weight:bold;
+      font-size:20px;
+}
+
+.dropdown-toggle {
+	 font-size:20px;
+}
+
+#navbar-right {
+	margin-top: -110px; 
+	margin-right: -70px; 
+}
+
+.container-fluid {
+	width: 1200px;
+}
+
+.navbar-header {
+	float: left; 
+}
+
+
 
