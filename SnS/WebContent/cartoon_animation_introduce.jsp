@@ -4,7 +4,11 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
+<<<<<<< HEAD:SnS/WebContent/qna.jsp
+    <title>세종대학교 소프트웨어융합대학 :: QnA :: QnA</title>
+=======
     <title>세종대학교 소프트웨어융합대학 :: 과별 게시판 :: 만화애니메이션텍 :: 학과 소개</title>
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a:SnS/WebContent/cartoon_animation_introduce.jsp
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">

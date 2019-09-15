@@ -2,10 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+<<<<<<< HEAD:SnS/WebContent/cmp_to_school_Write.jsp
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학교 건의사항 :: 글쓰기</title>
+=======
     <title>세종대학교 소프트웨어융합대학 :: 민원 :: 답변</title>
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a:SnS/WebContent/cmp_Reply.jsp
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -134,6 +138,37 @@
       <header>
         <h1>답변 작성</h1>
       </header>
+<<<<<<< HEAD:SnS/WebContent/cmp_to_school_Write.jsp
+      <table class="table table-bordered">
+        <tbody>
+          <form>
+            <tr>
+               <th>제목: </th>
+               <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+            </tr>
+            <tr>
+               <th>내용: </th>
+               <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+            </tr>
+            <tr>
+               <th>첨부파일: </th>
+               <td><input type="text" placeholder="파일을 선택하세요. " name="filename" class="form-control"/></td>
+            </tr>
+            <tr>
+               <th>비밀번호: </th>
+               <td><input type="password" placeholder="비밀번호를 입력하세요" class="form-control"/></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                 <input type="button" value="등록" onclick="#" class="pull-right"/>
+                 <input type="button" value="reset" class="pull-left"/>
+                 <input type="button" value="글 목록으로... " onclick="#" class="pull-right"/>
+               </td>
+             </tr>
+          </form>
+        </tbody>
+      </table>
+=======
       <form method="post" action="cmp_ReplyAction.jsp">
       <table class="table table-bordered">
         <tbody>
@@ -172,6 +207,7 @@
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a:SnS/WebContent/cmp_Reply.jsp
     <script src="js/bootstrap.js"></script>
   </body>
 </html>

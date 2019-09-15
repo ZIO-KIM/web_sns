@@ -324,7 +324,7 @@
 				href="post_Write.jsp?boardID=<%=boardID%>">글쓰기</a>
 		</div>	
 		<br><br>
-		<div>
+		<div class="List_button">
 			<%
 				if(search==null){
 			%>

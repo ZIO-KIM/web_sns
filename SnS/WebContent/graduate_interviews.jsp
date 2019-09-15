@@ -263,6 +263,52 @@
       </nav>
     </nav>
     <section class="content">
+<<<<<<< HEAD
+      <header>
+        <h1>졸업생 인터뷰</h1>
+      </header>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2</td>
+            <td>단대 야식행사 기획 누가했나요?</td>
+            <td>송승훈</td>
+            <td>2019.7.30</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>웹소설 왜 이렇게 상금이 작은가요?</td>
+            <td>이승준</td>
+            <td>2019.7.30</td>
+            <td>130</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <a class= "btn btn-default pull-right" href="graduate_interviews_Write.jsp">글쓰기</a>
+      <div class="text-center">
+        <ul class="pagination">
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+        </ul>
+      </div>
+    </section>
+    </div>
+    <script src="js/bootstrap.js"></script>
+=======
 			<header>
 			<h1><%=boardDAO.getBoard(boardID).getBoardName() %></h1>
 			</header>
@@ -379,5 +425,6 @@
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
   </body>
 </html>

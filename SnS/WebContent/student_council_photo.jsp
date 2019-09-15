@@ -10,6 +10,30 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
+<<<<<<< HEAD
+  <head>
+    <meta charset="utf-8">
+    <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리</title>
+    <link rel="stylesheet" href="css/photo.css">
+    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <nav id='first_area'>
+        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+        <div id="menubar">
+          <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
+            <li><a href='student_council.jsp'>학생회</a> <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
+              <ul id='submenu'>
+                <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
+                <li><a href='student_council_photo.jsp'>갤러리</a></li>
+                <li><a href='student_council_events.jsp'>행사</a></li>
+                <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
+              </ul>
+            </li>
+=======
 <head>
 <meta charset="utf-8">
 <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리</title>
@@ -23,6 +47,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap"
 	rel="stylesheet">
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
 
 
 <style type="text/css">
@@ -272,6 +297,66 @@ a, a:hover {
     <header>
     	<h1>갤러리</h1>
     </header>
+<<<<<<< HEAD
+    
+    <div id="container">
+    <nav>
+      <nav>
+        <h2>
+          <span></span>
+            학생회
+        </h2>
+        <ul class="lnb_deps2">
+             <li>
+               <a href="student_council_introduce.jsp" class="jwxe_22350 active">학생회 소개</a>
+             </li>
+             <li>
+               <a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a>
+            </li>
+            <li>
+              <a href="student_council_events.jsp" class="jwxe_22351 ">행사</a>
+           </li>
+           <li>
+             <a href="student_council_public_money.jsp" class="jwxe_22351 ">학생회비 내역</a>
+          </li>
+        </ul>
+      </nav>
+    </nav>
+
+    <header>
+        <h1>갤러리</h1>
+      </header>
+      
+    <nav id='gallery_all'>
+      <div class="gallery">
+        <a target="_blank" href="imgs/background_img_5.jpeg">
+          <img src="imgs/background_img_5.jpeg" alt="ex1" width="600" height="400">
+        </a>
+        <div class="desc">사진 설명</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="background_img_5.jpeg">
+          <img src="imgs/background_img_5.jpeg" alt="ex2" width="600" height="400">
+        </a>
+        <div class="desc">사진 설명</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="background_img_5.jpeg">
+          <img src="imgs/background_img_5.jpeg" alt="ex3" width="600" height="400">
+        </a>
+        <div class="desc">사진 설명</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="background_img_5.jpeg">
+          <img src="imgs/background_img_5.jpeg" alt="ex4" width="600" height="400">
+        </a>
+        <div class="desc">사진 설명</div>
+      </div>
+    </nav>
+=======
     <hr>
     <div class="write_button">
     	<a class="btn btn-default" href='student_council_photo_Write.jsp'>글쓰기</a>
@@ -325,6 +410,7 @@ a, a:hover {
 		</div>
 	</div>
 
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
 
 	<footer>
 		<p id='footer_content' style="position:absolute;bottom:0;width:100%;height:70px;">

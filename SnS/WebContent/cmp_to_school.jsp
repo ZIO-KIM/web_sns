@@ -1,20 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+   <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+=======
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="complaints.ComplaintsDAO" %>
 <%@ page import="complaints.ComplaintsDTO" %>
 <%@ page import="page.PageDAO" %>
 <%@ page import="page.PageDTO" %>
 <%@ page import="java.net.URLEncoder" %>
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+<<<<<<< HEAD
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학교 건의사항</title>
+=======
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Pragma" content="no-cache">
     <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학교 건의사항</title>
     <% PageDAO pageDAO= new PageDAO(); %>
     <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -38,6 +45,11 @@
 
   </head>
   <body>
+<<<<<<< HEAD
+       <header>
+      <nav id='first_area'>
+        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+=======
 
 	<%
 		request.setCharacterEncoding("UTF-8");
@@ -63,6 +75,7 @@
 	<header>
       <nav id='first_area'>
         <a href= 'index.jsp'><img src="<%=pageDAO.getPageLogo() %>" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
         <div id="menubar">
           <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
             <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
@@ -260,10 +273,20 @@
         </h2>
         <ul class="lnb_deps2">
              <li>
+<<<<<<< HEAD
+               <a href="cmp_to_student_council.jsp" class="jwxe_22350 active">학생회 건의사항</a>
+             </li>
+             <li>
+               <a href="cmp_to_school.jsp" class="jwxe_22351 ">학교 건의사항</a>
+            </li>
+            <li>
+              <a href="cmp_to_etc.jsp" class="jwxe_22351 ">기타 민원</a>
+=======
                	<a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
              </li>
              <li>
                	<a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
             </li>
             <li>
               	<a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
@@ -271,6 +294,53 @@
         </ul>
       </nav>
     </nav>
+<<<<<<< HEAD
+    <section class="content">
+      <header>
+        <h1>학교 건의사항</h1>
+      </header>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2</td>
+            <td>단대 야식행사 기획 누가했나요?</td>
+            <td>송승훈</td>
+            <td>2019.7.30</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>웹소설 왜 이렇게 상금이 작은가요?</td>
+            <td>이승준</td>
+            <td>2019.7.30</td>
+            <td>130</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <a class= "btn btn-default pull-right" href="cmp_to_school_Write.jsp">글쓰기</a>
+      <div class="text-center">
+        <ul class="pagination">
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+        </ul>
+      </div>
+    </section>
+    </div>
+    <script src="js/bootstrap.js"></script>
+=======
 	<section class="content">
 		<header>
 			<h1>학교 건의사항</h1>
@@ -329,7 +399,7 @@
 			href="cmp_Write.jsp?isStudent=<%=isStudent%>">글쓰기</a>
 		</div>
 		<br><br>
-		<div>
+		<div class="List_button">
 		
 			<%
 				if(search==null){
@@ -391,5 +461,6 @@
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
     </footer>
     
+>>>>>>> 42301f5fb714e241a53d3a04e66005ad76d58f5a
   </body>
 </html>
