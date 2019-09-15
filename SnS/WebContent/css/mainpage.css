@@ -8,6 +8,11 @@
    }
 } */
 
+body {
+	background-size: 1300px 700px; 
+	background-repeat: no-repeat; 
+}
+
 #first_area {
   display: flex; /* first area �깭洹� �궡�쓽 �슂�냼�뱾 �넂�씠 �룞�씪�븯寃� 留욎떠以� */
 }
@@ -116,13 +121,6 @@
   display: block;
 }
 
-/* body {
-  background: url(background_img_3.jpg) no-repeat center center fixed; /* 諛곌꼍�솕硫� 梨꾩슦湲� (�뿬諛� �뾾�씠) - 怨좏솕吏� �궗吏� �븘�슂�븿
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
 
 #title {
   color: black; 
@@ -168,6 +166,10 @@
    
    margin-top: 30%; 
    margin-left: 7%; 
+}
+
+.board {
+	margin-top: 30%; 
 }
 
 
@@ -285,10 +287,6 @@ footer {
    margin-top: 6%; 
 }
 
-#board {
-   text-align: center; 
-}
-
 
 #logo {
   margin-left: 100%; 
@@ -369,14 +367,6 @@ footer {
   display: block;
 }
 
-/* body {
-  background: url(background_img_3.jpg) no-repeat center center fixed; /* 諛곌꼍�솕硫� 梨꾩슦湲� (�뿬諛� �뾾�씠) - 怨좏솕吏� �궗吏� �븘�슂�븿
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
-
 #title {
   color: black; 
   font-size: 50px;
@@ -390,6 +380,8 @@ footer {
   font-size: 25px;
   margin-left: 8%;
   margin-top: 2%;
+  
+  position: relative; 
 }
 
 #title_animation { /* ���씠�� �븷�땲硫붿씠�뀡 吏��젙 */
@@ -485,5 +477,165 @@ footer {
 	float: left; 
 }
 
+#departments_area {
+	position: relative; 
+	min-height: 500px; 
+	margin-bottom: 0px; 
+	
+	width: 1300px; 
+}
+
+#departments_board {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 33px; 
+	font-weight: bold; 
+	
+	margin-left: 12%;
+	margin-top: 10%; 
+}
+
+#computer_science {
+	width: 130px; 
+	height: 130px; 
+	
+	display: inline-block; 
+	text-align: center; 
+	border-radius: 15px; 
+	
+	margin-top: 400px; 
+	margin-left: 40px; 
+
+}
+
+#cs_logo {
+	width: 130px; 
+	height: 130px; 
+	
+	border-radius: 15px;
+}
+
+#information_security {
+	width: 130px; 
+	height: 130px; 
+	
+	display: inline-block; 
+	
+	border-radius: 15px; 
+	
+	margin-left: 40px; 
+	
+}
+
+#is_logo {
+	width: 130px; 
+	height: 130px; 
+	
+	border-radius: 15px; 
+}
+
+#software {
+	width: 130px; 
+	height: 130px; 
+	
+	display: inline-block; 
+
+	border-radius: 15px; 
+	
+	margin-left: 40px; 
+	
+	
+}
+
+#soft_logo {
+	width: 130px; 
+	height: 130px; 
+	
+	border-radius: 15px; 
+}
+
+#data_science {
+	width: 130px; 
+	height: 130px; 
+	
+	display: inline-block; 
+
+	border-radius: 15px; 
+	
+	margin-left: 40px; 
+	
+}
+
+#ds_logo {
+	width: 130px; 
+	height: 130px; 
+	
+	border-radius: 15px; 
+}
+
+#intelligent_mechanics_engineering {
+	width: 130px; 
+	height: 130px; 
+	
+	display: inline-block; 
+	border-radius: 15px; 
+	
+	margin-left: 40px; 
+	
+}
+
+#ime_logo {
+	width: 130px; 
+	height: 130px; 
+	
+	border-radius: 15px; 
+}
+
+#design_innovation {
+	width: 130px; 
+	height: 130px; 
+	
+	display: inline-block; 
+	border-radius: 15px; 
+	
+	padding-left: 12px; 
+	padding-right: 12px; 
+	padding-bottom: 10px; 
+	
+	margin-left: 40px; 
+}
+
+#di_logo {
+	width: 180px; 
+	height: 130px; 
+	
+	border-radius: 15px; 
+}
+
+#cartoon_animation {
+	width: 130px; 
+	height: 130px; 
+	
+	display: inline-block; 
+	border-radius: 15px; 
+	
+
+	
+	padding-left: 12px; 
+	padding-right: 12px; 
+	padding-bottom: 10px; 
+	
+	margin-left: 40px; 
+}
+
+#ca_logo {
+	width: 130px; 
+	height: 130px; 
+	
+	border-radius: 15px; 
+}
+
+.line {
+	margin-top: 130px; 
+}
 
 

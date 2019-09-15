@@ -26,8 +26,6 @@
     lay=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="css/mainpage.css">
  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -35,9 +33,19 @@
     <script src="js/Backstretch.js" type="text/javascript"></script>
     <script src="js/mainpage.js"></script>
     
+    <link rel="stylesheet" href="css/mainpage.css">
+    <style>
+    	body {
+			background-image: url("imgs/drop_7.jpg");
+			background-size: 1300px 700px; 
+			background-repeat: no-repeat; 
+			background-position: 0% 0%; 
+		}
+    </style>
+
   </head>
   <body>
-  
+
   <%
      String userID =null;
      if(session.getAttribute("userID")!=null){
@@ -46,17 +54,7 @@
      PostDAO postDAO = new PostDAO();
      ComplaintsDAO cmpDAO = new ComplaintsDAO();
 	
-  %>  
-    <script>
-      $.backstretch(["imgs/drop_7.jpg"],
-         {duration: 20, fade: 900});
-      $(window).on("backstretch.before", function (e, instance, index) {
-         // If we wanted to stop the slideshow after it reached the end
-         if (index === instance.images.length - 1) {
-           instance.pause();
-         };
-       });
-    </script>
+  %>
 
     <header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
@@ -270,8 +268,50 @@
       <h3 id='subtitle' class="subtitle_mq">소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
     
+    <section id='departments_area'>
+    	 <div id='computer_science'><!--컴퓨터공학과 게시판-->
+    		<a href='post.jsp?boardID=4'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
+    	</div>
     
-    <div id='all_boards' class="container-fluid">
+    	<div id='information_security'><!--정보보호학과 게시판-->
+    		<a href='post.jsp?boardID=6'><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
+    	</div>
+    
+    	<div id='software'><!--소프트웨어학과 게시판-->
+    		<a href='post.jsp?boardID=8'><img src='imgs/software_logo.jpg' id='soft_logo'></a>
+    	</div>
+    
+    	<div id='data_science'><!--데이터사이언스학과 게시판-->
+    		<a href='post.jsp?boardID=10'><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
+    	</div>
+    
+    	<div id='intelligent_mechanics_engineering'><!--지능기전공학부 게시판-->
+    		<a href='post.jsp?boardID=12'><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
+    	</div>
+    
+   		<div id='design_innovation'><!--디자인이노베이션학과 게시판-->
+    		<a href='post.jsp?boardID=14'><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
+    	</div>
+    
+    	<div id='cartoon_animation'><!--만화애니메이션학과 게시판-->
+    		<a href='post.jsp?boardID=16'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
+    	</div>
+    </section>
+    <hr class='line'>
+    
+    <table class="board">
+    	<tr>
+    		<td style="border-left: hidden; border-top: hidden; border-right: gray; "><h2><a href='#'>공지사항</a></h2></td>
+    		<td style="border-right: hidden; border-top: hidden;"><h2><a href='#'>홍보게시판</a></h2></td>
+    	</tr>
+    	<tr>
+    		<td style="border-left: hidden; border-bottom: hidden;"><h2><a href='#'>갤러리</a></h2></td>
+    		<td style="border-right: hidden; border-bottom: hidden;"><h2><a href='departments.jsp'>과별 게시판</a></h2></td>
+    	</tr>
+    </table>
+    
+    
+    <!--<div id='all_boards' class="container-fluid">
        <div id="notice" class="col-md-4">
             <h2><a href='#' id='Notice'>공지사항</a></h2>
             <br>
@@ -346,6 +386,7 @@
             <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
        </div>
     </div>
+    -->
 
    <div id='table_responsive'>
        <table>
@@ -365,4 +406,5 @@
     </footer>
 
   </body>
+  
 </html>
