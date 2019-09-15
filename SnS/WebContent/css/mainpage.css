@@ -32,7 +32,9 @@
      
      margin-top: -35px; 
      margin-left: 70px; 
-      
+     
+     text-decoration: none; 
+     
 }
 
 #login_content, #logout_content{
@@ -302,6 +304,7 @@ footer {
   display: inline-block;
   margin-left: 3%;
   margin-top: 45px; 
+  text-decoration: none; 
   
   color: black; 
 }
@@ -454,15 +457,24 @@ footer {
 .dropdownLi{
       font-weight:bold;
       font-size:20px;
+      color: black; 
 }
 
 .dropdown-toggle {
 	 font-size:20px;
+	 color: black; 
 }
 
 #navbar-right {
 	margin-top: -110px; 
 	margin-right: -70px; 
+}
+
+.language {
+	margin-right: 20px; 
+	margin-top: -50px; 
+	display: inline; 
+	white-space: nowrap; 
 }
 
 .container-fluid {
