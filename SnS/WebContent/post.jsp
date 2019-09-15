@@ -453,6 +453,14 @@
 				</tbody>
 			</table>
 			<hr>
+			<%
+				if(boardID>=27){
+			%>
+			<a class="btn btn-default"
+				href="hot_post.jsp?boardID=<%=boardID%>">Hot게시판</a>
+			<%
+				}
+			%>
 			<a class="btn btn-default pull-right"
 				href="post_Write.jsp?boardID=<%=boardID%>">글쓰기</a>
 			<br><br>

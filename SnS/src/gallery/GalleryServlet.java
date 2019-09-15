@@ -54,7 +54,7 @@ public class GalleryServlet extends HttpServlet {
 				galleryDAO.write(userID,galTitle, galContent,galFile,galRealFile);
 				session.setAttribute("messageType", "성공 메시지");
 				session.setAttribute("messageContent", "갤러리에 사진을 업로드하였습니다.");
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("student_council_photo.jsp");
 				return;
 			}else {
 				if(file.exists()) {

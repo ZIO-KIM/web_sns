@@ -4,6 +4,7 @@
 <%@ page import="gallery.GalleryDAO"%>
 <%@ page import="user.UserDAO"%>
 <%@ page import="user.UserDTO"%>
+<%@ page import="page.PageDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -41,85 +42,97 @@ a, a:hover {
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}		
+		PageDAO pageDAO = new PageDAO();
 	%>
 
 	<header>
-		<nav id='first_area'>
-			<a href='index.jsp'><img src="imgs/software_convergence_logo.PNG"
-				id='logo' alt="소융대 로고"></a>
-			<!-- 소융대 로고 -->
-			<div id="menubar">
-				<ul>
-					<!-- 사이트 타이틀 하단 메뉴바 -->
-					<li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
-						<ul id='submenu'>
-							<li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
-							<li><a href='student_council_photo.jsp'>갤러리</a></li>
-							<li><a href='student_council_events.jsp'>행사</a></li>
-							<li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
-							<li><a href='departments.jsp'>과별 게시판</a></li>
-						</ul>
-					</li>
+		<nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a  class="navbar-brand logobox" href='index.jsp'>
+         <img style="width:60px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
+      </a>
+    </div>
 
-					<li>민원 <!-- 메뉴바 두번째 - 민원 카테고리 -->
-						<ul id='submenu'>
-							<li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
-							<li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-							<li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
-						</ul>
-					</li>
-
-					<li>예비 소융인 <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
-						<ul id='submenu'>
-							<li><a href='admission_reviews.jsp'>선배들의 입시 후기</a></li>
-							<li><a href='admission_qnas.jsp'>QnA</a></li>
-						</ul>
-					</li>
-
-					<li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
-						<ul id='submenu'>
-							<li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
-							<li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
-							<li><a href='graduate_qnas.jsp'>졸업생 QnA</a><br></li>
-						</ul>
-					</li>
-
-					<li>홍보 <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
-						<ul id='submenu'>
-							<li><a href='school_contests.jsp'>교내 공모전</a><br></li>
-							<li><a href='not_school_contests.jsp'>교외 공모전</a><br></li>
-						</ul>
-					</li>
-
-					<li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
-						<ul id='submenu'>
-							<li><a href='chatbot.jsp'>Chatbot</a><br></li>
-							<li><a href='qna.jsp'>QnA</a><br></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-
-			<h1 id='language'>한국어 / EN</h1>
-			<!--영어, 한글 버전 바꾸는 버튼-->
-			<%
-				if (userID == null) {
-			%>
-			<h2 id='login'>
-				<a data-toggle="modal" href="#modal-login"
-					style="text-decoration: none; color: #000000">LOGIN</a>
-			</h2>
-			<%
-				} else {
-			%>
-			<h2 id='login'>
-				<a href="userLogoutAction.jsp"
-					style="text-decoration: none; color: #000000">LOGOUT</a>
-			</h2>
-			<%
-				}
-			%>
-		</nav>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="post.jsp?boardID=1" style="font-size: 20px;">공지사항</a></li>
+        <li><a href="student_council_photo.jsp" style="font-size: 20px;">갤러리</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">학생회 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='student_council_introduce.jsp'>학생회 소개</a></li>
+            <li><a class="dropdownLi" href='student_council_photo.jsp'>갤러리</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=2'>행사</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=3'>학생회비 내역</a></li>
+            <li><a class="dropdownLi" href='departments.jsp'>과별 게시판</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">민원 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
+         <li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
+         <li><a class="dropdownLi" href='introduce_cmp.jsp'>민원창구 소개</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">예비소융인 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">취업 &amp; 졸업 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=20'>취창업 후기</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=22'>졸업생 QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">홍보 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=24'>교내 공모전</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
+          </ul>
+        </li>
+        <li><a href='post.jsp?boardID=27' style="font-size: 20px;">열린 광장</a><br></li>
+        <li><a href='chatbot.jsp' style="font-size: 20px;">Chatbot</a><br></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" id="navbar-right">
+        <li><div class="language"><a href="index.jsp" style="font-size: 18px;">KR</a> / <a href="index_en.jsp" style="font-size: 18px;">EN</a></div></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">접속관리 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+         <%
+            if (userID == null) {
+         %>
+            <li><a class="dropdownLi" data-toggle="modal" href="#modal-login" style="font-size: 18px; color: black;">로그인</a></li>
+         <%
+            } else {
+         %>
+            <li><a class="dropdownLi" href="myPage.jsp" style="font-size: 18px;">내 프로필</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a class="dropdownLi" href="userLogoutAction.jsp" style="font-size: 18px;">로그아웃</a></li>
+         <%
+            }
+         %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 	</header>
 
 	<%
@@ -235,91 +248,74 @@ a, a:hover {
 			</div>
 		</div>
 	</div>
-	<div id="container">
-    <nav>
-      <nav>
-        <h2>
-          <span></span>
-            학생회
-        </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href="student_council_introduce.jsp" class="jwxe_22350 active">학생회 소개</a>
-             </li>
-             <li>
-               <a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a>
-            </li>
-            <li>
-              <a href="student_council_events.jsp" class="jwxe_22351 ">행사</a>
-            </li>
-            <li>
-              <a href="student_council_public_money.jsp" class="jwxe_22351 ">학생회비 내역</a>
-            </li>
-        </ul>
-      </nav>
-    </nav>
-    </div>
-	<%--     <%
-	    ArrayList<FileDTO> fileList = new FileDAO().getList();
 	
-		for(FileDTO file : fileList){
-			out.write("<a href=\""+request.getContextPath() + "/downloadAction?file="+
-				java.net.URLEncoder.encode(file.getFileRealName(),"UTF-8")+"\">"+
-					file.getFileName()+"</a><br>"); 
-		}
-		
-    %> --%>
-
-	<h1 id='title'>
-		갤러리<br>
-	</h1>
-	<a class="btn btn-default" href='student_council_photo_Write.jsp'>글쓰기</a>
 	
 	<div class="container">
-		<div class="row">
-		
-			<%
-				GalleryDAO galDAO=new GalleryDAO();
-				for(int pageNumber=1;pageNumber<3;pageNumber++){
-					
-			%>
-			<table class="table"
-				style="text-align: center; border: 1px solid #dddddd">
-				<tbody>
-					<%						
-						ArrayList<GalleryDTO> list = galDAO.getList(pageNumber);
-						String galFile = null;
-					%>
-					<tr>
-						<%
-						for (int i = 0; i < list.size(); i++) {
-							galFile = "http://localhost:8080/SnS/upload/" + list.get(i).getGalRealFile();
-						%>
-						<td>
-							<img style="width: 200px;" class="media-object" src="<%=galFile%>"></td>
-						<%
-							}
-						%>
-					</tr>
-					<tr>
-						<%
-						for (int i = 0; i < list.size(); i++) {
-						%>
-						<td><a
-							href="student_council_photo_View.jsp?galID=<%=list.get(i).getGalID()%>"
-							style="text-decoration: none"><%=list.get(i).getGalTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt").replaceAll("\n", "<br>")%></a></td>
-						<%
-							}
-						%>						
-					</tr>
-				</tbody>
-			</table>
-			<%
-				}
-			%>
-
+		<div class="col-md-12">
+			<h1 id='title' style="position:relative;left:-8%;">갤러리</h1>
+			<a class="btn btn-default" href='student_council_photo_Write.jsp'>글쓰기</a>
+			<br><br>
 		</div>
+		<%
+			GalleryDAO galDAO=new GalleryDAO();
+			int lastp= (galDAO.getNext()-1);
+			int remainder=lastp%5;
+			if(lastp%5==0){
+				lastp=lastp/5;
+			}else{
+				lastp=lastp/5+1;
+			}
+			for(int pageNumber=1;pageNumber<=lastp;pageNumber++){	
+		%>
+		
+		<table class="table"
+			style="text-align: center; border: 1px solid #dddddd">
+			<tbody>
+			<%						
+				ArrayList<GalleryDTO> list = galDAO.getList(pageNumber);
+				String galFile = null;
+			%>
+				<tr>
+				<%
+					for (int i = 0; i < list.size(); i++) {
+						galFile = "http://localhost:8080/SnS/upload/" + list.get(i).getGalRealFile();
+				%>
+					<td>
+						<div class="col-md-12">
+						<img class="media-object" style="width:200px;" src="<%=galFile%>">
+						</div>
+					</td>
+					<%
+						}
+						if(pageNumber==lastp){
+							for (int i = 0; i < 5-remainder; i++) {
+					%>
+						<td>
+							<div class="col-md-12 media-object"></div>
+						</td>
+					<%	
+							}
+						}
+					%>
+				</tr>
+				<tr>
+					<%
+					for (int i = 0; i < list.size(); i++) {
+					%>
+					<td class="col-md-2">
+						<a href="student_council_photo_View.jsp?galID=<%=list.get(i).getGalID()%>"
+							style="text-decoration: none"><%=list.get(i).getGalTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+							.replaceAll(">", "&gt").replaceAll("\n", "<br>")%></a></td>
+					<%
+						}
+					%>						
+				</tr>
+			</tbody>
+		</table>
+		
+				<%
+					}
+			%>
 	</div>
 
 

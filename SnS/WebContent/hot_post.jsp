@@ -240,9 +240,31 @@
 			</div>
 		</div>
     
+    
+    <br><br><br>
+    <div class="container">
 		<section class="content">
 			<header>
-				<h1>hot 게시판</h1>
+				<h1 style="display:inline-block; margin-right:10px;">hot 게시판</h1>
+				<form style="display:inline-block;"method="get" action="post.jsp" class="form-inline mt-3">
+					<select name="boardID" class="form-control mx-1 mt-2">
+						<%
+						BoardDAO boardDAO = new BoardDAO();
+						ArrayList<BoardDTO> boardList = boardDAO.getList();
+						int ID=0;
+						for (int i = 27; i < boardList.size(); i++) {
+							ID=boardList.get(i).getBoardID();
+						%>
+						<option value="<%=boardList.get(i).getBoardID() %>">
+						<%=boardList.get(i).getBoardName() %></option>
+						<%
+							}
+						%>
+				
+					</select>
+					<button type="submit" class="btn mx-1 mt-2">이동</button>
+				</form>
+				<br>
 				<form method="get" action="hot_post.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
 						<option value="최신순" <%if (searchType.equals("최신순"))
@@ -346,7 +368,6 @@
 			<br>
 			<br>
 		</section>
-		
 		
     </div>
     <footer>

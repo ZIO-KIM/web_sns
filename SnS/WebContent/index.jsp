@@ -119,7 +119,7 @@
          <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
           </ul>
         </li>
-        <li><a href='post.jsp?boardID=27' style="font-size: 20px;">열린 광장</a><br></li>
+        <li><a href='hot_post.jsp' style="font-size: 20px;">열린 광장</a><br></li>
         <li><a href='chatbot.jsp' style="font-size: 20px;">Chatbot</a><br></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="navbar-right">
