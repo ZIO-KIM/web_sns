@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="page.PageDAO" %>
 <%@ page import="complaints.ComplaintsDAO"%>
 <%@ page import="complaints.ComplaintsDTO"%>
 <%@ page import="user.UserDAO"%>
@@ -9,6 +10,8 @@
 <html lang="ko" dir="ltr">
 <head>
 <meta charset="utf-8">
+<% PageDAO pageDAO= new PageDAO(); %>
+<link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
 <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap"
 	rel="stylesheet">

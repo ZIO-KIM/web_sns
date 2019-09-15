@@ -28,6 +28,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mainpage.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Backstretch.js" type="text/javascript"></script>
@@ -53,7 +54,7 @@
      }
      PostDAO postDAO = new PostDAO();
      ComplaintsDAO cmpDAO = new ComplaintsDAO();
-	
+
   %>
 
     <header>
@@ -117,7 +118,7 @@
          <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
           </ul>
         </li>
-        <li><a href='post.jsp?boardID=27' style="font-size: 20px;">열린 광장</a><br></li>
+        <li><a href='hot_post.jsp' style="font-size: 20px;">열린 광장</a><br></li>
         <li><a href='chatbot.jsp' style="font-size: 20px;">Chatbot</a><br></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="navbar-right">

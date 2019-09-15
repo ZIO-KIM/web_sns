@@ -67,7 +67,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href='userLogin.jsp'");
+			script.println("history.back()");
 			script.println("</script>");
 			script.close();
 		}
@@ -333,10 +333,10 @@
 		</section>
 	</div>
 
-<footer style="position:absolute; bottom:0px;">
+<!-- <footer style="position:absolute; bottom:0px;">
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer>
+    </footer> -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.js"></script>

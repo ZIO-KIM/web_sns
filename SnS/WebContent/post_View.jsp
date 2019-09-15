@@ -4,6 +4,7 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
+<%@ page import="page.PageDAO" %>
 <%@ page import="board.BoardDTO" %>
 <%@ page import="board.BoardDAO" %>
 <%@ page import="user.UserDAO"%>
@@ -11,6 +12,8 @@
 <html lang="ko" dir="ltr">
 <head>
 <meta charset="utf-8">
+<% PageDAO pageDAO= new PageDAO(); %>
+<link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
 <title>세종대학교 소프트웨어융합대학 :: 홍보 :: 교내 공모전</title>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap"
 	rel="stylesheet">
@@ -29,6 +32,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/PSB.css">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+	body{
+		background-color:#f8f8f8;
+	}
+	.container{
+		background-color:#ffffff;
+	}
+</style>
 
 </head>
 <body>
@@ -77,78 +89,93 @@
 	%>
 
 	<header>
-      <nav id='first_area'>
-        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
-        <div id="menubar">
-          <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
-            <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
-                <li><a href='student_council_photo.jsp'>갤러리</a></li>
-                <li><a href='post.jsp?boardID=1'>행사</a></li>
-                <li><a href='post.jsp?boardID=2'>학생회비 내역</a></li>
-                <li><a href='departments.jsp'>과별 게시판</a></li>
-              </ul>
-            </li>
+      <nav class="navbar navbar-default" style="background:#ffffff;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a  class="navbar-brand logobox" href='index.jsp'>
+         <img style="width:60px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
+      </a>
+    </div>
 
-            <li>민원 <!-- 메뉴바 두번째 - 민원 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
-                <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
-              </ul>
-            </li>
-
-            <li>예비 소융인 <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
-                <li><a href='post.jsp?boardID=19'>QnA</a></li>
-              </ul>
-            </li>
-
-            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='post.jsp?boardID=20'>취창업 후기</a><br></li>
-                <li><a href='post.jsp?boardID=21'>졸업생 인터뷰</a><br></li>
-                <li><a href='post.jsp?boardID=22'>졸업생 QnA</a><br></li>
-              </ul>
-            </li>
-
-            <li>홍보 <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='post.jsp?boardID=24'>교내 공모전</a><br></li>
-                <li><a href='post.jsp?boardID=25'>교외 공모전</a><br></li>
-              </ul>
-            </li>
-
-            <li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='chatbot.jsp'>Chatbot</a><br></li>
-                <li><a href='post.jsp?boardID=27'>열린게시판</a><br></li>
-              </ul>
-            </li>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="post.jsp?boardID=1" style="font-size: 20px;">공지사항</a></li>
+        <li><a href="student_council_photo.jsp" style="font-size: 20px;">갤러리</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">학생회 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='student_council_introduce.jsp'>학생회 소개</a></li>
+            <li><a class="dropdownLi" href='student_council_photo.jsp'>갤러리</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=2'>행사</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=3'>학생회비 내역</a></li>
+            <li><a class="dropdownLi" href='departments.jsp'>과별 게시판</a></li>
           </ul>
-        </div>
-        
-			<h1 id='language'>한국어 / EN</h1>
-			<!--영어, 한글 버전 바꾸는 버튼-->
-			<%
-				if (userID == null) {
-			%>
-			<h2 id='login'>
-				<a data-toggle="modal" href="#modal-login" style="text-decoration: none; color: #000000">LOGIN</a>
-			</h2>
-			<%
-				} else {
-			%>
-			<h2 id='login'>
-				<a href="userLogoutAction.jsp"
-					style="text-decoration: none; color: #000000">LOGOUT</a>
-			</h2>
-			<%
-				}
-			%>
-		</nav>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">민원 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
+         <li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
+         <li><a class="dropdownLi" href='introduce_cmp.jsp'>민원창구 소개</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">예비소융인 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">취업 &amp; 졸업 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=20'>취창업 후기</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=22'>졸업생 QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">홍보 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=24'>교내 공모전</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
+          </ul>
+        </li>
+        <li><a href='hot_post.jsp' style="font-size: 20px;">열린 광장</a><br></li>
+        <li><a href='chatbot.jsp' style="font-size: 20px;">Chatbot</a><br></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" id="navbar-right">
+        <li><div class="language"><a href="index.jsp" style="font-size: 18px;">KR</a> / <a href="index_en.jsp" style="font-size: 18px;">EN</a></div></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">접속관리 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+         <%
+            if (userID == null) {
+         %>
+            <li><a class="dropdownLi" data-toggle="modal" href="#modal-login" style="font-size: 18px; color: black;">로그인</a></li>
+         <%
+            } else {
+         %>
+            <li><a class="dropdownLi" href="myPage.jsp" style="font-size: 18px;">내 프로필</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a class="dropdownLi" href="userLogoutAction.jsp" style="font-size: 18px;">로그아웃</a></li>
+         <%
+            }
+         %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 	</header>
 	
 	<%
@@ -194,7 +221,7 @@
 		}
 	%>
 	
-	<div id="container">
+	
 	
 		<div id="modal-login" class="modal fade">
 			<div class="modal-dialog modal-sm">
@@ -300,55 +327,31 @@
 			</div>
 		</div>
 	</div>
-
 	
-
+	
+	<div id="container">
 		<div class="container">
-			<div class="row">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<th colspan="3"
-								style="background-color: #eeeeee; text-align: center;">게시판
-								글보기</th>
-						</tr>
-					<thead>
+				<table class="table" style="border:none;">
 					<tbody>
 						<tr>
-							<td style="width: 20%;">제목</td>
-							<td colspan="2"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+							<td style="width:100px;" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
+							<br><i class="fa fa-lg fa-user"></i> <p style="display:inline-block;font-size:20px;"><%=post.getUserID()%></p></td>
+							
+							<td style="text-align:left;font-size:35px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+							.replaceAll("\n", "<br>")%></td>
+						</tr>
+						<tr>
+							<td>
+								<span style="font-size:20px;">
+								<%=post.getPostDate()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%=post.getPostHit()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;<%=post.getAgreeCount()%></span>
+							</td>
+						</tr>
+						<tr>
+							<td style="height: 300px; text-align: left; font-size:20px;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
 					.replaceAll("\n", "<br>")%></td>
 						</tr>
 						<tr>
-							<td>작성자</td>
-							<td colspan="2"><%=post.getUserID()%></td>
-						</tr>
-						<tr>
-							<td>작성자 이미지</td>
-							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;" src="<%=fromProfile%>"></td>
-						</tr>
-						<tr>
-							<td>작성일자</td>
-							<td colspan="2"><%=post.getPostDate().substring(0, 11) + post.getPostDate().substring(11, 13) + "시"
-					+ post.getPostDate().substring(14, 16) + "분"%></td>
-						</tr>
-						<tr>
-							<td>동의 수</td>
-							<td colspan="2"><%=post.getAgreeCount()%></td>
-						</tr>
-						<tr>
-							<td>조회 수</td>
-							<td colspan="2"><%=post.getPostHit()%></td>
-						</tr>
-						<tr>
-							<td style="line-height: 300px;">내용</td>
-							<td colspan="2" style="height: 300px; text-align: left;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
-					.replaceAll("\n", "<br>")%></td>
-						</tr>
-						<tr>
-							<td style="line-height: 300px;">첨부파일</td>
-							<td colspan="2" style="height: 300px; text-align: left;">
+							<td style="height: 300px; text-align: left;">
 								<h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID() %>"><%=post.getPostFile() %></a></h5>
 							</td>
 						</tr>
@@ -449,15 +452,13 @@
 				%>
 					
 			</div>
-		</div>
-
 	</div>
 	
 </body>
-	<footer>
+	<!-- <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
    		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer>
+    </footer> -->
     
   </body>
 </html>

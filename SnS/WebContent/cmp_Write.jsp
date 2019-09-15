@@ -201,13 +201,12 @@
         </ul>
       </nav>
     </nav>
-    
-    
-    
+    </div>
     <section class="content">
       <header>
         <h1>글쓰기</h1>
       </header>
+      <hr>
       <form method="post" action="./complaints" enctype="multipart/form-data">
       <div class="form-group col-sm-3">
       	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
@@ -263,7 +262,6 @@
       </table>
       </form>
       </section>
-      </div>
       
      <!--  <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
