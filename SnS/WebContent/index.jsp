@@ -300,16 +300,36 @@
     </section>
     <hr class='line'>
     
-    <table class="board">
+    <!-- <table class="board">
     	<tr>
-    		<td style="border-left: hidden; border-top: hidden; border-right: gray; "><h2><a href='#'>공지사항</a></h2></td>
-    		<td style="border-right: hidden; border-top: hidden;"><h2><a href='#'>홍보게시판</a></h2></td>
+    		<td style="border-left: hidden; border-top: hidden;"><h2><a href='#' id='board_content' style="text-decoration: none; color: black; ">공지사항</a></h2></td>
+    		<td style="border-right: hidden; border-top: hidden;"><h2><a href='#' id='board_content' style="text-decoration: none; color: black; ">홍보게시판</a></h2></td>
     	</tr>
     	<tr>
-    		<td style="border-left: hidden; border-bottom: hidden;"><h2><a href='#'>갤러리</a></h2></td>
-    		<td style="border-right: hidden; border-bottom: hidden;"><h2><a href='departments.jsp'>과별 게시판</a></h2></td>
+    		<td style="border-left: hidden; border-bottom: hidden;"><h2><a href='#' id='board_content' style="text-decoration: none; color: black; ">갤러리</a></h2></td>
+    		<td style="border-right: hidden; border-bottom: hidden;"><h2><a href='departments.jsp' id='board_content' style="text-decoration: none; color: black; ">과별 게시판</a></h2></td>
     	</tr>
     </table>
+    -->
+    
+    <table class="type02">
+    	<tr>
+        	<th scope="row">공지사항</th>
+        	<th scope="row">홍보 게시판</th>
+    	</tr>
+    	<tr>
+    		<td>내용이 들어갑니다.</td>
+        	<td>내용이 들어갑니다.</td>
+    	</tr>
+    	<tr>
+        	<th scope="row">갤러리</th>
+        	<th scope="row">HOT 게시판</th>
+    	</tr>
+    	<tr>
+    		<td>내용이 들어갑니다.</td>
+        	<td>내용이 들어갑니다.</td>
+    	</tr>
+	</table>
     
     
     <!--<div id='all_boards' class="container-fluid">
