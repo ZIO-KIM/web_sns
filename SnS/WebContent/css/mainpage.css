@@ -228,7 +228,6 @@
 #table_responsive {
    width: full; 
    height: 100px; 
-   background-color: red; 
    
    text-align: center; 
 }
@@ -243,8 +242,6 @@ table {
 
  
  padding-top: 5px; 
- 
- background-color: blue; 
 }
 
 table, td, tr {
@@ -255,8 +252,6 @@ table, td, tr {
   font-size: 15px; 
   
   padding-top: 5px; 
-  
-  background-color: yellow; 
 }
 
 #quick_menu {
