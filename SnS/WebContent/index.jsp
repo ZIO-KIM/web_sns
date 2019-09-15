@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="complaints.ComplaintsDTO" %>
+<%@ page import="complaints.ComplaintsDAO" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
 <%@ page import="page.PageDAO" %>
@@ -10,7 +12,7 @@
 <%@ page import="board.BoardDTO" %>
 <%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="ko" dir="ltr"><!-- lastbranch test -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,8 +41,11 @@
   <%
      String userID =null;
      if(session.getAttribute("userID")!=null){
-        userID=(String)session.getAttribute("userID");
+        userID=(String)session.getAttribute("userID");  
      }
+     PostDAO postDAO = new PostDAO();
+     ComplaintsDAO cmpDAO = new ComplaintsDAO();
+	
   %>  
     <script>
       $.backstretch(["imgs/drop_7.jpg"],
@@ -266,23 +271,68 @@
     </nav>
     
     
-    <div id='all_boards'>
-       <div id="notice">
+    <div id='all_boards' class="container-fluid">
+       <div id="notice" class="col-md-4">
             <h2><a href='#' id='Notice'>공지사항</a></h2>
-            <br/> 
-            <a href='#' id='Notice'>공지사항 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+            <br>
+            <table class="table table-hover">
+            <%
+         	   ArrayList<PostDTO> notice= null;
+				notice = postDAO.getList(1, 1);
+				for (int i = 0; i < notice.size(); i++) {
+			%>
+			<tr>
+				<td><%=notice.get(i).getPostID() %></td>
+				<td><a id="Notice" href="post_View.jsp?boardID=<%=1 %>&postID=<%=notice.get(i).getPostID()%>"
+					style="text-decoration: none"><%=notice.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+				<td><%=notice.get(i).getPostDate().substring(0,11)+notice.get(i).getPostDate().substring(11,13)+"시"+notice.get(i).getPostDate().substring(14,16)+"분" %></td>
+			</tr>
+			<%
+				}
+			%>
+			</table>
        </div>
 
-       <div id="promotion">
-            <h2><a href='#' id='Promotion'>홍보 게시판</a></h2>
-            <br/>
-            <a href='#' id='Promotion'>홍보 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+       <div id="promotion" class="col-md-4">
+            <h2><a href='#' id='"promotion"'>홍보게시판</a></h2>
+            <br>
+            <table class="table table-hover">
+            <%
+          	  ArrayList<PostDTO> promotion= null;
+				promotion = postDAO.getList(24, 1);
+				for (int i = 0; i < promotion.size(); i++) {
+			%>
+			<tr>
+				<td><%=promotion.get(i).getPostID() %></td>
+				<td><a id="promotion" href="post_View.jsp?boardID=<%=24 %>&postID=<%=promotion.get(i).getPostID()%>"
+					style="text-decoration: none"><%=promotion.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+				<td><%=promotion.get(i).getPostDate().substring(0,11)+promotion.get(i).getPostDate().substring(11,13)+"시"+promotion.get(i).getPostDate().substring(14,16)+"분" %></td>
+			</tr>
+			<%
+				}
+			%>
+			</table>
        </div>
     
-       <div id="claim">
-            <h2><a href='#' id='Claims'>민원 게시판</a></h2>
-            <br/>
-            <a href='#' id='Claims'>민원 게시판 최근 글</a> <!-- 링크만 남기고 글 지울 것 -->
+       <div id="claim" class="col-md-4">
+            <h2><a href='#' id='"claim"'>민원게시판</a></h2>
+            <br>
+            <table class="table table-hover">
+            <%
+          	  ArrayList<ComplaintsDTO> complain= null;
+         	   complain = cmpDAO.getList(1, 1);
+				for (int i = 0; i < complain.size(); i++) {
+			%>
+			<tr>
+				<td><%=complain.get(i).getCmpID() %></td>
+				<td><a id="claim" href="cmp_View.jsp?isStudent=<%=1 %>&cmpID=<%=complain.get(i).getCmpID()%>"
+					style="text-decoration: none"><%=complain.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
+				<td><%=complain.get(i).getCmpDate().substring(0,11)+complain.get(i).getCmpDate().substring(11,13)+"시"+complain.get(i).getCmpDate().substring(14,16)+"분" %></td>
+			</tr>
+			<%
+				}
+			%>
+			</table>
        </div>
 
        <div id="departments">
