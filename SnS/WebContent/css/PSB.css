@@ -176,6 +176,7 @@ ul, ol {
     border-bottom: 1px solid #dadada;
     font-size: 16px;
     color: black;
+    display:block;
 }
 
 .lnb_deps2 > li >a{
@@ -185,7 +186,43 @@ ul, ol {
 a{
   color: black; 
 }
-
+#container{
+	margin-left:50px;
+	float:left;
+	position:absolute;
+}
+.content{
+	margin-top:100px;
+	margin-left:300px;
+	float:left;
+	display:block;
+}
+.find_content{
+	position:absolute;
+	display:block;
+	margin-left:600px;
+}
+.full_table{
+	position:absolute;
+	float:left;
+	margin-top:50px;
+}
+.content_table{
+	float:left;
+	display:block;
+	width:1000px;
+}
+.write_button{
+	position:absolute;
+	bottom:-30px;
+	left:920px;
+}
+.list_button{
+	position:absolute;
+	bottom:-80px;
+	left:400px;
+	width:200px;
+}
 footer {
 	display: inline-block;
 	border: 4px solid #dbdad9; 

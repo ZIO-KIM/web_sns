@@ -276,6 +276,9 @@
 		<section class="content">
 			<header>
 				<h1>학교 건의사항</h1>
+			</header>
+			<hr>
+			<div class="find_content">
 				<form method="get" action="cmp_to_school.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
 						<option value="최신순" <% if(searchType.equals("최신순")) out.println("selected"); %>>최신순</option>
@@ -284,8 +287,10 @@
 					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
 					<button type="submit" class="btn mx-1 mt-2">검색</button>
 				</form>
-			</header>
-			<table class="table table-hover">
+			</div>
+			<div class="full_table">
+				<div class="content_table">
+					<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -321,11 +326,14 @@
          %>
 				</tbody>
 			</table>
-			<hr>
-			<a class="btn btn-default pull-right"
+			</div>
+			<div class="write_button">
+				<a class="btn btn-default pull-right"
 				href="cmp_Write.jsp?isStudent=<%=isStudent%>">글쓰기</a>
+			</div>
 			<br><br>
-			<%
+			<div class="list_button">
+				<%
 				if(search==null){
 			%>
 			<div class="text-center">
@@ -373,6 +381,8 @@
 				}
 			%>
 				</ul>
+			</div>
+			</div>
 			</div>
 			<br>
 			<br>
