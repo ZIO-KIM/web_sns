@@ -99,6 +99,9 @@
        	 		<a class="nav-link" href="admin_board.jsp">Board</a>
      	 		</li>
      	 		<li class="nav-item">
+      			  <a class="nav-link" href="admin_report.jsp">Report</a>
+      			</li>
+     	 		<li class="nav-item">
        	 		<a class="nav-link" href="admin_customizing.jsp">Customizing</a>
      	 		</li>
       			<li class="nav-item dropdown" style="float:right !important;">
@@ -251,7 +254,7 @@
 							<td><%=list.get(i).getReportContent()%></td>
 							<td><%=list.get(i).getReportDate()%></td>
 							<td><a href="<%=list.get(i).getReportLink()%>" class="btn btn-info">링크</a></td>
-							<td><a onclick="return confirm('정말로 게시판을 삭제하시겠습니까?')" href="admin_report_Delete.jsp?reportID=<%=list.get(i).getReportID() %>" class="btn btn-danger">삭제</a></td>
+							<td><a onclick="return confirm('해당 신고를 삭제하시겠습니까?')" href="admin_report_Delete.jsp?reportID=<%=list.get(i).getReportID() %>" class="btn btn-danger">삭제</a></td>
 						</tr>
 						<%
 							}

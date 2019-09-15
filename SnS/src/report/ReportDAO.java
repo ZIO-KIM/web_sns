@@ -164,7 +164,7 @@ public class ReportDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
 		try {
-			SQL = "UPDATE report SET processingStatus =0 WHERE reportID=?";
+			SQL = "UPDATE report SET processingStatus =1 WHERE reportID=?";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, reportID);

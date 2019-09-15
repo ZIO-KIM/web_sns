@@ -30,7 +30,7 @@
 	if(result==1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('게시판이 삭제되었습니다.')");
+		script.println("alert('신고가 삭제되었습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 		script.close();
