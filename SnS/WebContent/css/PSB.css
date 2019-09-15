@@ -222,6 +222,27 @@ a{
 	bottom:-80px;
 	left:400px;
 	width:200px;
+}		
+#council_logo{
+	position:absoulte;
+	right:30px;
+	margin-right:30px;
+}
+.introduce_council {
+	position:absoulte;
+	margin-top:80px;
+	right:100px;
+	display:inline-block;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:19px;
+}
+.introduce_council p{
+	position:absoulte;
+	top:100px;
+	right:00px;
+	display:inline-block;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:17px;
 }
 footer {
 	display: inline-block;
