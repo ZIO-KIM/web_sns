@@ -41,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" href="css/Hot_PSB.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -246,7 +246,9 @@
 		<section class="content">
 			<header>
 				<h1 style="display:inline-block; margin-right:10px;">hot 게시판</h1>
-				<form style="display:inline-block;"method="get" action="post.jsp" class="form-inline mt-3">
+			</header>
+				<div class="board_move">
+					<form style="display:inline-block;"method="get" action="post.jsp" class="form-inline mt-3">
 					<select name="boardID" class="form-control mx-1 mt-2">
 						<%
 						BoardDAO boardDAO = new BoardDAO();
@@ -264,8 +266,9 @@
 					</select>
 					<button type="submit" class="btn mx-1 mt-2">이동</button>
 				</form>
-				<br>
-				<form method="get" action="hot_post.jsp" class="form-inline mt-3">
+				</div>
+				<div class="find_content">
+					<form method="get" action="hot_post.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
 						<option value="최신순" <%if (searchType.equals("최신순"))
 				out.println("selected");%>>최신순</option>
@@ -275,8 +278,10 @@
 					<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="작성자/제목/내용">
 					<button type="submit" class="btn mx-1 mt-2">검색</button>
 				</form>
-			</header>
-			<table class="table table-hover">
+				</div>
+				<br>
+				<div class="content_table">
+				<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -311,12 +316,16 @@
             }
          %>
 				</tbody>
-			</table>
+			</table>	
+			</div>
 			<hr>
-			<a class="btn btn-default pull-right"
+			<div class="write_button">
+				<a class="btn btn-default pull-right"
 				href="post_Write.jsp?boardID=28">글쓰기</a>
+			</div>
 			<br><br>
-			<%
+			<div class="list_button">
+				<%
 				if(search==null){
 			%>
 			<div class="text-center">
@@ -365,14 +374,10 @@
 			%>
 				</ul>
 			</div>
+			</div>
 			<br>
 			<br>
 		</section>
-		
     </div>
-    <footer>
-   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
-   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer>
   </body>
 </html>
