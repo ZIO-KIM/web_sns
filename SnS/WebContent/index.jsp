@@ -281,7 +281,6 @@
     </nav>
     
     <div><h1 id="department_board" style="font-size: 30px; font-family: 'Nanum Gothic', sans-serif;">과별 게시판</h1></div>
-    <img id="devide" src="imgs/line.PNG">
     
     <section id='departments_area'>
     	 <div id='computer_science'><!--컴퓨터공학과 게시판-->
@@ -327,7 +326,6 @@
     -->
     
     <div><h1 id="recent_board" style="font-size: 30px; font-family: 'Nanum Gothic', sans-serif;">최근 게시물</h1></div>
-    <img id="devide" src="imgs/line.PNG">
     
     <!--  
     <table class="type02">
@@ -557,7 +555,7 @@
 
     
    <div class="im_footerWrap">
-   	<div class="im_footer">
+   	<div class="im_footer" style="width: 1600px;">
       	<div class="im_footer_logo">
 	         <a href="index.jsp"><img src="imgs/footer_logo.PNG" alt="logo" border="0" style="width: 250px; margin-left: 20px; margin-right: 20px;"></a>                     </div>
          <div class="im_footer_right">
@@ -567,7 +565,7 @@
             </div>
             <div class="im_footer_info">
             	<span class="contact">010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 </span>                              <span class="copyright">COPYRIGHT ⓒ 세종대학교 소프트웨어융합대학 All right reserved.</span>                           </div>
-                     </div>
+            </div>
          <div class="im_gototop">
          	<a href="#"><span class="icon"><i class="fa fa-chevron-up"></i></span><span class="label">TOP</span></a>
          </div>
