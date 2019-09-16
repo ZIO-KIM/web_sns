@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" href="css/PSB_Write.css">
     <meta name="viewport" content="device-width, initial-scale=1">
   </head>
   <body>
@@ -110,13 +110,13 @@
 
       </nav>
     </header>
-        
-    <section class="content">
-      <header>
-        <h1>답변 작성</h1>
-      </header>
+    <div id="container">
+    	<section class="content">
+    		<header>
+        		<h1>답변 작성</h1>
+     		</header>
       <form method="post" action="post_ReplyAction.jsp">
-      <table class="table table-bordered">
+      <table class="table table-bordered" id="reply_table">
         <tbody>
         	<tr>
         		<th>아이디: </th>
@@ -143,11 +143,7 @@
       </table>
       </form>
       </section>
-      
-      <footer>
-   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
-   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer>
+    </div>
     <script src="js/bootstrap.js"></script>
   </body>
 </html>
