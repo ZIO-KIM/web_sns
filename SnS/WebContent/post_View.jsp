@@ -30,7 +30,7 @@
 	href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/PSB.css">
+<link rel="stylesheet" href="css/PSB_View.css">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
@@ -331,34 +331,36 @@
 	
 	<div id="container">
 		<div class="container">
+			<div class="view_table">
 				<table class="table" style="border:none;">
-					<tbody>
-						<tr>
-							<td style="width:100px;" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
-							<br><i class="fa fa-lg fa-user"></i> <p style="display:inline-block;font-size:20px;"><%=post.getUserID()%></p></td>
-							
-							<td style="text-align:left;font-size:35px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
-							.replaceAll("\n", "<br>")%></td>
-						</tr>
-						<tr>
-							<td>
-								<span style="font-size:20px;">
-								<%=post.getPostDate()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%=post.getPostHit()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;<%=post.getAgreeCount()%></span>
-							</td>
-						</tr>
-						<tr>
-							<td style="height: 300px; text-align: left; font-size:20px;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
-					.replaceAll("\n", "<br>")%></td>
-						</tr>
-						<tr>
-							<td style="height: 300px; text-align: left;">
-								<h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID() %>"><%=post.getPostFile() %></a></h5>
-							</td>
-						</tr>
-
-					</tbody>
-				</table>
-				<a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
+				<tbody>
+					<tr>
+						<td style="width:100px;" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
+						<br><i class="fa fa-lg fa-user"></i> <p style="display:inline-block;font-size:20px;"><%=post.getUserID()%></p></td>
+						
+						<td style="text-align:left;font-size:35px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+						.replaceAll("\n", "<br>")%></td>
+					</tr>
+					<tr>
+						<td>
+							<span style="font-size:20px;">
+							<%=post.getPostDate()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%=post.getPostHit()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;<%=post.getAgreeCount()%></span>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 300px; text-align: left; font-size:20px;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+				.replaceAll("\n", "<br>")%></td>
+					</tr>
+					<tr>
+						<td style="height: 300px; text-align: left;">
+							<h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID() %>"><%=post.getPostFile() %></a></h5>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+				<div class="buttons">
+					<a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
 				<a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
 					href="post_agreeAction.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
 					class="btn btn-primary pull-right"
@@ -384,6 +386,7 @@
 				<%
 					}
 				%>
+				</div>
 				<br> <br>
 				<%
 					ArrayList<PostDTO> list = postDAO.getReply(post.getPostGroup(), boardID);
@@ -455,10 +458,6 @@
 	</div>
 	
 </body>
-	<!-- <footer>
-   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
-   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer> -->
-    
+
   </body>
 </html>

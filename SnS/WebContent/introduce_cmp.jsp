@@ -195,16 +195,15 @@
         </ul>
       </nav>
     </nav>
+    </div>
     <section class="content">
       <header>
         <h1>민원창구 소개</h1>
       </header>
-      <hr>
-      <section>
-        <!--여기다가 게시글 올려주세요 빽형님들-->
-      </section>
+      <div class="cmp_introduce">
+		      
+      </div>
     </section>
-    </div>
     
     <footer>
    		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
