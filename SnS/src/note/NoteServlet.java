@@ -50,10 +50,9 @@ public class NoteServlet extends HttpServlet {
 		NoteDAO noteDAO = new NoteDAO();
 		noteDAO.write(new NoteDTO(0,toID,fromID,noteTitle,noteContent,"",0));
 
-		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "쪽지 발송이 완료되었습니다.");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
+		script.println("alert('쪽지가 발송되었습니다.');");
 		script.println("history.back();");
 		script.println("</script>");
 		script.close();

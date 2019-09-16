@@ -176,7 +176,7 @@
                 <% 
                   if (userID == null) {
                	%>
-                  	<li><a href="#modal-login">로그인</a></li>   
+                  	<li><a href="#modal-login" data-toggle="modal">로그인</a></li>   
                 <%     
                   } else {
                 %>
@@ -353,7 +353,7 @@
       </div>
       <form action="./note" method="post">
       <div class="modal-body">
-        	<input type="hidden" class="form-control" name="fromID" value="<%=user.getUserID() %>">
+        	<input type="hidden" class="form-control" name="fromID" value="<%=userID %>">
         	<input type="hidden" class="form-control" name="toID" value="<%=writer.getUserID() %>">
           <div class="form-group">
             <label for="message-text" class="control-label">제목:</label>

@@ -145,7 +145,7 @@
                 <% 
                   if (userID == null) {
                	%>
-                  	<li><a href="#modal-login">로그인</a></li>   
+                  	<li><a href="#modal-login" data-toggle="modal">로그인</a></li>   
                 <%     
                   } else {
                 %>
