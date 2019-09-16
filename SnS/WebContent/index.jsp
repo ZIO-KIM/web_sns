@@ -118,7 +118,15 @@
          <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
           </ul>
         </li>
+<<<<<<< HEAD
         <li><a href='hot_post.jsp' style="font-size: 20px; color:black;">열린 광장</a><br></li>
+=======
+        <li><a href='hot_post.jsp' style="font-size: 20px;">열린 광장</a><br></li>
+        <li><a href='chatbot/src/index.html' style="font-size: 20px;">Chatbot</a><br></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" id="navbar-right">
+        <li><div class="language"><a href="index.jsp" style="font-size: 18px;">KR</a> / <a href="index_en.jsp" style="font-size: 18px;">EN</a></div></li>
+>>>>>>> branch 'lastBranch' of https://github.com/ZIO-KIM/web_sns.git
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">QNA <span class="caret"></span></a>
           <ul class="dropdown-menu">
