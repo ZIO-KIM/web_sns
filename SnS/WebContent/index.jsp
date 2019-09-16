@@ -69,27 +69,27 @@
         <span class="icon-bar"></span>
       </button>
       <a  class="navbar-brand logobox" href='index.jsp'>
-         <img style="width:60px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
+         <img style="width:60px; margin-left: 20px; margin-top: 10px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
       </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="post.jsp?boardID=1" style="font-size: 20px;">공지사항</a></li>
-        <li><a href="student_council_photo.jsp" style="font-size: 20px;">갤러리</a></li>
+      <ul class="nav navbar-nav" style="margin-left: -30px; margin-top: 4px;">
+        <li><a href="post.jsp?boardID=1" style="font-size: 20px; color:black;">공지사항</a></li>
+        <li><a href="student_council_photo.jsp" style="font-size: 20px; color:black;">갤러리</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">학생회 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">학생회 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='student_council_introduce.jsp'>학생회 소개</a></li>
-            <li><a class="dropdownLi" href='student_council_photo.jsp'>갤러리</a></li>
+            <li><a class="dropdownLi" href='student_council_photo.jsp' >갤러리</a></li>
             <li><a class="dropdownLi" href='post.jsp?boardID=2'>행사</a></li>
             <li><a class="dropdownLi" href='post.jsp?boardID=3'>학생회비 내역</a></li>
             <li><a class="dropdownLi" href='departments.jsp'>과별 게시판</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">민원 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">민원 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
          <li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
@@ -97,14 +97,14 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">예비소융인 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">예비소융인 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
          <li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">취업 &amp; 졸업 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">취업 &amp; 졸업 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=20'>취창업 후기</a></li>
          <li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
@@ -112,36 +112,47 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">홍보 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">홍보 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=24'>교내 공모전</a></li>
          <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
           </ul>
         </li>
-        <li><a href='hot_post.jsp' style="font-size: 20px;">열린 광장</a><br></li>
-        <li><a href='chatbot.jsp' style="font-size: 20px;">Chatbot</a><br></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right" id="navbar-right">
-        <li><div class="language"><a href="index.jsp" style="font-size: 18px;">KR</a> / <a href="index_en.jsp" style="font-size: 18px;">EN</a></div></li>
+
+        <li><a href='hot_post.jsp' style="font-size: 20px; color:black;">열린 광장</a><br></li>
+        
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">접속관리 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">QNA <span class="caret"></span></a>
           <ul class="dropdown-menu">
-         <%
-            if (userID == null) {
-         %>
-            <li><a class="dropdownLi" data-toggle="modal" href="#modal-login" style="font-size: 18px; color: black;">로그인</a></li>
-         <%
-            } else {
-         %>
-            <li><a class="dropdownLi" href="myPage.jsp" style="font-size: 18px;">내 프로필</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a class="dropdownLi" href="userLogoutAction.jsp" style="font-size: 18px;">로그아웃</a></li>
-         <%
-            }
-         %>
+            <li><a class="dropdownLi" href='chatbot.jsp'>Chatbot</a></li>
+         	<li><a class="dropdownLi" href='#'>QnA</a></li>
           </ul>
         </li>
       </ul>
+    
+
+      
+      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px;">
+         	<div class="im_footer_menu">
+               <ul>
+                  <li class="active"><a href="index.jsp">메인 페이지</a></li>
+                  <li><a href="index.jsp">KR</a></li>
+                  <li><a href="index_en.jsp">EN</a></li>
+                <% 
+                  if (userID == null) {
+               	%>
+                  	<li><a href="#modal-login">로그인</a></li>   
+                <%     
+                  } else {
+                %>
+                  <li><a href="myPage.jsp">내 프로필</a></li>
+                  <li><a href="userLogoutAction.jsp">로그아웃</a></li>    
+                <%
+                  }
+                %>
+               </ul>
+      		</div>
+      </div>
     </div>
   </div>
 </nav>
@@ -269,6 +280,9 @@
       <h3 id='subtitle' class="subtitle_mq">소프트웨어 사회의 주역이 될 인재 양성</h3>
     </nav>
     
+    <div><h1 id="department_board" style="font-size: 30px; font-family: 'Nanum Gothic', sans-serif;">과별 게시판</h1></div>
+    <img id="devide" src="imgs/line.PNG">
+    
     <section id='departments_area'>
     	 <div id='computer_science'><!--컴퓨터공학과 게시판-->
     		<a href='post.jsp?boardID=4'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
@@ -298,8 +312,8 @@
     		<a href='post.jsp?boardID=16'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
     	</div>
     </section>
-    <hr class='line'>
-    
+    <hr class="line">
+        
     <!-- <table class="board">
     	<tr>
     		<td style="border-left: hidden; border-top: hidden;"><h2><a href='#' id='board_content' style="text-decoration: none; color: black; ">공지사항</a></h2></td>
@@ -312,6 +326,10 @@
     </table>
     -->
     
+    <div><h1 id="recent_board" style="font-size: 30px; font-family: 'Nanum Gothic', sans-serif;">최근 게시물</h1></div>
+    <img id="devide" src="imgs/line.PNG">
+    
+    <!--  
     <table class="type02">
     	<tr>
         	<th scope="row">공지사항</th>
@@ -330,6 +348,7 @@
         	<td>내용이 들어갑니다.</td>
     	</tr>
 	</table>
+	-->
     
     
     <!--<div id='all_boards' class="container-fluid">
@@ -408,24 +427,153 @@
        </div>
     </div>
     -->
-
-   <div id='table_responsive'>
-       <table>
-            <tr>
-              <td>Quick Menu</td>
-              <td><a href='http://www.sejong.ac.kr/' id='quick_menu'>세종대학교</a></td>
-              <td><a href='http://www.sejongstudent.com/xe/' id='quick_menu'>세종대학교<br>총학생회</a></td>
-              <td><a href='https://ko-kr.facebook.com/sejong1sc/' id='quick_menu'>세종소융<br>페이스북</a></td>
-              <td><a href='https://www.facebook.com/sejongstudent/' id='quick_menu'>세종대학교<br>총학생회 페이스북</a></td>
-            </tr>
-       </table>
-    </div>
     
-    <footer>
-         <p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
-         COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer>
+    <div class="m_con"><!-- 핫이슈 -->
+	<section class="m_notice">
+		<!-- 공지사항 -->
+		<h3><a href="post.jsp?boardID=1" style="text-decoration:none;color: black;">공지사항</a></h3>
+		<ul style="list-style:none;">          
+		<li>
+			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+				웹소설 공모전 정말 힘드네요
+			</a>
+			<span>2019.09.05</span>
+		</li>
+		<li>
+			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134240" style="text-decoration:none;color: black;">
+				27시간째 눈뜨고 있어요
+			</a>
+			<span>2019.09.04</span>
+		</li>
+		<li>
+			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=133918" style="text-decoration:none;color: black;">
+				강의도 못 들었어요
+			</a>
+			<span>2019.09.03</span>
+		</li>
+		<li>
+			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134011" style="text-decoration:none;color: black;">
+				너무 졸리고 피곤해요
+			</a>
+			<span>2019.09.03</span>
+		</li>
+		</ul>
+	</section>
+	
+ 	<section class="m_notice">
+		<!-- 공지사항 -->
+		<h3><a href="" style="text-decoration:none;color: black;">홍보 게시판</a></h3>
+		<ul style="list-style:none;">        
+		<li>
+			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=135202" style="text-decoration:none;color: black;">
+				[컴퓨터보안전공] 2020학년도 전기 컴퓨터학과 컴퓨터보안 전공 설명회 
+			</a>
+			<span>2019.09.16</span>
+		</li>
+		<li>
+			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=133418" style="text-decoration:none;color: black;">
+				2019학년도 후기 대학원 종합시험 시행 공고
+			</a>
+			<span>2019.08.29</span>
+		</li>
+		<li>
+			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=133395" style="text-decoration:none;color: black;">
+				Summer 2019, DMIS Invited Lecture
+			</a>
+			<span>2019.08.28</span>
+		</li>
+		<li>
+			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=133394" style="text-decoration:none;color: black;">
+				[교양교육원]2019학년도 2학기 교육조교 모집 안내
+			</a>
+			<span>2019.08.28</span>
+		</li>
+		</ul>
+	</section>
+  
+  	<section class="m_notice">
+		<!-- 공지사항 -->
+		<h3><a href="student_council_photo.jsp" style="text-decoration:none;color: black;">갤러리</a></h3>
+		<ul style="list-style:none;">       
+		<li>
+			<a href="/cs/board/course.do?mode=view&amp;articleNo=135093" style="text-decoration:none;color: black;">
+				[네이버] 네이버 개발 직군 신입사원 공채 안내
+			</a>
+			<span>2019.09.11</span>
+		</li>
+		<li>
+			<a href="/cs/board/course.do?mode=view&amp;articleNo=134846" style="text-decoration:none;color: black;">
+				[대우건설] 신입사원 채용(9/16~10/1)  및 Job Cafe 신청(선착순)
+			</a>
+			<span>2019.09.10</span>
+		</li>
+		<li>
+			<a href="/cs/board/course.do?mode=view&amp;articleNo=134798" style="text-decoration:none;color: black;">
+				기아자동차 빅데이터AI부문 직무설명회(9/20, 금)
+			</a>
+			<span>2019.09.09</span>
+		</li>
+		<li>
+			<a href="/cs/board/course.do?mode=view&amp;articleNo=134590" style="text-decoration:none;color: black;">
+				2019년 청년 과학기술인 일자리 박람회 안내
+			</a>
+			<span>2019.09.06</span>
+		</li>
+		</ul>
+	</section>
+  
+  
+  	<section class="m_notice">
+		<!-- 공지사항 -->
+		<h3><a href="" style="text-decoration:none;color: black;">HOT 게시판</a></h3>
+		<ul style="list-style:none;">          
+		<li>
+			<a href="/cs/board/news.do?mode=view&amp;articleNo=135194" style="text-decoration:none;color: black;">
+				[블록체인연구소] 2019년 가을학기 정기 세미나 개최 안내
+			</a>
+			<span>2019.09.16</span>
+		</li>
+		<li>
+			<a href="/cs/board/news.do?mode=view&amp;articleNo=134632" style="text-decoration:none;color: black;">
+				로봇산업진흥원 대학생 멘토(보조강사) 모집
+			</a>
+			<span>2019.09.06</span>
+		</li>
+		<li>
+			<a href="/cs/board/news.do?mode=view&amp;articleNo=133282" style="text-decoration:none;color: black;">
+				[SW중심대학] 2019년 하반기 TOPCIT 정기평가 설명회 개최 안내
+			</a>
+			<span>2019.08.27</span>
+		</li>
+		<li>
+			<a href="/cs/board/news.do?mode=view&amp;articleNo=132970" style="text-decoration:none;color: black;">
+				제2회 국민대학교 자율주행 경진대회 안내
+			</a>
+			<span>2019.08.26</span>
+		</li>
+		</ul>
+	</section>
+</div>
 
+    
+   <div class="im_footerWrap">
+   	<div class="im_footer">
+      	<div class="im_footer_logo">
+	         <a href="index.jsp"><img src="imgs/footer_logo.PNG" alt="logo" border="0" style="width: 250px; margin-left: 20px; margin-right: 20px;"></a>                     </div>
+         <div class="im_footer_right">
+         	<div class="im_footer_menu">
+               <ul>
+                  <li class="active"><a href="index.jsp">메인 페이지</a></li><li><a href="http://www.sejong.ac.kr/">세종대학교</a></li><li><a href="http://www.sejongstudent.com/xe/">세종대학교 총학생회</a></li><li><a href="https://ko-kr.facebook.com/sejong1sc/">세종소융 페이스북</a></li>             </ul>
+            </div>
+            <div class="im_footer_info">
+            	<span class="contact">010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 </span>                              <span class="copyright">COPYRIGHT ⓒ 세종대학교 소프트웨어융합대학 All right reserved.</span>                           </div>
+                     </div>
+         <div class="im_gototop">
+         	<a href="#"><span class="icon"><i class="fa fa-chevron-up"></i></span><span class="label">TOP</span></a>
+         </div>
+      </div>
+   </div>
+   
   </body>
   
 </html>
