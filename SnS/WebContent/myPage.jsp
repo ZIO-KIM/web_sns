@@ -6,8 +6,11 @@
 <%@ page import="user.UserDAO" %>
 <%@ page import="user.UserDTO" %>
 <%@ page import="page.PageDAO" %>
+<<<<<<< HEAD
 <%@ page import="note.NoteDAO" %>
 <%@ page import="note.NoteDTO" %>
+=======
+>>>>>>> refs/remotes/origin/lastBranch
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -73,9 +76,15 @@
 		PageDAO pageDAO = new PageDAO();
 		UserDAO userDAO = new UserDAO();
 		UserDTO user = userDAO.getUser(userID);
+		
+		PageDAO pageDAO = new PageDAO();
 	 %>
   
+<<<<<<< HEAD
     <header>
+=======
+  <header>
+>>>>>>> refs/remotes/origin/lastBranch
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -150,6 +159,7 @@
     
 
       
+<<<<<<< HEAD
       <div class="im_footer_right" style="margin-left:950px; margin-top: -100px;">
          	<div class="im_footer_menu">
                <ul>
@@ -160,6 +170,18 @@
                   if (userID == null) {
                	%>
                   	<li><a data-toggle="modal" href="#modal-login">로그인</a></li>   
+=======
+      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px; ">
+         	<div class="im_footer_menu">
+               <ul>
+                  <li class="active"><a href="index.jsp">메인 페이지</a></li>
+                  <li><a href="index.jsp">KR</a></li>
+                  <li><a href="index_en.jsp">EN</a></li>
+                <% 
+                  if (userID == null) {
+               	%>
+                  	<li><a href="#modal-login">로그인</a></li>   
+>>>>>>> refs/remotes/origin/lastBranch
                 <%     
                   } else {
                 %>
@@ -175,6 +197,7 @@
   </div>
 </nav>
     </header>
+
     
     <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -351,5 +374,22 @@
     		$(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i,''));
     	});
     </script>
+    	<div class="im_footerWrap">
+   	<div class="im_footer" style="width: 1600px;">
+      	<div class="im_footer_logo">
+	         <a href="index.jsp"><img src="imgs/footer_logo.PNG" alt="logo" border="0" style="width: 250px; margin-left: 20px; margin-right: 20px;"></a>                     </div>
+         <div class="im_footer_right">
+         	<div class="im_footer_menu">
+               <ul>
+                  <li class="active"><a href="index.jsp">메인 페이지</a></li><li><a href="http://www.sejong.ac.kr/">세종대학교</a></li><li><a href="http://www.sejongstudent.com/xe/">세종대학교 총학생회</a></li><li><a href="https://ko-kr.facebook.com/sejong1sc/">세종소융 페이스북</a></li>             </ul>
+            </div>
+            <div class="im_footer_info">
+            	<span class="contact">010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 </span>                              <span class="copyright">COPYRIGHT ⓒ 세종대학교 소프트웨어융합대학 All right reserved.</span>                           </div>
+            </div>
+         <div class="im_gototop">
+         	<a href="#"><span class="icon"><i class="fa fa-chevron-up"></i></span><span class="label">TOP</span></a>
+         </div>
+      </div>
+   </div>
   </body>
 </html>
