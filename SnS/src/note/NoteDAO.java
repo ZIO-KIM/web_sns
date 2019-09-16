@@ -54,16 +54,17 @@ public class NoteDAO {
 		return "";
 	}
 	
-	public ArrayList<NoteDTO> getList(){
+	public ArrayList<NoteDTO> getList(String userID){
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		ArrayList<NoteDTO> list =new ArrayList<NoteDTO>();
 		try {
-			SQL ="SELECT * FROM note WHERE noteStatus = 0 ";
+			SQL ="SELECT * FROM note WHERE noteStatus = 0 AND toID= ? ORDER BY noteDate DESC";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
 				NoteDTO noteDTO =new NoteDTO();

@@ -175,47 +175,25 @@
 </nav>
     </header>
 
-    
-    <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 id="noteModalLabel"><span class="modal-title" style="font-weight:bold;"></span>에게 쪽지 쓰기</h4>
-      </div>
-      <form action="./note" method="post">
-      <div class="modal-body">
-        	<input type="hidden" class="form-control" name="fromID" >
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" name="toID" >
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">제목:</label>
-            <textarea class="form-control" name="noteTitle"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">내용:</label>
-            <textarea class="form-control" name="noteContent"></textarea>
-          </div>
-          <script>
-		  $('#noteModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) 
-		  var recipient = button.data('whatever') 
-		  var modal = $(this)
-		  modal.find('.modal-title').text(recipient)
-		  modal.find('.modal-body input').val(recipient)
-		})
- 		 </script>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-        <button type="submit" class="btn btn-primary">보내기</button>
-      </div>
-      </form>
-    </div>
-  </div>
-  
+<div class="modal" id="noteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="noteConfirmModal" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="noteConfirmModalTitle">제목들어갈 자리</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<h5 style="margin:0px 10px;min-height:200px;">내용들어갈 자리</h5>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      		</div>
+		</div>
+	</div>
 </div>
     
 	<div class="container-fluid">
@@ -260,10 +238,12 @@
 									</div>
 								</div>
 							</div>
+							<br>
 							<div class="input-group col-xs-12">
 								<button type="submit" class="btn btn-info btn-fill pull-right" style="margin-left:2%;">프로필 업데이트</button>
-								<div class="col-md-4 pull-right">
-									<span class="input-group-btn"><button class="browse btn btn-primary pull-right"  type="button"><i class="fa fa-search"></i>프로필 사진 업데이트</button></span>
+								<div class="col-md-4 pull-right" style="margin:0px 20px; position:relative; top:-7px;">
+									<span class="input-group-btn"><button class="browse btn btn-primary pull-right" type="button">
+										<i class="fa fa-search"></i>프로필 사진 업데이트</button></span>
 								</div>
                				</div>
 							<div class="clearfix"></div>
@@ -277,10 +257,7 @@
 					<div class="author">
 						<br><br><br><br><br><br>
 						<img class="avatar border-gray" src="<%=userDAO.getProfile(userID) %>" alt="프로필 이미지">
-						<p class="description">
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#noteModal" data-whatever="<%=user.getUserName() %>"><%=user.getUserName() %></button>
-						</p>
+						<p style="font-weight:bold;font-size:20px;"class="description"><%=user.getUserName()%></p>
 					</div>
 					<p class="description text-center"><%=user.getAboutMe()%></p>
 				</div>
@@ -298,14 +275,14 @@
 				} 	
 			%>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="card-body table-full-width table-responsive">
 				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Name</th>
 							<th>Title</th>
-							<th>Content</th>
+							<th>Date</th>
 							<th>Reply</th>
 							<th>Delete</th>
 						</tr>
@@ -313,15 +290,15 @@
 					<tbody>
 						<%
 							NoteDAO noteDAO = new NoteDAO();
-							ArrayList<NoteDTO> list = noteDAO.getList();
+							ArrayList<NoteDTO> list = noteDAO.getList(userID);
 							for(int i=0;i<list.size();i++){
 						%>
 						<tr>
 							<td><%=list.get(i).getFromID()%></td>
-							<td><%=list.get(i).getNoteTitle()%></td>
-							<td><%=list.get(i).getNoteContent()%></td>
-							<td><a type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#noteModal" data-whatever="<%=user.getUserName() %>">답장</a></td>
+							<td><a type="button" style="text-decoration:none; font-weight:bold; color:#000000;" data-toggle="modal" data-target="#noteConfirmModal" 
+								data-whatever="<%=user.getUserName() %>"><%=list.get(i).getNoteTitle()%></a></td>
+							<td><%=list.get(i).getNoteDate().substring(0,16)%></td>
+							<td><a href="note_reply.jsp?noteID=<%=list.get(i).getNoteID() %>" type="button" class="btn btn-primary">답장</a></td>
 							<td><a href="note_Delete.jsp?noteID=<%=list.get(i).getNoteID() %>" class="btn btn-danger">삭제</a></td>
 						</tr>
 						<%
@@ -332,15 +309,6 @@
 			</div>
 		</div>
 	</div>
-    
-      
-      <footer>
-   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
-   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
-    </footer>
-    
-    
-    
     
     <script type="text/javascript">
     	$(document).on('click','.browse',function(){

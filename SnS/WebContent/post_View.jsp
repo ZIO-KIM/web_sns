@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="user.UserDTO" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
 <%@ page import="page.PageDAO" %>
@@ -86,6 +87,8 @@
 	        return;
 	  	}
 	  	UserDAO userDAO = new UserDAO();
+	  	UserDTO user = userDAO.getUser(userID);
+	  	UserDTO writer = userDAO.getUser(post.getUserID());
 	%>
 
 	<div id="wrapper">
@@ -341,6 +344,42 @@
 		</div>
 	</div>
 	
+	<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="noteModalLabel"><span class="modal-title" style="font-weight:bold;"></span>에게 쪽지 쓰기</h4>
+      </div>
+      <form action="./note" method="post">
+      <div class="modal-body">
+        	<input type="hidden" class="form-control" name="fromID" value="<%=user.getUserID() %>">
+        	<input type="hidden" class="form-control" name="toID" value="<%=writer.getUserID() %>">
+          <div class="form-group">
+            <label for="message-text" class="control-label">제목:</label>
+            <textarea class="form-control" name="noteTitle"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">내용:</label>
+            <textarea class="form-control" name="noteContent"></textarea>
+          </div>
+          <script>
+		  $('#noteModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget) 
+		  var recipient = button.data('whatever') 
+		  var modal = $(this)
+		  modal.find('.modal-title').text(recipient)
+		})
+ 		 </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="submit" class="btn btn-primary">보내기</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 	
 	<div id="container">
 		<div class="container">
@@ -349,7 +388,8 @@
 				<tbody>
 					<tr>
 						<td style="width:100px;" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
-						<br><i class="fa fa-lg fa-user"></i> <p style="display:inline-block;font-size:20px;"><%=post.getUserID()%></p></td>
+						<br><i class="fa fa-lg fa-user"></i> <a style="display:inline-block;font-size:20px;text-decoration:none;"type="button" data-toggle="modal"
+						data-target="#noteModal" data-whatever="<%=writer.getUserName() %>"><%=writer.getUserName() %></a></td>
 						
 						<td style="text-align:left;font-size:35px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
 						.replaceAll("\n", "<br>")%></td>

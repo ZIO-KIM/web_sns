@@ -52,7 +52,11 @@ public class NoteServlet extends HttpServlet {
 
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent", "쪽지 발송이 완료되었습니다.");
-		response.sendRedirect("myPage.jsp");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("history.back();");
+		script.println("</script>");
+		script.close();
 		return;
 	}
 }
