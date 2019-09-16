@@ -69,27 +69,27 @@
         <span class="icon-bar"></span>
       </button>
       <a  class="navbar-brand logobox" href='index.jsp'>
-         <img style="width:60px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
+         <img style="width:60px; margin-left: 20px; margin-top: 10px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
       </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="post.jsp?boardID=1" style="font-size: 20px;">공지사항</a></li>
-        <li><a href="student_council_photo.jsp" style="font-size: 20px;">갤러리</a></li>
+      <ul class="nav navbar-nav" style="margin-left: -30px; margin-top: 4px;">
+        <li><a href="post.jsp?boardID=1" style="font-size: 20px; color:black;">공지사항</a></li>
+        <li><a href="student_council_photo.jsp" style="font-size: 20px; color:black;">갤러리</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">학생회 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">학생회 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='student_council_introduce.jsp'>학생회 소개</a></li>
-            <li><a class="dropdownLi" href='student_council_photo.jsp'>갤러리</a></li>
+            <li><a class="dropdownLi" href='student_council_photo.jsp' >갤러리</a></li>
             <li><a class="dropdownLi" href='post.jsp?boardID=2'>행사</a></li>
             <li><a class="dropdownLi" href='post.jsp?boardID=3'>학생회비 내역</a></li>
             <li><a class="dropdownLi" href='departments.jsp'>과별 게시판</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">민원 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">민원 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
          <li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
@@ -97,14 +97,14 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">예비소융인 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">예비소융인 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
          <li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">취업 &amp; 졸업 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">취업 &amp; 졸업 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=20'>취창업 후기</a></li>
          <li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
@@ -112,36 +112,44 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">홍보 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">홍보 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdownLi" href='post.jsp?boardID=24'>교내 공모전</a></li>
          <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
           </ul>
         </li>
-        <li><a href='hot_post.jsp' style="font-size: 20px;">열린 광장</a><br></li>
-        <li><a href='chatbot.jsp' style="font-size: 20px;">Chatbot</a><br></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right" id="navbar-right">
-        <li><div class="language"><a href="index.jsp" style="font-size: 18px;">KR</a> / <a href="index_en.jsp" style="font-size: 18px;">EN</a></div></li>
+        <li><a href='hot_post.jsp' style="font-size: 20px; color:black;">열린 광장</a><br></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">접속관리 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">QNA <span class="caret"></span></a>
           <ul class="dropdown-menu">
-         <%
-            if (userID == null) {
-         %>
-            <li><a class="dropdownLi" data-toggle="modal" href="#modal-login" style="font-size: 18px; color: black;">로그인</a></li>
-         <%
-            } else {
-         %>
-            <li><a class="dropdownLi" href="myPage.jsp" style="font-size: 18px;">내 프로필</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a class="dropdownLi" href="userLogoutAction.jsp" style="font-size: 18px;">로그아웃</a></li>
-         <%
-            }
-         %>
+            <li><a class="dropdownLi" href='chatbot.jsp'>Chatbot</a></li>
+         	<li><a class="dropdownLi" href='#'>QnA</a></li>
           </ul>
         </li>
       </ul>
+
+      
+      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px;">
+         	<div class="im_footer_menu">
+               <ul>
+                  <li class="active"><a href="index.jsp">메인 페이지</a></li>
+                  <li><a href="index.jsp">KR</a></li>
+                  <li><a href="index_en.jsp">EN</a></li>
+                <% 
+                  if (userID == null) {
+               	%>
+                  	<li><a href="#modal-login">로그인</a></li>   
+                <%     
+                  } else {
+                %>
+                  <li><a href="myPage.jsp">내 프로필</a></li>
+                  <li><a href="userLogoutAction.jsp">로그아웃</a></li>    
+                <%
+                  }
+                %>
+               </ul>
+      		</div>
+      </div>
     </div>
   </div>
 </nav>

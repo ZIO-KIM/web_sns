@@ -8,6 +8,11 @@
    }
 } */
 
+#bs-example-navbar-collapse-1 {
+	font-family: 'Nanum Gothic', sans-serif;
+	color: black; 
+}
+
 body {
 	background-size: 1300px 700px; 
 	background-repeat: no-repeat; 
@@ -190,7 +195,7 @@ body {
 }
 
 #department_board {
-	margin-top: 20%; 
+	margin-top: -300px; 
 }
 
 table.type02 {
