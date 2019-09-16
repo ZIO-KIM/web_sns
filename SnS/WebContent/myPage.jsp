@@ -6,11 +6,8 @@
 <%@ page import="user.UserDAO" %>
 <%@ page import="user.UserDTO" %>
 <%@ page import="page.PageDAO" %>
-<<<<<<< HEAD
 <%@ page import="note.NoteDAO" %>
 <%@ page import="note.NoteDTO" %>
-=======
->>>>>>> refs/remotes/origin/lastBranch
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -76,15 +73,8 @@
 		PageDAO pageDAO = new PageDAO();
 		UserDAO userDAO = new UserDAO();
 		UserDTO user = userDAO.getUser(userID);
-		
-		PageDAO pageDAO = new PageDAO();
 	 %>
-  
-<<<<<<< HEAD
-    <header>
-=======
   <header>
->>>>>>> refs/remotes/origin/lastBranch
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -158,8 +148,7 @@
       </ul>
     
 
-      
-<<<<<<< HEAD
+
       <div class="im_footer_right" style="margin-left:950px; margin-top: -100px;">
          	<div class="im_footer_menu">
                <ul>
@@ -169,19 +158,7 @@
                 <% 
                   if (userID == null) {
                	%>
-                  	<li><a data-toggle="modal" href="#modal-login">로그인</a></li>   
-=======
-      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px; ">
-         	<div class="im_footer_menu">
-               <ul>
-                  <li class="active"><a href="index.jsp">메인 페이지</a></li>
-                  <li><a href="index.jsp">KR</a></li>
-                  <li><a href="index_en.jsp">EN</a></li>
-                <% 
-                  if (userID == null) {
-               	%>
-                  	<li><a href="#modal-login">로그인</a></li>   
->>>>>>> refs/remotes/origin/lastBranch
+                  	<li><a href="#modal-login" data-toggle="modal">로그인</a></li>
                 <%     
                   } else {
                 %>
