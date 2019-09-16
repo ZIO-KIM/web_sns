@@ -60,6 +60,7 @@
 		int isStudent=0;
 	%>
 
+	<div id="wrapper">
 	<header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
@@ -135,7 +136,7 @@
     
 
       
-      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px;">
+      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px; ">
          	<div class="im_footer_menu">
                <ul>
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>
@@ -144,7 +145,7 @@
                 <% 
                   if (userID == null) {
                	%>
-                  	<li><a data-toggle="modal" href="#modal-login">로그인</a></li>   
+                  	<li><a href="#modal-login">로그인</a></li>   
                 <%     
                   } else {
                 %>
@@ -160,6 +161,7 @@
   </div>
 </nav>
     </header>
+
 	
     
     <%
