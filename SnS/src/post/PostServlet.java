@@ -30,9 +30,12 @@ public class PostServlet extends HttpServlet {
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		}catch(Exception e) {
-			request.getSession().setAttribute("messageType","오류 메시지");
-			request.getSession().setAttribute("mewssageContent", "파일 크기는 10MB를 넘을 수 없습니다.");
-			/* response.sendRedirect("post_to_student_council_Write.jsp"); */
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('파일 크기는 10MB를 넘을 수 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		HttpSession session = request.getSession();
