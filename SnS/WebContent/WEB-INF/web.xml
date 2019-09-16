@@ -76,4 +76,12 @@
 		<servlet-name>PageImageServlet</servlet-name>
 		<url-pattern>/pageImage</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>NoteServlet</servlet-name>
+		<servlet-class>note.NoteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NoteServlet</servlet-name>
+		<url-pattern>/note</url-pattern>
+	</servlet-mapping>
 </web-app>

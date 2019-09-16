@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="complaints.ComplaintsDAO" %>
 <%@ page import="user.UserDAO" %>
 <%@ page import="user.UserDTO" %>
+<%@ page import="page.PageDAO" %>
+<%@ page import="note.NoteDAO" %>
+<%@ page import="note.NoteDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -19,6 +23,10 @@
     <link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 
     <meta name="viewport" content="device-width, initial-scale=1">
     <style type="text/css">
@@ -62,159 +70,268 @@
 			script.println("</script>"); 
 			script.close();
 		}
+		PageDAO pageDAO = new PageDAO();
 		UserDAO userDAO = new UserDAO();
 		UserDTO user = userDAO.getUser(userID);
 	 %>
   
     <header>
-      <nav id='first_area'>
-        <a href='index.jsp'><img src="imgs/software_convergence_logo.PNG" id='logo' alt="소융대 로고"></a> <!-- 소융대 로고 -->
-        <div id="menubar">
-          <ul> <!-- 사이트 타이틀 하단 메뉴바 -->
-            <li>학생회 <!-- 메뉴바 첫번째 - 학생회 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='student_council_introduce.jsp'>학생회 소개</a></li>
-                <li><a href='student_council_photo.jsp'>갤러리</a></li>
-                <li><a href='student_council_events.jsp'>행사</a></li>
-                <li><a href='student_council_public_money.jsp'>학생회비 내역</a></li>
-                <li><a href='departments.jsp'>과별 게시판</a></li>
-              </ul>
-            </li>
+      <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a  class="navbar-brand logobox" href='index.jsp'>
+         <img style="width:60px; margin-left: 20px; margin-top: 10px;"src="<%=pageDAO.getPageLogo() %>" alt="소융대 로고">
+      </a>
+    </div>
 
-            <li>민원 <!-- 메뉴바 두번째 - 민원 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
-                <li><a href='cmp_to_school.jsp'>학교 건의사항</a></li>
-                <li><a href='introduce_cmp.jsp'>민원창구 소개</a></li>
-              </ul>
-            </li>
-
-            <li>예비 소융인 <!-- 메뉴바 세번째 - 예비 소융인 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='admission_reviews.jsp'>선배들의 입시 후기</a></li>
-                <li><a href='admission_qnas.jsp'>QnA</a></li>
-              </ul>
-            </li>
-
-            <li>취업&amp;졸업 <!-- 메뉴바 네번째 - 취업&졸업 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='employ_reviews.jsp'>취창업 후기</a><br></li>
-                <li><a href='graduate_interviews.jsp'>졸업생 인터뷰</a><br></li>
-                <li><a href='graduate_qnas.jsp'>졸업생 QnA</a><br></li>
-              </ul>
-            </li>
-
-            <li>홍보 <!-- 메뉴바 다섯번째 - 홍보 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='school_contests.jsp'>교내 공모전</a><br></li>
-                <li><a href='not_school_contests.jsp'>교외 공모전</a><br></li>
-              </ul>
-            </li>
-
-            <li>QnA <!-- 메뉴바 여섯번째 - QnA 카테고리 -->
-              <ul id='submenu'>
-                <li><a href='chatbot.jsp'>Chatbot</a><br></li>
-                <li><a href='qna.jsp'>QnA</a><br></li>
-              </ul>
-            </li>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav" style="margin-left: -30px; margin-top: 4px;">
+        <li><a href="post.jsp?boardID=1" style="font-size: 20px; color:black;">공지사항</a></li>
+        <li><a href="student_council_photo.jsp" style="font-size: 20px; color:black;">갤러리</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">학생회 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='student_council_introduce.jsp'>학생회 소개</a></li>
+            <li><a class="dropdownLi" href='student_council_photo.jsp' >갤러리</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=2'>행사</a></li>
+            <li><a class="dropdownLi" href='post.jsp?boardID=3'>학생회비 내역</a></li>
+            <li><a class="dropdownLi" href='departments.jsp'>과별 게시판</a></li>
           </ul>
-        </div>
-        
-        <h1 id='language'>한국어 / EN </h1> <!--영어, 한글 버전 바꾸는 버튼-->
-        
-      	<h2 id='login'><a href="userLogoutAction.jsp" style="text-decoration:none; color:#000000">LOGOUT</a></h2>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">민원 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='cmp_to_student_council.jsp'>학생회 건의사항</a></li>
+         <li><a class="dropdownLi" href='cmp_to_school.jsp'>학교 건의사항</a></li>
+         <li><a class="dropdownLi" href='introduce_cmp.jsp'>민원창구 소개</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">예비소융인 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=18'>선배들의 입시 후기</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=19'>QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">취업 &amp; 졸업 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=20'>취창업 후기</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=21'>졸업생 인터뷰</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=22'>졸업생 QnA</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">홍보 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='post.jsp?boardID=24'>교내 공모전</a></li>
+         <li><a class="dropdownLi" href='post.jsp?boardID=25'>교외 공모전</a></li>
+          </ul>
+        </li>
 
-      </nav>
+        <li><a href='hot_post.jsp' style="font-size: 20px; color:black;">열린 광장</a><br></li>
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:black;">QNA <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdownLi" href='chatbot.jsp'>Chatbot</a></li>
+         	<li><a class="dropdownLi" href='#'>QnA</a></li>
+          </ul>
+        </li>
+      </ul>
+    
+
+      
+      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px;">
+         	<div class="im_footer_menu">
+               <ul>
+                  <li class="active"><a href="index.jsp">메인 페이지</a></li>
+                  <li><a href="index.jsp">KR</a></li>
+                  <li><a href="index_en.jsp">EN</a></li>
+                <% 
+                  if (userID == null) {
+               	%>
+                  	<li><a data-toggle="modal" href="#modal-login">로그인</a></li>   
+                <%     
+                  } else {
+                %>
+                  <li><a href="myPage.jsp">내 프로필</a></li>
+                  <li><a href="userLogoutAction.jsp">로그아웃</a></li>    
+                <%
+                  }
+                %>
+               </ul>
+      		</div>
+      </div>
+    </div>
+  </div>
+</nav>
     </header>
     
-    <div class="content">
-                <div class="container-fluid">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">회원정보 관리</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form method="post" action="./userProfile" enctype="multipart/form-data">
-                                    	<input type="hidden" class="form-control" name="userID" value="<%=userID%>">
-                                        <div class="row">
-                                            <div class="col-md-12 px-1">
-                                                <div class="form-group">
-                                                    <label>User Name</label>
-                                                    <input type="text" class="form-control" name="userName" placeholder="UserName" value="<%=user.getUserName()%>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 pl-1">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" name="userEmail" placeholder="@sju.ac.kr" value="<%=user.getUserEmail()%>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>About Me</label>
-                                                    <textarea rows="4" cols="80" class="form-control" name="aboutMe" placeholder="Here can be your description"><%=user.getAboutMe()%></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Profile Image</label>
-                                                    <input type="file" name="userProfile" class="file">
-                                                    <input type="text" style="float:left;" class="form-control input-sm"  disabled placeholder="Image Upload">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <input type="file" name="userProfile" class="file"> -->
-               							<div class="input-group col-xs-12">
-               								<label for="profileDisclosure">프로필 공개여부</label>
-               								<button type="submit" class="btn btn-info btn-fill pull-right" style="margin-left:2%;">프로필 업데이트</button>
-											<input type="checkbox" checked data-toggle="toggle">
-											<div class="col-md-4 pull-right">
-												<!-- <input type="text" style="float:left;" class="form-control input-sm"  disabled placeholder="이미지를 업로드하세요."> -->
-												<!-- <input type="button" style="float:right;" class="browse btn btn-primary pull-right" value="업로드">  -->
-												<span class="input-group-btn"><button class="browse btn btn-primary pull-right"  type="button"><i class="fa fa-search"></i>프로필 사진 업데이트</button></span>
-											</div>
-               							</div>
-
+    <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="noteModalLabel"><span class="modal-title" style="font-weight:bold;"></span>에게 쪽지 쓰기</h4>
+      </div>
+      <form action="./note" method="post">
+      <div class="modal-body">
+        	<input type="hidden" class="form-control" name="fromID" >
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" name="toID" >
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">제목:</label>
+            <textarea class="form-control" name="noteTitle"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">내용:</label>
+            <textarea class="form-control" name="noteContent"></textarea>
+          </div>
+          <script>
+		  $('#noteModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget) 
+		  var recipient = button.data('whatever') 
+		  var modal = $(this)
+		  modal.find('.modal-title').text(recipient)
+		  modal.find('.modal-body input').val(recipient)
+		})
+ 		 </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="submit" class="btn btn-primary">보내기</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  
+</div>
+    
+	<div class="container-fluid">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">회원정보 관리</h4>
+				</div>
+				<div class="card-body">
+					<form method="post" action="./userProfile" enctype="multipart/form-data">
+						<input type="hidden" class="form-control" name="userID" value="<%=userID%>">
+							<div class="row">
+								<div class="col-md-12 px-1">
+									<div class="form-group">
+										<label>User Name</label>
+										<input type="text" class="form-control" name="userName" placeholder="UserName" value="<%=user.getUserName()%>">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 pl-1">
+									<div class="form-group">
+										<label for="profileInputEmail1">Email address</label>
+										<input type="email" class="form-control" name="userEmail" placeholder="@sju.ac.kr" value="<%=user.getUserEmail()%>">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>About Me</label>
+										<textarea rows="4" cols="80" class="form-control" name="aboutMe" placeholder="Here can be your description"><%=user.getAboutMe()%></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Profile Image</label>
+										<input type="file" name="userProfile" class="file">
+										<input type="text" style="float:left;" class="form-control input-sm"  disabled placeholder="Image Upload">
+									</div>
+								</div>
+							</div>
+							<div class="input-group col-xs-12">
+								<button type="submit" class="btn btn-info btn-fill pull-right" style="margin-left:2%;">프로필 업데이트</button>
+								<div class="col-md-4 pull-right">
+									<span class="input-group-btn"><button class="browse btn btn-primary pull-right"  type="button"><i class="fa fa-search"></i>프로필 사진 업데이트</button></span>
+								</div>
+               				</div>
 							<div class="clearfix"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card card-user">
-                                <div class="card-body">
-                                    <div class="author">
-                                        <br><br><br><br><br><br>
-                                        <img class="avatar border-gray" src="<%=userDAO.getProfile(userID) %>" alt="프로필 이미지">
-                                        
-                                        <p class="description">
-                                            <%=user.getUserName() %>
-                                        </p>
-                                    </div>
-                                    <p class="description text-center">
-                                        <%=user.getAboutMe()%>
-                                    </p>
-                                    
-                                </div>
-                                <br>
-                            </div>
-                            <%
-                            	if(user.getUserEmailChecked()==0){
-                            %>
-                            <button type="button" onclick="location.href='emailSendAction.jsp'" class="btn btn-danger btn-fill pull-left">이메일 인증하기</button>
-                            <%
-                            	}
-                            %>
-                        </div>
-                    </div>
-                </div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card card-user">
+				<div class="card-body">
+					<div class="author">
+						<br><br><br><br><br><br>
+						<img class="avatar border-gray" src="<%=userDAO.getProfile(userID) %>" alt="프로필 이미지">
+						<p class="description">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#noteModal" data-whatever="<%=user.getUserName() %>"><%=user.getUserName() %></button>
+						</p>
+					</div>
+					<p class="description text-center"><%=user.getAboutMe()%></p>
+				</div>
+				<br>
+			</div>
+			<%
+				if(user.getUserEmailChecked()==0){
+			%>
+			<button type="button" onclick="location.href='emailSendAction.jsp'" class="btn btn-danger btn-fill pull-left">이메일 인증하기</button>
+			<%
+				}else if(user.getUserEmailChecked()==2){
+			%>
+			<button type="button" onclick="location.href='admin.jsp'" class="btn btn-info btn-fill pull-left">관리자 페이지</button>
+			<%
+				} 	
+			%>
+		</div>
+		<div class="col-md-4">
+			<div class="card-body table-full-width table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Title</th>
+							<th>Content</th>
+							<th>Reply</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							NoteDAO noteDAO = new NoteDAO();
+							ArrayList<NoteDTO> list = noteDAO.getList();
+							for(int i=0;i<list.size();i++){
+						%>
+						<tr>
+							<td><%=list.get(i).getFromID()%></td>
+							<td><%=list.get(i).getNoteTitle()%></td>
+							<td><%=list.get(i).getNoteContent()%></td>
+							<td><a type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#noteModal" data-whatever="<%=user.getUserName() %>">답장</a></td>
+							<td><a href="note_Delete.jsp?noteID=<%=list.get(i).getNoteID() %>" class="btn btn-danger">삭제</a></td>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
     
       
       <footer>
@@ -224,9 +341,7 @@
     
     
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    
     <script type="text/javascript">
     	$(document).on('click','.browse',function(){
     		var file = $(this).parent().parent().parent().parent().find('.file');

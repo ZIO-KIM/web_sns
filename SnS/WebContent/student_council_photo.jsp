@@ -282,7 +282,8 @@ a, a:hover {
 				%>
 					<td>
 						<div class="col-md-12">
-						<img class="media-object" style="width:200px;" src="<%=galFile%>">
+							<a href="student_council_photo_View.jsp?galID=<%=list.get(i).getGalID()%>">
+								<img class="media-object" style="width:200px;" src="<%=galFile%>"></a>
 						</div>
 					</td>
 					<%

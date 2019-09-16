@@ -272,7 +272,7 @@
 							style="color: red">*</em> 비밀번호 찾기<br>질문/답변 </label>
 						<div class="controls col-sm-3">
 							<select name="findPwQuestion" class="form-control"
-								id="findPwQuestion" style="display: block; margin: 0 0 8px 0"><option
+								id="findPwQuestion" style="display: block; margin: 0 0 8px 0" required><option
 									value="다른 이메일 주소는?">다른 이메일 주소는?</option>
 								<option value="나의 보물 1호는?">나의 보물 1호는?</option>
 								<option value="나의 출신 초등학교는?">나의 출신 초등학교는?</option>
@@ -281,9 +281,9 @@
 								<option value="어머니 성함은?">어머니 성함은?</option>
 								<option value="아버지 성함은?">아버지 성함은?</option>
 								<option value="가장 좋아하는 색깔은?">가장 좋아하는 색깔은?</option>
-								<option value="가장 좋아하는 음식은?">가장 좋아하는 음식은?</option></select><input
-								type="text" name="findPwAnswer" id="findPwAnswer"
-								class="form-control" title="비밀번호 찾기 답변" value="" maxlength="50">
+								<option value="가장 좋아하는 음식은?">가장 좋아하는 음식은?</option></select>
+								<input type="text" name="findPwAnswer" id="findPwAnswer"
+								class="form-control" title="비밀번호 찾기 답변" value="" maxlength="50" required>
 						</div>
 					</div>
 					
