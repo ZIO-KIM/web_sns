@@ -119,7 +119,7 @@
           </ul>
         </li>
         <li><a href='hot_post.jsp' style="font-size: 20px;">열린 광장</a><br></li>
-        <li><a href='chatbot.jsp' style="font-size: 20px;">Chatbot</a><br></li>
+        <li><a href='chatbot/src/index.html' style="font-size: 20px;">Chatbot</a><br></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="navbar-right">
         <li><div class="language"><a href="index.jsp" style="font-size: 18px;">KR</a> / <a href="index_en.jsp" style="font-size: 18px;">EN</a></div></li>
