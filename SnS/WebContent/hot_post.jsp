@@ -41,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/Hot_PSB.css">
+    <link rel="stylesheet" href="css/PSB.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -239,15 +239,12 @@
 				</div>
 			</div>
 		</div>
-    
-    
-    <br><br><br>
-    <div class="container">
 		<section class="content">
 			<header>
-				<h1 style="display:inline-block; margin-right:10px;">hot 게시판</h1>
+				<h1>HOT 게시판</h1>
 			</header>
-				<div class="board_move">
+			<hr>
+				<div class="board_move"> 
 					<form style="display:inline-block;"method="get" action="post.jsp" class="form-inline mt-3">
 					<select name="boardID" class="form-control mx-1 mt-2">
 						<%
@@ -267,7 +264,7 @@
 					<button type="submit" class="btn mx-1 mt-2">이동</button>
 				</form>
 				</div>
-				<div class="find_content">
+				<div class="find_content" >
 					<form method="get" action="hot_post.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
 						<option value="최신순" <%if (searchType.equals("최신순"))
@@ -279,8 +276,8 @@
 					<button type="submit" class="btn mx-1 mt-2">검색</button>
 				</form>
 				</div>
-				<br>
-				<div class="content_table">
+				<div class="full_table">
+					<div class="content_table">
 				<table class="table table-hover">
 				<thead>
 					<tr>
@@ -316,13 +313,13 @@
             }
          %>
 				</tbody>
-			</table>	
-			</div>
-			<hr>
-			<div class="write_button">
+				</table>	
+				</div>
+				<div class="write_button">
 				<a class="btn btn-default pull-right"
 				href="post_Write.jsp?boardID=28">글쓰기</a>
-			</div>
+				</div>
+				<br><br>
 			<br><br>
 			<div class="list_button">
 				<%
@@ -375,9 +372,9 @@
 				</ul>
 			</div>
 			</div>
+			</div>
 			<br>
 			<br>
 		</section>
-    </div>
   </body>
 </html>

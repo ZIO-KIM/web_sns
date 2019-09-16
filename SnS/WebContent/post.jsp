@@ -461,7 +461,7 @@
 				</div>
 				<br><br>
 			<br><br>
-			<div class="list_button">
+			<div class="List_button">
 				<%
 				if(search==null){
 			%>

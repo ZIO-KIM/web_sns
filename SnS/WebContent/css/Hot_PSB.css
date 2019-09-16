@@ -183,6 +183,10 @@ ul, ol {
    text-decoration:none ;
    color: black;
 }
+#board_move{
+	float:right;
+	background-color:red;
+}
 a{
   color: black; 
 }
