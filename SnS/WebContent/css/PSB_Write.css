@@ -200,7 +200,10 @@ a{
 	left:200px;
 	display:block;
 }
-
+#form-group col-sm-3{
+	display:block;
+	float:left;
+}
 footer {
 	display: inline-block;
 	border: 4px solid #dbdad9; 

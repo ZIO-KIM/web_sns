@@ -170,7 +170,7 @@
 						value=<%=userID%>></td>
 			</tr>
 			<tr>
-				<th>작성자 ID</th>
+				<th>게시판 ID</th>
 				<td colspan="2"><input type="text" name="boardID"
 						value=<%=boardID%>></td>
 			</tr>
