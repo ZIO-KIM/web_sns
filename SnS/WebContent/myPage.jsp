@@ -155,18 +155,8 @@
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>
                   <li><a href="index.jsp">KR</a></li>
                   <li><a href="index_en.jsp">EN</a></li>
-                <% 
-                  if (userID == null) {
-               	%>
-                  	<li><a href="#modal-login" data-toggle="modal">로그인</a></li>
-                <%     
-                  } else {
-                %>
                   <li><a href="myPage.jsp">내 프로필</a></li>
                   <li><a href="userLogoutAction.jsp">로그아웃</a></li>    
-                <%
-                  }
-                %>
                </ul>
       		</div>
       </div>

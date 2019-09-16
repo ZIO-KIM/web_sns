@@ -132,18 +132,7 @@
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>
                   <li><a href="index.jsp">KR</a></li>
                   <li><a href="index_en.jsp">EN</a></li>
-                <% 
-                  if (userID == null) {
-               	%>
-                  	<li><a href="#modal-login">로그인</a></li>   
-                <%     
-                  } else {
-                %>
-                  <li><a href="myPage.jsp">내 프로필</a></li>
-                  <li><a href="userLogoutAction.jsp">로그아웃</a></li>    
-                <%
-                  }
-                %>
+                  	<li><a data-toggle="modal" href="#modal-login">로그인</a></li>
                </ul>
       		</div>
       </div>
@@ -244,8 +233,7 @@
 				</form>
 				<hr>
 				<form method="post" action="findPasswordAction.jsp">
-					<label for="id"> <em style="color: red">*</em> 질문/답변으로 비밀번호 찾기
-						찾기
+					<label for="id"> <em style="color: red">*</em> 질문/답변으로 비밀번호 발급
 					</label>
 					<div class="form-group col" style="width: 270px;">
 						<input type="text" class="form-control" name="userID"
@@ -267,7 +255,7 @@
 								class="form-control" title="비밀번호 찾기 답변" placeholder="답변" maxlength="50">
 						
 						<input id="btn_log" type="submit"
-							class="btn btn-primary form-control" value="임시 비밀번호 발급">
+							class="btn btn-primary form-control" value="비밀번호 발급">
 					</div>
 				</form>
 			</div>
