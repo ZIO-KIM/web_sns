@@ -38,7 +38,7 @@ public class UserDAO {
 	}
 	
 	public int join(UserDTO user) {
-		String SQL = "INSERT INTO USER VALUES(?,?,?,?,?,false,?,?,?)";
+		String SQL = "INSERT INTO USER VALUES(?,?,?,?,?,0,?,?,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -53,6 +53,7 @@ public class UserDAO {
 			pstmt.setString(6,user.getUserProfile());
 			pstmt.setString(7,user.getFindPwQuestion());
 			pstmt.setString(8,user.getFindPwAnswer());
+			pstmt.setString(9,"");
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
