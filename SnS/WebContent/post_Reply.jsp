@@ -151,16 +151,11 @@
         		<h1>답변 작성</h1>
      		</header>
       <form method="post" action="post_ReplyAction.jsp">
+		<input type="hidden" name="userID" value="<%=userID%>">
+		<input type="hidden" name="postID" value="<%=postID%>">
+        <input type="hidden" name="boardID" value="<%=boardID%>">
       <table class="table table-bordered" id="reply_table">
         <tbody>
-        	<tr>
-        		<th>아이디: </th>
-        		<td><h5><%=userID %></h5>
-        		<input type="hidden" name="userID" value="<%=userID%>">
-        		<input type="hidden" name="postID" value="<%=postID%>">
-        		<input type="hidden" name="boardID" value="<%=boardID%>">
-        		</td>
-        	</tr>
             <tr>
                <th>제목: </th>
                <td><input type="text" placeholder="제목을 입력하세요. " name="postTitle" maxlength="50" class="form-control"/></td>
