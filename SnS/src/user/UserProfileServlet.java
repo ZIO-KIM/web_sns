@@ -2,6 +2,7 @@ package user;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,17 +29,23 @@ public class UserProfileServlet extends HttpServlet {
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		}catch(Exception e) {
-			request.getSession().setAttribute("messageType","오류 메시지");
-			request.getSession().setAttribute("mewssageContent", "파일 크기는 10MB를 넘을 수 없습니다.");
-			response.sendRedirect("profileUpdate.jsp");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('파일 크기는 10MB를 넘을 수 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		String userID = multi.getParameter("userID");
 		HttpSession session = request.getSession();
 		if(!userID.equals((String) session.getAttribute("userID"))){
-			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "접근할 수 없습니다.");
-			response.sendRedirect("index.jsp");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('접근할 수 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		String fileName="";
@@ -56,9 +63,12 @@ public class UserProfileServlet extends HttpServlet {
 				if(file.exists()) {
 					file.delete();
 				}
-				session.setAttribute("messageType", "오류 메시지");
-				session.setAttribute("messageContent", "이미지 파일만 업로드 가능합니다.");
-				response.sendRedirect("profileUpdate.jsp");
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('이미지 파일만 업로드 가능합니다.')");
+				script.println("history.back()");
+				script.println("</script>");
+				script.close();
 				return;
 			}
 			new UserDAO().profile(userID, fileName);
@@ -69,9 +79,12 @@ public class UserProfileServlet extends HttpServlet {
 		
 		new UserDAO().update(userID, userName, userEmail,aboutMe);
 		
-		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "성공적으로 프로필을 업데이트 하였습니다.");
-		response.sendRedirect("myPage.jsp");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('프로필 사진이 업데이트 되었습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+		script.close();
 		return;
 	}
 

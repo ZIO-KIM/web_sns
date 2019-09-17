@@ -38,7 +38,7 @@
 		return;
 	}
 	
-	String host="http://localhost:8080/SnS/";
+	String host="http://sejongsc.org/SnS/";
 	String from="sjswsns@gmail.com";
 	String findID=userDAO.getUserID(userEmail);
 	String to=userEmail.split("@")[0]+"@sju.ac.kr";

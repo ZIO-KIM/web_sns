@@ -91,7 +91,7 @@ public class BoardDAO {
 	}
 	
 	public int create(BoardDTO board) {
-		String SQL = "INSERT INTO BOARD VALUES(?, ? ,?,1,?)";
+		String SQL = "INSERT INTO board VALUES(?, ? ,?,1,?)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;

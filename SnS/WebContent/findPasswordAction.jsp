@@ -66,7 +66,7 @@
 		script.close();
 		return;
 	}
-	String host="http://localhost:8080/SnS/";
+	String host="http://sejongsc.org/SnS/";
 	String from="sjswsns@gmail.com";
 	String to=userEmail.split("@")[0]+"@sju.ac.kr";
 	String temporary=userDAO.getRamdomPassword(6);

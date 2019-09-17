@@ -291,7 +291,7 @@ a, a:hover {
 				<tr>
 				<%
 					for (int i = 0; i < list.size(); i++) {
-						galFile = "http://localhost:8080/SnS/upload/" + list.get(i).getGalRealFile();
+						galFile = "http://sejongsc.org/SnS/upload/" + list.get(i).getGalRealFile();
 				%>
 					<td>
 						<div class="col-md-12">

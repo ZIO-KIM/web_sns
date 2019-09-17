@@ -129,9 +129,9 @@ public class PageDAO {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("pageImage").equals("")) {
-					return "imgs/favicon.ico";
+					return "http://sejongsc.org/SnS/imgs/favicon.ico";
 				}
-				return "upload/"+rs.getString("pageImage");
+				return "http://sejongsc.org/SnS/upload/"+rs.getString("pageImage");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class PageDAO {
 			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
 			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
 		}
-		return "imgs/favicon.ico";
+		return "http://sejongsc.org/SnS/imgs/favicon.ico";
 	}
 	public int ImageUpdate(String pageImage) {
 		String SQL = "UPDATE page SET pageImage = ?";
