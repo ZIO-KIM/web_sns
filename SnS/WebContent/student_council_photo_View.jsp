@@ -329,7 +329,7 @@
 					if (userID != null && userID.equals(gal.getUserID())) {
 				%>
 				<a
-					href="gal_to_student_council_Update.jsp?galID=<%=gal.getGalID()%>"
+					href="student_council_photo_Update.jsp?galID=<%=gal.getGalID()%>"
 					class="btn btn-primary">수정</a> <a
 					onclick="return confirm('정말로 삭제하시겠습니까?')"
 					href="deleteAction.jsp?galID=<%=gal.getGalID()%>"

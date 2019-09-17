@@ -1,39 +1,60 @@
-<%@ page import="file.FileDTO"%>
-<%@ page import="file.FileDAO"%>
-<%@ page import="gallery.GalleryDTO"%>
-<%@ page import="gallery.GalleryDAO"%>
-<%@ page import="user.UserDAO"%>
-<%@ page import="user.UserDTO"%>
-<%@ page import="page.PageDAO"%>
-<%@ page import="java.io.PrintWriter"%>
-<%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
+<%@ page import="page.PageDAO" %>
+<%@ page import="gallery.GalleryDAO" %>
+<%@ page import="gallery.GalleryDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
 <meta charset="utf-8">
-<title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리</title>
-<link rel="stylesheet" href="css/photo.css">
-<link rel="stylesheet" href="css/13inch_board_PSB.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리 :: 수정</title>
+<link href="https://fonts.googleapis.com/css?family=Jua&display=swap"
+	rel="stylesheet">
 <link
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap"
 	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap"
 	rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
+	rel="stylesheet">
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/13inch_board_PSB.css">
+<link rel="stylesheet" href="css/photo.css">
 
 <style type="text/css">
-a, a:hover {
-	color: #000000;
-	text-decoration: none;
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+
+.file {
+	visibility: hidden;
+	position: absolute;
 }
 </style>
 
@@ -41,15 +62,44 @@ a, a:hover {
 <body>
 
 	<%
-		request.setCharacterEncoding("UTF-8");
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
-		}		
+		}
+		if (userID == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 해주세요.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
+		}
+		int galID=0;
+		if(request.getParameter("galID")!=null){
+			galID=Integer.parseInt(request.getParameter("galID"));
+		}
+		if(galID==0){
+			PrintWriter script =response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
+		}
+		GalleryDTO gal=new GalleryDAO().getGal(galID);
+		if(!userID.equals(gal.getUserID())){
+			PrintWriter script =response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
+		}
+		
 		PageDAO pageDAO = new PageDAO();
 	%>
 
-	<div id="wrapper">
+
 	<header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
@@ -131,18 +181,8 @@ a, a:hover {
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>
                   <li><a href="index.jsp">KR</a></li>
                   <li><a href="index_en.jsp">EN</a></li>
-                <% 
-                  if (userID == null) {
-               	%>
-                  	<li><a href="#modal-login" data-toggle="modal">로그인</a></li>   
-                <%     
-                  } else {
-                %>
                   <li><a href="myPage.jsp">내 프로필</a></li>
-                  <li><a href="userLogoutAction.jsp">로그아웃</a></li>    
-                <%
-                  }
-                %>
+                  <li><a href="userLogoutAction.jsp">로그아웃</a></li> 
                </ul>
       		</div>
       </div>
@@ -150,8 +190,7 @@ a, a:hover {
   </div>
 </nav>
     </header>
-
-
+	
 	<%
 		String messageContent = null;
 		if(session.getAttribute("messageContent")!=null){
@@ -194,16 +233,18 @@ a, a:hover {
 		session.removeAttribute("messageType");
 		}
 	%>
-
-	<div id="modal-login" class="modal fade">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title">로그인</h4>
-				</div>
-				<script>
+	
+	<div id="container">
+		
+		<div id="modal-login" class="modal fade">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title">로그인</h4>
+					</div>
+					<script>
 						$(document).ready(function(){
 							$('btnLogin').click(function(){
 								var action = $('#frmLogin').attr("action");
@@ -230,113 +271,110 @@ a, a:hover {
 							});
 						});
 					</script>
-				<div class="modal-body">
-					<form action="userLoginAction.jsp" id="frmLogin" method="post">
-						<div class="form-group">
-							<input type="text" name="userID" id="uid" value=""
-								placeholder="아이디" class="form-control" required="">
-						</div>
-						<div class="form-group">
-							<input type="password" name="userPassword" id="upw" value=""
-								placeholder="비밀번호" class="form-control" required="">
-						</div>
-						<div class="checkbox">
-							<label for="keep_signed"
-								onclick="jQuery('#modal-login input[name=\'keep_signed\']').click();"><input
-								type="checkbox" name="keep_signed" value="Y"
-								onclick="if(this.checked) return confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.');">
-								로그인 유지</label>
-						</div>
-						<button type="submit" id="btnLogin" class="btn btn-block">
-							<i class="fa fa-sign-in" aria-hidden="true"></i> 로그인
-						</button>
-						<br>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<div class="btn-group btn-group-justified">
-						<a href="userJoin.jsp" class="btn btn-default btn-sm"><i
-							class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a> <a
-							href="findAccount.jsp" class="btn btn-default btn-sm"><i
-							class="fa fa-question-circle" aria-hidden="true"></i> ID/PW 찾기</a>
+					<div class="modal-body">
+						<form action="userLoginAction.jsp" id="frmLogin" method="post">
+							<div class="form-group">
+								<input type="text" name="userID" id="uid" value=""
+									placeholder="아이디" class="form-control" required="">
+							</div>
+							<div class="form-group">
+								<input type="password" name="userPassword" id="upw" value=""
+									placeholder="비밀번호" class="form-control" required="">
+							</div>
+							<div class="checkbox">
+								<label for="keep_signed"
+									onclick="jQuery('#modal-login input[name=\'keep_signed\']').click();"><input
+									type="checkbox" name="keep_signed" value="Y"
+									onclick="if(this.checked) return confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.');">
+									로그인 유지</label>
+							</div>
+							<button type="submit" id="btnLogin" class="btn btn-block">
+								<i class="fa fa-sign-in" aria-hidden="true"></i> 로그인
+							</button>
+							<br>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="btn-group btn-group-justified">
+							<a
+								href="userJoin.jsp"
+								class="btn btn-default btn-sm"><i class="fa fa-user-plus"
+								aria-hidden="true"></i> 회원가입</a> <a
+								href="findAccount.jsp"
+								class="btn btn-default btn-sm"><i
+								class="fa fa-question-circle" aria-hidden="true"></i> ID/PW 찾기</a>
 
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	
-	
-	<div class="container">
-		<div class="col-md-12">
-			<h1 id='title' style="position:relative;left:-8%;">갤러리</h1>
-			<a class="btn btn-default" href='student_council_photo_Write.jsp'>글쓰기</a>
-			<br><br>
-		</div>
-		<%
-			GalleryDAO galDAO=new GalleryDAO();
-			int lastp= (galDAO.getNext()-1);
-			int remainder=lastp%5;
-			if(lastp%5==0){
-				lastp=lastp/5;
-			}else{
-				lastp=lastp/5+1;
-			}
-			for(int pageNumber=1;pageNumber<=lastp;pageNumber++){	
-		%>
+		</div>	
 		
-		<table class="table"
-			style="text-align: center; border: 1px solid #dddddd">
-			<tbody>
-			<%						
-				ArrayList<GalleryDTO> list = galDAO.getList(pageNumber);
-				String galFile = null;
-			%>
-				<tr>
-				<%
-					for (int i = 0; i < list.size(); i++) {
-						galFile = "http://sejongsc.org/SnS/upload/" + list.get(i).getGalRealFile();
-				%>
-					<td>
-						<div class="col-md-12">
-							<a href="student_council_photo_View.jsp?galID=<%=list.get(i).getGalID()%>">
-								<img class="media-object" style="width:200px;" src="<%=galFile%>"></a>
-						</div>
-					</td>
-					<%
-						}
-						if(pageNumber==lastp){
-							for (int i = 0; i < 5-remainder; i++) {
-					%>
-						<td>
-							<div class="col-md-12 media-object"></div>
-						</td>
-					<%	
-							}
-						}
-					%>
-				</tr>
-				<tr>
-					<%
-					for (int i = 0; i < list.size(); i++) {
-					%>
-					<td class="col-md-2">
-						<a href="student_council_photo_View.jsp?galID=<%=list.get(i).getGalID()%>"
-							style="text-decoration: none"><%=list.get(i).getGalTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-							.replaceAll(">", "&gt").replaceAll("\n", "<br>")%></a></td>
-					<%
-						}
-					%>						
-				</tr>
-			</tbody>
-		</table>
-		
-				<%
-					}
-			%>
+		<section class="content">
+			<header>
+				<h1>게시물 수정</h1>
+			</header>
+			<form method="post" action="./galleryUpdate" enctype="multipart/form-data">
+				<input type="hidden" name="userID" value=<%=userID%>>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>사진 제목:</th>
+							<td><input type="text" placeholder="사진 제목" value="<%=gal.getGalTitle()%>"
+								name="galTitle" maxlength="50" class="form-control" /></td>
+						</tr>
+						<tr>
+							<th>사진 설명:</th>
+							<td><textarea cols="10" placeholder="사진 설명" 
+									maxlength="2048" name="galContent" class="form-control"><%=gal.getGalContent()%></textarea></td>
+						</tr>
+						<tr>
+							<th>사진 파일</th>
+							<td colspan="2"><input type="file" name="galFile"
+								class="file">
+								<div class="input-group col-xs-12">
+									<span class="input-group-addon"><i class="fa fa-image"></i></span>
+									<input type="text" class="form-control input-lg" disabled
+										placeholder="파일을 업로드해주세요."> <span
+										class="input-group-btn">
+										<button class="browse btn btn-primary input-lg" type="button">
+											<i class="fa fa-search"></i>파일 찾기
+										</button>
+									</span>
+								</div></td>
+						</tr>
+						<tr>
+							<td colspan="2"><input type="submit"
+								class="btn btn-primary pull-right" value="수정하기"></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</form>
+
+		</section>
 	</div>
 
-
+<!-- <footer style="position:absolute; bottom:0px;">
+   		<p id='footer_content'> 010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 <br>
+   		COPYRIGHT &copy 2019 세종대학교 소프트웨어융합대학 데단한 사람들 All rights reserved.</p>
+    </footer> -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(document).on('click', '.browse', function() {
+			var file = $(this).parent().parent().parent().find('.file');
+			file.trigger('click');
+		});
+		$(document).on(
+				'change',
+				'.file',
+				function() {
+					$(this).parent().find('.form-control').val(
+							$(this).val().replace(/C:\\fakepath\\/i, ''));
+				});
+	</script>
 		<div class="im_footerWrap">
    	<div class="im_footer" style="width: 1600px;">
       	<div class="im_footer_logo">
@@ -354,6 +392,5 @@ a, a:hover {
          </div>
       </div>
    </div>
-
 </body>
 </html>

@@ -29,6 +29,14 @@
 		<url-pattern>/gallery</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>GalleryUpdateServlet</servlet-name>
+		<servlet-class>gallery.GalleryUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GalleryUpdateServlet</servlet-name>
+		<url-pattern>/galleryUpdate</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>ComplaintsServlet</servlet-name>
 		<servlet-class>complaints.ComplaintsServlet</servlet-class>
 	</servlet>

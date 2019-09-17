@@ -76,8 +76,8 @@ public class GalleryDAO {
 		return -1; //데이터베이스오류
 	}
 	
-	public int update(int galID, String galTitle, String galContent) {
-		String SQL = "UPDATE gallery SET galTitle = ?, galContent = ? WHERE galID = ?";
+	public int update(int galID, String galTitle, String galContent,String galFile, String galRealFile) {
+		String SQL = "UPDATE gallery SET galTitle = ?, galContent = ?, galFile=?,galRealFile=? WHERE galID = ?";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
@@ -87,6 +87,8 @@ public class GalleryDAO {
 			pstmt.setString(1, galTitle);
 			pstmt.setString(2, galContent);
 			pstmt.setInt(3, galID);
+			pstmt.setString(4, galFile);
+			pstmt.setString(5, galRealFile);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
