@@ -304,7 +304,7 @@
 			<header>
 				<h1>학생회 건의사항</h1>
 			</header>
-			<hr>
+			<hr style="width: 950px">
 			<div class="find_content">
 				<form method="get" action="cmp_to_student_council.jsp" class="form-inline mt-3">
 					<select name="searchType" class="form-control mx-1 mt-2">
@@ -328,76 +328,76 @@
 						<th>조회 수</th>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>동의 수</th>
-						<th>조회 수</th>
+						<td>1</td>
+						<td>웹소설 상금이 왜 이렇게 적은가요 ?</td>
+						<td>지오</td>
+						<td>2019.09.17</td>
+						<td>100</td>
+						<td>300</td>
 					</tr>
 					
 				</thead>
