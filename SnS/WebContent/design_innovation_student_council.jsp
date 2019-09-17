@@ -226,7 +226,7 @@
         </ul>
       </nav>
     </nav>
-    
+    </div>
     <section class="content">
       <header>
         <h1>학생회 소개</h1>
