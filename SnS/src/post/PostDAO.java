@@ -178,8 +178,8 @@ public class PostDAO {
 				postDTO.setBoardID(rs.getInt(2));
 				postDTO.setUserID(rs.getString(3));
 				postDTO.setPostDate(rs.getString(4));
-				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostTitle(rs.getString(5));
+				postDTO.setPostContent(rs.getString(6));
 				postDTO.setPostDivide(rs.getString(7));
 				postDTO.setPostFile(rs.getString(8));
 				postDTO.setPostRealFile(rs.getString(9));
@@ -219,8 +219,8 @@ public class PostDAO {
 				postDTO.setBoardID(rs.getInt(2));
 				postDTO.setUserID(rs.getString(3));
 				postDTO.setPostDate(rs.getString(4));
-				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostTitle(rs.getString(5));
+				postDTO.setPostContent(rs.getString(6));
 				postDTO.setPostDivide(rs.getString(7));
 				postDTO.setPostFile(rs.getString(8));
 				postDTO.setPostRealFile(rs.getString(9));
@@ -262,8 +262,8 @@ public class PostDAO {
 				postDTO.setBoardID(rs.getInt(2));
 				postDTO.setUserID(rs.getString(3));
 				postDTO.setPostDate(rs.getString(4));
-				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostTitle(rs.getString(5));
+				postDTO.setPostContent(rs.getString(6));
 				postDTO.setPostDivide(rs.getString(7));
 				postDTO.setPostFile(rs.getString(8));
 				postDTO.setPostRealFile(rs.getString(9));
@@ -303,8 +303,8 @@ public class PostDAO {
 				postDTO.setBoardID(rs.getInt(2));
 				postDTO.setUserID(rs.getString(3));
 				postDTO.setPostDate(rs.getString(4));
-				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostTitle(rs.getString(5));
+				postDTO.setPostContent(rs.getString(6));
 				postDTO.setPostDivide(rs.getString(7));
 				postDTO.setPostFile(rs.getString(8));
 				postDTO.setPostRealFile(rs.getString(9));
@@ -353,8 +353,8 @@ public class PostDAO {
 				postDTO.setBoardID(rs.getInt(2));
 				postDTO.setUserID(rs.getString(3));
 				postDTO.setPostDate(rs.getString(4));
-				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostTitle(rs.getString(5));
+				postDTO.setPostContent(rs.getString(6));
 				postDTO.setPostDivide(rs.getString(7));
 				postDTO.setPostFile(rs.getString(8));
 				postDTO.setPostRealFile(rs.getString(9));
@@ -561,8 +561,8 @@ public class PostDAO {
 				postDTO.setBoardID(rs.getInt(2));
 				postDTO.setUserID(rs.getString(3));
 				postDTO.setPostDate(rs.getString(4));
-				postDTO.setPostTitle(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				postDTO.setPostContent(rs.getString(6).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				postDTO.setPostTitle(rs.getString(5));
+				postDTO.setPostContent(rs.getString(6));
 				postDTO.setPostDivide(rs.getString(7));
 				postDTO.setPostFile(rs.getString(8));
 				postDTO.setPostRealFile(rs.getString(9));

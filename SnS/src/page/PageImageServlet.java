@@ -54,7 +54,7 @@ public class PageImageServlet extends HttpServlet {
 				}
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('아이콘 파이만 업로드 가능합니다.')");
+				script.println("alert('아이콘 파일만 업로드 가능합니다.')");
 				script.println("history.back()");
 				script.println("</script>");
 				script.close();
@@ -65,7 +65,7 @@ public class PageImageServlet extends HttpServlet {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('대표이미지가 변경되었습니다.')");
-		script.println("history.back()");
+		script.println("location.href=document.referrer");
 		script.println("</script>");
 		script.close();
 		return;

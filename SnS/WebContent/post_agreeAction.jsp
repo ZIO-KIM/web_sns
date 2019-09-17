@@ -64,7 +64,7 @@
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('해당게시글을 추천하였습니다.')");
-				script.println("history.back()");
+				script.println("location.href=document.referrer");
 				script.println("</script>");	
 				script.close();
 				return;

@@ -409,8 +409,8 @@ public class ComplaintsDAO {
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1,getNext(isStudent));
 			pstmt.setString(2,complaintsDTO.getUserID());
-			pstmt.setString(2,complaintsDTO.getCmpDate());
-			pstmt.setString(2,complaintsDTO.getCmpTitle());
+			pstmt.setString(3,getDate());
+			pstmt.setString(4,complaintsDTO.getCmpTitle());
 			pstmt.setString(5,complaintsDTO.getCmpContent());
 			pstmt.setString(6,complaintsDTO.getCmpDivide());
 			pstmt.setString(7,complaintsDTO.getCmpFile());

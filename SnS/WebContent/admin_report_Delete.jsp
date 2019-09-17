@@ -31,7 +31,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('신고가 삭제되었습니다.')");
-		script.println("history.back()");
+		script.println("location.href=document.referrer");
 		script.println("</script>");
 		script.close();
 		return;
@@ -39,7 +39,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이미 삭제가 되었습니다.')");
-		script.println("history.back()");
+		script.println("location.href=document.referrer");
 		script.println("</script>");
 		script.close();
 		return;

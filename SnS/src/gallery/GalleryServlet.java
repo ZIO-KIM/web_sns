@@ -59,12 +59,8 @@ public class GalleryServlet extends HttpServlet {
 				String galFile = multi.getOriginalFileName("galFile");
 				String galRealFile = file.getName();
 				galleryDAO.write(userID,galTitle, galContent,galFile,galRealFile);
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("history.go(-2)");
-				script.println("</script>");
-				script.close();
-				return;
+				response.sendRedirect("student_council_photo.jsp");
+				
 			}else {
 				if(file.exists()) {
 					file.delete();

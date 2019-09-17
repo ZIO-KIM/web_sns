@@ -22,10 +22,6 @@
 		script.close();
 		return;
 	}
-	String nextURL="index.jsp"; 
-	if(request.getParameter("nextURL")!=null){
-		nextURL=request.getParameter("nextURL");
-	}
 	UserDAO userDAO = new UserDAO();
 	int result=userDAO.login(userID,userPassword);
 	if(result ==1){
@@ -59,6 +55,3 @@
 	}
 	
 %>
-<script>
-	document.write('<a href="http://twitter.com/?status=' + document.referrer + '">test</a>');
-</script>

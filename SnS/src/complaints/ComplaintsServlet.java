@@ -56,7 +56,7 @@ public class ComplaintsServlet extends HttpServlet {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('제목과 내용을 채워주세요.')");
-			script.println("history.go(-2);");
+			script.println("history.back();");
 			script.println("</script>");
 			script.close();
 			return;
@@ -75,7 +75,7 @@ public class ComplaintsServlet extends HttpServlet {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('오류가 발생했습니다.')");
-			script.println("history.go(-2);");
+			script.println("history.back();");
 			script.println("</script>");
 			script.close();
 			return;

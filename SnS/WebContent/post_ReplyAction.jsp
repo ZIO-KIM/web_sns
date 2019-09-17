@@ -75,10 +75,5 @@
       script.close();
       return;
    }
-      PrintWriter script =response.getWriter();
-      script.println("<script>");
-      script.println("history.go(-2)");
-      script.println("</script>");
-      script.close();
-      return;
+   response.sendRedirect("post_View.jsp?boardID="+boardID+"&postID="+postID);
 %>

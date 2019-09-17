@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DatabaseUtil {
-	/*	public static Connection getConnection() {
+		/*public static Connection getConnection() {
 		try {
 			String dbURL="jdbc:mysql://localhost/sseunghun99?serverTimezone=UTC";
 			String dbID="sseunghun99";

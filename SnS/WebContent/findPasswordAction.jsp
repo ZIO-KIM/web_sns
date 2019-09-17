@@ -113,7 +113,7 @@
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('비밀번호가 메일로 전송되었습니다.')");
-	script.println("history.back();");
+	script.println("location.href=document.referrer");
 	script.println("</script>");
 	script.close();
 	

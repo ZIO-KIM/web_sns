@@ -68,11 +68,7 @@
 		script.println("</script>");
 		script.close();
 	} else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("history.go(-2)");
-		script.println("</script>");
-		script.close();
+		response.sendRedirect("post_View.jsp?boardID="+boardID+"&postID="+postID);
 	}
 		}
 	}
