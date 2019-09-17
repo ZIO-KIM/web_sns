@@ -227,7 +227,7 @@
         </ul>
       </nav>
     </nav>
-    
+    </div>
     <section class="content">
       <header>
         <h1>학과 소개</h1>
