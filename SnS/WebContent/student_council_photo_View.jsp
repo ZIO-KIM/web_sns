@@ -303,7 +303,7 @@
 						</tr>
 						<tr>
 							<td>작성자 이미지</td>
-							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;" src="<%=fromProfile%>"></td>
+							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;margin: 0px auto;" src="<%=fromProfile%>"></td>
 						</tr>
 						<tr>
 							<td>작성일자</td>

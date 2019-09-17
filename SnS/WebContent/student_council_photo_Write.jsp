@@ -298,7 +298,7 @@
 			</div>
 		</div>	
 		
-		<section class="content">
+		<section class="content" style="margin-top: -40px; margin-left: 20px; width: 1100px;">
 			<header>
 				<h1>사진 업로드</h1>
 			</header>
