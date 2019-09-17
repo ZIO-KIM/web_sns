@@ -280,13 +280,13 @@
       			<%
       				if(boardID!=1){
      			 %>
-        <h2>
-          <span></span>
-            <%=board.getBoardName() %>
-        </h2>
         		<%
     			  }if(boardID==1){
     			%>
+    			<span style="font-size:25px;,font-family: 'Nanum Gothic';">공지사항</span>
+    			<br>
+				<br>
+				<br>
     			<ul class="lnb_deps2">
   					<li><a href="post.jsp?boardID=1" class="jwxe_22350 active">공지사항</a></li>
   					<li><a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a></li>
@@ -295,6 +295,10 @@
     			<%	  
         			}else if ( boardID <= 3) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">학생회</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="student_council_introduce.jsp" class="jwxe_22350 active">학생회 소개</a></li>
 					<li><a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a></li>
@@ -304,6 +308,10 @@
 				<%
 					}else if(boardID<=5){
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">컴퓨터공학과</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="computer_science_introduce.jsp"
 						class="jwxe_22350 active">학과 소개</a></li>
@@ -317,6 +325,10 @@
 				<%
 					} else if (boardID <= 7) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">정보보호학과</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="information_security_introduce.jsp"
 						class="jwxe_22350 active">학과 소개</a></li>
@@ -330,6 +342,10 @@
 				<%
 					} else if (boardID <= 9) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">소프트웨어학과</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="software_introduce.jsp" class="jwxe_22350 active">학과
 							소개</a></li>
@@ -343,6 +359,10 @@
 				<%
 					} else if (boardID <= 11) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">데이터사이언스학과</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="data_science_introduce.jsp"
 						class="jwxe_22350 active">학과 소개</a></li>
@@ -356,6 +376,10 @@
 				<%
 					} else if (boardID <= 13) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">지능기전공학부</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="intelligent_mechanics_engineering_introduce.jsp"
 						class="jwxe_22350 active">학과 소개</a></li>
@@ -371,6 +395,10 @@
 				<%
 					} else if (boardID <= 15) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">디자인이노베이션학과</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="design_innovation_introduce.jsp"
 						class="jwxe_22350 active">학과 소개</a></li>
@@ -384,6 +412,10 @@
 				<%
 					} else if (boardID <= 17) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">만화애니메이션텍학과</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="cartoon_animation_introduce.jsp"
 						class="jwxe_22350 active">학과 소개</a></li>
@@ -397,6 +429,10 @@
 				<%
 					} else if (boardID <= 19) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">예비소융인</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="post.jsp?boardID=18" class="jwxe_22350 active">선배들의
 							입시후기</a></li>
@@ -405,6 +441,10 @@
 				<%
 					} else if (boardID <= 23) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">취업&졸업</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="post.jsp?boardID=20" class="jwxe_22350 active">취창업
 							후기</a></li>
@@ -416,6 +456,10 @@
 				<%
 					} else if (boardID <= 25) {
 				%>
+				<span style="font-size:25px;,font-family: 'Nanum Gothic';">홍보</span>
+				<br>
+				<br>
+				<br>
 				<ul class="lnb_deps2">
 					<li><a href="post.jsp?boardID=24" class="jwxe_22350 active">교내
 							공모전</a></li>
