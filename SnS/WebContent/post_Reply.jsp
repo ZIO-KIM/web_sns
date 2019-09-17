@@ -145,13 +145,13 @@
 </nav>
     </header>
 
-    <div id="container">
+    <div id="container" style="margin-top: -80px; margin-left: -240px;">
     	<section class="content">
     		<header>
         		<h1>답변 작성</h1>
      		</header>
       <form method="post" action="post_ReplyAction.jsp">
-      <table class="table table-bordered" id="reply_table">
+      <table class="table table-bordered" id="reply_table" style="width:1100px">
         <tbody>
         	<tr>
         		<th>아이디: </th>
