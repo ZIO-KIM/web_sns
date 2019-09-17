@@ -218,10 +218,10 @@
                <a href="cartoon_animation_student_council.jsp" class="jwxe_22351 ">학생회 소개</a>
             </li>
             <li>
-               <a href="cartoon_animation_promotion.jsp" class="jwxe_22351 ">홍보</a>
+               <a href="post.jsp?boardID=10" class="jwxe_22351 ">홍보</a>
             </li>
             <li>
-               <a href="cartoon_animation_public_money.jsp" class="jwxe_22351 ">학생회비 내역</a>
+               <a href="post.jsp?boardID=17" class="jwxe_22351 ">학생회비 내역</a>
             </li>
         </ul>
       </nav>
