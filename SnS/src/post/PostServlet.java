@@ -40,6 +40,10 @@ public class PostServlet extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		String userID = multi.getParameter("userID");
+		String anonymous=multi.getParameter("anonymous");
+		if(anonymous.equals("익명")) {
+			userID="익명";
+		}
 		String postTitle = multi.getParameter("postTitle");
 		String postContent = multi.getParameter("postContent");
 		String postDivide = "";
