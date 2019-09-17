@@ -91,7 +91,6 @@
         UserDTO writer = userDAO.getUser(post.getUserID());
    %>
 
-   <div id="wrapper">
    <header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
@@ -381,13 +380,13 @@
   </div>
 </div>
    
-   <div id="container" style="background-color: red; ">
-      <div class="container" style="background-color: yellow;">
-         <div class="view_table" style="width: 1200px;">
-            <table class="table" style="border:none; width: 1200px">
-            <tbody>
+   <div id="container" style="">
+      <div class="container" style="">
+         <div class="view_table" style="">
+            <table class="table" style="background-color: yellow;">
+            <tbody style="">
                <tr>
-                  <td style="width:100px;" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
+                  <td style="" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
                   <br><i class="fa fa-lg fa-user"></i> <a style="display:inline-block;font-size:20px;text-decoration:none;"type="button" data-toggle="modal"
                   data-target="#noteModal" data-whatever="<%=writer.getUserName() %>"><%=writer.getUserName() %></a></td>
                   
@@ -396,7 +395,7 @@
                </tr>
                <tr>
                   <td>
-                     <span style="font-size:20px; width: 1200px;">
+                     <span style="font-size:20px;">
                      <%=post.getPostDate()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%=post.getPostHit()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;<%=post.getAgreeCount()%></span>
                   </td>
                </tr>
@@ -405,12 +404,13 @@
             .replaceAll("\n", "<br>")%></td>
                </tr>
                <tr>
-                  <td style="height: 300px; text-align: left;">
+                  <td style="height: 300px; text-align: left; style="background-color: red;">
                      <h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID() %>"><%=post.getPostFile() %></a></h5>
                   </td>
                </tr>
             </tbody>
          </table>
+         
          </div>
             <div class="buttons">
                <a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
@@ -424,7 +424,7 @@
             <%
                if (userID != null && userID.equals(post.getUserID())) {
             %>
-               <a href="post_Update.jsp?postID=<%=post.getPostID()%>"
+               <a href="post_Update.jsp?postID=<%=post.getPostID()%>&boardID=<%=boardID %>"
                class="btn btn-primary">수정</a>
             <%
                }
