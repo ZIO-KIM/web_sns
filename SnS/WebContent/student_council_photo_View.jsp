@@ -26,7 +26,7 @@
 	href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/PSB.css">
+<link rel="stylesheet" href="css/13inch_board_PSB.css">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>

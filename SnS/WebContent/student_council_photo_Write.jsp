@@ -25,7 +25,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/PSB.css">
+<link rel="stylesheet" href="css/13inch_board_PSB.css">
 <link rel="stylesheet" href="css/photo.css">
 
 <style type="text/css">
