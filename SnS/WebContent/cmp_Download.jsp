@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Pragma" content="no-cache">
-    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 학생회 건의사항</title>
+    <title>세종대학교 소프트웨어융합대학 :: 민원 :: 다운로드</title>
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -58,7 +58,24 @@
 			isStudent = Integer.parseInt(request.getParameter("isStudent"));
 		}
 		String root = request.getSession().getServletContext().getRealPath("/");
-		String savePath = root + "upload";
+		
+		/* String root = request.getSession().getServletContext().getContext("/upload").getRealPath("") ; */
+	
+		/* String rootPath = request.getSession().getServletContext().getRealPath("/") ; */
+		String savePath = root + "upload/" ;
+		
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert(root+'')");
+		script.println("history.back()");
+		script.println("</script>");
+		script.close();
+		
+		/* String savePath = root + "upload"; */
+		
+		/* ServletContext context = request.getSession().getServletContext();
+		String realFolder = context.getRealPath("upload"); */
+		
 		String fileName="";
 		String realFile="";
 		ComplaintsDAO cmpDAO = new ComplaintsDAO();
