@@ -267,7 +267,10 @@
 			</tr>
             <tr>
                <td colspan="2">
-                 <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+                 <div class="checkbox">
+                 	<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+    				<label><input value="익명" name="anonymous" type="checkbox">익명으로 글쓰기</label>
+  				</div>
                </td>
              </tr>
           
