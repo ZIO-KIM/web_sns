@@ -198,13 +198,9 @@
         <h1>글쓰기</h1>
       </header>
       <form method="post" action="./post" enctype="multipart/form-data">
+      	<input type="hidden" name="userID" value=<%=userID%>>
       <table class="table table-bordered">
         <tbody>
-        	<tr>
-				<th>작성자 ID</th>
-				<td colspan="2"><input type="text" name="userID"
-						value=<%=userID%>></td>
-			</tr>
 			<tr>
 				<th>게시판 ID</th>
 				<td colspan="2"><input type="text" name="boardID"

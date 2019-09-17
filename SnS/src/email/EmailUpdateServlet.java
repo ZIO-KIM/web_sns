@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import board.BoardDAO;
-import board.BoardDTO;
 
 public class EmailUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,23 +22,20 @@ public class EmailUpdateServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
 		HttpSession session = request.getSession();
-		String boardTitle = null;
-		if(request.getParameter("boardTitle")!=null) {
-			boardTitle=request.getParameter("boardTitle");
+		int emailID = 0;
+		if(request.getParameter("emailID")!=null) {
+			emailID=Integer.parseInt(request.getParameter("emailID"));
 		}
-		String boardURL = null;
-		if(request.getParameter("boardURL")!=null) {
-			boardURL=request.getParameter("boardURL");
+		String divide = null;
+		if(request.getParameter("divide")!=null) {
+			divide=request.getParameter("divide");
 		}
-		int boardID = 0;
-		if(request.getParameter("boardID")!=null) {
-			boardID=Integer.parseInt(request.getParameter("boardID"));
+		String email = null;
+		if(request.getParameter("email")!=null) {
+			email=request.getParameter("email");
 		}
-		int boardLevel = -1;
-		if(request.getParameter("boardLevel")!=null) {
-			boardLevel=Integer.parseInt(request.getParameter("boardLevel"));
-		}
-		if(boardTitle==null ||boardTitle.equals("")||boardURL==null ||boardURL.equals("")||boardID==0||boardLevel==-1) {
+		
+		if(emailID==0 ||divide==null ||divide.equals("")||email==null ||email.equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('빈칸을 모두 채워주세요.')");
@@ -49,12 +44,12 @@ public class EmailUpdateServlet extends HttpServlet {
 			script.close();
 			return;
 		}
-		BoardDAO boardDAO = new BoardDAO();
-		boardDAO.update(new BoardDTO(boardID,boardTitle,boardURL,1,boardLevel));
+		EmailDAO emailDAO = new EmailDAO();
+		emailDAO.update(new EmailDTO(emailID,divide,email,1));
 
 		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "게시판 수정이 완료되었습니다.");
-		response.sendRedirect("admin_board.jsp");
+		session.setAttribute("messageContent", "이메일 수신 수정이 완료되었습니다.");
+		response.sendRedirect("admin_email.jsp");
 		return;
 	}
 }

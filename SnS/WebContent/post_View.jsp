@@ -406,7 +406,7 @@
 					</tr>
 					<tr>
 						<td style="height: 300px; text-align: left;">
-							<h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID() %>"><%=post.getPostFile() %></a></h5>
+							<h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=postID %>"><%=post.getPostFile() %></a></h5>
 						</td>
 					</tr>
 				</tbody>
@@ -424,7 +424,7 @@
 				<%
 					if (userID != null && userID.equals(post.getUserID())) {
 				%>
-					<a href="post_Update.jsp?postID=<%=post.getPostID()%>"
+					<a href="post_Update.jsp?postID=<%=post.getPostID()%>&boardID=<%=boardID %>"
 					class="btn btn-primary">수정</a>
 				<%
 					}
@@ -434,7 +434,7 @@
 					if (userID != null && userID.equals(post.getUserID())||userLevel==2) {
 				%>
 					<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="deleteAction.jsp?postID=<%=post.getPostID()%>&boardID=<%=post.getBoardID() %>"
+					href="deleteAction.jsp?postID=<%=postID%>&boardID=<%=boardID %>"
 					class="btn btn-primary">삭제</a>
 				<%
 					}

@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
-<%@ page import="agree.AgreeDAO"%>
-<%@ page import="agree.AgreeDTO"%>
+<%@ page import="likey.LikeyDAO"%>
+<%@ page import="likey.LikeyDTO"%>
 <%@ page import="java.io.PrintWriter"%>
 
 <%!
@@ -55,9 +55,9 @@
 		}
 		
 		PostDAO postDAO = new PostDAO();
-		AgreeDAO agreeDAO=new AgreeDAO();
+		LikeyDAO likeyDAO=new LikeyDAO();
 		
-		int result=agreeDAO.agree(userID, postID, boardID, getClientIP(request));
+		int result=likeyDAO.likey(userID, postID, boardID, getClientIP(request));
 		if(result==1){
 			result=postDAO.agree(postID,boardID);
 			if(result==1){
