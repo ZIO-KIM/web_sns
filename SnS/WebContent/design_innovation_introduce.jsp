@@ -232,7 +232,13 @@
       <header>
         <h1>학과 소개</h1>
       </header>
-     
+     	<img style="margin-top:50px;"id="council_logo"src="imgs/design_innovation_logo.jpg" width="300" height="300" align="left">
+      	<div class="introduce_council">
+      		디자인이노베이션 전공은 기초조형교육을 토대로 디지털미디어 트랜드를 분석하고, 강화된 소프트웨어 교육을 제공하여 정보 및 미디어의 변화에 부응하는 창의적 시각 커뮤니케이션/프로덕트디자인을 위한 실무중심의 교육에 주력한다.<br>
+      		이러한 과정속에서 디지털 환경에서의 스마트제품에 적용되는 사용자경험(UX)과 그와 연관된 인터페이스를 함께 탐구한다.<br>
+      		첨단기술기반제품 및 시각미디어의 미래 발전 방향을 예측하고, 디자인을 통해 심미적 가치를 창출 할 수 있는 인재를 양성하고자 한다.<br>
+      	</div>
+     	
     </section>
     
 	<div class="im_footerWrap">
