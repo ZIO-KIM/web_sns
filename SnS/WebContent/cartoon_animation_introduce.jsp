@@ -14,7 +14,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/PSB.css">
+    <link rel="stylesheet" href="css/13inch_board_PSB.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -218,10 +218,10 @@
                <a href="cartoon_animation_student_council.jsp" class="jwxe_22351 ">학생회 소개</a>
             </li>
             <li>
-               <a href="cartoon_animation_promotion.jsp" class="jwxe_22351 ">홍보</a>
+               <a href="post.jsp?boardID=10" class="jwxe_22351 ">홍보</a>
             </li>
             <li>
-               <a href="cartoon_animation_public_money.jsp" class="jwxe_22351 ">학생회비 내역</a>
+               <a href="post.jsp?boardID=17" class="jwxe_22351 ">학생회비 내역</a>
             </li>
         </ul>
       </nav>

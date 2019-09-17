@@ -15,7 +15,7 @@
 <meta charset="utf-8">
 <title>세종대학교 소프트웨어융합대학 :: 학생회 :: 갤러리</title>
 <link rel="stylesheet" href="css/photo.css">
-<link rel="stylesheet" href="css/PSB.css">
+<link rel="stylesheet" href="css/13inch_board_PSB.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link
