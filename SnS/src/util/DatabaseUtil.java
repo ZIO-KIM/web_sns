@@ -20,7 +20,7 @@ public class DatabaseUtil {
 		try {
 			String dbURL="jdbc:mysql://localhost:3306/SnS?serverTimezone=UTC";
 			String dbID="root";
-			String dbPassword="seeun";
+			String dbPassword="root";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(dbURL,dbID,dbPassword);
 		}catch(Exception e) {

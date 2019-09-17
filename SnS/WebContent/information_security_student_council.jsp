@@ -231,6 +231,18 @@
       <header>
         <h1>학생회 소개</h1>
       </header>
+     <img style="margin-top:50px;"id="council_logo"src="imgs/information_security_logo.jpg" width="300" height="300" align="left">
+      	<div class="introduce_council">
+      		Basis<br>
+      		<hr>
+      		학생회장 : 장세정 <br>
+      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;010-0000-0000<br>
+      		<br>
+      		기획부장 : ooo &nbsp;&nbsp;010-0000-0000<br>
+      		사무부장 : ooo &nbsp;&nbsp;010-0000-0000<br>
+      		집행부장 : ooo &nbsp;&nbsp;010-0000-0000<br>
+      		홍보부장 : ooo &nbsp;&nbsp;010-0000-0000<br>
+      	</div>
      
     </section>
     

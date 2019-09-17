@@ -54,10 +54,6 @@
   </head>
   <body>
 
-
-	
-
-	<div id="wrapper">
 	<header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
@@ -290,6 +286,13 @@
         </h2>
         		<%
     			  }if(boardID==1){
+    			%>
+    			<ul class="lnb_deps2">
+  					<li><a href="post.jsp?boardID=1" class="jwxe_22350 active">공지사항</a></li>
+  					<li><a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a></li>
+  					<li><a href="hot_post.jsp" class="jwxe_22351 ">HOT 게시판</a></li>
+  				</ul>
+    			<%	  
         			}else if ( boardID <= 3) {
 				%>
 				<ul class="lnb_deps2">
