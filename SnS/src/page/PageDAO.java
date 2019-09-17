@@ -76,7 +76,7 @@ public class PageDAO {
 			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
 			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
 		}
-		return "http://localhost:8080/SnS/imgs/software_convergence_logo.PNG";
+		return "http://sejongsc.org/SnS/imgs/software_convergence_logo.PNG";
 	}
 	public int logoUpdate(String pageLogo) {
 		String SQL = "UPDATE page SET pageLogo = ?";

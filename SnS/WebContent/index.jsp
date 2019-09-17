@@ -326,7 +326,7 @@
 				for (int i = 0; i < notice.size(); i++) {
 		%>
 		<li>
-			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+			<a href="post.jsp?boardID=1&postID=<%=notice.get(i).getPostID() %>" style="text-decoration:none;color: black;">
 				<%=notice.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
 			<span><%=notice.get(i).getPostDate().substring(0,11) %></span>
@@ -348,7 +348,7 @@
 				for (int i = 0; i < gallery.size(); i++) {
 		%>
 		<li>
-			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+			<a href="student_council_photo_View.jsp?galID=<%=gallery.get(i).getGalID() %>" style="text-decoration:none;color: black;">
 				<%=gallery.get(i).getGalTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
 			<span><%=gallery.get(i).getGalDate().substring(0,11) %></span>
@@ -369,7 +369,7 @@
 				for (int i = 0; i < promotion.size(); i++) {
 		%>
 		<li>
-			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+			<a href="post.jsp?boardID=24&postID=<%=promotion.get(i).getPostID() %>" style="text-decoration:none;color: black;">
 				<%=promotion.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
 			<span><%=promotion.get(i).getPostDate().substring(0,11) %></span>
@@ -391,7 +391,7 @@
 				for (int i = 0; i < hotList.size(); i++) {
 		%>
 		<li>
-			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+			<a href="post_View.jsp?postID=<%=hotList.get(i).getPostID() %>" style="text-decoration:none;color: black;">
 				<%=hotList.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
 			<span><%=hotList.get(i).getPostDate().substring(0,11) %></span>
