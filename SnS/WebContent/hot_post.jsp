@@ -48,7 +48,6 @@
   </head>
   <body>
 
-	<div id="wrapper">
 	<header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
