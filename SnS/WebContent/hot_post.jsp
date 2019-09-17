@@ -266,6 +266,24 @@
 				</div>
 			</div>
 		</div>
+		
+		<div id="container">
+			<nav>
+				<nav>
+        <h2>
+          <span></span>
+            HOT 게시판
+        </h2>
+    	<ul class="lnb_deps2">
+  			<li><a href="post.jsp?boardID=1" class="jwxe_22350 active">공지사항</a></li>
+  			<li><a href="student_council_photo.jsp" class="jwxe_22351 ">갤러리</a></li>
+  			<li><a href="hot_post.jsp" class="jwxe_22351 ">HOT 게시판</a></li>
+  		</ul>
+				</nav>
+			</nav>
+		</div>		
+		
+		
 		<section class="content">
 			<header>
 				<h1>HOT 게시판</h1>
