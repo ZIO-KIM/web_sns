@@ -40,7 +40,7 @@
     <style>
     	body {
 			background-image: url("imgs/drop_7.jpg");
-			background-size: 1300px 700px; 
+			background-size: 100%; 
 			background-repeat: no-repeat; 
 			background-position: 0% 0%; 
 		}
