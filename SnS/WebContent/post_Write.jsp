@@ -193,7 +193,7 @@
     
     <div id="container">
         
-    <section class="content">
+    <section class="content" style="margin-left: 5px; margin-top: -70px;">
       <header>
         <h1>글쓰기</h1>
       </header>
