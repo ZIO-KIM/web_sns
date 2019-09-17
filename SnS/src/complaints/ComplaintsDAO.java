@@ -149,9 +149,9 @@ public class ComplaintsDAO {
 			while(rs.next()) {
 				ComplaintsDTO cmpDTO =new ComplaintsDTO();
 				cmpDTO.setCmpID(rs.getInt(1));
-				cmpDTO.setCmpTitle(rs.getString(2));
-				cmpDTO.setUserID(rs.getString(3));
-				cmpDTO.setCmpDate(rs.getString(4));
+				cmpDTO.setUserID(rs.getString(2));
+				cmpDTO.setCmpDate(rs.getString(3));
+				cmpDTO.setCmpTitle(rs.getString(4));
 				cmpDTO.setCmpContent(rs.getString(5));
 				cmpDTO.setCmpDivide(rs.getString(6));
 				cmpDTO.setCmpFile(rs.getString(7));
@@ -199,9 +199,9 @@ public class ComplaintsDAO {
 			while(rs.next()) {
 				ComplaintsDTO cmpDTO= new ComplaintsDTO();
 				cmpDTO.setCmpID(rs.getInt(1));
-				cmpDTO.setCmpTitle(rs.getString(2));
-				cmpDTO.setUserID(rs.getString(3));
-				cmpDTO.setCmpDate(rs.getString(4));
+				cmpDTO.setUserID(rs.getString(2));
+				cmpDTO.setCmpDate(rs.getString(3));
+				cmpDTO.setCmpTitle(rs.getString(4));
 				cmpDTO.setCmpContent(rs.getString(5));
 				cmpDTO.setCmpDivide(rs.getString(6));
 				cmpDTO.setCmpFile(rs.getString(7));
@@ -243,9 +243,9 @@ public class ComplaintsDAO {
 			while(rs.next()) {
 				ComplaintsDTO cmpDTO =new ComplaintsDTO();
 				cmpDTO.setCmpID(rs.getInt(1));
-				cmpDTO.setCmpTitle(rs.getString(2));
-				cmpDTO.setUserID(rs.getString(3));
-				cmpDTO.setCmpDate(rs.getString(4));
+				cmpDTO.setUserID(rs.getString(2));
+				cmpDTO.setCmpDate(rs.getString(3));
+				cmpDTO.setCmpTitle(rs.getString(4));
 				cmpDTO.setCmpContent(rs.getString(5));
 				cmpDTO.setCmpDivide(rs.getString(6));
 				cmpDTO.setCmpFile(rs.getString(7));
@@ -331,10 +331,10 @@ public class ComplaintsDAO {
 			if (rs.next()) {
 				ComplaintsDTO cmp = new ComplaintsDTO();
 				cmp.setCmpID(rs.getInt(1));
-				cmp.setCmpTitle(rs.getString(2).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				cmp.setUserID(rs.getString(3));
-				cmp.setCmpDate(rs.getString(4));
-				cmp.setCmpContent(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				cmp.setUserID(rs.getString(2));
+				cmp.setCmpDate(rs.getString(3));
+				cmp.setCmpTitle(rs.getString(4));
+				cmp.setCmpContent(rs.getString(5));
 				cmp.setCmpDivide(rs.getString(6));
 				cmp.setCmpFile(rs.getString(7));
 				cmp.setCmpRealFile(rs.getString(8));
@@ -408,9 +408,9 @@ public class ComplaintsDAO {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1,getNext(isStudent));
+			pstmt.setString(2,complaintsDTO.getUserID());
+			pstmt.setString(2,complaintsDTO.getCmpDate());
 			pstmt.setString(2,complaintsDTO.getCmpTitle());
-			pstmt.setString(3,complaintsDTO.getUserID());
-			pstmt.setString(4,getDate());
 			pstmt.setString(5,complaintsDTO.getCmpContent());
 			pstmt.setString(6,complaintsDTO.getCmpDivide());
 			pstmt.setString(7,complaintsDTO.getCmpFile());
@@ -480,11 +480,11 @@ public class ComplaintsDAO {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setInt(1,getNext(isStudent));
-			pstmt.setString(2,complaintsDTO.getCmpTitle());
-			pstmt.setString(3,complaintsDTO.getUserID());
-			pstmt.setString(4,getDate());
+			pstmt.setString(2,complaintsDTO.getUserID());
+			pstmt.setString(3,getDate());
+			pstmt.setString(4,complaintsDTO.getCmpTitle());
 			pstmt.setString(5,complaintsDTO.getCmpContent());
-			pstmt.setString(6,complaintsDTO.getCmpDivide());
+			pstmt.setString(6,"");
 			pstmt.setInt(7,parent.getCmpGroup());
 			pstmt.setInt(8,parent.getCmpSequence()+1);
 			pstmt.setInt(9,parent.getCmpLevel()+1);

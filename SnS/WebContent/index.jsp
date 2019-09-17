@@ -240,6 +240,7 @@
                </script>
                <div class="modal-body">
                   <form action="userLoginAction.jsp" id="frmLogin" method="post">
+                  	<input type="hidden" name="nextURL" value="index.jsp">
                      <div class="form-group">
                         <input type="text" name="userID" id="uid" value=""
                            placeholder="아이디" class="form-control" required="">
@@ -286,31 +287,31 @@
     
     <section id='departments_area'>
     	 <div id='computer_science'><!--컴퓨터공학과 게시판-->
-    		<a href='post.jsp?boardID=4'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
+    		<a href='computer_science_introduce.jsp'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
     	</div>
     
     	<div id='information_security'><!--정보보호학과 게시판-->
-    		<a href='post.jsp?boardID=6'><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
+    		<a href='information_security_introduce.jsp'><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
     	</div>
     
     	<div id='software'><!--소프트웨어학과 게시판-->
-    		<a href='post.jsp?boardID=8'><img src='imgs/software_logo.jpg' id='soft_logo'></a>
+    		<a href='software_introduce.jsp'><img src='imgs/software_logo.jpg' id='soft_logo'></a>
     	</div>
     
     	<div id='data_science'><!--데이터사이언스학과 게시판-->
-    		<a href='post.jsp?boardID=10'><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
+    		<a href='data_science_introduce.jsp'><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
     	</div>
     
     	<div id='intelligent_mechanics_engineering'><!--지능기전공학부 게시판-->
-    		<a href='post.jsp?boardID=12'><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
+    		<a href='intelligent_mechanics_engineering_introduce.jsp'><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
     	</div>
     
    		<div id='design_innovation'><!--디자인이노베이션학과 게시판-->
-    		<a href='post.jsp?boardID=14'><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
+    		<a href='design_innovation_introduce.jsp'><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
     	</div>
     
     	<div id='cartoon_animation'><!--만화애니메이션학과 게시판-->
-    		<a href='post.jsp?boardID=16'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
+    		<a href='cartoon_animation_introduce.jsp'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
     	</div>
     </section>
     <hr class="line">
