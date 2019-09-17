@@ -121,16 +121,19 @@
   		</button>
   		<div class="collapse navbar-collapse" id="navbarNavDropdown">
     		<ul class="navbar-nav">
-      			<li class="nav-item active">
+      			<li class="nav-item ">
         			<a class="nav-link" href="admin_user.jsp">User <span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item">
        	 		<a class="nav-link" href="admin_board.jsp">Board</a>
      	 		</li>
+     	 		<li class="nav-item ">
+       	 		<a class="nav-link" href="admin_email.jsp">Email</a>
+     	 		</li>
      	 		<li class="nav-item">
-       			 <a class="nav-link" href="admin_report.jsp">Report</a>
+      			  <a class="nav-link" href="admin_report.jsp">Report</a>
     			  </li>
-     	 		<li class="nav-item">
+     	 		<li class="nav-item active">
        	 		<a class="nav-link" href="admin_customizing.jsp">Customizing</a>
      	 		</li>
       			<li class="nav-item dropdown" style="float:right !important;">

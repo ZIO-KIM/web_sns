@@ -91,9 +91,12 @@
       			<li class="nav-item">
        	 		<a class="nav-link" href="admin_board.jsp">Board</a>
      	 		</li>
+     	 		<li class="nav-item ">
+       	 		<a class="nav-link" href="admin_email.jsp">Email</a>
+     	 		</li>
      	 		<li class="nav-item">
-       			 <a class="nav-link" href="admin_report.jsp">Report</a>
-     			 </li>
+      			  <a class="nav-link" href="admin_report.jsp">Report</a>
+    			  </li>
      	 		<li class="nav-item">
        	 		<a class="nav-link" href="admin_customizing.jsp">Customizing</a>
      	 		</li>

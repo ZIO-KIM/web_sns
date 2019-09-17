@@ -89,13 +89,13 @@
   		</button>
   		<div class="collapse navbar-collapse" id="navbarNavDropdown">
     		<ul class="navbar-nav">
-      			<li class="nav-item active">
+      			<li class="nav-item ">
         			<a class="nav-link" href="admin_user.jsp">User <span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item">
        	 		<a class="nav-link" href="admin_board.jsp">Board</a>
      	 		</li>
-     	 		<li class="nav-item">
+     	 		<li class="nav-item active">
        	 		<a class="nav-link" href="admin_email.jsp">Email</a>
      	 		</li>
      	 		<li class="nav-item">
@@ -247,11 +247,11 @@
 									</div>
 									<div class="form-group">
 										<label for="email-title" class="col-form-label">변경할 이메일 수신지의 구분:</label>
-										<input type="text" class="form-control" name="emailTitle">
+										<input type="text" class="form-control" name="divide">
 									</div>
 									<div class="form-group">
 										<label for="email-title" class="col-form-label">변경할 이메일 수신지 주소</label>
-										<input type="text" class="form-control" name="emailURL">
+										<input type="text" class="form-control" name="email">
 									</div>
 							</div>
 							<div class="modal-footer">

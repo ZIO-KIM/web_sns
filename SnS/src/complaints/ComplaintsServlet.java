@@ -2,9 +2,17 @@ package complaints;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
 
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,17 +21,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import complaints.ComplaintsDAO;
-import complaints.ComplaintsDTO;
-import java.io.PrintWriter;
-import javax.mail.Transport;
-import javax.mail.Message;
-import javax.mail.Address;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.Session;
-import javax.mail.Authenticator;
-import java.util.Properties;
+import email.EmailDAO;
 import util.Gmail;
 
 public class ComplaintsServlet extends HttpServlet {
@@ -52,7 +50,6 @@ public class ComplaintsServlet extends HttpServlet {
 		String cmpTitle = multi.getParameter("cmpTitle");
 		String cmpContent = multi.getParameter("cmpContent");
 		String cmpDivide = multi.getParameter("cmpDivide");
-		String cmpDate = multi.getParameter("cmpDate");
 		int isStudent= Integer.parseInt(multi.getParameter("isStudent"));
 		
 		if(cmpTitle==null || cmpContent==null||cmpTitle.equals("")||cmpContent.equals("")) {
@@ -83,9 +80,12 @@ public class ComplaintsServlet extends HttpServlet {
 			script.close();
 			return;
 		}
+		
+		EmailDAO emailDAO = new EmailDAO();
+		
 		String host="http://sejongsc.org/SnS/";
 			String from="sjswsns@gmail.com";
-			String to="sseunghun99@naver.com";//민원 담당자 메일주소
+			String to = emailDAO.getEmailAddress(cmpDivide);
 			String subject ="[세종소융]민원이 접수되었습니다."+cmpDAO.getDate();
 			String content ="제목: "+cmpTitle+"<br>접수날짜: "+cmpDAO.getDate()+"<br>"+cmpContent+
 			"\n<a href='" + host + "cmp_View.jsp?isStudent="+isStudent+"&cmpID="+cmpDAO.countCmp(isStudent)+
