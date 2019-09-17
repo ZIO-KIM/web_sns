@@ -36,12 +36,10 @@ public class NoteServlet extends HttpServlet {
 		if(request.getParameter("noteContent")!=null) {
 			noteContent=request.getParameter("noteContent");
 		}
-		if(noteTitle==null ||noteTitle.equals("")) {
-			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "빈칸을 모두 채워주세요.");
+		if(noteTitle==null ||noteTitle.equals("")||noteContent==null ||noteContent.equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('오류가 발생했습니다.')");
+			script.println("alert('제목과 내용을 입력해주세요.')");
 			script.println("history.back();");
 			script.println("</script>");
 			script.close();
@@ -50,9 +48,12 @@ public class NoteServlet extends HttpServlet {
 		NoteDAO noteDAO = new NoteDAO();
 		noteDAO.write(new NoteDTO(0,toID,fromID,noteTitle,noteContent,"",0));
 
-		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "쪽지 발송이 완료되었습니다.");
-		response.sendRedirect("myPage.jsp");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('쪽지가 발송되었습니다.');");
+		script.println("history.back();");
+		script.println("</script>");
+		script.close();
 		return;
 	}
 }

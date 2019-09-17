@@ -46,11 +46,10 @@ public class PostServlet extends HttpServlet {
 		int boardID=Integer.parseInt(multi.getParameter("boardID"));
 		
 		if(postTitle==null || postContent==null||postTitle.equals("")||postContent.equals("")) {
-			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("history.back();");
+			script.println("alert('제목과 내용을 채워주세요.')");
+			script.println("history.back()");
 			script.println("</script>");
 			script.close();
 			return;
@@ -66,8 +65,6 @@ public class PostServlet extends HttpServlet {
 		}
 		postDAO.write(new PostDTO(0, 0,userID,"", postTitle,postContent,postDivide,postFile,postRealFile,0,0,0,0,0,0),boardID);
 
-		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "게시글 작성이 완료되었습니다.");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("history.go(-2);");

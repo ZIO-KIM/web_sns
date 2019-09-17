@@ -2,6 +2,7 @@ package gallery;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +27,12 @@ public class GalleryServlet extends HttpServlet {
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		}catch(Exception e) {
-			request.getSession().setAttribute("messageType","오류 메시지");
-			request.getSession().setAttribute("mewssageContent", "파일 크기는 10MB를 넘을 수 없습니다.");
-			response.sendRedirect("student_council_photo_Write.jsp");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('파일 크기는 10MB를 넘을 수 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		HttpSession session = request.getSession();
@@ -37,9 +41,12 @@ public class GalleryServlet extends HttpServlet {
 		String galContent = multi.getParameter("galContent");
 		
 		if(galTitle==null || galContent==null||galTitle.equals("")||galContent.equals("")) {
-			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
-			response.sendRedirect("student_council_photo_Write.jsp");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('내용을 모두 채워주세요.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		File file = multi.getFile("galFile");
@@ -52,23 +59,31 @@ public class GalleryServlet extends HttpServlet {
 				String galFile = multi.getOriginalFileName("galFile");
 				String galRealFile = file.getName();
 				galleryDAO.write(userID,galTitle, galContent,galFile,galRealFile);
-				session.setAttribute("messageType", "성공 메시지");
-				session.setAttribute("messageContent", "갤러리에 사진을 업로드하였습니다.");
-				response.sendRedirect("student_council_photo.jsp");
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("history.go(-2)");
+				script.println("</script>");
+				script.close();
 				return;
 			}else {
 				if(file.exists()) {
 					file.delete();
 				}
-				session.setAttribute("messageType", "오류 메시지");
-				session.setAttribute("messageContent", "이미지 파일만 업로드 가능합니다.");
-				response.sendRedirect("student_council_photo_Write.jsp");
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('이미지 파일만 업로드 할 수 있습니다.')");
+				script.println("history.back()");
+				script.println("</script>");
+				script.close();
 				return;
 			}
 		}else {
-			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "사진을 첨부해주세요.");
-			response.sendRedirect("student_council_photo_Write.jsp");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('사진을 첨부해주세요.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}		
 	}

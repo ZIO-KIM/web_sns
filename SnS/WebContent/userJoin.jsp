@@ -269,8 +269,8 @@
 						</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="userID" id="userID"
-								maxlength="20" placeholder="닉네임으로 사용" required>
-								<button class="btn btn-primary" onclick="registerCheckFunction();" type="button">중복체크</button>
+								maxlength="20" placeholder="아이디" required>
+								<button class="btn btn-danger" onclick="registerCheckFunction();" type="button">중복체크</button>
 						</div>
 					</div>
 
@@ -297,11 +297,11 @@
 
 					<div class="form-group row">
 						<label for="name" class="col-sm-2 col-form-label"> <em
-							style="color: red">*</em> 이름
+							style="color: red">*</em> 닉네임
 						</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="userName"
-								maxlength="20" placeholder="실명" required>
+								maxlength="20" placeholder="닉네임" required>
 						</div>
 					</div>
 

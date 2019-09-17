@@ -567,7 +567,7 @@
             	<span class="contact">010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 </span>                              <span class="copyright">COPYRIGHT ⓒ 세종대학교 소프트웨어융합대학 All right reserved.</span>                           </div>
             </div>
          <div class="im_gototop">
-         	<a href="#"><span class="icon"><i class="fa fa-chevron-up"></i></span><span class="label">TOP</span></a>
+         	<a href="index.jsp"><span class="icon"><i class="fa fa-chevron-up"></i></span><span class="label">TOP</span></a>
          </div>
       </div>
    </div>

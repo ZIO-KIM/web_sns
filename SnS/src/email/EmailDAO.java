@@ -1,21 +1,21 @@
-package board;
+package email;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import board.BoardDTO;
 import util.DatabaseUtil;
 
-public class BoardDAO {
+public class EmailDAO {
+	
 	public int getNext() {
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;	
 		try {
-			SQL = "SELECT boardID FROM board ORDER BY boardID DESC";
+			SQL = "SELECT emailID FROM email ORDER BY emailID DESC";
 			conn=DatabaseUtil.getConnection();
 			pstmt =conn.prepareStatement(SQL);
 			rs=pstmt.executeQuery();
@@ -33,23 +33,23 @@ public class BoardDAO {
 		return -1; 
 	}
 	
-	public BoardDTO getBoard(int boardID){
-		String SQL ="SELECT * FROM board WHERE boardID =?";
+	public EmailDTO getEmail(int emailID){
+		String SQL ="SELECT * FROM email WHERE emailID =?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
-		BoardDTO board =new BoardDTO();
+		EmailDTO email =new EmailDTO();
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1, boardID);
+			pstmt.setInt(1, emailID);
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
-				board.setBoardID(rs.getInt(1));
-				board.setBoardName(rs.getString(2));
-				board.setBoardURL(rs.getString(3));
-				board.setBoardAvailable(rs.getInt(4));
-				return board;
+				email.setEmailID(rs.getInt(1));
+				email.setDivide(rs.getString(2));
+				email.setEmail(rs.getString(3));
+				email.setStatus(rs.getInt(4));
+				return email;
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -58,27 +58,26 @@ public class BoardDAO {
 			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
 			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
 		}
-		return board;
+		return email;
 	}
 	
-	public ArrayList<BoardDTO> getList(){
-		String SQL ="SELECT * FROM board ORDER BY boardID ASC";
+	public ArrayList<EmailDTO> getList(){
+		String SQL ="SELECT * FROM email ORDER BY emailID ASC";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
-		ArrayList<BoardDTO> list =new ArrayList<BoardDTO>();
+		ArrayList<EmailDTO> list =new ArrayList<EmailDTO>();
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
-				BoardDTO board =new BoardDTO();
-				board.setBoardID(rs.getInt(1));
-				board.setBoardName(rs.getString(2));
-				board.setBoardURL(rs.getString(3));
-				board.setBoardAvailable(rs.getInt(4));
-				board.setBoardLevel(rs.getInt(5));
-				list.add(board);
+				EmailDTO email =new EmailDTO();
+				email.setEmailID(rs.getInt(1));
+				email.setDivide(rs.getString(2));
+				email.setEmail(rs.getString(3));
+				email.setStatus(rs.getInt(4));
+				list.add(email);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -90,18 +89,18 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public int create(BoardDTO board) {
-		String SQL = "INSERT INTO board VALUES(?, ? ,?,1,?)";
+	public int create(EmailDTO email) {
+		String SQL = "INSERT INTO email VALUES(?, ?, ?, 1)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1,board.getBoardID());
-			pstmt.setString(2,board.getBoardName());
-			pstmt.setString(3,board.getBoardURL());
-			pstmt.setInt(4,board.getBoardLevel());
+			pstmt.setInt(1,getNext());
+			pstmt.setString(2,email.getDivide());
+			pstmt.setString(3,email.getEmail());
+			pstmt.setInt(4,email.getStatus());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -113,18 +112,18 @@ public class BoardDAO {
 		return -1;
 	}
 	
-	public int update(BoardDTO board) {
-		String SQL = "UPDATE board SET boardName =?, boardURL = ?,boardLevel=?  WHERE boardID= ?";
+	public int update(EmailDTO email) {
+		String SQL = "UPDATE email SET divide =?, email = ?  WHERE emailID= ?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setString(1,board.getBoardName());
-			pstmt.setString(2,board.getBoardURL());
-			pstmt.setInt(3,board.getBoardLevel());
-			pstmt.setInt(4,board.getBoardID());
+			pstmt.setString(1,email.getDivide());
+			pstmt.setString(2,email.getEmail());
+			pstmt.setInt(3,email.getStatus());
+			pstmt.setInt(4,email.getEmailID());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -136,15 +135,15 @@ public class BoardDAO {
 		return -1;
 	}
 	
-	public int ban(int boardID) {
-		String SQL = "UPDATE board SET boardAvailable = 0 WHERE boardID= ?";
+	public int ban(int emailID) {
+		String SQL = "UPDATE email SET status = 0 WHERE emailID= ?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1,boardID);
+			pstmt.setInt(1,emailID);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -156,15 +155,15 @@ public class BoardDAO {
 		return -1;
 	}
 	
-	public int unBan(int boardID) {
-		String SQL = "UPDATE board SET boardAvailable = 1 WHERE boardID= ?";
+	public int unBan(int emailID) {
+		String SQL = "UPDATE email SET status = 1 WHERE emailID= ?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1,boardID);
+			pstmt.setInt(1,emailID);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -176,15 +175,15 @@ public class BoardDAO {
 		return -1;
 	}
 	
-	public int delete(int boardID) {
-		String SQL = "DELETE FROM board WHERE boardID=?";
+	public int delete(int emailID) {
+		String SQL = "DELETE FROM email WHERE emailID=?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1,boardID);
+			pstmt.setInt(1,emailID);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

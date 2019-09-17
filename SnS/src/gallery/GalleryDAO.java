@@ -56,7 +56,7 @@ public class GalleryDAO {
 	}
 	
 	public int write(String userID, String galTitle, String galContent,String galFile, String galRealFile) { 
-		String SQL = "INSERT INTO GALLERY VALUES(?, ?, ?, ?, ?,?,?, 0,1)";
+		String SQL = "INSERT INTO gallery VALUES(?, ?, ?, ?, ?,?,?, 0,1)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		try {
@@ -99,7 +99,7 @@ public class GalleryDAO {
 	}
 	
 	public int delete(int galID) { 
-		String SQL = "UPDATE GALLERY SET galAvailable =0 WHERE galID=?";
+		String SQL = "UPDATE gallery SET galAvailable =0 WHERE galID=?";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
@@ -119,7 +119,7 @@ public class GalleryDAO {
 	}
 	
 	public static int hit(int galID) {
-		String SQL ="UPDATE GALLERY SET galHit = galHit + 1 WHERE galID=?";
+		String SQL ="UPDATE gallery SET galHit = galHit + 1 WHERE galID=?";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
@@ -139,7 +139,7 @@ public class GalleryDAO {
 	}
 	
 	public ArrayList<GalleryDTO> getList(int pageNumber){ 
-		String SQL = "SELECT * FROM GALLERY WHERE galID < ? AND galAvailable = 1 ORDER BY galID DESC LIMIT 5";
+		String SQL = "SELECT * FROM gallery WHERE galID < ? AND galAvailable = 1 ORDER BY galID DESC LIMIT 5";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;	
@@ -170,52 +170,6 @@ public class GalleryDAO {
 			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
 		}
 		return list;
-	}
-	
-	public boolean nextPage(int pageNumber,boolean isStudent) {
-		String SQL ="SELECT * FROM USER WHERE galID >= ? AND galAvailable=1";
-		Connection conn=null;
-		PreparedStatement pstmt = null;
-		ResultSet rs= null;
-		try {			
-			conn=DatabaseUtil.getConnection();
-			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1, pageNumber*10);
-			rs= pstmt.executeQuery();
-			if(rs.next()) {
-				return true;
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
-			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
-			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
-		}
-		return false;
-	}
-	
-	public int targetPage(int pageNumber) {
-		String SQL ="SELECT COUNT(galID) FROM gallery WHERE galID > ?";
-		Connection conn=null;
-		PreparedStatement pstmt = null;
-		ResultSet rs= null;
-		try {
-			conn=DatabaseUtil.getConnection();
-			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1, (pageNumber-1)*10);
-			rs= pstmt.executeQuery();
-			if(rs.next()) {
-				return rs.getInt(1)/10;
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
-			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
-			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
-		}
-		return 0;
 	}
 	
 	public GalleryDTO getGal(int galID) {

@@ -9,7 +9,7 @@ import util.DatabaseUtil;
 public class AgreeDAO {
 	
 	public int agree(String userID, int cmpID,int isStudent,String userIP) {
-		String SQL="INSERT INTO AGREE VALUES(?,?,?,?)";
+		String SQL="INSERT INTO Agree VALUES(?,?,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs=null;

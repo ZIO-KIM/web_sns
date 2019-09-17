@@ -160,7 +160,7 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
-			SQL = "SELECT * FROM user WHERE userID= ?";
+			SQL = "SELECT * FROM USER WHERE userID= ?";
 			conn=DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
@@ -263,9 +263,9 @@ public class UserDAO {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("userProfile").equals("")) {
-					return "http://localhost:8080/SnS/imgs/userIcon.png";
+					return "http://sejongsc.org/SnS/imgs/userIcon.png";
 				}
-				return "http://localhost:8080/SnS/upload/"+rs.getString("userProfile");
+				return "http://sejongsc.org/SnS/upload/"+rs.getString("userProfile");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -274,7 +274,7 @@ public class UserDAO {
 			try {if(pstmt!=null)pstmt.close();}catch(Exception e) {e.printStackTrace();}
 			try {if(rs!=null)rs.close();}catch(Exception e) {e.printStackTrace();}
 		}
-		return "http://localhost:8080/SnS/imgs/userIcon.png";
+		return "http://sejongsc.org/SnS/imgs/userIcon.png";
 	}
 	public String getRamdomPassword(int len) {
 		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7',
@@ -376,7 +376,7 @@ public class UserDAO {
 	}
 	
 	public ArrayList<UserDTO> getList(){
-		String SQL ="SELECT * FROM user ORDER BY userID DESC";
+		String SQL ="SELECT * FROM USER ORDER BY userID DESC";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;

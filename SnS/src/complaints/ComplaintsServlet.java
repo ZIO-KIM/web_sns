@@ -39,8 +39,12 @@ public class ComplaintsServlet extends HttpServlet {
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		}catch(Exception e) {
-			request.getSession().setAttribute("messageType","오류 메시지");
-			request.getSession().setAttribute("mewssageContent", "파일 크기는 10MB를 넘을 수 없습니다.");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('파일 크기는 10MB를 넘을 수 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		HttpSession session = request.getSession();
@@ -52,8 +56,12 @@ public class ComplaintsServlet extends HttpServlet {
 		int isStudent= Integer.parseInt(multi.getParameter("isStudent"));
 		
 		if(cmpTitle==null || cmpContent==null||cmpTitle.equals("")||cmpContent.equals("")) {
-			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "내용을 모두 채워주세요.");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('제목과 내용을 채워주세요.')");
+			script.println("history.go(-2);");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		File file = multi.getFile("cmpFile");
@@ -75,7 +83,7 @@ public class ComplaintsServlet extends HttpServlet {
 			script.close();
 			return;
 		}
-		String host="http://localhost:8080/SnS/";
+		String host="http://sejongsc.org/SnS/";
 			String from="sjswsns@gmail.com";
 			String to="sseunghun99@naver.com";//민원 담당자 메일주소
 			String subject ="[세종소융]민원이 접수되었습니다."+cmpDAO.getDate();
@@ -117,8 +125,6 @@ public class ComplaintsServlet extends HttpServlet {
 				return;
 			}
 		
-		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "민원 게시가 완료되었습니다.");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("history.go(-2);");

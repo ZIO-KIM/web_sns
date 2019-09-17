@@ -54,16 +54,17 @@ public class NoteDAO {
 		return "";
 	}
 	
-	public ArrayList<NoteDTO> getList(){
+	public ArrayList<NoteDTO> getList(String userID){
 		String SQL="";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		ArrayList<NoteDTO> list =new ArrayList<NoteDTO>();
 		try {
-			SQL ="SELECT * FROM note WHERE noteStatus = 0 ";
+			SQL ="SELECT * FROM note WHERE noteStatus = 0 AND toID= ? ORDER BY noteDate DESC";
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
 				NoteDTO noteDTO =new NoteDTO();
@@ -99,12 +100,13 @@ public class NoteDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				NoteDTO noteDTO =new NoteDTO();
-				noteDTO.setToID(rs.getString(1));
-				noteDTO.setFromID(rs.getString(2));
-				noteDTO.setNoteTitle(rs.getString(3).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				noteDTO.setNoteContent(rs.getString(4).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
-				noteDTO.setNoteDate(rs.getString(5));
-				noteDTO.setNoteStatus(rs.getInt(6));
+				noteDTO.setNoteID(rs.getInt(1));
+				noteDTO.setToID(rs.getString(2));
+				noteDTO.setFromID(rs.getString(3));
+				noteDTO.setNoteTitle(rs.getString(4).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				noteDTO.setNoteContent(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>"));
+				noteDTO.setNoteDate(rs.getString(6));
+				noteDTO.setNoteStatus(rs.getInt(7));
 				return noteDTO;
 			}
 		} catch (Exception e) {

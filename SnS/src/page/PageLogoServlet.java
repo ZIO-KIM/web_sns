@@ -2,6 +2,7 @@ package page;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,9 +28,12 @@ public class PageLogoServlet extends HttpServlet {
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		}catch(Exception e) {
-			request.getSession().setAttribute("messageType","오류 메시지");
-			request.getSession().setAttribute("mewssageContent", "파일 크기는 10MB를 넘을 수 없습니다.");
-			response.sendRedirect("admin_customizing.jsp");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('파일 크기는 10MB를 넘을 수 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 			return;
 		}
 		String fileName="";
@@ -48,16 +52,22 @@ public class PageLogoServlet extends HttpServlet {
 				if(file.exists()) {
 					file.delete();
 				}
-				session.setAttribute("messageType", "오류 메시지");
-				session.setAttribute("messageContent", "이미지 파일만 업로드 가능합니다.");
-				response.sendRedirect("admin_customizing.jsp");
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('이미지 파일만 업로드 가능합니다.')");
+				script.println("history.back()");
+				script.println("</script>");
+				script.close();
 				return;
 			}
 		}
 		new PageDAO().logoUpdate(fileName);
-		session.setAttribute("messageType", "성공 메시지");
-		session.setAttribute("messageContent", "성공적으로 홈페이지 로고를 변경하였습니다.");
-		response.sendRedirect("index.jsp");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('홈페이지 로고가 변경되었습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+		script.close();
 		return;
 	}
 
