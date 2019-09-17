@@ -86,9 +86,9 @@ public class GalleryDAO {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, galTitle);
 			pstmt.setString(2, galContent);
-			pstmt.setInt(3, galID);
-			pstmt.setString(4, galFile);
-			pstmt.setString(5, galRealFile);
+			pstmt.setString(3, galFile);
+			pstmt.setString(4, galRealFile);
+			pstmt.setInt(5, galID);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
