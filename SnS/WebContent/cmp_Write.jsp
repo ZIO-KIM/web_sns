@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="page.PageDAO" %>
+<%@ page import="email.EmailDAO" %>
+<%@ page import="email.EmailDTO" %>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -245,24 +248,23 @@
       	<label>학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.</label>
       	<select name="cmpDivide" class="form-control">
       		<option value="선택 안함" selected>선택 안함</option>
-      		<option value="컴퓨터공학과">컴퓨터공학과</option>
-      		<option value="정보보호학과" >정보보호학과</option>
-      		<option value="소프트웨어학과">소프트웨어학과</option>
-      		<option value="데이터사이언스학과">데이터사이언스학과</option>
-      		<option value="지능기전공학부">지능기전공학부</option>
-      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
-      		<option value="만화애니메이션전공">만화애니메이션전공</option>
+      	<%
+      		EmailDAO emailDAO = new EmailDAO();
+      		ArrayList<EmailDTO> list = emailDAO.getList();
+      		for(int i=0;i<list.size();i++){
+      			if(list.get(i).getEmailID()<20&&isStudent==0||list.get(i).getEmailID()>=20&&isStudent==1){
+      	%>
+      		<option value="<%=list.get(i).getDivide()%>"><%=list.get(i).getDivide()%></option>
+      	<%
+      			}
+      		}
+      	%>
       	</select>
       </div>
+		<input type="hidden" name="userID" value=<%=userID%>>
+		<input type="hidden" name="isStudent" value=<%=isStudent%>>
       <table class="table table-bordered">
         <tbody>
-        	<tr>
-				<th>작성자 ID</th>
-				<td colspan="2">
-				<input type="text" name="userID" value=<%=userID%>>
-				<input type="hidden" name="isStudent" value=<%=isStudent%>></td>
-				
-			</tr>
             <tr>
                <th>제목: </th>
                <td><input type="text" placeholder="제목을 입력하세요. " name="cmpTitle" maxlength="50" class="form-control"/></td>

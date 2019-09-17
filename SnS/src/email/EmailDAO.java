@@ -89,8 +89,8 @@ public class EmailDAO {
 		return list;
 	}
 	
-	public int create(EmailDTO email) {
-		String SQL = "INSERT INTO email VALUES(?, ?, ?, 1)";
+	public int open(EmailDTO email) {
+		String SQL = "INSERT INTO email VALUES(?, ?, ?, ?)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -100,7 +100,7 @@ public class EmailDAO {
 			pstmt.setInt(1,getNext());
 			pstmt.setString(2,email.getDivide());
 			pstmt.setString(3,email.getEmail());
-			pstmt.setInt(4,email.getStatus());
+			pstmt.setInt(4,1);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

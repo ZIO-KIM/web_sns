@@ -203,8 +203,8 @@
 							<form action="./emailOpen" method="post">
 							<div class="modal-body">
 									<div class="form-group">
-										<label for="board-id" class="col-form-label">이메일 구분ID:</label>
-										<input type="text" class="form-control" name="emailID" value="<%=emailDAO.getNext()%>">
+										<label for="board-id" class="col-form-label">이메일 구분ID(학교 건의사항: 1~19 / 학생회 건의사항 : 20~39):</label>
+										<input type="text" class="form-control" name="emailID">
 									</div>
 									<div class="form-group">
 										<label for="board-title" class="col-form-label">민원 구분</label>
