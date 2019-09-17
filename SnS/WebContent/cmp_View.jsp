@@ -63,7 +63,6 @@
 		String fromProfile = userDAO.getProfile(userID);
 	%>
 
-	<div id="wrapper">
 	<header>
       <nav class="navbar navbar-default" style="background:none;border:none;font-size:22px;margin:0 1%; padding:2%; color:#000000;">
   <div class="container-fluid">
@@ -208,23 +207,6 @@
 		session.removeAttribute("messageType");
 		}
 	%>
-	
-	<div id="container">
-		<nav>
-			<nav>
-				<h2>
-					<span></span> 민원
-				</h2>
-				<ul class="lnb_deps2">
-					<li><a href='cmp_to_student_council.jsp'
-						class="jwxe_22350 active">학생회 건의사항</a></li>
-					<li><a href='cmp_to_school.jsp' class="jwxe_22351 ">학교
-							건의사항</a></li>
-					<li><a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구
-							소개</a></li>
-				</ul>
-			</nav>
-		</nav>
 
 
 		<div id="modal-login" class="modal fade">
@@ -357,7 +339,7 @@
 						</tr>
 						<tr>
 							<td>작성자 이미지</td>
-							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;" src="<%=fromProfile%>"></td>
+							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;margin: 0px auto;" src="<%=fromProfile%>"></td>
 						</tr>
 						<tr>
 							<td>작성일자</td>

@@ -15,7 +15,7 @@
 <meta charset="utf-8">
 <% PageDAO pageDAO= new PageDAO(); %>
 <link rel="shortcut icon" type="image/x-icon" href="<%=pageDAO.getPageImage()%>">
-<title>세종대학교 소프트웨어융합대학 :: 홍보 :: 교내 공모전</title>
+<title>세종대학교 소프트웨어융합대학 :: 공지사항</title>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap"
    rel="stylesheet">
 <link
@@ -411,10 +411,8 @@
          </table>
          
          </div>
-            <div class="buttons" style="position: absolute;">
-            
-            <div style="position: absolute; bottom: 120%; "> <!-- 여기는 사용자가 사용할 버튼 -->
-            
+            <div class="buttons" style="position: absolute; bottom: 500px;">
+           
                <a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
                
             <a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
@@ -426,10 +424,7 @@
                class="btn btn-primary pull-right">답변 </a>
                
                <a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
-               
-            </div> 
             
-            <div> <!-- 여기는 게시글 작성자가 사용할 버튼 -->
                
             <%
                if (userID != null && userID.equals(post.getUserID())) {
@@ -451,7 +446,6 @@
             <%
                }
             %>
-            </div>
             
             </div> <!-- 여기까지 버튼 -->
             

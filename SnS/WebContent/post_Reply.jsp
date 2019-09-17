@@ -145,7 +145,7 @@
 </nav>
     </header>
 
-    <div id="container">
+    <div id="container" style="margin-top: -80px; margin-left: -240px;">
     	<section class="content">
     		<header>
         		<h1>답변 작성</h1>
@@ -154,7 +154,7 @@
 		<input type="hidden" name="userID" value="<%=userID%>">
 		<input type="hidden" name="postID" value="<%=postID%>">
         <input type="hidden" name="boardID" value="<%=boardID%>">
-      <table class="table table-bordered" id="reply_table">
+      <table class="table table-bordered" id="reply_table" style="width:1100px">
         <tbody>
             <tr>
                <th>제목: </th>

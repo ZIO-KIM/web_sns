@@ -218,28 +218,7 @@
 		}
 	%>
     
-    <div id="container">
-    <nav>
-      <nav>
-        <h2>
-          <span></span>
-            민원
-        </h2>
-        <ul class="lnb_deps2">
-             <li>
-               <a href='cmp_to_student_council.jsp' class="jwxe_22350 active">학생회 건의사항</a>
-             </li>
-             <li>
-               <a href='cmp_to_school.jsp' class="jwxe_22351 ">학교 건의사항</a>
-            </li>
-            <li>
-              <a href='introduce_cmp.jsp' class="jwxe_22351 ">민원창구 소개</a>
-            </li>
-        </ul>
-      </nav>
-    </nav>
-    </div>
-    <section class="content">
+    <section class="content" style="margin-left: 60px; margin-top: 20px; width: 1100px;">
       <header>
         <h1>글쓰기</h1>
       </header>

@@ -283,7 +283,7 @@
 		<div class="container">
 			<div class="row">
 				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
+					style="text-align: center; border: 1px solid #dddddd; margin-top: -70px;">
 					<thead>
 						<tr>
 							<th colspan="3"
