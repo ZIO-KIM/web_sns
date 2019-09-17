@@ -223,21 +223,6 @@
 	%>
 	
 	<div id="container">
-		<nav>
-			<nav>
-				<h2>
-					<span></span> 민원
-				</h2>
-				<ul class="lnb_deps2">
-					<li><a href='gal_to_student_council.jsp'
-						class="jwxe_22350 active">학생회 건의사항</a></li>
-					<li><a href='gal_to_school.jsp' class="jwxe_22351 ">학교
-							건의사항</a></li>
-					<li><a href='introduce_gal.jsp' class="jwxe_22351 ">민원창구
-							소개</a></li>
-				</ul>
-			</nav>
-		</nav>
 		
 		<div id="modal-login" class="modal fade">
 			<div class="modal-dialog modal-sm">
@@ -323,7 +308,7 @@
 					<tbody>
 						<tr>
 							<th>사용자 아이디:</th>
-							<td colspan="2"><input type="text" name="userID"
+							<td colspan="2"><input type="hidden" name="userID"
 								value=<%=userID%>></td>
 						</tr>
 						<tr>

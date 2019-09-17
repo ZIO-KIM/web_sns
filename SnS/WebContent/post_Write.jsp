@@ -203,8 +203,7 @@
         <tbody>
 			<tr>
 				<th>게시판 ID</th>
-				<td colspan="2"><input type="text" name="boardID"
-						value=<%=boardID%>></td>
+				<td colspan="2"><input type="hidden" name="boardID" value=<%=boardID%>></td>
 			</tr>
             <tr>
                <th>제목: </th>
