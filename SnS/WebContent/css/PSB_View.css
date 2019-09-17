@@ -130,64 +130,19 @@ th, td {
   padding: 15px;
 }
 
-#container {
-    max-width: 1180px;
-    margin: 60px auto 100px;
-    height: 100px; 
+
+.view_table{
+	background-color:yellow;
+	width: 1200px;
+	display:inline-block;
+	float:right;
+	position:absoulte;
+	max-width: 1180px;
+    height: 500px; 
     margin-top: 100px; 
 }
-
-#container nav {
-    float: left;
-    width: 200px;
-    margin-left: 2%; 
-}
-
-#container nav h2 {
-    padding-bottom: 13px;
-    font-size: 25px;
-    color: black; 
-    line-height: 200%;
-    font-weight: normal;
-    word-break: keep-all;
-    background: url(../imgs/bg_lnb_top.png) no-repeat bottom;
-}
-
-.content {
-    width: 100%;
-    /* float:right;
-    
-    margin-top: -200px;  */
-}
-
-.content header h1{
-  color: black;
-  padding-bottom: 15px;
-}
-
-ul, ol {
-    list-style: none;
-}
-
-.lnb_deps2 > li {
-    min-height: 50px;
-    box-sizing: border-box;
-    padding: 15px 3px;
-    border-bottom: 1px solid #dadada;
-    font-size: 16px;
-    color: black;
-    display:block;
-}
-
-.lnb_deps2 > li >a{
-   text-decoration:none ;
-   color: black;
-}
-a{
-  color: black; 
-}
-.view_table{
-	float:right;
+.buttons{
+	background-color:blue;
 }
 footer {
 	display: inline-block;
@@ -254,9 +209,6 @@ footer {
 	white-space: nowrap; 
 }
 
-.container-fluid {
-	width: 1200px;
-}
 
 .navbar-header {
 	float: left; 

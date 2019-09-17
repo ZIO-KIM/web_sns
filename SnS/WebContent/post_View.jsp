@@ -340,55 +340,54 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	<div id="container">
-		<div class="container">
-			<div class="view_table">
-				<table class="table" style="border:none;">
+	<div class="view_table">
+		<table class="table">
 				<tbody>
-					<tr>
-						<td style="width:100px;" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
-						<br><i class="fa fa-lg fa-user"></i> <p style="display:inline-block;font-size:20px;"><%=post.getUserID()%></p></td>
-						
-						<td style="text-align:left;font-size:35px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
-						.replaceAll("\n", "<br>")%></td>
-					</tr>
-					<tr>
-						<td>
-							<span style="font-size:20px;">
-							<%=post.getPostDate()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%=post.getPostHit()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;<%=post.getAgreeCount()%></span>
+					<tr style="height:30px;">
+						<th style="font-size:30px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+						.replaceAll("\n", "<br>")%></th>
+						<td align=right valign=bottom >
+						<span style="font-size:20px;"><%=post.getPostDate()%></span>
 						</td>
 					</tr>
-					<tr>
-						<td style="height: 300px; text-align: left; font-size:20px;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
-				.replaceAll("\n", "<br>")%></td>
+					<tr style="height:30px;",bgcolor:"white">
+						<td>
+							<i class="fa fa-lg fa-user"></i> <p style="font-size:20px;"><%=post.getUserID()%></p>
+						</td>
+						<td align=right valign=bottom>
+							<i class="fa fa-eye"></i>&nbsp;<%=post.getPostHit()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;<%=post.getAgreeCount()%>	
+						</td>
 					</tr>
-					<tr>
-						<td style="height: 300px; text-align: left;">
+					<tr style="height:400px;">
+						<td style="font-size:20px;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+						.replaceAll("\n", "<br>")%></td>
+					</tr>
+					<tr style="height:40px;">
+						<td rowspan="2">
 							<h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID() %>"><%=post.getPostFile() %></a></h5>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			</div>
-				<div class="buttons">
-					<a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
-				<a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
-					href="post_agreeAction.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
-					class="btn btn-primary pull-right"
-					style="background-color: #c70027;">추천 </a> <a
-					href="post_Reply.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
-					class="btn btn-primary pull-right">답변 </a>
-					<a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
-				<%
-					if (userID != null && userID.equals(post.getUserID())) {
-				%>
-					<a href="post_Update.jsp?postID=<%=post.getPostID()%>"
-					class="btn btn-primary">수정</a>
-				<%
-					}
-				%>
+	</div>
+		
+	<div class="buttons">
+		<a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
+		<a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
+		href="post_agreeAction.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
+		class="btn btn-primary pull-right"
+		style="background-color: #c70027;">추천 </a> <a
+		ref="post_Reply.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
+		class="btn btn-primary pull-right">답변 </a>
+		<a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
+		<%
+			if (userID != null && userID.equals(post.getUserID())) {
+		%>
+		<a href="post_Update.jsp?postID=<%=post.getPostID()%>"
+			class="btn btn-primary">수정</a>
+			<%
+				}
+			%>
 				<%
 					int userLevel=userDAO.getUserEmailChecked(userID);
 					if (userID != null && userID.equals(post.getUserID())||userLevel==2) {
@@ -470,8 +469,10 @@
 					
 					
 			</div>
-	</div>
-		<div class="im_footerWrap">
+
+
+	
+	<div class="im_footerWrap">
    	<div class="im_footer" style="width: 1600px;">
       	<div class="im_footer_logo">
 	         <a href="index.jsp"><img src="imgs/footer_logo.PNG" alt="logo" border="0" style="width: 250px; margin-left: 20px; margin-right: 20px;"></a>                     </div>
@@ -487,7 +488,7 @@
          	<a href="#"><span class="icon"><i class="fa fa-chevron-up"></i></span><span class="label">TOP</span></a>
          </div>
       </div>
-   </div>	
+      </div>
 </body>
 
 </html>
