@@ -77,7 +77,7 @@ public class GalleryDAO {
 	}
 	
 	public int update(int galID, String galTitle, String galContent,String galFile, String galRealFile) {
-		String SQL = "UPDATE gallery SET galTitle = ?, galContent = ?, galFile=?,galRealFile=? WHERE galID = ?";
+		String SQL = "UPDATE gallery SET galTitle = ?, galContent = ?, galFile=?, galRealFile=? WHERE galID = ?";
 		Connection conn =null;
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;

@@ -59,7 +59,7 @@ public class GalleryUpdateServlet extends HttpServlet {
 		
 		if(file !=null) {
 			String ext = file.getName().substring(file.getName().lastIndexOf(".")+1);
-			if(ext.equals("jpg") ||ext.equals("png") ||ext.equals("gif")) {
+			if(ext.equals("jpg") ||ext.equals("png") ||ext.equals("gif")||ext.equals("jpeg")) {
 				String galFile = multi.getOriginalFileName("galFile");
 				String galRealFile = file.getName();
 				galleryDAO.update(galID,galTitle, galContent,galFile,galRealFile);
