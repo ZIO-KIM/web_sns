@@ -199,12 +199,9 @@
       </header>
       <form method="post" action="./post" enctype="multipart/form-data">
       	<input type="hidden" name="userID" value=<%=userID%>>
+      	<input type="hidden" name="boardID" value=<%=boardID%>>
       <table class="table table-bordered">
         <tbody>
-			<tr>
-				<th>게시판 ID</th>
-				<td colspan="2"><input type="hidden" name="boardID" value=<%=boardID%>></td>
-			</tr>
             <tr>
                <th>제목: </th>
                <td><input type="text" placeholder="제목을 입력하세요. " name="postTitle" maxlength="50" class="form-control"/></td>
@@ -230,6 +227,7 @@
             <tr>
                <td colspan="2">
                  <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+                 <input type="checkbox" name="anonymous" checked data-toggle="toggle" data-on="닉네임" data-off="익명" data-onstyle="success" data-offstyle="info">
                </td>
              </tr>
           
