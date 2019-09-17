@@ -36,11 +36,11 @@
     <script src="js/Backstretch.js" type="text/javascript"></script>
     <script src="js/mainpage.js"></script>
     
-    <link rel="stylesheet" href="css/15inch_board_mainpage.css">
+    <link rel="stylesheet" href="css/mainpage.css">
     <style>
     	body {
 			background-image: url("imgs/drop_7.jpg");
-			background-size: 100%;
+			background-size: 100%; 
 			background-repeat: no-repeat; 
 			background-position: 0% 0%; 
 		}

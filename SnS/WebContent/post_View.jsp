@@ -36,7 +36,6 @@
 
 <style>
    body{
-      background-color:#f8f8f8;
    }
    .container{
       background-color:#ffffff;
@@ -381,30 +380,30 @@
 </div>
    
    <div id="container" style="">
-      <div class="container" style="">
-         <div class="view_table" style="">
-            <table class="table" style="background-color: yellow;">
+      <div class="container" style="margin-top: 100px;">
+         <div class="view_table" style="margin-top: -30px; margin-left: 700px;">
+            <table class="table" style="margin-left: 24px; margin-top: 17px; background-color:#f8f8f8; position: absolute; width: 1200px;">
             <tbody style="">
-               <tr>
-                  <td style="" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px;" src="<%=fromProfile%>">
+               <tr> <!-- 이용자 프로필, 글  제목 -->
+       <!-- 제목 --><td style="text-align:left;font-size:35px;padding-top: 20px;padding-left: 20px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+                  .replaceAll("\n", "<br>")%></td>
+ <!-- 이용자 프로필 --><td style="width: 200px;  padding-top: 20px; text-align: center;" rowspan="2"><img class="media-object img-circle" style="width:60px;height:60px; display: block; margin: 0px auto;" src="<%=fromProfile%>">
                   <br><i class="fa fa-lg fa-user"></i> <a style="display:inline-block;font-size:20px;text-decoration:none;"type="button" data-toggle="modal"
                   data-target="#noteModal" data-whatever="<%=writer.getUserName() %>"><%=writer.getUserName() %></a></td>
                   
-                  <td style="text-align:left;font-size:35px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
-                  .replaceAll("\n", "<br>")%></td>
                </tr>
-               <tr>
+               <tr> <!-- 시간, 조회수, 추천수 디스플레이 부분 -->
                   <td>
-                     <span style="font-size:20px;">
+                     <span style="font-size:20px; padding-left: 10px;">
                      <%=post.getPostDate()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%=post.getPostHit()%>&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;<%=post.getAgreeCount()%></span>
                   </td>
                </tr>
-               <tr>
-                  <td style="border: none; height: 300px; text-align: left; font-size:20px; width: 1200px"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
+               <tr> <!--게시글 디스플레이 부분 -->
+                  <td style="border: none; height: 300px; text-align: left; font-size:20px;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
             .replaceAll("\n", "<br>")%></td>
                </tr>
-               <tr>
-                  <td style="height: 300px; text-align: left; style="background-color: red;">
+               <tr style=""> <!-- 맨 밑 파일 다운로드 부분 -->
+                  <td style="height: 50px; text-align: left; style="">
                      <h5><a href="post_Download.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID() %>"><%=post.getPostFile() %></a></h5>
                   </td>
                </tr>
@@ -412,15 +411,26 @@
          </table>
          
          </div>
-            <div class="buttons">
+            <div class="buttons" style="position: absolute;">
+            
+            <div style="position: absolute; bottom: 120%; "> <!-- 여기는 사용자가 사용할 버튼 -->
+            
                <a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
+               
             <a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
                href="post_agreeAction.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
                class="btn btn-primary pull-right"
-               style="background-color: #c70027;">추천 </a> <a
-               href="post_Reply.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
+               style="background-color: #c70027;">추천 </a> 
+               
+               <a href="post_Reply.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
                class="btn btn-primary pull-right">답변 </a>
+               
                <a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
+               
+            </div> 
+            
+            <div> <!-- 여기는 게시글 작성자가 사용할 버튼 -->
+               
             <%
                if (userID != null && userID.equals(post.getUserID())) {
             %>
@@ -429,6 +439,8 @@
             <%
                }
             %>
+            
+            
             <%
                int userLevel=userDAO.getUserEmailChecked(userID);
                if (userID != null && userID.equals(post.getUserID())||userLevel==2) {
@@ -440,6 +452,9 @@
                }
             %>
             </div>
+            
+            </div> <!-- 여기까지 버튼 -->
+            
             <br> <br>
             <%
                ArrayList<PostDTO> list = postDAO.getReply(post.getPostGroup(), boardID);
