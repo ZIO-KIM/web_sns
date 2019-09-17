@@ -130,7 +130,7 @@
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('신고가 접수되었습니다.\\r\\n신고해주셔서 감사합니다.')");
-	script.println("history.back();");
+	script.println("location.href=document.referrer");
 	script.println("</script>");
 	script.close();
 %>

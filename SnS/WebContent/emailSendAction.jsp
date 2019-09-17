@@ -81,7 +81,7 @@
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('인증메일이 발송되었습니다.\\r\\n회원가입시 입력했던 메일을 확인해주세요.')");
-	script.println("history.back();");
+	script.println("location.href='index.jsp'");
 	script.println("</script>");
 	script.close();
 %>

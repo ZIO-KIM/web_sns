@@ -235,7 +235,7 @@
       </header>
      	<img style="margin-top:50px;"id="council_logo"src="imgs/data_science_logo.jpg" width="300" height="300" align="left">
       	<div class="introduce_council">
-      		제 3대 학생회 D$oN<br>
+      		D$oN<br>
       		<hr>
       		학생회장 : 권도윤 <br>
       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;010-0000-0000<br>

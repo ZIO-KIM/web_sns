@@ -82,7 +82,7 @@
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('회원님의 아이디가 이메일로 전송되었습니다.')");
-	script.println("history.back()");
+	script.println("location.href=document.referrer");
 	script.println("</script>");
 	script.close();
 %>

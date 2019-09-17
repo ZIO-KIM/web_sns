@@ -23,8 +23,8 @@
    if(userID==null){
       PrintWriter script =response.getWriter();
       script.println("<script>");
-      script.println("alert('로그인을 해주세요.');");
-      script.println("location.href='userLogin.jsp';");
+      script.println("alert('로그인을 해주세요.')");
+      script.println("index.jsp");
       script.println("</script>");
       script.close();
       return;
@@ -120,11 +120,6 @@
 			script.close();
 			return;
 		}
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("history.go(-2)");
-		script.println("</script>");
-		script.close();
-		return;
+		response.sendRedirect("cmp_View.jsp?isStudent="+isStudent+"&cmpID="+cmpID);
 	}
 %>

@@ -64,12 +64,6 @@ public class PostServlet extends HttpServlet {
 			postRealFile = file.getName();
 		}
 		postDAO.write(new PostDTO(0, 0,userID,"", postTitle,postContent,postDivide,postFile,postRealFile,0,0,0,0,0,0),boardID);
-
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("history.go(-2);");
-		script.println("</script>");
-		script.close();
-		return;
+		response.sendRedirect("post.jsp?boardID="+boardID);
 	}
 }
