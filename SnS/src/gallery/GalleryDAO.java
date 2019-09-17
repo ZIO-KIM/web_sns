@@ -172,6 +172,39 @@ public class GalleryDAO {
 		return list;
 	}
 	
+	public ArrayList<GalleryDTO> getLastList(){ 
+		String SQL = "SELECT * FROM gallery WHERE galAvailable = 1 ORDER BY galID DESC LIMIT 4";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;	
+		ArrayList<GalleryDTO> list = new ArrayList<GalleryDTO>();
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				GalleryDTO gal = new GalleryDTO();
+				gal.setGalID(rs.getInt(1));
+				gal.setGalTitle(rs.getString(2));
+				gal.setUserID(rs.getString(3));
+				gal.setGalDate(rs.getString(4));
+				gal.setGalContent(rs.getString(5));
+				gal.setGalFile(rs.getString(6));
+				gal.setGalRealFile(rs.getString(7));
+				gal.setGalHit(rs.getInt(8));
+				gal.setGalAvailable(rs.getInt(9));
+				list.add(gal);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return list;
+	}
+	
 	public GalleryDTO getGal(int galID) {
 		String SQL = "SELECT * FROM gallery WHERE galID = ?";
 		Connection conn=null;

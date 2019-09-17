@@ -84,4 +84,20 @@
 		<servlet-name>NoteServlet</servlet-name>
 		<url-pattern>/note</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>EmailUpdateServlet</servlet-name>
+		<servlet-class>email.EmailUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmailUpdateServlet</servlet-name>
+		<url-pattern>/emailUpdate</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EmailOpenServlet</servlet-name>
+		<servlet-class>email.EmailOpenServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmailOpenServlet</servlet-name>
+		<url-pattern>/emailOpen</url-pattern>
+	</servlet-mapping>
 </web-app>

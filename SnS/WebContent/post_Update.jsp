@@ -50,7 +50,7 @@
 			boardID = Integer.parseInt(request.getParameter("boardID"));
 		}
 		PostDTO post=new PostDAO().getPost(postID,boardID);
-		if(!userID.equals(post.getUserID())){
+		if(userID.equals(post.getUserID())==false){
 			PrintWriter script =response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");
@@ -161,19 +161,6 @@
         <h1>글수정</h1>
       </header>
       <form method="post" action="post_UpdateAction.jsp?boardID=<%=boardID %>&postID=<%=post.getPostID()%>">
-      <div class="form-group col-sm-3">
-      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
-      	<select name="postDivide" class="form-control">
-      		<option value="선택 안함" selected>선택 안함</option>
-      		<option value="컴퓨터공학과">컴퓨터공학과</option>
-      		<option value="정보보호학과" >정보보호학과</option>
-      		<option value="소프트웨어학과">소프트웨어학과</option>
-      		<option value="데이터사이언스학과">데이터사이언스학과</option>
-      		<option value="지능기전공학부">지능기전공학부</option>
-      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
-      		<option value="만화애니메이션전공">만화애니메이션전공</option>
-      	</select>
-      </div>
       <table class="table table-bordered">
         <tbody>
             <tr>
@@ -183,10 +170,6 @@
             <tr>
                <th>내용: </th>
                <td><textarea cols="10" name="postContent" maxlength="2048" style="height:350px;" class="form-control"><%=post.getPostContent()%></textarea></td>
-            </tr>
-            <tr>
-               <th>첨부파일: </th>
-               <td><input type="text" placeholder="파일을 선택하세요. " name="postFile" class="form-control"/></td>
             </tr>
             <tr>
                <td colspan="2">

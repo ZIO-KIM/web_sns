@@ -33,6 +33,29 @@ public class EmailDAO {
 		return -1; 
 	}
 	
+	public String getEmailAddress(String divide){
+		String SQL ="SELECT email FROM email WHERE divide =?";
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		try {
+			conn=DatabaseUtil.getConnection();
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1, divide);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {if(conn!=null) conn.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(pstmt!=null) pstmt.close();} catch(Exception e) {e.printStackTrace();}
+			try {if(rs!=null) rs.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		return "";
+	}
+	
 	public EmailDTO getEmail(int emailID){
 		String SQL ="SELECT * FROM email WHERE emailID =?";
 		Connection conn=null;
@@ -89,8 +112,8 @@ public class EmailDAO {
 		return list;
 	}
 	
-	public int create(EmailDTO email) {
-		String SQL = "INSERT INTO email VALUES(?, ?, ?, 1)";
+	public int open(EmailDTO email) {
+		String SQL = "INSERT INTO email VALUES(?, ?, ?, ?)";
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -100,7 +123,7 @@ public class EmailDAO {
 			pstmt.setInt(1,getNext());
 			pstmt.setString(2,email.getDivide());
 			pstmt.setString(3,email.getEmail());
-			pstmt.setInt(4,email.getStatus());
+			pstmt.setInt(4,1);
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -122,8 +145,7 @@ public class EmailDAO {
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setString(1,email.getDivide());
 			pstmt.setString(2,email.getEmail());
-			pstmt.setInt(3,email.getStatus());
-			pstmt.setInt(4,email.getEmailID());
+			pstmt.setInt(3,email.getEmailID());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

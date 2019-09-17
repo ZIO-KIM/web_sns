@@ -46,7 +46,7 @@
 		script.close();
 		return;		
 	} else {
-		if (request.getParameter("postTitle") == null || request.getParameter("cmpContent") == null
+		if (request.getParameter("postTitle") == null || request.getParameter("postContent") == null
 		|| request.getParameter("postTitle").equals("")
 		|| request.getParameter("postContent").equals("")) {
 	PrintWriter script = response.getWriter();
@@ -70,7 +70,7 @@
 	} else {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("history.back()");
+		script.println("history.go(-2)");
 		script.println("</script>");
 		script.close();
 	}

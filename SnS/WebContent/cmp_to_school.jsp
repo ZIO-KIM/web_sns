@@ -136,7 +136,7 @@
     
 
       
-      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px; ">
+      <div class="im_footer_right" style="margin-left:880px; margin-top: -100px; ">
          	<div class="im_footer_menu">
                <ul>
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>

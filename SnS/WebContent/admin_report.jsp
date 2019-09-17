@@ -92,15 +92,18 @@
   		</button>
   		<div class="collapse navbar-collapse" id="navbarNavDropdown">
     		<ul class="navbar-nav">
-      			<li class="nav-item active">
+      			<li class="nav-item ">
         			<a class="nav-link" href="admin_user.jsp">User <span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item">
        	 		<a class="nav-link" href="admin_board.jsp">Board</a>
      	 		</li>
-     	 		<li class="nav-item">
+     	 		<li class="nav-item ">
+       	 		<a class="nav-link" href="admin_email.jsp">Email</a>
+     	 		</li>
+     	 		<li class="nav-item active">
       			  <a class="nav-link" href="admin_report.jsp">Report</a>
-      			</li>
+    			  </li>
      	 		<li class="nav-item">
        	 		<a class="nav-link" href="admin_customizing.jsp">Customizing</a>
      	 		</li>
@@ -265,24 +268,6 @@
 		</div>
 	</div>
 
- 
-		<div class="im_footerWrap">
-   	<div class="im_footer" style="width: 1600px;">
-      	<div class="im_footer_logo">
-	         <a href="index.jsp"><img src="imgs/footer_logo.PNG" alt="logo" border="0" style="width: 250px; margin-left: 20px; margin-right: 20px;"></a>                     </div>
-         <div class="im_footer_right">
-         	<div class="im_footer_menu">
-               <ul>
-                  <li class="active"><a href="index.jsp">메인 페이지</a></li><li><a href="http://www.sejong.ac.kr/">세종대학교</a></li><li><a href="http://www.sejongstudent.com/xe/">세종대학교 총학생회</a></li><li><a href="https://ko-kr.facebook.com/sejong1sc/">세종소융 페이스북</a></li>             </ul>
-            </div>
-            <div class="im_footer_info">
-            	<span class="contact">010-0000-0000 | sejongsc3@gmail.com | 학생회관 409호 </span>                              <span class="copyright">COPYRIGHT ⓒ 세종대학교 소프트웨어융합대학 All right reserved.</span>                           </div>
-            </div>
-         <div class="im_gototop">
-         	<a href="#"><span class="icon"><i class="fa fa-chevron-up"></i></span><span class="label">TOP</span></a>
-         </div>
-      </div>
-   </div>
 </body>
 
 </html>
