@@ -240,6 +240,7 @@
                </script>
                <div class="modal-body">
                   <form action="userLoginAction.jsp" id="frmLogin" method="post">
+                  	<input type="hidden" name="nextURL" value="index.jsp">
                      <div class="form-group">
                         <input type="text" name="userID" id="uid" value=""
                            placeholder="아이디" class="form-control" required="">

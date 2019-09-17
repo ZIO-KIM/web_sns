@@ -22,41 +22,43 @@
 		script.close();
 		return;
 	}
+	String nextURL="index.jsp"; 
+	if(request.getParameter("nextURL")!=null){
+		nextURL=request.getParameter("nextURL");
+	}
 	UserDAO userDAO = new UserDAO();
 	int result=userDAO.login(userID,userPassword);
 	if(result ==1){
 		session.setAttribute("userID",userID);
-		PrintWriter script = response.getWriter();
+		PrintWriter script=response.getWriter();
 		script.println("<script>");
-		script.println("history.go(-1)");
-		script.println("location.reload(false)");
+		script.println("location.href=document.referrer");
 		script.println("</script>");
 		script.close();
-		return;
 	}else if(result==0){
 		PrintWriter script=response.getWriter();
 		script.println("<script>");
 		script.println("alert('비밀번호가 틀립니다.')");
-		script.println("history.back()");
+		script.println("location.href=document.referrer");
 		script.println("</script>");
 		script.close();
-		return;
 	}else if(result==-1){
 		PrintWriter script=response.getWriter();
 		script.println("<script>");
 		script.println("alert('존재하지 않는 아이디입니다.')");
-		script.println("history.back()");
+		script.println("location.href=document.referrer");
 		script.println("</script>");
 		script.close();
-		return;
 	}else if(result==-2){
 		PrintWriter script=response.getWriter();
 		script.println("<script>");
 		script.println("alert('데이터베이스 오류가 발생했습니다.')");
-		script.println("history.back()");
+		script.println("location.href=document.referrer");
 		script.println("</script>");
 		script.close();
-		return;
 	}
 	
 %>
+<script>
+	document.write('<a href="http://twitter.com/?status=' + document.referrer + '">test</a>');
+</script>

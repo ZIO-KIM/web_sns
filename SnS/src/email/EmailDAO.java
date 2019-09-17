@@ -120,7 +120,7 @@ public class EmailDAO {
 		try {
 			conn=DatabaseUtil.getConnection();
 			pstmt=conn.prepareStatement(SQL);
-			pstmt.setInt(1,getNext());
+			pstmt.setInt(1,email.getEmailID());
 			pstmt.setString(2,email.getDivide());
 			pstmt.setString(3,email.getEmail());
 			pstmt.setInt(4,1);
