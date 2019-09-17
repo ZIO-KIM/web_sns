@@ -4,6 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="complaints.ComplaintsDTO" %>
 <%@ page import="complaints.ComplaintsDAO" %>
+<%@ page import="gallery.GalleryDTO" %>
+<%@ page import="gallery.GalleryDAO" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.PostDTO" %>
 <%@ page import="page.PageDAO" %>
@@ -312,243 +314,91 @@
     	</div>
     </section>
     <hr class="line">
-        
-    <!-- <table class="board">
-    	<tr>
-    		<td style="border-left: hidden; border-top: hidden;"><h2><a href='#' id='board_content' style="text-decoration: none; color: black; ">공지사항</a></h2></td>
-    		<td style="border-right: hidden; border-top: hidden;"><h2><a href='#' id='board_content' style="text-decoration: none; color: black; ">홍보게시판</a></h2></td>
-    	</tr>
-    	<tr>
-    		<td style="border-left: hidden; border-bottom: hidden;"><h2><a href='#' id='board_content' style="text-decoration: none; color: black; ">갤러리</a></h2></td>
-    		<td style="border-right: hidden; border-bottom: hidden;"><h2><a href='departments.jsp' id='board_content' style="text-decoration: none; color: black; ">과별 게시판</a></h2></td>
-    	</tr>
-    </table>
-    -->
-    
-    <div><h1 id="recent_board" style="font-size: 30px; font-family: 'Nanum Gothic', sans-serif;">최근 게시물</h1></div>
-    
-    <!--  
-    <table class="type02">
-    	<tr>
-        	<th scope="row">공지사항</th>
-        	<th scope="row">홍보 게시판</th>
-    	</tr>
-    	<tr>
-    		<td>내용이 들어갑니다.</td>
-        	<td>내용이 들어갑니다.</td>
-    	</tr>
-    	<tr>
-        	<th scope="row">갤러리</th>
-        	<th scope="row">HOT 게시판</th>
-    	</tr>
-    	<tr>
-    		<td>내용이 들어갑니다.</td>
-        	<td>내용이 들어갑니다.</td>
-    	</tr>
-	</table>
-	-->
-    
-    
-    <!--<div id='all_boards' class="container-fluid">
-       <div id="notice" class="col-md-4">
-            <h2><a href='#' id='Notice'>공지사항</a></h2>
-            <br>
-            <table class="table table-hover">
-            <%
-         	   ArrayList<PostDTO> notice= null;
-				notice = postDAO.getList(1, 1);
-				for (int i = 0; i < notice.size(); i++) {
-			%>
-			<tr>
-				<td><%=notice.get(i).getPostID() %></td>
-				<td><a id="Notice" href="post_View.jsp?boardID=<%=1 %>&postID=<%=notice.get(i).getPostID()%>"
-					style="text-decoration: none"><%=notice.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-				<td><%=notice.get(i).getPostDate().substring(0,11)+notice.get(i).getPostDate().substring(11,13)+"시"+notice.get(i).getPostDate().substring(14,16)+"분" %></td>
-			</tr>
-			<%
-				}
-			%>
-			</table>
-       </div>
-
-       <div id="promotion" class="col-md-4">
-            <h2><a href='#' id='"promotion"'>홍보게시판</a></h2>
-            <br>
-            <table class="table table-hover">
-            <%
-          	  ArrayList<PostDTO> promotion= null;
-				promotion = postDAO.getList(24, 1);
-				for (int i = 0; i < promotion.size(); i++) {
-			%>
-			<tr>
-				<td><%=promotion.get(i).getPostID() %></td>
-				<td><a id="promotion" href="post_View.jsp?boardID=<%=24 %>&postID=<%=promotion.get(i).getPostID()%>"
-					style="text-decoration: none"><%=promotion.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-				<td><%=promotion.get(i).getPostDate().substring(0,11)+promotion.get(i).getPostDate().substring(11,13)+"시"+promotion.get(i).getPostDate().substring(14,16)+"분" %></td>
-			</tr>
-			<%
-				}
-			%>
-			</table>
-       </div>
-    
-       <div id="claim" class="col-md-4">
-            <h2><a href='#' id='"claim"'>민원게시판</a></h2>
-            <br>
-            <table class="table table-hover">
-            <%
-          	  ArrayList<ComplaintsDTO> complain= null;
-         	   complain = cmpDAO.getList(1, 1);
-				for (int i = 0; i < complain.size(); i++) {
-			%>
-			<tr>
-				<td><%=complain.get(i).getCmpID() %></td>
-				<td><a id="claim" href="cmp_View.jsp?isStudent=<%=1 %>&cmpID=<%=complain.get(i).getCmpID()%>"
-					style="text-decoration: none"><%=complain.get(i).getCmpTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></a></td>
-				<td><%=complain.get(i).getCmpDate().substring(0,11)+complain.get(i).getCmpDate().substring(11,13)+"시"+complain.get(i).getCmpDate().substring(14,16)+"분" %></td>
-			</tr>
-			<%
-				}
-			%>
-			</table>
-       </div>
-
-       <div id="departments">
-            <h2><a href='departments.jsp' id='Departments'>과별 게시판</a></h2>
-            <a href='computer_science.jsp' id='Departments'>컴퓨터공학과</a><br/>
-            <a href='software.jsp' id='Departments'>소프트웨어학과</a><br/>
-            <a href='data_science.jsp' id='Departments'>데이터사이언스학과</a><br/>
-            <a href='information_security.jsp' id='Departments'>정보보호학과</a><br/>
-            <a href='intelligent_mechanics_engineering.jsp' id='Departments'>지능기전공학부</a><br/>
-            <a href='cartoon_animation.jsp' id='Departments'>만화애니메이션텍</a><br/>
-            <a href='design_innovation.jsp' id='Departments'>디자인이노베이션학과</a><br/>
-       </div>
-    </div>
-    -->
     
     <div class="m_con"><!-- 핫이슈 -->
 	<section class="m_notice">
 		<!-- 공지사항 -->
 		<h3><a href="post.jsp?boardID=1" style="text-decoration:none;color: black;">공지사항</a></h3>
 		<ul style="list-style:none;">          
+		<%
+         	   ArrayList<PostDTO> notice= null;
+				notice = postDAO.getLastList(1);
+				for (int i = 0; i < notice.size(); i++) {
+		%>
 		<li>
 			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
-				웹소설 공모전 정말 힘드네요
+				<%=notice.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
-			<span>2019.09.05</span>
+			<span><%=notice.get(i).getPostDate().substring(0,11) %></span>
 		</li>
-		<li>
-			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134240" style="text-decoration:none;color: black;">
-				27시간째 눈뜨고 있어요
-			</a>
-			<span>2019.09.04</span>
-		</li>
-		<li>
-			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=133918" style="text-decoration:none;color: black;">
-				강의도 못 들었어요
-			</a>
-			<span>2019.09.03</span>
-		</li>
-		<li>
-			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134011" style="text-decoration:none;color: black;">
-				너무 졸리고 피곤해요
-			</a>
-			<span>2019.09.03</span>
-		</li>
+		<%
+				}
+		%>
 		</ul>
 	</section>
 	
  	<section class="m_notice">
 		<!-- 공지사항 -->
-		<h3><a href="" style="text-decoration:none;color: black;">홍보 게시판</a></h3>
-		<ul style="list-style:none;">        
-		<li>
-			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=135202" style="text-decoration:none;color: black;">
-				[컴퓨터보안전공] 2020학년도 전기 컴퓨터학과 컴퓨터보안 전공 설명회 
-			</a>
-			<span>2019.09.16</span>
-		</li>
-		<li>
-			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=133418" style="text-decoration:none;color: black;">
-				2019학년도 후기 대학원 종합시험 시행 공고
-			</a>
-			<span>2019.08.29</span>
-		</li>
-		<li>
-			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=133395" style="text-decoration:none;color: black;">
-				Summer 2019, DMIS Invited Lecture
-			</a>
-			<span>2019.08.28</span>
-		</li>
-		<li>
-			<a href="/cs/board/notice_grad.do?mode=view&amp;articleNo=133394" style="text-decoration:none;color: black;">
-				[교양교육원]2019학년도 2학기 교육조교 모집 안내
-			</a>
-			<span>2019.08.28</span>
-		</li>
-		</ul>
-	</section>
-  
-  	<section class="m_notice">
-		<!-- 공지사항 -->
 		<h3><a href="student_council_photo.jsp" style="text-decoration:none;color: black;">갤러리</a></h3>
-		<ul style="list-style:none;">       
+		<ul style="list-style:none;">          
+		<%
+				GalleryDAO galleryDAO = new GalleryDAO();
+         	   ArrayList<GalleryDTO> gallery= null;
+				gallery = galleryDAO.getLastList();
+				for (int i = 0; i < gallery.size(); i++) {
+		%>
 		<li>
-			<a href="/cs/board/course.do?mode=view&amp;articleNo=135093" style="text-decoration:none;color: black;">
-				[네이버] 네이버 개발 직군 신입사원 공채 안내
+			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+				<%=gallery.get(i).getGalTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
-			<span>2019.09.11</span>
+			<span><%=gallery.get(i).getGalDate().substring(0,11) %></span>
 		</li>
+		<%
+				}
+		%>
+		</ul>
+	</section>
+  
+  	<section class="m_notice">
+		<!-- 공지사항 -->
+		<h3><a href="post.jsp?boardID=24" style="text-decoration:none;color: black;">홍보 게시판</a></h3>
+		<ul style="list-style:none;">          
+		<%
+         	   ArrayList<PostDTO> promotion= null;
+				promotion = postDAO.getLastList(24);
+				for (int i = 0; i < promotion.size(); i++) {
+		%>
 		<li>
-			<a href="/cs/board/course.do?mode=view&amp;articleNo=134846" style="text-decoration:none;color: black;">
-				[대우건설] 신입사원 채용(9/16~10/1)  및 Job Cafe 신청(선착순)
+			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+				<%=promotion.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
-			<span>2019.09.10</span>
+			<span><%=promotion.get(i).getPostDate().substring(0,11) %></span>
 		</li>
-		<li>
-			<a href="/cs/board/course.do?mode=view&amp;articleNo=134798" style="text-decoration:none;color: black;">
-				기아자동차 빅데이터AI부문 직무설명회(9/20, 금)
-			</a>
-			<span>2019.09.09</span>
-		</li>
-		<li>
-			<a href="/cs/board/course.do?mode=view&amp;articleNo=134590" style="text-decoration:none;color: black;">
-				2019년 청년 과학기술인 일자리 박람회 안내
-			</a>
-			<span>2019.09.06</span>
-		</li>
+		<%
+				}
+		%>
 		</ul>
 	</section>
   
   
   	<section class="m_notice">
 		<!-- 공지사항 -->
-		<h3><a href="" style="text-decoration:none;color: black;">HOT 게시판</a></h3>
+		<h3><a href="hot_post.jsp" style="text-decoration:none;color: black;">HOT 게시판</a></h3>
 		<ul style="list-style:none;">          
+		<%
+         	   ArrayList<PostDTO> hotList= null;
+				hotList = postDAO.getLastHitList();
+				for (int i = 0; i < hotList.size(); i++) {
+		%>
 		<li>
-			<a href="/cs/board/news.do?mode=view&amp;articleNo=135194" style="text-decoration:none;color: black;">
-				[블록체인연구소] 2019년 가을학기 정기 세미나 개최 안내
+			<a href="/cs/board/notice_under.do?mode=view&amp;articleNo=134482" style="text-decoration:none;color: black;">
+				<%=hotList.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %>
 			</a>
-			<span>2019.09.16</span>
+			<span><%=hotList.get(i).getPostDate().substring(0,11) %></span>
 		</li>
-		<li>
-			<a href="/cs/board/news.do?mode=view&amp;articleNo=134632" style="text-decoration:none;color: black;">
-				로봇산업진흥원 대학생 멘토(보조강사) 모집
-			</a>
-			<span>2019.09.06</span>
-		</li>
-		<li>
-			<a href="/cs/board/news.do?mode=view&amp;articleNo=133282" style="text-decoration:none;color: black;">
-				[SW중심대학] 2019년 하반기 TOPCIT 정기평가 설명회 개최 안내
-			</a>
-			<span>2019.08.27</span>
-		</li>
-		<li>
-			<a href="/cs/board/news.do?mode=view&amp;articleNo=132970" style="text-decoration:none;color: black;">
-				제2회 국민대학교 자율주행 경진대회 안내
-			</a>
-			<span>2019.08.26</span>
-		</li>
+		<%
+				}
+		%>
 		</ul>
 	</section>
 </div>
