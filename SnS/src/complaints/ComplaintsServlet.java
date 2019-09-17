@@ -47,6 +47,11 @@ public class ComplaintsServlet extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		String userID = multi.getParameter("userID");
+		String anonymous=null;
+		anonymous=multi.getParameter("anonymous");
+		if(anonymous!=null) {
+			userID="¿Õ∏Ì";
+		}
 		String cmpTitle = multi.getParameter("cmpTitle");
 		String cmpContent = multi.getParameter("cmpContent");
 		String cmpDivide = multi.getParameter("cmpDivide");
