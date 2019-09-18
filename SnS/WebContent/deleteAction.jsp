@@ -4,6 +4,7 @@
 <%@ page import="post.PostDAO" %>
 <%@ page import="agree.AgreeDTO" %>
 <%@ page import="user.UserDTO" %>
+<%@ page import="user.UserDAO" %>
 <%@ page import="java.io.PrintWriter" %>
 <%
 	String userID = null;
@@ -38,9 +39,10 @@
 	}
 	ComplaintsDAO cmpDAO=new ComplaintsDAO();
 	PostDAO postDAO=new PostDAO();
+	UserDAO userDAO=new UserDAO();
 	
 	if(boardID==0){
-		if (userID.equals(cmpDAO.getUserID(cmpID,isStudent))) {
+		if (userID.equals(cmpDAO.getUserID(cmpID,isStudent))||userDAO.getUser(userID).getUserEmailChecked()==2) {
 			int result=new ComplaintsDAO().delete(cmpID, isStudent);
 			if(result==1){
 				PrintWriter script = response.getWriter();
@@ -68,7 +70,7 @@
 			script.close();
 		}
 	}else{
-		if (userID.equals(postDAO.getUserID(postID,boardID))) {
+		if (userID.equals(postDAO.getUserID(postID,boardID))||userDAO.getUser(userID).getUserEmailChecked()==2) {
 			int result=new PostDAO().delete(postID, boardID);
 			if(result==1){
 				PrintWriter script = response.getWriter();

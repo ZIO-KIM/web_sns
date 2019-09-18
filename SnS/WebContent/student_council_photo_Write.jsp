@@ -152,7 +152,7 @@
     
 
       
-      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px; ">
+      <div class="im_footer_right" style="margin-left:880px; margin-top: -100px; ">
          	<div class="im_footer_menu">
                <ul>
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>
@@ -298,19 +298,14 @@
 			</div>
 		</div>	
 		
-		<section class="content">
+		<section class="content" style="margin-top: -40px; margin-left: 20px; width: 1100px;">
 			<header>
 				<h1>사진 업로드</h1>
 			</header>
 			<form method="post" action="./gallery" enctype="multipart/form-data">
-
+				<input type="hidden" name="userID" value=<%=userID%>>
 				<table class="table table-bordered">
 					<tbody>
-						<tr>
-							<th>사용자 아이디:</th>
-							<td colspan="2"><input type="hidden" name="userID"
-								value=<%=userID%>></td>
-						</tr>
 						<tr>
 							<th>사진 제목:</th>
 							<td><input type="text" placeholder="사진 제목"

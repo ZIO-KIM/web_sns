@@ -24,7 +24,11 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap"
 	rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 <style type="text/css">
 a, a:hover {
@@ -121,7 +125,7 @@ a, a:hover {
     
 
       
-      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px; ">
+      <div class="im_footer_right" style="margin-left:880px; margin-top: -100px; ">
          	<div class="im_footer_menu">
                <ul>
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>
@@ -130,7 +134,7 @@ a, a:hover {
                 <% 
                   if (userID == null) {
                	%>
-                  	<li><a href="#modal-login">로그인</a></li>   
+                  	<li><a href="#modal-login" data-toggle="modal">로그인</a></li>   
                 <%     
                   } else {
                 %>
@@ -350,10 +354,6 @@ a, a:hover {
          </div>
       </div>
    </div>
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -134,7 +134,7 @@
     
 
       
-      <div class="im_footer_right" style="margin-left:950px; margin-top: -100px; ">
+      <div class="im_footer_right" style="margin-left:880px; margin-top: -100px; ">
          	<div class="im_footer_menu">
                <ul>
                   <li class="active"><a href="index.jsp">메인 페이지</a></li>
@@ -143,7 +143,7 @@
                 <% 
                   if (userID == null) {
                	%>
-                  	<li><a href="#modal-login">로그인</a></li>   
+                  	<li><a href="#modal-login" data-toggle="modal">로그인</a></li>   
                 <%     
                   } else {
                 %>
@@ -303,7 +303,7 @@
 						</tr>
 						<tr>
 							<td>작성자 이미지</td>
-							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;" src="<%=fromProfile%>"></td>
+							<td colspan="2"><img class="media-object img-circle" style="width:30px;height:30px;margin: 0px auto;" src="<%=fromProfile%>"></td>
 						</tr>
 						<tr>
 							<td>작성일자</td>
@@ -329,7 +329,7 @@
 					if (userID != null && userID.equals(gal.getUserID())) {
 				%>
 				<a
-					href="gal_to_student_council_Update.jsp?galID=<%=gal.getGalID()%>"
+					href="student_council_photo_Update.jsp?galID=<%=gal.getGalID()%>"
 					class="btn btn-primary">수정</a> <a
 					onclick="return confirm('정말로 삭제하시겠습니까?')"
 					href="deleteAction.jsp?galID=<%=gal.getGalID()%>"

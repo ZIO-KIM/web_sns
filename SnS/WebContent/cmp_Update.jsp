@@ -180,19 +180,6 @@
         <h1>글수정</h1>
       </header>
       <form method="post" action="cmp_UpdateAction.jsp?isStudent=<%=isStudent %>&cmpID=<%=cmp.getCmpID()%>">
-      <div class="form-group col-sm-3">
-      	<label>학과: [학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.]</label>
-      	<select name="cmpDivide" class="form-control">
-      		<option value="선택 안함" selected>선택 안함</option>
-      		<option value="컴퓨터공학과">컴퓨터공학과</option>
-      		<option value="정보보호학과" >정보보호학과</option>
-      		<option value="소프트웨어학과">소프트웨어학과</option>
-      		<option value="데이터사이언스학과">데이터사이언스학과</option>
-      		<option value="지능기전공학부">지능기전공학부</option>
-      		<option value="디자인이노베이션전공">디자인이노베이션전공</option>
-      		<option value="만화애니메이션전공">만화애니메이션전공</option>
-      	</select>
-      </div>
       <table class="table table-bordered">
         <tbody>
             <tr>

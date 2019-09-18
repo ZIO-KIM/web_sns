@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class GalleryServlet extends HttpServlet {
+public class GalleryUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
@@ -39,6 +39,10 @@ public class GalleryServlet extends HttpServlet {
 		String userID = multi.getParameter("userID");
 		String galTitle = multi.getParameter("galTitle");
 		String galContent = multi.getParameter("galContent");
+		int galID= 0;
+		if(request.getParameter("galID")!=null) {
+			galID=Integer.parseInt(request.getParameter("galID"));
+		}
 		
 		if(galTitle==null || galContent==null||galTitle.equals("")||galContent.equals("")) {
 			PrintWriter script = response.getWriter();
@@ -58,7 +62,7 @@ public class GalleryServlet extends HttpServlet {
 			if(ext.equals("jpg") ||ext.equals("png") ||ext.equals("gif")||ext.equals("jpeg")) {
 				String galFile = multi.getOriginalFileName("galFile");
 				String galRealFile = file.getName();
-				galleryDAO.write(userID,galTitle, galContent,galFile,galRealFile);
+				galleryDAO.update(galID,galTitle, galContent,galFile,galRealFile);
 				response.sendRedirect("student_council_photo.jsp");
 				
 			}else {
