@@ -221,7 +221,7 @@
                <a href="post.jsp?boardID=4" class="jwxe_22351 ">홍보</a>
             </li>
             <li>
-               <a href="post.jsp?boardID=11" class="jwxe_22351 ">학생회비 내역</a>
+               <a href="post.jsp?boardID=5" class="jwxe_22351 ">학생회비 내역</a>
             </li>
         </ul>
       </nav>
