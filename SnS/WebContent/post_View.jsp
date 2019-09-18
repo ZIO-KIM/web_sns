@@ -382,7 +382,7 @@
    <div id="container" style="">
       <div class="container" style="margin-top: 100px;">
          <div class="view_table" style="margin-top: -30px; margin-left: 700px;">
-            <table class="table" style="margin-left: 24px; margin-top: 17px; background-color:#f8f8f8; position: absolute; width: 1200px;">
+            <table class="table" style="margin-left: 24px; margin-top: 17px; background-color:#f8f8f8; position: absolute; width: 1200px;height:500px;overflow:auto;">
             <tbody style="">
                <tr> <!-- 이용자 프로필, 글  제목 -->
        <!-- 제목 --><td style="text-align:left;font-size:35px;padding-top: 20px;padding-left: 20px;"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt")
@@ -411,7 +411,7 @@
          </table>
          
          </div>
-            <div class="buttons" style=" bottom: 900px;">
+            <div class="buttons" style="">
            
                <a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
                

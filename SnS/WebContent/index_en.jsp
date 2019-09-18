@@ -132,7 +132,7 @@
       <div class="im_footer_right" style="margin-left:880px; margin-top: -70px;">
          	<div class="im_footer_menu">
                <ul>
-                  <li class="active"><a href="index.jsp">Main Page</a></li>
+                  <li class="active"><a href="index_en.jsp">Main Page</a></li>
                   <li><a href="index.jsp">KR</a></li>
                   <li><a href="index_en.jsp">EN</a></li>
                 <% 
