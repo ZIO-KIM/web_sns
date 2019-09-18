@@ -297,7 +297,7 @@
 							<%
 								}
 							%>
-							<td><a onclick="return confirm('해당 이메일 수신지를 삭제하시겠습니까?')" href="admin_email_Delete.jsp?boardID=<%=list.get(i).getEmailID() %>" class="btn btn-danger">삭제</a></td>
+							<td><a onclick="return confirm('해당 이메일 수신지를 삭제하시겠습니까?')" href="admin_email_Delete.jsp?eamilID=<%=list.get(i).getEmailID() %>" class="btn btn-danger">삭제</a></td>
 						</tr>
 						<%
 							}

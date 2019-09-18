@@ -205,7 +205,7 @@
 							<td><%=list.get(i).getUserID()%></td>
 							<td><%=list.get(i).getUserName()%></td>
 							<td><%=list.get(i).getUserEmail()%></td>
-							<td><a href="#" class="btn btn-primary">쪽지</a></td>
+           				    <td><a href="note_write.jsp?fromID=<%=userID%>&toID=<%=list.get(i).getUserID() %>" class="btn btn-primary">쪽지</a></td>
 							<td><a onclick="return confirm('관리자로 승격시키겠습니까?')" href="userPromotion.jsp?promotionID=<%=list.get(i).getUserID() %>" class="btn btn-info">승격</a></td>
 							<td><a onclick="return confirm('정말로 강퇴하시겠습니까?')" href="userKick.jsp?kickID=<%=list.get(i).getUserID() %>" class="btn btn-danger">강퇴</a></td>
 						</tr>

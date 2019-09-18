@@ -224,7 +224,7 @@
       </header>
       <form method="post" action="./complaints" enctype="multipart/form-data">
       <div class="form-group col-sm-3">
-      	<label>학과를 선택할 시 해당학과의 학생회에도 민원이 동시전달 됩니다.</label>
+      	<label>학과 또는 부서를 선택할 시 해당학과의 학생회 또는 부서에 민원이 전달됩니다.</label>
       	<select name="cmpDivide" class="form-control">
       	<%
       		EmailDAO emailDAO = new EmailDAO();
