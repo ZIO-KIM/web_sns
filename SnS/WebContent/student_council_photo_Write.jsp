@@ -72,7 +72,10 @@
 			script.println("</script>");
 			script.close();
 		}
-		
+		int galID=0;
+		if(request.getParameter("galID")!=null){
+			galID = Integer.parseInt(request.getParameter("galID"));
+		}
 		PageDAO pageDAO = new PageDAO();
 	%>
 
@@ -304,6 +307,7 @@
 			</header>
 			<form method="post" action="./gallery" enctype="multipart/form-data">
 				<input type="hidden" name="userID" value=<%=userID%>>
+				<input type="hidden" name="galID" value=<%=galID%>>
 				<table class="table table-bordered">
 					<tbody>
 						<tr>

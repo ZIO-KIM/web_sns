@@ -219,7 +219,7 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">open Board
+								<button type="submit" class="btn btn-primary">open Email
 								</button>
 							</div>
 							</form>
@@ -273,6 +273,7 @@
 						<th>Divide</th>
 						<th>Email</th>
 						<th>Status</th>
+						<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -288,14 +289,15 @@
 							<%
 								if(list.get(i).getStatus()==1){
 							%>
-							<td><a onclick="return confirm('정말로 게시판을 비활성화시키겠습니까?')" href="admin_email_Ban.jsp?emailID=<%=list.get(i).getEmailID() %>" class="btn btn-success">활성화</a></td>
+							<td><a onclick="return confirm('해당 이메일 발송을 비활성화시키겠습니까?')" href="admin_email_Ban.jsp?emailID=<%=list.get(i).getEmailID() %>" class="btn btn-success">활성화</a></td>
 							<%
 								}else{
 							%>
-							<td><a onclick="return confirm('정말로 게시판을 활성화시키겠습니까?')" href="admin_email_unBan.jsp?emailID=<%=list.get(i).getEmailID() %>" class="btn btn-danger">비활성화</a></td>
+							<td><a onclick="return confirm('해당 이메일  발송을 활성화시키겠습니까?')" href="admin_email_unBan.jsp?emailID=<%=list.get(i).getEmailID() %>" class="btn btn-danger">비활성화</a></td>
 							<%
 								}
 							%>
+							<td><a onclick="return confirm('해당 이메일 수신지를 삭제하시겠습니까?')" href="admin_email_Delete.jsp?boardID=<%=list.get(i).getEmailID() %>" class="btn btn-danger">삭제</a></td>
 						</tr>
 						<%
 							}
