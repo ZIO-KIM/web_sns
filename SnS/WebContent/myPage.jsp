@@ -284,7 +284,7 @@
 							for(int i=0;i<list.size();i++){
 						%>
 						<tr>
-							<td><%=list.get(i).getFromID()%></td>
+							<td><%=userDAO.getUser(list.get(i).getFromID()).getUserName()%></td>
 							<td><a type="button" style="text-decoration:none; font-weight:bold; color:#000000;" data-toggle="modal" data-target="#noteConfirmModal" 
 								data-whatever="<%=user.getUserName() %>"><%=list.get(i).getNoteTitle()%></a></td>
 							<td><%=list.get(i).getNoteDate().substring(0,16)%></td>

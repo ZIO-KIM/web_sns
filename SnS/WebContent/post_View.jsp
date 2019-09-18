@@ -453,7 +453,7 @@
                </tr>
                <tr style=""> <!-- 맨 밑 자기소개부분 -->
                   <td style="height: 50px; text-align: left; style="">
-                     <h5><%=writer.getAboutMe() %></h5>
+                     <h5><span>AboutMe: </span><%=writer.getAboutMe() %></h5>
                   </td>
                </tr>
             </tbody>
