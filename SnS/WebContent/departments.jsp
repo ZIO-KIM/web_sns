@@ -214,40 +214,40 @@
     
     <section id='departments_area'>
     	 <div id='computer_science'><!--컴퓨터공학과 게시판-->
-    		<h2><a href='post.jsp?boardID=4' id='cs_content'>컴퓨터공학과</a></h2>
-    		<a href='post.jsp?boardID=4'><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
+    		<h2><a href="computer_science_introduce.jsp" id='cs_content'>컴퓨터공학과</a></h2>
+    		<a href="computer_science_introduce.jsp"><img src='imgs/computer_science_logo.jpg' id='cs_logo'></a>
     	</div>
     
     	<div id='information_security'><!--정보보호학과 게시판-->
-    		<h2><a href='post.jsp?boardID=6' id='is_content'>정보보호학과</a></h2>
-    		<a href='post.jsp?boardID=6'><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
+    		<h2><a href="information_security_introduce.jsp" id='is_content'>정보보호학과</a></h2>
+    		<a href="information_security_introduce.jsp"><img src='imgs/information_security_logo.jpg' id='is_logo'></a>
     	</div>
     	<br/>
     
     	<div id='software'><!--소프트웨어학과 게시판-->
-    		<h2><a href='post.jsp?boardID=8' id='soft_content'>소프트웨어학과</a></h2>
-    		<a href='post.jsp?boardID=8'><img src='imgs/software_logo.jpg' id='soft_logo'></a>
+    		<h2><a href="software_introduce.jsp" id='soft_content'>소프트웨어학과</a></h2>
+    		<a href="software_introduce.jsp"><img src='imgs/software_logo.jpg' id='soft_logo'></a>
     	</div>
     
     	<div id='data_science'><!--데이터사이언스학과 게시판-->
-    		<h2><a href='post.jsp?boardID=10'  id='ds_content'>데이터사이언스학과</a></h2>
-    		<a href='post.jsp?boardID=10'><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
+    		<h2><a href="data_science_introduce.jsp"  id='ds_content'>데이터사이언스학과</a></h2>
+    		<a href="data_science_introduce.jsp"><img src='imgs/data_science_logo.jpg' id='ds_logo'></a>
     	</div>
     
     	<div id='intelligent_mechanics_engineering'><!--지능기전공학부 게시판-->
-    		<h2><a href='post.jsp?boardID=12'  id='ime_content'>지능기전공학부</a></h2>
-    		<a href='post.jsp?boardID=12'><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
+    		<h2><a href="intelligent_mechanics_engineering_introduce.jsp"  id='ime_content'>지능기전공학부</a></h2>
+    		<a href="intelligent_mechanics_engineering_introduce.jsp"><img src='imgs/mechanical_engineering_logo.jpg' id='ime_logo'></a>
     	</div>
     	<br/>
     
    		<div id='design_innovation'><!--디자인이노베이션학과 게시판-->
-    		<h2><a href='post.jsp?boardID=14' id='di_content'>디자인이노베이션학과</a></h2>
-    		<a href='post.jsp?boardID=14'><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
+    		<h2><a href="design_innovation_introduce.jsp" id='di_content'>디자인이노베이션학과</a></h2>
+    		<a href="design_innovation_introduce.jsp"><img src='imgs/design_innovation_logo.jpg' id='di_logo'></a>
     	</div>
     
     	<div id='cartoon_animation'><!--만화애니메이션학과 게시판-->
-    		<h2><a href='post.jsp?boardID=16' id='ca_content'>만화애니메이션텍학과</a></h2>
-    		<a href='post.jsp?boardID=16'><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
+    		<h2><a href="cartoon_animation_introdice.jsp" id='ca_content'>만화애니메이션텍학과</a></h2>
+    		<a href="cartoon_animation_introdice.jsp"><img src='imgs/cartoon_animation_logo.jpg' id='ca_logo'></a>
     	</div>
     </section>
     
