@@ -379,8 +379,52 @@
   </div>
 </div>
    
+   
+            
    <div id="container" style="">
+   	 </div>
+            <div class="buttons" style="">
+           
+               <a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary" style="margin-left: 50px;margin-bottom: -100px;">목록</a>
+               
+            <a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
+               href="post_agreeAction.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
+               class="btn btn-primary pull-right"
+               style="background-color: #c70027;margin-right: 30px; margin-top: 40px;">추천 </a> 
+               
+               <a href="post_Reply.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
+               class="btn btn-primary pull-right" style="margin-top: 40px; margin-right: 5px;">답변 </a>
+               
+               <a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal" style="margin-bottom: -100px;">신고</a>
+            
+               
+            <%
+               if (userID != null && userID.equals(post.getUserID())) {
+            %>
+               <a href="post_Update.jsp?postID=<%=post.getPostID()%>&boardID=<%=boardID %>"
+               class="btn btn-primary" style="margin-bottom: -100px;">수정</a>
+            <%
+               }
+            %>
+            
+            
+            <%
+               int userLevel=userDAO.getUserEmailChecked(userID);
+               if (userID != null && userID.equals(post.getUserID())||userLevel==2) {
+            %>
+               <a onclick="return confirm('정말로 삭제하시겠습니까?')"
+               href="deleteAction.jsp?postID=<%=post.getPostID()%>&boardID=<%=post.getBoardID() %>"
+               class="btn btn-primary" style="margin-bottom: -100px;">삭제</a>
+            <%
+               }
+            %>
+            
+            </div> <!-- 여기까지 버튼 -->
+   
+   
       <div class="container" style="margin-top: 100px;">
+      
+     
          <div class="view_table" style="margin-top: -30px; margin-left: 700px;">
             <table class="table" style="margin-left: 24px; margin-top: 17px; background-color:#f8f8f8; width: 1200px;height:500px;overflow:auto;">
             <tbody style="">
@@ -415,44 +459,7 @@
             </tbody>
          </table>
          
-         </div>
-            <div class="buttons" style="">
-           
-               <a href="post.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
-               
-            <a onclick="return confirm('해당 게시글에 동의하시겠습니까?')"
-               href="post_agreeAction.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
-               class="btn btn-primary pull-right"
-               style="background-color: #c70027;">추천 </a> 
-               
-               <a href="post_Reply.jsp?boardID=<%=boardID%>&postID=<%=post.getPostID()%>"
-               class="btn btn-primary pull-right">답변 </a>
-               
-               <a class="btn btn-info btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
-            
-               
-            <%
-               if (userID != null && userID.equals(post.getUserID())) {
-            %>
-               <a href="post_Update.jsp?postID=<%=post.getPostID()%>&boardID=<%=boardID %>"
-               class="btn btn-primary">수정</a>
-            <%
-               }
-            %>
-            
-            
-            <%
-               int userLevel=userDAO.getUserEmailChecked(userID);
-               if (userID != null && userID.equals(post.getUserID())||userLevel==2) {
-            %>
-               <a onclick="return confirm('정말로 삭제하시겠습니까?')"
-               href="deleteAction.jsp?postID=<%=post.getPostID()%>&boardID=<%=post.getBoardID() %>"
-               class="btn btn-primary">삭제</a>
-            <%
-               }
-            %>
-            
-            </div> <!-- 여기까지 버튼 -->
+     
             
             <br> <br>
             <%
@@ -524,6 +531,7 @@
                
                
          </div>
+   </div>
    </div>
       <div class="im_footerWrap">
       <div class="im_footer" style="width: 1600px;">
